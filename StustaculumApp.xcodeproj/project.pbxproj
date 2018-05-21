@@ -12,9 +12,14 @@
 		48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB420B2DA1D00EED86A /* Main.storyboard */; };
 		48C03CB820B2DA1E00EED86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB720B2DA1E00EED86A /* Assets.xcassets */; };
 		48C03CBB20B2DA1E00EED86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB920B2DA1E00EED86A /* LaunchScreen.storyboard */; };
+		48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC320B2DBF400EED86A /* Stustaculum.swift */; };
+		48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC620B2E03000EED86A /* NetworkingManager.swift */; };
+		656C9D74B2EF55C7A566EFA9 /* Pods_StustaculumApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A484DCFA941B0ECE8684BAE /* Pods_StustaculumApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18BE3EC760297CD2FCFD742A /* Pods-StustaculumApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StustaculumApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp.release.xcconfig"; sourceTree = "<group>"; };
+		1B3E3F778DA1B8CCDD686A63 /* Pods-StustaculumApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StustaculumApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp.debug.xcconfig"; sourceTree = "<group>"; };
 		48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StustaculumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C03CB020B2DA1D00EED86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C03CB220B2DA1D00EED86A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,9 @@
 		48C03CB720B2DA1E00EED86A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48C03CBA20B2DA1E00EED86A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48C03CBC20B2DA1E00EED86A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48C03CC320B2DBF400EED86A /* Stustaculum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stustaculum.swift; sourceTree = "<group>"; };
+		48C03CC620B2E03000EED86A /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		8A484DCFA941B0ECE8684BAE /* Pods_StustaculumApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StustaculumApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				656C9D74B2EF55C7A566EFA9 /* Pods_StustaculumApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +49,8 @@
 			children = (
 				48C03CAF20B2DA1D00EED86A /* StustaculumApp */,
 				48C03CAE20B2DA1D00EED86A /* Products */,
+				8BDBEF9E2AE52DB819180FF3 /* Pods */,
+				D7AF718D13A823FF43649E8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +65,49 @@
 		48C03CAF20B2DA1D00EED86A /* StustaculumApp */ = {
 			isa = PBXGroup;
 			children = (
-				48C03CB020B2DA1D00EED86A /* AppDelegate.swift */,
+				48C03CC220B2DBA000EED86A /* Model */,
+				48C03CC520B2E01100EED86A /* Managers */,
 				48C03CB220B2DA1D00EED86A /* ViewController.swift */,
+				48C03CB020B2DA1D00EED86A /* AppDelegate.swift */,
 				48C03CB420B2DA1D00EED86A /* Main.storyboard */,
 				48C03CB720B2DA1E00EED86A /* Assets.xcassets */,
 				48C03CB920B2DA1E00EED86A /* LaunchScreen.storyboard */,
 				48C03CBC20B2DA1E00EED86A /* Info.plist */,
 			);
 			path = StustaculumApp;
+			sourceTree = "<group>";
+		};
+		48C03CC220B2DBA000EED86A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				48C03CC320B2DBF400EED86A /* Stustaculum.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		48C03CC520B2E01100EED86A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				48C03CC620B2E03000EED86A /* NetworkingManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		8BDBEF9E2AE52DB819180FF3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1B3E3F778DA1B8CCDD686A63 /* Pods-StustaculumApp.debug.xcconfig */,
+				18BE3EC760297CD2FCFD742A /* Pods-StustaculumApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D7AF718D13A823FF43649E8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A484DCFA941B0ECE8684BAE /* Pods_StustaculumApp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +117,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48C03CBF20B2DA1E00EED86A /* Build configuration list for PBXNativeTarget "StustaculumApp" */;
 			buildPhases = (
+				D5FA67FDA323263071EAA359 /* [CP] Check Pods Manifest.lock */,
 				48C03CA920B2DA1D00EED86A /* Sources */,
 				48C03CAA20B2DA1D00EED86A /* Frameworks */,
 				48C03CAB20B2DA1D00EED86A /* Resources */,
+				6AA2B1A655D5B6B81D43BC2E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,11 +178,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6AA2B1A655D5B6B81D43BC2E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SpreadsheetView/SpreadsheetView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpreadsheetView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5FA67FDA323263071EAA359 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StustaculumApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		48C03CA920B2DA1D00EED86A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */,
+				48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */,
 				48C03CB320B2DA1D00EED86A /* ViewController.swift in Sources */,
 				48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */,
 			);
@@ -278,15 +369,13 @@
 		};
 		48C03CC020B2DA1E00EED86A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B3E3F778DA1B8CCDD686A63 /* Pods-StustaculumApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Y63G255R3;
 				INFOPLIST_FILE = StustaculumApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.stustaculum.StustaculumApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -296,15 +385,13 @@
 		};
 		48C03CC120B2DA1E00EED86A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18BE3EC760297CD2FCFD742A /* Pods-StustaculumApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Y63G255R3;
 				INFOPLIST_FILE = StustaculumApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.stustaculum.StustaculumApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
