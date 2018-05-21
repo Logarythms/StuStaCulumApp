@@ -12,8 +12,8 @@ struct Stustaculum: Codable {
     
     var id: Int
     var lastUpdated: Date
-    var startDate: Date
-    var endDate: Date
+    var startDate: String
+    var endDate: String
     var year: Int
     var updateURL: URL
     var logoURL: URL
@@ -21,14 +21,14 @@ struct Stustaculum: Codable {
     var published: Bool
     
     enum CodingKeys: String, CodingKey {
-        case id
+        case id = "id"
         case lastUpdated = "last_updated"
         case startDate = "start_date"
-        case endDate = "endDate"
-        case year
+        case endDate = "end_date"
+        case year = "year"
         case updateURL = "update_url"
         case logoURL = "logo"
-        case published
+        case published = "published"
     }
     
     

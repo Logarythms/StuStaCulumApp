@@ -8,12 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB020B2DA1D00EED86A /* AppDelegate.swift */; };
-		48C03CB320B2DA1D00EED86A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB220B2DA1D00EED86A /* ViewController.swift */; };
+		48C03CB320B2DA1D00EED86A /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB220B2DA1D00EED86A /* ScheduleViewController.swift */; };
 		48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB420B2DA1D00EED86A /* Main.storyboard */; };
 		48C03CB820B2DA1E00EED86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB720B2DA1E00EED86A /* Assets.xcassets */; };
 		48C03CBB20B2DA1E00EED86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB920B2DA1E00EED86A /* LaunchScreen.storyboard */; };
 		48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC320B2DBF400EED86A /* Stustaculum.swift */; };
 		48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC620B2E03000EED86A /* NetworkingManager.swift */; };
+		48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507320B2EC6B0012FCDB /* HowTo.swift */; };
+		48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507520B2F24E0012FCDB /* LocationCategory.swift */; };
+		48F7507820B2F3950012FCDB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507720B2F3950012FCDB /* Location.swift */; };
+		48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507920B2F9480012FCDB /* NewsEntry.swift */; };
+		48F7507C20B2FD780012FCDB /* Performance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507B20B2FD780012FCDB /* Performance.swift */; };
 		656C9D74B2EF55C7A566EFA9 /* Pods_StustaculumApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A484DCFA941B0ECE8684BAE /* Pods_StustaculumApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,13 +27,18 @@
 		1B3E3F778DA1B8CCDD686A63 /* Pods-StustaculumApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StustaculumApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp.debug.xcconfig"; sourceTree = "<group>"; };
 		48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StustaculumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C03CB020B2DA1D00EED86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		48C03CB220B2DA1D00EED86A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		48C03CB220B2DA1D00EED86A /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		48C03CB520B2DA1D00EED86A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48C03CB720B2DA1E00EED86A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48C03CBA20B2DA1E00EED86A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48C03CBC20B2DA1E00EED86A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48C03CC320B2DBF400EED86A /* Stustaculum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stustaculum.swift; sourceTree = "<group>"; };
 		48C03CC620B2E03000EED86A /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		48F7507320B2EC6B0012FCDB /* HowTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowTo.swift; sourceTree = "<group>"; };
+		48F7507520B2F24E0012FCDB /* LocationCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCategory.swift; sourceTree = "<group>"; };
+		48F7507720B2F3950012FCDB /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		48F7507920B2F9480012FCDB /* NewsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEntry.swift; sourceTree = "<group>"; };
+		48F7507B20B2FD780012FCDB /* Performance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Performance.swift; sourceTree = "<group>"; };
 		8A484DCFA941B0ECE8684BAE /* Pods_StustaculumApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StustaculumApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -67,7 +77,7 @@
 			children = (
 				48C03CC220B2DBA000EED86A /* Model */,
 				48C03CC520B2E01100EED86A /* Managers */,
-				48C03CB220B2DA1D00EED86A /* ViewController.swift */,
+				48F7507D20B302630012FCDB /* Controller */,
 				48C03CB020B2DA1D00EED86A /* AppDelegate.swift */,
 				48C03CB420B2DA1D00EED86A /* Main.storyboard */,
 				48C03CB720B2DA1E00EED86A /* Assets.xcassets */,
@@ -81,6 +91,11 @@
 			isa = PBXGroup;
 			children = (
 				48C03CC320B2DBF400EED86A /* Stustaculum.swift */,
+				48F7507320B2EC6B0012FCDB /* HowTo.swift */,
+				48F7507520B2F24E0012FCDB /* LocationCategory.swift */,
+				48F7507720B2F3950012FCDB /* Location.swift */,
+				48F7507920B2F9480012FCDB /* NewsEntry.swift */,
+				48F7507B20B2FD780012FCDB /* Performance.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -91,6 +106,14 @@
 				48C03CC620B2E03000EED86A /* NetworkingManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		48F7507D20B302630012FCDB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				48C03CB220B2DA1D00EED86A /* ScheduleViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		8BDBEF9E2AE52DB819180FF3 /* Pods */ = {
@@ -224,10 +247,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */,
+				48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */,
 				48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */,
 				48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */,
-				48C03CB320B2DA1D00EED86A /* ViewController.swift in Sources */,
+				48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */,
+				48C03CB320B2DA1D00EED86A /* ScheduleViewController.swift in Sources */,
+				48F7507C20B2FD780012FCDB /* Performance.swift in Sources */,
 				48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */,
+				48F7507820B2F3950012FCDB /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +403,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Y63G255R3;
 				INFOPLIST_FILE = StustaculumApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.stustaculum.StustaculumApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -391,7 +423,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Y63G255R3;
 				INFOPLIST_FILE = StustaculumApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.stustaculum.StustaculumApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
