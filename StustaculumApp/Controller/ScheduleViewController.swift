@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SpreadsheetView
 
-class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetViewDelegate {
+class ScheduleViewController: UIViewController {
     
     var ssc: Stustaculum!
     var howTos = [HowTo]()
@@ -47,8 +46,6 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
     var day3: Date!
     var day4: Date!
     
-    @IBOutlet var spreadsheetView: SpreadsheetView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScheduleView()
@@ -63,32 +60,7 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
     }
     
     func setupScheduleView() {
-        spreadsheetView.register(UINib(nibName: String(describing: PerformanceCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: PerformanceCell.self))
-        spreadsheetView.register(BlankCell.self, forCellWithReuseIdentifier: String(describing: BlankCell.self))
-        spreadsheetView.isScrollEnabled = false
-        spreadsheetView.dataSource = self
-        spreadsheetView.delegate = self
-    }
-    
-    func spreadsheetView(_ spreadsheetView: SpreadsheetView, cellForItemAt indexPath: IndexPath) -> Cell? {
-        if indexPath.column == 0 && indexPath.row == 0 {
-            return nil
-        }
-        
-        if indexPath.column == 0 && indexPath.row > 0 {
-            let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: PerformanceCell.self), for: indexPath) as! PerformanceCell
-            cell.title.text = String(indexPath.row)
-            return cell
-        }
-        
-        if indexPath.column > 0 && indexPath.row == 0 {
-            if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: PerformanceCell.self), for: indexPath) as? PerformanceCell {
-                cell.title.text = stageFor(indexPath.column)
-                return cell
-            }
-        }
-        
-        return spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: BlankCell.self), for: indexPath)
+
     }
     
     func stageFor(_ id: Int) -> String {
@@ -104,36 +76,6 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         default:
             return ""
         }
-    }
-    
-    func numberOfColumns(in spreadsheetView: SpreadsheetView) -> Int {
-        return 5
-    }
-    
-    func numberOfRows(in spreadsheetView: SpreadsheetView) -> Int {
-        return 17
-    }
-    
-    func spreadsheetView(_ spreadsheetView: SpreadsheetView, widthForColumn column: Int) -> CGFloat {
-        if column == 0 {
-            return 30
-        }
-        return (spreadsheetView.bounds.width - 30) / 4
-    }
-    
-    func spreadsheetView(_ spreadsheetView: SpreadsheetView, heightForRow row: Int) -> CGFloat {
-        if row == 0 {
-            return 44
-        }
-        return 100
-    }
-    
-    func frozenColumns(in spreadsheetView: SpreadsheetView) -> Int {
-        return 1
-    }
-    
-    func frozenRows(in spreadsheetView: SpreadsheetView) -> Int {
-        return 1
     }
     
     func currentSscRecieved(ssc: Stustaculum) {

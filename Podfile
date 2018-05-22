@@ -7,5 +7,4 @@ target 'StustaculumApp' do
 
   # Pods for StustaculumApp
 	pod 'Alamofire', '~> 4.7'
-	pod 'SpreadsheetView'
 end
