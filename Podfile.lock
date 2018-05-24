@@ -1,16 +1,20 @@
 PODS:
   - Alamofire (4.7.2)
+  - SpreadsheetView (0.8.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - SpreadsheetView
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - SpreadsheetView
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  SpreadsheetView: 17c55b6dc82099993cc2ceb818248d19f3220998
 
-PODFILE CHECKSUM: 5144e05535deb8c1edb0db587047a0da1b99866d
+PODFILE CHECKSUM: efc503b3da67d103a167c850ff639956a3fb0683
 
 COCOAPODS: 1.5.0
