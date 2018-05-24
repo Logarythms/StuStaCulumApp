@@ -36,4 +36,9 @@ struct Performance: Codable {
         case stustaculumID = "stustaculum"
     }
     
+    func printDescripton() {
+        guard let a = artist else { return }
+        print("\(a) at \(self.date) for \(self.duration) min")
+    }
+    
 }

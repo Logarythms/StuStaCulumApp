@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (4.7.2)
   - SpreadsheetView (0.8.4)
+  - XLPagerTabStrip (8.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - SpreadsheetView
+  - XLPagerTabStrip (~> 8.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - SpreadsheetView
+    - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   SpreadsheetView: 17c55b6dc82099993cc2ceb818248d19f3220998
+  XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: efc503b3da67d103a167c850ff639956a3fb0683
+PODFILE CHECKSUM: 0bfce250dcf82987e064a09448244dd6cf1ed145
 
 COCOAPODS: 1.5.0

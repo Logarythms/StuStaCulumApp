@@ -13,35 +13,80 @@
         <!--Zeitplan-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ScheduleViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ScheduleMasterViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tl0-28-qch" customClass="SpreadsheetView" customModule="SpreadsheetView">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-1p-HZr">
+                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
+                            </scrollView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MQF-hJ-6aK" customClass="ButtonBarView" customModule="XLPagerTabStrip">
+                                <rect key="frame" x="0.0" y="64" width="375" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="603" id="Eyz-Nh-ACG"/>
+                                    <constraint firstAttribute="height" constant="40" id="cye-km-1DV"/>
                                 </constraints>
-                            </view>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wkO-WC-Wjd">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="tl0-28-qch" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8eD-K4-zPs"/>
-                            <constraint firstItem="tl0-28-qch" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="G1u-na-CIW"/>
-                            <constraint firstItem="tl0-28-qch" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hhu-Yf-a1W"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SJ5-1p-HZr" secondAttribute="bottom" id="1P4-A9-0H8"/>
+                            <constraint firstItem="MQF-hJ-6aK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BFx-rG-Jqm"/>
+                            <constraint firstItem="SJ5-1p-HZr" firstAttribute="top" secondItem="MQF-hJ-6aK" secondAttribute="bottom" id="obF-Ve-9Zo"/>
+                            <constraint firstItem="SJ5-1p-HZr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rWQ-eH-5Iw"/>
+                            <constraint firstItem="MQF-hJ-6aK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="sjz-cF-Dm4"/>
+                            <constraint firstItem="SJ5-1p-HZr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="u99-pp-cna"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MQF-hJ-6aK" secondAttribute="trailing" id="v7B-LE-TQ6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Zeitplan" id="Pxd-Z9-CWg"/>
                     <connections>
-                        <outlet property="spreadsheetView" destination="tl0-28-qch" id="Q2I-bd-vxx"/>
+                        <outlet property="buttonBarView" destination="MQF-hJ-6aK" id="ftK-HM-CQr"/>
+                        <outlet property="containerView" destination="SJ5-1p-HZr" id="oJh-nH-TX3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="901.60000000000002" y="784.85757121439292"/>
+        </scene>
+        <!--Schedule Day View Controller-->
+        <scene sceneID="0gn-Hm-nxt">
+            <objects>
+                <viewController storyboardIdentifier="dayViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sVF-Sa-im8" customClass="ScheduleDayViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Eq-uM-jdW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNR-L8-XP9" customClass="SpreadsheetView" customModule="SpreadsheetView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Icq-FR-wZx" firstAttribute="bottom" secondItem="DNR-L8-XP9" secondAttribute="bottom" id="3FY-uY-4Ko"/>
+                            <constraint firstItem="DNR-L8-XP9" firstAttribute="top" secondItem="Icq-FR-wZx" secondAttribute="top" id="MkV-Jk-8fU"/>
+                            <constraint firstItem="DNR-L8-XP9" firstAttribute="leading" secondItem="Icq-FR-wZx" secondAttribute="leading" id="ewo-uZ-ZkT"/>
+                            <constraint firstItem="Icq-FR-wZx" firstAttribute="trailing" secondItem="DNR-L8-XP9" secondAttribute="trailing" id="hYK-HM-RZz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Icq-FR-wZx"/>
+                    </view>
+                    <connections>
+                        <outlet property="spreadsheetView" destination="DNR-L8-XP9" id="jUe-iw-QBC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ywE-rI-brR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1724" y="785"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qxm-WI-eEX">
