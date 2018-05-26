@@ -20,21 +20,28 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     
     var performances = [Performance]()
     
-    var performancesDada = [Performance]()
-    var performancesAtrium = [Performance]()
-    var performancesHalle = [Performance]()
-    var performancesZelt = [Performance]()
+    var timeslotsDada = [Timeslot]()
+    var timeslotsAtrium = [Timeslot]()
+    var timeslotsHalle = [Timeslot]()
+    var timeslotsZelt = [Timeslot]()
+    
+    var slotInfo = [IndexPath: Performance]()
 
-    var day: SSCDay?
+    var day: SSCDay!
+    
+    var pvc: ButtonBarPagerTabStripViewController?
     
     @IBOutlet weak var spreadsheetView: SpreadsheetView!
     
-    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScheduleView()
         
+        NetworkingManager.getPerformancesFor(day, completion: splitPerformances)
         NetworkingManager.getCurrentSSC(completion: currentSscRecieved)
         NetworkingManager.getHowTos(completion: howTosLoaded)
         NetworkingManager.getLocationCategories(completion: locationCategoriesLoaded)
@@ -44,9 +51,15 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     
     func setupScheduleView() {
         spreadsheetView.register(UINib(nibName: String(describing: PerformanceCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: PerformanceCell.self))
-        spreadsheetView.register(BlankCell.self, forCellWithReuseIdentifier: String(describing: BlankCell.self))
+//        spreadsheetView.register(PerformanceCell.self, forCellWithReuseIdentifier: String(describing: PerformanceCell.self))
+        spreadsheetView.register(EmptyCell.self, forCellWithReuseIdentifier: String(describing: EmptyCell.self))
         spreadsheetView.dataSource = self
         spreadsheetView.delegate = self
+        spreadsheetView.isDirectionalLockEnabled = true
+        spreadsheetView.bounces = false
+        spreadsheetView.scrollView.isScrollEnabled = false
+        
+        
     }
     
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, cellForItemAt indexPath: IndexPath) -> Cell? {
@@ -55,9 +68,10 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         }
         
         if indexPath.column == 0 && indexPath.row > 0 {
-            let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: PerformanceCell.self), for: indexPath) as! PerformanceCell
-            cell.title.text = String(indexPath.row)
-            return cell
+            if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: PerformanceCell.self), for: indexPath) as? PerformanceCell {
+                cell.title.text = String(indexPath.row)
+                return cell
+            }
         }
         
         if indexPath.column > 0 && indexPath.row == 0 {
@@ -67,7 +81,115 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
             }
         }
         
-        return spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: BlankCell.self), for: indexPath)
+        if let performance = slotInfo[indexPath] {
+            if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: PerformanceCell.self), for: indexPath) as? PerformanceCell {
+                cell.title.text = performance.artist!
+                cell.color = Util.colorForStage(performance.location)
+                return cell
+            }
+        }
+        
+        return spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: EmptyCell.self), for: indexPath)
+    }
+
+    func mergedCells(in spreadsheetView: SpreadsheetView) -> [CellRange] {
+        var mergedCells = [CellRange]()
+        let hours = day.maxHour - day.minHour
+        
+        guard !self.performances.isEmpty else {
+            return mergedCells
+        }
+        
+        for row in 0..<hours {
+            mergedCells.append(CellRange(from: (60 * row + 1, 0), to: (60 * (row + 1), 0)))
+        }
+        
+        var minutes = 0
+        
+        for timeslot in timeslotsDada {
+            let cellRange = CellRange(from: (minutes + 1, 1), to: (minutes + timeslot.duration, 1))
+            if cellRange.to.row <= spreadsheetView.numberOfRows {
+                mergedCells.append(cellRange)
+                slotInfo[IndexPath(row: cellRange.from.row, column: cellRange.from.column)] = timeslot.performance
+                minutes += timeslot.duration
+            }
+        }
+        
+        minutes = 0
+        
+        for timeslot in timeslotsAtrium {
+            let cellRange = CellRange(from: (minutes + 1, 2), to: (minutes + timeslot.duration, 2))
+            if cellRange.to.row <= spreadsheetView.numberOfRows {
+                mergedCells.append(cellRange)
+                slotInfo[IndexPath(row: cellRange.from.row, column: cellRange.from.column)] = timeslot.performance
+                minutes += timeslot.duration
+            }
+        }
+        
+        minutes = 0
+        
+        for timeslot in timeslotsHalle {
+            let cellRange = CellRange(from: (minutes + 1, 3), to: (minutes + timeslot.duration, 3))
+            if cellRange.to.row <= spreadsheetView.numberOfRows {
+                mergedCells.append(cellRange)
+                slotInfo[IndexPath(row: cellRange.from.row, column: cellRange.from.column)] = timeslot.performance
+                minutes += timeslot.duration
+            }
+        }
+        
+        minutes = 0
+        
+        for timeslot in timeslotsZelt {
+            let cellRange = CellRange(from: (minutes + 1, 4), to: (minutes + timeslot.duration, 4))
+            if cellRange.to.row <= spreadsheetView.numberOfRows {
+                mergedCells.append(cellRange)
+                slotInfo[IndexPath(row: cellRange.from.row, column: cellRange.from.column)] = timeslot.performance
+                minutes += timeslot.duration
+            }
+        }
+        
+        return mergedCells
+    }
+    
+    func numberOfColumns(in spreadsheetView: SpreadsheetView) -> Int {
+        return 5
+    }
+    
+    func numberOfRows(in spreadsheetView: SpreadsheetView) -> Int {
+        guard let currentDay = day else { return 0 }
+        if performances.isEmpty {
+            return 0
+        } else {
+            return (currentDay.duration) * 60 + 1
+        }
+    }
+    
+    func spreadsheetView(_ spreadsheetView: SpreadsheetView, widthForColumn column: Int) -> CGFloat {
+        if column == 0 {
+            return 55
+        }
+        let scheduleWidth = UIScreen.main.bounds.width - 55
+        return scheduleWidth / 4
+    }
+    
+    func spreadsheetView(_ spreadsheetView: SpreadsheetView, heightForRow row: Int) -> CGFloat {
+        if row == 0 {
+            return 40
+        } else {
+            return 1
+        }
+    }
+    
+    func frozenColumns(in spreadsheetView: SpreadsheetView) -> Int {
+        return 5
+    }
+    
+    func frozenRows(in spreadsheetView: SpreadsheetView) -> Int {
+        guard !self.performances.isEmpty else {
+            return 0
+        }
+        
+        return 1
     }
     
     func stageFor(_ id: Int) -> String {
@@ -83,35 +205,6 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         default:
             return ""
         }
-    }
-    
-    func numberOfColumns(in spreadsheetView: SpreadsheetView) -> Int {
-        return 5
-    }
-    
-    func numberOfRows(in spreadsheetView: SpreadsheetView) -> Int {
-        guard let currentDay = day else { return 0 }
-        return currentDay.maxHour - currentDay.minHour + 1
-    }
-    
-    func spreadsheetView(_ spreadsheetView: SpreadsheetView, widthForColumn column: Int) -> CGFloat {
-        if column == 0 {
-            return 55
-        }
-        let scheduleWidth = UIScreen.main.bounds.width - 55
-        return scheduleWidth / 4
-    }
-    
-    func spreadsheetView(_ spreadsheetView: SpreadsheetView, heightForRow row: Int) -> CGFloat {
-        return 44
-    }
-    
-    func frozenColumns(in spreadsheetView: SpreadsheetView) -> Int {
-        return 5
-    }
-    
-    func frozenRows(in spreadsheetView: SpreadsheetView) -> Int {
-        return 1
     }
     
     func currentSscRecieved(ssc: Stustaculum) {
@@ -134,36 +227,21 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         self.news = news
     }
     
-    func splitPerformances() {
-        let calender = Calendar.current
-        guard let currentDay = self.day else { return }
+    func splitPerformances(performances: [Performance]) {
         
-        let filteredPerformances = performances.filter { (performance) -> Bool in
-            guard let nextDate = calender.date(byAdding: .day, value: 1, to: currentDay.date) else { fatalError("this should not happen") }
-            
-            let isSameDay = (calender.compare(performance.date, to: currentDay.date, toGranularity: .day)) == .orderedSame
-            let isNextDay = (calender.compare(performance.date, to: nextDate, toGranularity: .day)) == .orderedSame
-            let isOverlapping = Util.performanceOverlaps(performance)
-            
-            if isSameDay && !isOverlapping {
-                return true
-            } else if isNextDay && isOverlapping {
-                return true
-            } else {
-                return false
-            }
-            
-        }
+        self.performances = performances
         
-        self.performancesDada = filteredPerformances.filter({$0.location == 1})
-        self.performancesAtrium = filteredPerformances.filter({$0.location == 2})
-        self.performancesHalle = filteredPerformances.filter({$0.location == 3})
-        self.performancesZelt = filteredPerformances.filter({$0.location == 4})
+        let performancesDada = performances.filter({$0.location == 1}).sorted(by: {$0.date < $1.date})
+        let performancesAtrium = performances.filter({$0.location == 2}).sorted(by: {$0.date < $1.date})
+        let performancesHalle = performances.filter({$0.location == 3}).sorted(by: {$0.date < $1.date})
+        let performancesZelt = performances.filter({$0.location == 4}).sorted(by: {$0.date < $1.date})
         
-        for performance in performancesZelt {
-            performance.printDescripton()
-        }
+        self.timeslotsDada = Util.getTimeslotsFor(performancesDada, day: self.day)
+        self.timeslotsAtrium = Util.getTimeslotsFor(performancesAtrium, day: self.day)
+        self.timeslotsHalle = Util.getTimeslotsFor(performancesHalle, day: self.day)
+        self.timeslotsZelt = Util.getTimeslotsFor(performancesZelt, day: self.day)
         
+        spreadsheetView.reloadData()
         spreadsheetView.reloadData()
     }
 
@@ -173,7 +251,16 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "SSC")
+        switch day.day {
+        case .day1:
+            return "MI."
+        case .day2:
+            return "DO."
+        case .day3:
+            return "FR."
+        case .day4:
+            return "SA."
+        }
     }
 
 }

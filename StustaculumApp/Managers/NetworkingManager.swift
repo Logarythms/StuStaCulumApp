@@ -67,7 +67,7 @@ class NetworkingManager {
         }
     }
     
-    class func getPerformances(completion: @escaping ([Performance]) -> Void) {
+    class func getPerformancesFor(_ day: SSCDay, completion: @escaping ([Performance]) -> Void) {
         let url = getRequestUrlFor(.performances)
         
         Alamofire.request(url).response { (response) in
@@ -77,7 +77,8 @@ class NetworkingManager {
             decoder.dateDecodingStrategy = .iso8601
             
             guard let performances = try? decoder.decode([Performance].self, from: jsonData) else { return }
-            completion(performances)
+            
+            completion(Util.filterPerformancesBy(day, performances: performances).filter({$0.show}))
         }
     }
     

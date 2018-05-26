@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		485BF26D20B8236000075A64 /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485BF26C20B8236000075A64 /* Timeslot.swift */; };
 		488F14C020B732600058536E /* SSCDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14BF20B732600058536E /* SSCDay.swift */; };
 		488F14C420B7389B0058536E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14C320B7389B0058536E /* Util.swift */; };
 		48A3D22C20B33E0F00C5EBDD /* PerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */; };
-		48A3D22E20B33FD700C5EBDD /* PerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A3D22D20B33FD700C5EBDD /* PerformanceCell.swift */; };
+		48A3D22E20B33FD700C5EBDD /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A3D22D20B33FD700C5EBDD /* Cells.swift */; };
 		48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB020B2DA1D00EED86A /* AppDelegate.swift */; };
 		48C03CB320B2DA1D00EED86A /* ScheduleDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */; };
 		48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB420B2DA1D00EED86A /* Main.storyboard */; };
@@ -30,10 +31,11 @@
 /* Begin PBXFileReference section */
 		18BE3EC760297CD2FCFD742A /* Pods-StustaculumApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StustaculumApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp.release.xcconfig"; sourceTree = "<group>"; };
 		1B3E3F778DA1B8CCDD686A63 /* Pods-StustaculumApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StustaculumApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp.debug.xcconfig"; sourceTree = "<group>"; };
+		485BF26C20B8236000075A64 /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		488F14BF20B732600058536E /* SSCDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDay.swift; sourceTree = "<group>"; };
 		488F14C320B7389B0058536E /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerformanceCell.xib; sourceTree = "<group>"; };
-		48A3D22D20B33FD700C5EBDD /* PerformanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceCell.swift; sourceTree = "<group>"; };
+		48A3D22D20B33FD700C5EBDD /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StustaculumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C03CB020B2DA1D00EED86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDayViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				48F7507920B2F9480012FCDB /* NewsEntry.swift */,
 				48F7507B20B2FD780012FCDB /* Performance.swift */,
 				488F14BF20B732600058536E /* SSCDay.swift */,
+				485BF26C20B8236000075A64 /* Timeslot.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,7 +145,7 @@
 			children = (
 				48C03CB420B2DA1D00EED86A /* Main.storyboard */,
 				48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */,
-				48A3D22D20B33FD700C5EBDD /* PerformanceCell.swift */,
+				48A3D22D20B33FD700C5EBDD /* Cells.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -281,8 +284,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48A3D22E20B33FD700C5EBDD /* PerformanceCell.swift in Sources */,
+				48A3D22E20B33FD700C5EBDD /* Cells.swift in Sources */,
 				48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */,
+				485BF26D20B8236000075A64 /* Timeslot.swift in Sources */,
 				48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */,
 				48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */,
 				48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */,

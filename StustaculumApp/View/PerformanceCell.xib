@@ -16,15 +16,22 @@
             <rect key="frame" x="0.0" y="0.0" width="140" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUD-an-uIa">
-                    <rect key="frame" x="16" y="20" width="42" height="20.333333333333329"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUD-an-uIa">
+                    <rect key="frame" x="0.0" y="0.0" width="140" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="s3d-rB-2ap"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="tUD-an-uIa" firstAttribute="top" secondItem="9km-12-dSU" secondAttribute="top" id="Bbs-u6-nd5"/>
+                <constraint firstItem="tUD-an-uIa" firstAttribute="leading" secondItem="9km-12-dSU" secondAttribute="leading" id="en9-6s-a2K"/>
+                <constraint firstItem="tUD-an-uIa" firstAttribute="trailing" secondItem="9km-12-dSU" secondAttribute="trailing" id="h9I-0c-ar7"/>
+            </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -32,7 +39,65 @@
             <connections>
                 <outlet property="title" destination="tUD-an-uIa" id="eGE-ZL-FKK"/>
             </connections>
-            <point key="canvasLocation" x="-40.5" y="-400"/>
+            <point key="canvasLocation" x="-41" y="-400"/>
+        </view>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="QFX-M4-hDB" customClass="TimeCell" customModule="StustaculumApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqa-lF-FS2">
+                    <rect key="frame" x="0.0" y="0.0" width="140" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="UcR-2h-SKn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="oqa-lF-FS2" firstAttribute="trailing" secondItem="9ro-nP-rZ0" secondAttribute="trailing" id="8SO-l0-pNs"/>
+                <constraint firstItem="oqa-lF-FS2" firstAttribute="leading" secondItem="9ro-nP-rZ0" secondAttribute="leading" id="EoZ-ZM-duC"/>
+                <constraint firstItem="oqa-lF-FS2" firstAttribute="top" secondItem="9ro-nP-rZ0" secondAttribute="top" id="nce-xG-MLE"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="9ro-nP-rZ0"/>
+            <connections>
+                <outlet property="title" destination="oqa-lF-FS2" id="AwO-Kd-Sht"/>
+            </connections>
+            <point key="canvasLocation" x="205" y="-400"/>
+        </view>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="qcV-5S-VDU" customClass="StageCell" customModule="StustaculumApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjo-6Y-Han">
+                    <rect key="frame" x="0.0" y="0.0" width="140" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="P3L-p8-Q02"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vjo-6Y-Han" firstAttribute="leading" secondItem="5lU-F0-enm" secondAttribute="leading" id="TSK-ra-aIt"/>
+                <constraint firstItem="vjo-6Y-Han" firstAttribute="trailing" secondItem="5lU-F0-enm" secondAttribute="trailing" id="aIL-NO-Ruc"/>
+                <constraint firstItem="vjo-6Y-Han" firstAttribute="top" secondItem="5lU-F0-enm" secondAttribute="top" id="uQx-Nk-hIY"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="5lU-F0-enm"/>
+            <connections>
+                <outlet property="title" destination="vjo-6Y-Han" id="N66-9a-FjA"/>
+            </connections>
+            <point key="canvasLocation" x="426" y="-400"/>
         </view>
     </objects>
 </document>

@@ -14,6 +14,7 @@ class SSCDay {
     let date: Date
     let minHour: Int
     let maxHour: Int
+    let duration: Int
     
     init(_ day: Day) {
         self.day = day
@@ -39,6 +40,7 @@ class SSCDay {
         }
         
         self.date = date
+        self.duration = self.maxHour-self.minHour
     }
     
     enum Day {
