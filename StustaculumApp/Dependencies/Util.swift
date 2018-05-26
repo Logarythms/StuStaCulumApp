@@ -10,10 +10,13 @@ import UIKit
 
 class Util {
     
-    internal static var dadaColor = UIColor(red:0.35, green:0.57, blue:0.27, alpha:1.0)
-    internal static var atriumColor = UIColor(red:0.56, green:0.26, blue:0.58, alpha:1.0)
-    internal static var halleColor = UIColor(red:0.90, green:0.00, blue:0.33, alpha:1.0)
-    internal static var zeltColor = UIColor(red:0.00, green:0.45, blue:0.64, alpha:1.0)
+    static var dadaColor = UIColor(red:0.35, green:0.57, blue:0.27, alpha:1.0)
+    static var atriumColor = UIColor(red:0.56, green:0.26, blue:0.58, alpha:1.0)
+    static var halleColor = UIColor(red:0.90, green:0.00, blue:0.33, alpha:1.0)
+    static var zeltColor = UIColor(red:0.00, green:0.45, blue:0.64, alpha:1.0)
+    
+    static var backgroundColor = UIColor(red:0.18, green:0.18, blue:0.18, alpha:1.0)
+    static var stageCellBackgroundColor = UIColor(red:0.26, green:0.26, blue:0.26, alpha:1.0)
     
     class func colorForStage(_ id: Int) -> UIColor {
         switch id {
@@ -181,6 +184,15 @@ class Util {
         
         return date
     }
+    
+    class func getLabelTextFor(_ hour: Int) -> (String, String) {
+        let normalizedHour = hour % 24
+        let first = "\(normalizedHour):00"
+        let second = "\(normalizedHour):30"
+        
+        return (first, second)
+    }
+    
 }
 
 extension Collection {

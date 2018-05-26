@@ -24,6 +24,7 @@ class ScheduleMasterViewController: ButtonBarPagerTabStripViewController {
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         return [self.vc1, self.vc2, self.vc3, self.vc4]
+//        return [self.vc1]
     }
     
     func loadViewControllers() {

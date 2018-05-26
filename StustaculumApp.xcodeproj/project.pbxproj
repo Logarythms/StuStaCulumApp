@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4802E9C020B9BE19005A0085 /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9BF20B9BE19005A0085 /* StageCell.xib */; };
+		4802E9C220B9BE31005A0085 /* TimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C120B9BE31005A0085 /* TimeCell.xib */; };
+		4802E9C420BA08D6005A0085 /* DadaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C320BA08D6005A0085 /* DadaCell.xib */; };
+		4802E9C620BA0984005A0085 /* AtriumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C520BA0984005A0085 /* AtriumCell.xib */; };
+		4802E9C820BA09B5005A0085 /* HalleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C720BA09B5005A0085 /* HalleCell.xib */; };
+		4802E9CA20BA09C2005A0085 /* ZeltCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C920BA09C2005A0085 /* ZeltCell.xib */; };
 		485BF26D20B8236000075A64 /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485BF26C20B8236000075A64 /* Timeslot.swift */; };
 		488F14C020B732600058536E /* SSCDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14BF20B732600058536E /* SSCDay.swift */; };
 		488F14C420B7389B0058536E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14C320B7389B0058536E /* Util.swift */; };
@@ -31,6 +37,12 @@
 /* Begin PBXFileReference section */
 		18BE3EC760297CD2FCFD742A /* Pods-StustaculumApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StustaculumApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp.release.xcconfig"; sourceTree = "<group>"; };
 		1B3E3F778DA1B8CCDD686A63 /* Pods-StustaculumApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StustaculumApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp.debug.xcconfig"; sourceTree = "<group>"; };
+		4802E9BF20B9BE19005A0085 /* StageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
+		4802E9C120B9BE31005A0085 /* TimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeCell.xib; sourceTree = "<group>"; };
+		4802E9C320BA08D6005A0085 /* DadaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DadaCell.xib; sourceTree = "<group>"; };
+		4802E9C520BA0984005A0085 /* AtriumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtriumCell.xib; sourceTree = "<group>"; };
+		4802E9C720BA09B5005A0085 /* HalleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HalleCell.xib; sourceTree = "<group>"; };
+		4802E9C920BA09C2005A0085 /* ZeltCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZeltCell.xib; sourceTree = "<group>"; };
 		485BF26C20B8236000075A64 /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		488F14BF20B732600058536E /* SSCDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDay.swift; sourceTree = "<group>"; };
 		488F14C320B7389B0058536E /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -145,6 +157,12 @@
 			children = (
 				48C03CB420B2DA1D00EED86A /* Main.storyboard */,
 				48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */,
+				4802E9C320BA08D6005A0085 /* DadaCell.xib */,
+				4802E9C520BA0984005A0085 /* AtriumCell.xib */,
+				4802E9C720BA09B5005A0085 /* HalleCell.xib */,
+				4802E9C920BA09C2005A0085 /* ZeltCell.xib */,
+				4802E9BF20B9BE19005A0085 /* StageCell.xib */,
+				4802E9C120B9BE31005A0085 /* TimeCell.xib */,
 				48A3D22D20B33FD700C5EBDD /* Cells.swift */,
 			);
 			path = View;
@@ -227,10 +245,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4802E9CA20BA09C2005A0085 /* ZeltCell.xib in Resources */,
+				4802E9C220B9BE31005A0085 /* TimeCell.xib in Resources */,
+				4802E9C620BA0984005A0085 /* AtriumCell.xib in Resources */,
 				48C03CBB20B2DA1E00EED86A /* LaunchScreen.storyboard in Resources */,
+				4802E9C420BA08D6005A0085 /* DadaCell.xib in Resources */,
 				48C03CB820B2DA1E00EED86A /* Assets.xcassets in Resources */,
 				48A3D22C20B33E0F00C5EBDD /* PerformanceCell.xib in Resources */,
 				48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */,
+				4802E9C020B9BE19005A0085 /* StageCell.xib in Resources */,
+				4802E9C820BA09B5005A0085 /* HalleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

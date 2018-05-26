@@ -50,46 +50,100 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     }
     
     func setupScheduleView() {
-        spreadsheetView.register(UINib(nibName: String(describing: PerformanceCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: PerformanceCell.self))
-//        spreadsheetView.register(PerformanceCell.self, forCellWithReuseIdentifier: String(describing: PerformanceCell.self))
+        spreadsheetView.register(UINib(nibName: String(describing: DadaCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: DadaCell.self))
+        spreadsheetView.register(UINib(nibName: String(describing: AtriumCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: AtriumCell.self))
+        spreadsheetView.register(UINib(nibName: String(describing: HalleCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: HalleCell.self))
+        spreadsheetView.register(UINib(nibName: String(describing: ZeltCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ZeltCell.self))
+        spreadsheetView.register(UINib(nibName: String(describing: TimeCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: TimeCell.self))
+        spreadsheetView.register(UINib(nibName: String(describing: StageCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: StageCell.self))
         spreadsheetView.register(EmptyCell.self, forCellWithReuseIdentifier: String(describing: EmptyCell.self))
         spreadsheetView.dataSource = self
         spreadsheetView.delegate = self
         spreadsheetView.isDirectionalLockEnabled = true
         spreadsheetView.bounces = false
         spreadsheetView.scrollView.isScrollEnabled = false
-        
+        spreadsheetView.gridStyle = .solid(width: 1, color: Util.backgroundColor)
         
     }
     
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, cellForItemAt indexPath: IndexPath) -> Cell? {
+        
         if indexPath.column == 0 && indexPath.row == 0 {
-            return nil
+            if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: StageCell.self), for: indexPath) as? StageCell {
+                cell.title.text = ""
+                cell.borders.right = .none
+                return cell
+            }
         }
         
         if indexPath.column == 0 && indexPath.row > 0 {
-            if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: PerformanceCell.self), for: indexPath) as? PerformanceCell {
-                cell.title.text = String(indexPath.row)
+            if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: TimeCell.self), for: indexPath) as? TimeCell {
+                let timeStrings = Util.getLabelTextFor(day.minHour + indexPath.row / 60)
+                cell.startTimeLabel.text = timeStrings.0
+                cell.midTimeLabel.text = timeStrings.1
+                
+                cell.borders.bottom = .solid(width: 1, color: .darkGray)
+                cell.borders.right = .solid(width: 1, color: .darkGray)
+                
                 return cell
             }
         }
         
         if indexPath.column > 0 && indexPath.row == 0 {
-            if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: PerformanceCell.self), for: indexPath) as? PerformanceCell {
+            if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: StageCell.self), for: indexPath) as? StageCell {
                 cell.title.text = stageFor(indexPath.column)
                 return cell
             }
         }
         
         if let performance = slotInfo[indexPath] {
-            if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: PerformanceCell.self), for: indexPath) as? PerformanceCell {
-                cell.title.text = performance.artist!
-                cell.color = Util.colorForStage(performance.location)
-                return cell
+            switch performance.location {
+            case 1:
+                if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: DadaCell.self), for: indexPath) as? DadaCell {
+                    cell.title.text = performance.artist!
+                    
+                    cell.borders.right = .solid(width: 1, color: .darkGray)
+                    cell.borders.bottom = .solid(width: 1, color: .darkGray)
+                    
+                    return cell
+                }
+            case 2:
+                if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: AtriumCell.self), for: indexPath) as? AtriumCell {
+                    cell.title.text = performance.artist!
+                    
+                    cell.borders.right = .solid(width: 1, color: .darkGray)
+                    cell.borders.bottom = .solid(width: 1, color: .darkGray)
+                    
+                    return cell
+                }
+            case 3:
+                if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: HalleCell.self), for: indexPath) as? HalleCell {
+                    cell.title.text = performance.artist!
+                    
+                    cell.borders.right = .solid(width: 1, color: .darkGray)
+                    cell.borders.bottom = .solid(width: 1, color: .darkGray)
+                    
+                    return cell
+                }
+            case 4:
+                if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: ZeltCell.self), for: indexPath) as? ZeltCell {
+                    cell.title.text = performance.artist!
+                    
+                    cell.borders.right = .solid(width: 1, color: .darkGray)
+                    cell.borders.bottom = .solid(width: 1, color: .darkGray)
+                    
+                    return cell
+                }
+            default:
+                print("lol")
             }
         }
         
-        return spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: EmptyCell.self), for: indexPath)
+        let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: EmptyCell.self), for: indexPath)
+        cell.borders.right = .solid(width: 1, color: .darkGray)
+        cell.borders.bottom = .solid(width: 1, color: .darkGray)
+        
+        return cell
     }
 
     func mergedCells(in spreadsheetView: SpreadsheetView) -> [CellRange] {
