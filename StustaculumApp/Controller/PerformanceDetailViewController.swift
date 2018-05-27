@@ -38,7 +38,7 @@ class PerformanceDetailViewController: UIViewController {
     }
     
     func getFormattedDateStringFor(_ date: Date) -> String {
-        var formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: date)
     }

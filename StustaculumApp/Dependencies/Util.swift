@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class Util {
     
@@ -31,6 +32,14 @@ class Util {
         default:
             return dadaColor
         }
+    }
+    
+    class func getCoordinatesFor(_ location: Location) -> CLLocationCoordinate2D {
+        guard let lat = Double(location.latitudeString) else { fatalError("lol") }
+        guard let lon = Double(location.longitudeString) else { fatalError("lol") }
+        
+        let clLocation = CLLocation(latitude: lat, longitude: lon)
+        return clLocation.coordinate
     }
     
     class func getTimeslotsFor(_ performances: [Performance], day: SSCDay) -> [Timeslot] {

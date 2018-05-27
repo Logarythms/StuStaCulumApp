@@ -12,12 +12,6 @@ import XLPagerTabStrip
 
 class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetViewDelegate, IndicatorInfoProvider {
     
-    var ssc: Stustaculum!
-    var howTos = [HowTo]()
-    var locationCategories = [LocationCategory]()
-    var locations = [Location]()
-    var news = [NewsEntry]()
-    
     var performances = [Performance]()
     
     var timeslotsDada = [Timeslot]()
@@ -44,11 +38,6 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         setupScheduleView()
         
         NetworkingManager.getPerformancesFor(day, completion: splitPerformances)
-        NetworkingManager.getCurrentSSC(completion: currentSscRecieved)
-        NetworkingManager.getHowTos(completion: howTosLoaded)
-        NetworkingManager.getLocationCategories(completion: locationCategoriesLoaded)
-        NetworkingManager.getLocations(completion: locationsLoaded)
-        NetworkingManager.getNews(completion: newsLoaded)
     }
     
     func setupScheduleView() {
@@ -268,26 +257,6 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         default:
             return ""
         }
-    }
-    
-    func currentSscRecieved(ssc: Stustaculum) {
-        self.ssc = ssc
-    }
-    
-    func howTosLoaded(howTos: [HowTo]) {
-        self.howTos = howTos
-    }
-    
-    func locationCategoriesLoaded(categories: [LocationCategory]) {
-        self.locationCategories = categories
-    }
-    
-    func locationsLoaded(locations: [Location]) {
-        self.locations = locations
-    }
-    
-    func newsLoaded(news: [NewsEntry]) {
-        self.news = news
     }
     
     func splitPerformances(performances: [Performance]) {

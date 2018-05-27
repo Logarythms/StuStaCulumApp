@@ -237,17 +237,31 @@
             </objects>
             <point key="canvasLocation" x="1072.8" y="784.85757121439292"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="YFS-fz-8Yp">
             <objects>
-                <viewController id="B59-dA-rkg" sceneMemberID="viewController">
+                <viewController id="B59-dA-rkg" customClass="MapViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Avn-dA-PsD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rua-jQ-vxD">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rua-jQ-vxD" firstAttribute="leading" secondItem="1DX-qS-3ab" secondAttribute="leading" id="121-E9-glu"/>
+                            <constraint firstItem="rua-jQ-vxD" firstAttribute="top" secondItem="1DX-qS-3ab" secondAttribute="top" id="Cll-fG-oln"/>
+                            <constraint firstItem="1DX-qS-3ab" firstAttribute="bottom" secondItem="rua-jQ-vxD" secondAttribute="bottom" id="lx9-Kb-uBn"/>
+                            <constraint firstItem="1DX-qS-3ab" firstAttribute="trailing" secondItem="rua-jQ-vxD" secondAttribute="trailing" id="zNX-45-82n"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="1DX-qS-3ab"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Calendar" selectedImage="Calendar" id="lcV-DF-9Qc"/>
+                    <tabBarItem key="tabBarItem" title="" image="Map" selectedImage="Map" id="lcV-DF-9Qc"/>
+                    <connections>
+                        <outlet property="mapView" destination="rua-jQ-vxD" id="W4H-Fw-PkK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lR5-hD-Kge" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -276,5 +290,6 @@
     </scenes>
     <resources>
         <image name="Calendar" width="30" height="30"/>
+        <image name="Map" width="30" height="30"/>
     </resources>
 </document>
