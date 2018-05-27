@@ -320,8 +320,12 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         
         spreadsheetView.reloadData()
         spreadsheetView.reloadData()
+        
+        if UIDevice.current.systemVersion.contains("10") {
+            pvc?.moveToViewController(at: 1)
+        }
     }
-    
+     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "performanceDetailSegue" else { return }
         guard let performanceVC = segue.destination as? PerformanceDetailViewController else { return }

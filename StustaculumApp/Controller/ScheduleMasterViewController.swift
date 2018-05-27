@@ -19,13 +19,16 @@ class ScheduleMasterViewController: ButtonBarPagerTabStripViewController {
     override func viewDidLoad() {
         loadViewControllers()
         super.viewDidLoad()
-//        containerView.isScrollEnabled = false
+        if UIDevice.current.systemVersion.contains("10") {
+            containerView.isScrollEnabled = false
+        }
         
         buttonBarView.backgroundColor = Util.backgroundColor
         buttonBarView.tintColor = .white
         
         buttonBarView.selectedBar.backgroundColor = UIColor(red:0.67, green:0.04, blue:0.20, alpha:1.0)
-        settings.style.buttonBarHeight = 5
+        
+        settings.style.buttonBarHeight = 1
         
         settings.style.buttonBarItemBackgroundColor = Util.backgroundColor
         
@@ -46,6 +49,7 @@ class ScheduleMasterViewController: ButtonBarPagerTabStripViewController {
         
         let sscDays = Util.getSSCDays()
         vc1.day = sscDays[0]
+        vc1.pvc = self
         vc2.day = sscDays[1]
         vc3.day = sscDays[2]
         vc4.day = sscDays[3]
