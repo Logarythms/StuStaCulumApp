@@ -20,7 +20,12 @@ class HowToDetailViewController: UIViewController {
         self.navigationItem.title = howTo.title
         
         howToTextView.attributedText = howTo.description.htmlAttributed(using: .systemFont(ofSize: 13))
-        howToTextView.scrollRangeToVisible(NSRange(location: 0, length: 0))    
+        howToTextView.scrollRangeToVisible(NSRange(location: 0, length: 0))
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.howToTextView.setContentOffset(CGPoint.zero, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
