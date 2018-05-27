@@ -19,7 +19,7 @@ class ScheduleMasterViewController: ButtonBarPagerTabStripViewController {
     override func viewDidLoad() {
         loadViewControllers()
         super.viewDidLoad()
-        containerView.isScrollEnabled = false
+//        containerView.isScrollEnabled = false
         
         buttonBarView.backgroundColor = Util.backgroundColor
         buttonBarView.tintColor = .white
