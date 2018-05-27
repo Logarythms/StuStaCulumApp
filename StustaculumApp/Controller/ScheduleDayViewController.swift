@@ -26,6 +26,8 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     var timeslotsZelt = [Timeslot]()
     
     var slotInfo = [IndexPath: Performance]()
+    
+    var selectedPerformance: Performance?
 
     var day: SSCDay!
     
@@ -144,6 +146,13 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         cell.borders.bottom = .solid(width: 1, color: .darkGray)
         
         return cell
+    }
+    
+    func spreadsheetView(_ spreadsheetView: SpreadsheetView, didSelectItemAt indexPath: IndexPath) {
+        if let performance = slotInfo[indexPath] {
+            self.selectedPerformance = performance
+            self.performSegue(withIdentifier: "performanceDetailSegue", sender: self)
+        }
     }
 
     func mergedCells(in spreadsheetView: SpreadsheetView) -> [CellRange] {
@@ -297,6 +306,17 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         
         spreadsheetView.reloadData()
         spreadsheetView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "performanceDetailSegue" else { return }
+        guard let performanceVC = segue.destination as? PerformanceDetailViewController else { return }
+        guard let performance = self.selectedPerformance else {
+            fatalError("No performance found, this should not happen")
+        }
+        
+        performanceVC.performance = performance
+        
     }
 
     override func didReceiveMemoryWarning() {

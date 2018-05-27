@@ -13,6 +13,8 @@
 		4802E9C620BA0984005A0085 /* AtriumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C520BA0984005A0085 /* AtriumCell.xib */; };
 		4802E9C820BA09B5005A0085 /* HalleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C720BA09B5005A0085 /* HalleCell.xib */; };
 		4802E9CA20BA09C2005A0085 /* ZeltCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C920BA09C2005A0085 /* ZeltCell.xib */; };
+		4802E9CE20BA2F80005A0085 /* PerformanceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9CD20BA2F80005A0085 /* PerformanceDetailViewController.swift */; };
+		4802E9D020BA3D0F005A0085 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9CF20BA3D0F005A0085 /* String+HTML.swift */; };
 		485BF26D20B8236000075A64 /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485BF26C20B8236000075A64 /* Timeslot.swift */; };
 		488F14C020B732600058536E /* SSCDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14BF20B732600058536E /* SSCDay.swift */; };
 		488F14C420B7389B0058536E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14C320B7389B0058536E /* Util.swift */; };
@@ -43,6 +45,8 @@
 		4802E9C520BA0984005A0085 /* AtriumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtriumCell.xib; sourceTree = "<group>"; };
 		4802E9C720BA09B5005A0085 /* HalleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HalleCell.xib; sourceTree = "<group>"; };
 		4802E9C920BA09C2005A0085 /* ZeltCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZeltCell.xib; sourceTree = "<group>"; };
+		4802E9CD20BA2F80005A0085 /* PerformanceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceDetailViewController.swift; sourceTree = "<group>"; };
+		4802E9CF20BA3D0F005A0085 /* String+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
 		485BF26C20B8236000075A64 /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		488F14BF20B732600058536E /* SSCDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDay.swift; sourceTree = "<group>"; };
 		488F14C320B7389B0058536E /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				488F14C320B7389B0058536E /* Util.swift */,
+				4802E9CF20BA3D0F005A0085 /* String+HTML.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 			children = (
 				48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */,
 				48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */,
+				4802E9CD20BA2F80005A0085 /* PerformanceDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -269,12 +275,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SpreadsheetView/SpreadsheetView.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpreadsheetView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 			);
@@ -311,6 +319,8 @@
 				48A3D22E20B33FD700C5EBDD /* Cells.swift in Sources */,
 				48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */,
 				485BF26D20B8236000075A64 /* Timeslot.swift in Sources */,
+				4802E9D020BA3D0F005A0085 /* String+HTML.swift in Sources */,
+				4802E9CE20BA2F80005A0085 /* PerformanceDetailViewController.swift in Sources */,
 				48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */,
 				48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */,
 				48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */,

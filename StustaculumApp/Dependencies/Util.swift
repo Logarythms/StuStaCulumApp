@@ -70,6 +70,12 @@ class Util {
         return timeslots
     }
     
+    class func httpsURLfor(_ url: URL) -> URL? {
+        let urlString = url.relativeString
+        let httpsURLString = urlString.replacingOccurrences(of: "http", with: "https")
+        return URL(string: httpsURLString)
+    }
+    
     class func filterPerformancesBy(_ day: SSCDay, performances: [Performance]) -> [Performance] {
         let calendar = Calendar.current
         
@@ -196,7 +202,6 @@ class Util {
 }
 
 extension Collection {
-    
     /// Returns the element at the specified index iff it is within bounds, otherwise nil.
     subscript (safe index: Index) -> Element? {
         return indices.contains(index) ? self[index] : nil

@@ -16,7 +16,6 @@ struct Performance: Codable {
     var date: Date
     var duration: Int
     var imageURL: URL?
-    var image: UIImage?
     var lastUpdate: Date
     var show: Bool
     var location: Int
