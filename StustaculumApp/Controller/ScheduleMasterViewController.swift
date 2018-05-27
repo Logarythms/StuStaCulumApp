@@ -19,7 +19,18 @@ class ScheduleMasterViewController: ButtonBarPagerTabStripViewController {
     override func viewDidLoad() {
         loadViewControllers()
         super.viewDidLoad()
-        containerView.isScrollEnabled = false
+//        containerView.isScrollEnabled = false
+        
+        buttonBarView.backgroundColor = Util.backgroundColor
+        buttonBarView.tintColor = .white
+        
+        buttonBarView.selectedBar.backgroundColor = UIColor(red:0.67, green:0.04, blue:0.20, alpha:1.0)
+        settings.style.buttonBarHeight = 5
+        
+        settings.style.buttonBarItemBackgroundColor = Util.backgroundColor
+        
+        containerView.backgroundColor = Util.backgroundColor
+        
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
@@ -47,16 +58,8 @@ class ScheduleMasterViewController: ButtonBarPagerTabStripViewController {
     
     override func updateIndicator(for viewController: PagerTabStripViewController, fromIndex: Int, toIndex: Int, withProgressPercentage progressPercentage: CGFloat, indexWasChanged: Bool) {
         if progressPercentage >= 1.0 && !indexWasChanged {
-            let leftIndex = self.currentIndex - 1
-            let rightIndex = self.currentIndex + 1
-            if leftIndex >= 0 {
-                let c = viewControllers[leftIndex]
-                if !c.isViewLoaded {
-                    c.loadViewIfNeeded()
-                }
-            }
-            if rightIndex < self.viewControllers.count {
-                let c = viewControllers[rightIndex]
+            for index in 0..<4 {
+                let c = viewControllers[index]
                 if !c.isViewLoaded {
                     c.loadViewIfNeeded()
                 }
