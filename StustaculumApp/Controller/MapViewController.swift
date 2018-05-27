@@ -96,11 +96,11 @@ extension MapViewController: MKMapViewDelegate {
             return view
         } else {
             var view: MKAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
                 dequeuedView.annotation = sscAnnotation
                 view = dequeuedView
             } else {
-                view = MKAnnotationView(annotation: sscAnnotation, reuseIdentifier: identifier)
+                view = MKPinAnnotationView(annotation: sscAnnotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
                 view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
