@@ -13,6 +13,8 @@ import XLPagerTabStrip
 class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetViewDelegate, IndicatorInfoProvider {
     
     var performances = [Performance]()
+    var favouritePerformances = [Performance]()
+    var isFavouritesController = false
     
     var timeslotsDada = [Timeslot]()
     var timeslotsAtrium = [Timeslot]()
@@ -36,8 +38,49 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScheduleView()
+        loadFavourites()
         
-        NetworkingManager.getPerformancesFor(day, completion: splitPerformances)
+        if self.isFavouritesController {
+            reloadFavouriteView()
+        } else {
+            NetworkingManager.getPerformancesFor(day, completion: splitPerformances)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadFavourites()
+        if self.isFavouritesController {
+            reloadFavouriteView()
+        }
+    }
+    
+    func reloadFavouriteView() {
+        let filteredPerformances = Util.filterPerformancesBy(self.day, performances: self.favouritePerformances)
+        self.splitPerformances(performances: filteredPerformances)
+    }
+    
+    func loadFavourites() {
+        guard let path = Util.getFavouritesPath() else { return }
+        guard let favouritesData = try? Data(contentsOf: path) else { return }
+        guard let favourites = try? JSONDecoder().decode([Performance].self, from: favouritesData) else { return }
+        self.favouritePerformances = favourites
+    }
+    
+    func saveFavourites() {
+        guard let encodedData = try? JSONEncoder().encode(self.favouritePerformances) else { return }
+        guard let favouritesPath = Util.getFavouritesPath() else { return }
+        
+        do {
+            try encodedData.write(to: favouritesPath)
+        } catch let error {
+            print(error)
+        }
+        
+        if isFavouritesController {
+            let filteredPerformances = Util.filterPerformancesBy(self.day, performances: self.favouritePerformances)
+            self.splitPerformances(performances: filteredPerformances)
+        }
+        
     }
     
     func setupScheduleView() {
@@ -148,7 +191,7 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         var mergedCells = [CellRange]()
         let hours = day.maxHour - day.minHour
         
-        guard !self.performances.isEmpty else {
+        guard !self.performances.isEmpty || isFavouritesController else {
             return mergedCells
         }
         
@@ -209,7 +252,9 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     
     func numberOfRows(in spreadsheetView: SpreadsheetView) -> Int {
         guard let currentDay = day else { return 0 }
-        if performances.isEmpty {
+        if isFavouritesController {
+            return (currentDay.duration) * 60 + 1
+        } else if performances.isEmpty {
             return 0
         } else {
             return (currentDay.duration) * 60 + 1
@@ -285,6 +330,8 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         }
         
         performanceVC.performance = performance
+        performanceVC.scheduleDayViewController = self
+        performanceVC.favourites = self.favouritePerformances
         
     }
 

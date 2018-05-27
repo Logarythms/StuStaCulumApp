@@ -42,11 +42,26 @@ class Util {
         return clLocation.coordinate
     }
     
+    class func getFavouritesPath() -> URL? {
+        let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+        if let path = documentDirectoryPath {
+            let favouritesPath = path + "/favourites.json"
+            return URL(fileURLWithPath: favouritesPath)
+        } else {
+            return nil
+        }
+    }
+    
     class func getTimeslotsFor(_ performances: [Performance], day: SSCDay) -> [Timeslot] {
         var timeslots = [Timeslot]()
         let calendar = Calendar.current
         let startOfDay = getDateForHour(day.minHour, day: day)
         let endOfDay = getDateForHour(day.maxHour, day: day)
+        
+        if performances.isEmpty {
+            let timeslotLength = Int(DateInterval(start: startOfDay, end: endOfDay).duration) / 60
+            timeslots.append(Timeslot(duration: timeslotLength, isEvent: false))
+        }
         
         for (index, performance) in performances.enumerated() {
             if (calendar.compare(performance.date, to: startOfDay, toGranularity: .minute) == .orderedSame) {

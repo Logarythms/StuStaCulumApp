@@ -8,28 +8,48 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationCategories = [LocationCategory]()
     var locations = [Location]()
     
     let initialLocation = CLLocation(latitude: 48.18311, longitude: 11.611556)
     let regionRadius: CLLocationDistance = 400
+    
+    var locationManager: CLLocationManager!
 
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        
         centerMapOnLocation(initialLocation)
         NetworkingManager.getLocationCategories(completion: locationCategoriesLoaded)
         NetworkingManager.getLocations(completion: locationsLoaded)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        showUserLocation()
+    }
+    
     func centerMapOnLocation(_ location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    func showUserLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+        
     }
     
     func locationCategoriesLoaded(categories: [LocationCategory]) {

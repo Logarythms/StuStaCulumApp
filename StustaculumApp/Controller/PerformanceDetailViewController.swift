@@ -17,8 +17,12 @@ class PerformanceDetailViewController: UIViewController {
     @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var artistImageView: UIImageView!
+    @IBOutlet weak var favouriteButton: UIButton!
+    
+    var scheduleDayViewController: ScheduleDayViewController?
     
     var performance: Performance!
+    var favourites = [Performance]()
     
     
     override func viewDidLoad() {
@@ -35,6 +39,14 @@ class PerformanceDetailViewController: UIViewController {
         
         self.startTimeLabel.text = getFormattedDateStringFor(performance.date)
         self.endTimeLabel.text = getFormattedDateStringFor(Util.getEndOfPerformance(performance))
+        
+        if self.favourites.contains(where: { (p) -> Bool in
+            p == self.performance
+        }) {
+            favouriteButton.setTitle("Von Favoriten entfernen", for: .normal)
+        } else {
+            favouriteButton.setTitle("Zu Favoriten hinzufügen", for: .normal)
+        }
     }
     
     func getFormattedDateStringFor(_ date: Date) -> String {
@@ -56,7 +68,22 @@ class PerformanceDetailViewController: UIViewController {
         }
         
     }
-
+    @IBAction func favouriteButtonPressed(_ sender: Any) {
+        if let index = self.favourites.index(where: { (p) -> Bool in
+            p == self.performance
+        }) {
+            self.favourites.remove(at: index)
+            favouriteButton.setTitle("Zu Favoriten hinzufügen", for: .normal)
+        } else {
+            self.favourites.append(self.performance)
+            favouriteButton.setTitle("Von Favoriten entfernen", for: .normal)
+        }
+        self.scheduleDayViewController?.favouritePerformances = self.favourites
+        self.scheduleDayViewController?.saveFavourites()
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

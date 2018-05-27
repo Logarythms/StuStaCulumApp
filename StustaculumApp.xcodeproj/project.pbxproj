@@ -17,6 +17,7 @@
 		4802E9D020BA3D0F005A0085 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9CF20BA3D0F005A0085 /* String+HTML.swift */; };
 		4802E9D220BA488A005A0085 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D120BA488A005A0085 /* MapViewController.swift */; };
 		4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */; };
+		4802E9D620BAC833005A0085 /* FavouritesMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */; };
 		485BF26D20B8236000075A64 /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485BF26C20B8236000075A64 /* Timeslot.swift */; };
 		488F14C020B732600058536E /* SSCDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14BF20B732600058536E /* SSCDay.swift */; };
 		488F14C420B7389B0058536E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14C320B7389B0058536E /* Util.swift */; };
@@ -51,6 +52,7 @@
 		4802E9CF20BA3D0F005A0085 /* String+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
 		4802E9D120BA488A005A0085 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCAnnotation.swift; sourceTree = "<group>"; };
+		4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesMasterViewController.swift; sourceTree = "<group>"; };
 		485BF26C20B8236000075A64 /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		488F14BF20B732600058536E /* SSCDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDay.swift; sourceTree = "<group>"; };
 		488F14C320B7389B0058536E /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */,
 				48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */,
+				4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */,
 				4802E9CD20BA2F80005A0085 /* PerformanceDetailViewController.swift */,
 				4802E9D120BA488A005A0085 /* MapViewController.swift */,
 			);
@@ -340,6 +343,7 @@
 				488F14C020B732600058536E /* SSCDay.swift in Sources */,
 				48F7507820B2F3950012FCDB /* Location.swift in Sources */,
 				4802E9D220BA488A005A0085 /* MapViewController.swift in Sources */,
+				4802E9D620BAC833005A0085 /* FavouritesMasterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,14 +489,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Y63G255R3;
+				DEVELOPMENT_TEAM = FLQMF75K48;
 				INFOPLIST_FILE = StustaculumApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.stustaculum.StustaculumApp;
+				PRODUCT_BUNDLE_IDENTIFIER = me.mainz.stustaculum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -505,14 +509,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Y63G255R3;
+				DEVELOPMENT_TEAM = FLQMF75K48;
 				INFOPLIST_FILE = StustaculumApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.stustaculum.StustaculumApp;
+				PRODUCT_BUNDLE_IDENTIFIER = me.mainz.stustaculum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

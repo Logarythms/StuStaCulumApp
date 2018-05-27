@@ -39,5 +39,10 @@ struct Performance: Codable {
         guard let a = artist else { return }
         print("\(a) at \(self.date) for \(self.duration) min")
     }
-    
+}
+
+extension Performance: Equatable {
+    static func ==(lhs: Performance, rhs: Performance) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
