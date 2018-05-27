@@ -81,18 +81,32 @@ extension MapViewController: MKMapViewDelegate {
         guard let sscAnnotation = annotation as? SSCAnnotation else { return nil }
         let identifier = "marker"
         
-        var view: MKMarkerAnnotationView
-        
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
-            dequeuedView.annotation = sscAnnotation
-            view = dequeuedView
+        if #available(iOS 11, *) {
+            var view: MKMarkerAnnotationView
+
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+                dequeuedView.annotation = sscAnnotation
+                view = dequeuedView
+            } else {
+                view = MKMarkerAnnotationView(annotation: sscAnnotation, reuseIdentifier: identifier)
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            }
+            return view
         } else {
-            view = MKMarkerAnnotationView(annotation: sscAnnotation, reuseIdentifier: identifier)
-            view.canShowCallout = true
-            view.calloutOffset = CGPoint(x: -5, y: 5)
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            var view: MKAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
+                dequeuedView.annotation = sscAnnotation
+                view = dequeuedView
+            } else {
+                view = MKAnnotationView(annotation: sscAnnotation, reuseIdentifier: identifier)
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            }
+            return view
         }
-        return view
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
