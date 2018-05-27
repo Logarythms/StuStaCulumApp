@@ -18,6 +18,8 @@
 		4802E9D220BA488A005A0085 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D120BA488A005A0085 /* MapViewController.swift */; };
 		4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */; };
 		4802E9D620BAC833005A0085 /* FavouritesMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */; };
+		4802E9D820BAE560005A0085 /* HowToMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D720BAE560005A0085 /* HowToMasterViewController.swift */; };
+		4802E9DA20BAE570005A0085 /* HowToDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D920BAE570005A0085 /* HowToDetailViewController.swift */; };
 		485BF26D20B8236000075A64 /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485BF26C20B8236000075A64 /* Timeslot.swift */; };
 		488F14C020B732600058536E /* SSCDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14BF20B732600058536E /* SSCDay.swift */; };
 		488F14C420B7389B0058536E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14C320B7389B0058536E /* Util.swift */; };
@@ -53,6 +55,8 @@
 		4802E9D120BA488A005A0085 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCAnnotation.swift; sourceTree = "<group>"; };
 		4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesMasterViewController.swift; sourceTree = "<group>"; };
+		4802E9D720BAE560005A0085 /* HowToMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToMasterViewController.swift; sourceTree = "<group>"; };
+		4802E9D920BAE570005A0085 /* HowToDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToDetailViewController.swift; sourceTree = "<group>"; };
 		485BF26C20B8236000075A64 /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		488F14BF20B732600058536E /* SSCDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDay.swift; sourceTree = "<group>"; };
 		488F14C320B7389B0058536E /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 				4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */,
 				4802E9CD20BA2F80005A0085 /* PerformanceDetailViewController.swift */,
 				4802E9D120BA488A005A0085 /* MapViewController.swift */,
+				4802E9D720BAE560005A0085 /* HowToMasterViewController.swift */,
+				4802E9D920BAE570005A0085 /* HowToDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 				485BF26D20B8236000075A64 /* Timeslot.swift in Sources */,
 				4802E9D020BA3D0F005A0085 /* String+HTML.swift in Sources */,
 				4802E9CE20BA2F80005A0085 /* PerformanceDetailViewController.swift in Sources */,
+				4802E9D820BAE560005A0085 /* HowToMasterViewController.swift in Sources */,
 				48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */,
 				48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */,
 				48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */,
@@ -338,6 +345,7 @@
 				48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */,
 				488F14C420B7389B0058536E /* Util.swift in Sources */,
 				48C03CB320B2DA1D00EED86A /* ScheduleDayViewController.swift in Sources */,
+				4802E9DA20BAE570005A0085 /* HowToDetailViewController.swift in Sources */,
 				48F7507C20B2FD780012FCDB /* Performance.swift in Sources */,
 				48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */,
 				488F14C020B732600058536E /* SSCDay.swift in Sources */,
