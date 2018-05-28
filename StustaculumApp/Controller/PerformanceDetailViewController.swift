@@ -36,6 +36,7 @@ class PerformanceDetailViewController: UIViewController {
         self.genreLabel.text = performance.genre!
         
         self.descriptionLabel.attributedText = performance.description!.htmlAttributed(using: .systemFont(ofSize: 13))
+        self.descriptionLabel.textColor = .white
         
         self.startTimeLabel.text = getFormattedDateStringFor(performance.date)
         self.endTimeLabel.text = getFormattedDateStringFor(Util.getEndOfPerformance(performance))
