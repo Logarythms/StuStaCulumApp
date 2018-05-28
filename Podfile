@@ -10,4 +10,5 @@ target 'StustaculumApp' do
 	pod 'SpreadsheetView'
 	pod 'XLPagerTabStrip', '~> 8.0'
 	pod 'AlamofireImage', '~> 3.3'
+	pod 'SVProgressHUD'
 end

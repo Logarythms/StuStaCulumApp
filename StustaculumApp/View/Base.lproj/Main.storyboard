@@ -88,7 +88,7 @@
                                                     <constraint firstAttribute="height" constant="21" id="SLX-zV-YdZ"/>
                                                     <constraint firstAttribute="width" constant="50" id="tgd-w7-NnT"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -98,7 +98,7 @@
                                                     <constraint firstAttribute="height" constant="21" id="B45-Ru-4Xw"/>
                                                     <constraint firstAttribute="width" constant="50" id="Tgz-ll-4mJ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -231,7 +231,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Icq-FR-wZx" firstAttribute="bottom" secondItem="DNR-L8-XP9" secondAttribute="bottom" id="3FY-uY-4Ko"/>
                             <constraint firstItem="DNR-L8-XP9" firstAttribute="top" secondItem="Icq-FR-wZx" secondAttribute="top" id="MkV-Jk-8fU"/>

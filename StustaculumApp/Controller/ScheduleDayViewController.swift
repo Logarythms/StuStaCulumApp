@@ -9,6 +9,7 @@
 import UIKit
 import SpreadsheetView
 import XLPagerTabStrip
+import SVProgressHUD
 
 class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetViewDelegate, IndicatorInfoProvider {
     
@@ -29,6 +30,8 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     
     var pvc: ButtonBarPagerTabStripViewController?
     
+    let group = DispatchGroup()
+    
     @IBOutlet weak var spreadsheetView: SpreadsheetView!
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,7 +46,15 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         if self.isFavouritesController {
             reloadFavouriteView()
         } else {
+            group.enter()
+            
+            SVProgressHUD.setDefaultStyle(.dark)
+            SVProgressHUD.show(withStatus: "Zeitplan wird geladen")
             NetworkingManager.getPerformancesFor(day, completion: splitPerformances)
+            
+            group.notify(queue: .main) {
+                SVProgressHUD.dismiss()
+            }
         }
     }
     
@@ -323,6 +334,10 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         
         if UIDevice.current.systemVersion.contains("10") {
             pvc?.moveToViewController(at: 1)
+        }
+        
+        if !self.isFavouritesController {
+            group.leave()
         }
     }
      
