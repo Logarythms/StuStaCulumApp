@@ -54,9 +54,12 @@ class Util {
     
     class func getTimeslotsFor(_ performances: [Performance], day: SSCDay) -> [Timeslot] {
         var timeslots = [Timeslot]()
-        let calendar = Calendar.current
-        let startOfDay = getDateForHour(day.minHour, day: day)
-        let endOfDay = getDateForHour(day.maxHour, day: day)
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "CEST")!
+        
+        let dateRange = getDateRangeFor(day)
+        let startOfDay = dateRange.0
+        let endOfDay = dateRange.1
         
         if performances.isEmpty {
             let timeslotLength = Int(DateInterval(start: startOfDay, end: endOfDay).duration) / 60
@@ -101,7 +104,8 @@ class Util {
     }
     
     class func filterPerformancesBy(_ day: SSCDay, performances: [Performance]) -> [Performance] {
-        let calendar = Calendar.current
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "CEST")!
         
         return performances.filter({ (performance) -> Bool in
             guard let nextDate = calendar.date(byAdding: .day, value: 1, to: day.date) else { fatalError("this should not happen") }
@@ -121,26 +125,57 @@ class Util {
     }
     
     class func getEndOfPerformance(_ performance: Performance) -> Date {
-        let performanceEnd = Calendar.current.date(byAdding: .minute, value: performance.duration, to: performance.date)!
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "CEST")!
+        
+        let performanceEnd = calendar.date(byAdding: .minute, value: performance.duration, to: performance.date)!
         return performanceEnd
     }
     
-    class func getDateForHour(_ hour: Int, day: SSCDay) -> Date {
-        let calendar = Calendar.current
-        var components = calendar.dateComponents([.day, .hour, .minute, .month, .year], from: day.date)
+    class func getDateRangeFor(_ day: SSCDay) -> (Date, Date) {
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "CEST")!
         
-        components.hour = hour % 24
-        components.minute = 0
+        var components = DateComponents()
+        components.year = 2018
+        components.timeZone = TimeZone(abbreviation: "CEST")
         
-        if hour > 23 {
-            components.day = components.day! + 1
+        let startDate: Date
+        let endDate: Date
+        
+        switch day.day {
+        case .day1:
+            components.month = 5
+            components.day = 30
+            components.hour = 17
+            components.minute = 0
+        case .day2:
+            components.month = 5
+            components.day = 31
+            components.hour = 15
+            components.minute = 0
+        case .day3:
+            components.month = 6
+            components.day = 1
+            components.hour = 16
+            components.minute = 0
+        case .day4:
+            components.month = 6
+            components.day = 2
+            components.hour = 11
+            components.minute = 0
         }
         
-        return calendar.date(from: components)!
+        startDate = calendar.date(from: components)!
+        endDate = calendar.date(byAdding: .hour, value: day.duration, to: startDate)!
+        
+        return (startDate, endDate)
+        
     }
     
     class func performanceOverlaps(_ performance: Performance) -> Bool {
-        let calendar = Calendar.current
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "CEST")!
         
         let start = performance.date
         let end = calendar.date(byAdding: .minute, value: performance.duration, to: start)!
@@ -162,7 +197,9 @@ class Util {
     }
     
     internal class func getComparisonDateFor(_ endDate: Date) -> Date {
-        let calendar = Calendar.current
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "CEST")!
+        
         let endComponents = calendar.dateComponents([.day, .hour, .minute, .month, .year], from: endDate)
         
         var comparisonComponents = DateComponents()
@@ -173,7 +210,7 @@ class Util {
         comparisonComponents.hour = 4
         comparisonComponents.minute = 0
         
-        guard let comparisonDate = Calendar.current.date(from: comparisonComponents) else {
+        guard let comparisonDate = calendar.date(from: comparisonComponents) else {
             fatalError("Could not generate Comparison Date")
         }
         return comparisonDate
@@ -185,7 +222,9 @@ class Util {
     
     class func getDateForDay(_ id: Int) -> Date {
         var dateComponents = DateComponents()
-        let calender = Calendar.current
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "CEST")!
+        
         dateComponents.timeZone = TimeZone(abbreviation: "CEST")
         dateComponents.year = 2018
         
@@ -208,7 +247,7 @@ class Util {
             break
         }
         
-        guard let date = calender.date(from: dateComponents) else {
+        guard let date = calendar.date(from: dateComponents) else {
             fatalError("Could not generate SSC Dates")
         }
         

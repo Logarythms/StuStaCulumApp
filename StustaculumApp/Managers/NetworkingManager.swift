@@ -78,6 +78,8 @@ class NetworkingManager {
             
             guard let performances = try? decoder.decode([Performance].self, from: jsonData) else { return }
             
+            let test = Util.filterPerformancesBy(day, performances: performances).filter({$0.show})
+            
             completion(Util.filterPerformancesBy(day, performances: performances).filter({$0.show}))
         }
     }
