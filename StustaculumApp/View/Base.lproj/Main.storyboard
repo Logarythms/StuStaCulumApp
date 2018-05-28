@@ -147,12 +147,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bo2-t0-X8m">
-                                                <rect key="frame" x="104" y="546" width="166" height="30"/>
+                                                <rect key="frame" x="20" y="546" width="335" height="40"/>
+                                                <color key="backgroundColor" red="0.086274509803921567" green="0.49803921568627452" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="SGF-Pz-SOg"/>
-                                                    <constraint firstAttribute="width" constant="166" id="nT9-Lg-cgU"/>
+                                                    <constraint firstAttribute="height" constant="40" id="SGF-Pz-SOg"/>
                                                 </constraints>
-                                                <state key="normal" title="Zu Favoriten hinzufügen"/>
+                                                <state key="normal" title="Zu Favoriten hinzufügen">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="favouriteButtonPressed:" destination="rZf-pe-mHY" eventType="touchUpInside" id="NMC-TB-W9E"/>
                                                 </connections>
@@ -176,9 +178,11 @@
                                             <constraint firstItem="hP2-1T-5dY" firstAttribute="leading" secondItem="TZh-zN-KCB" secondAttribute="leading" constant="10" id="eR7-wx-6dG"/>
                                             <constraint firstItem="0JP-SF-Dk2" firstAttribute="top" secondItem="h6r-I0-eE6" secondAttribute="bottom" constant="8" id="gvN-nC-dXq"/>
                                             <constraint firstItem="Hn2-9g-Bot" firstAttribute="centerX" secondItem="TZh-zN-KCB" secondAttribute="centerX" id="it9-Lv-oJr"/>
+                                            <constraint firstAttribute="trailing" secondItem="Bo2-t0-X8m" secondAttribute="trailing" constant="20" id="lPM-4N-D1k"/>
                                             <constraint firstItem="cvq-VT-QUR" firstAttribute="centerX" secondItem="TZh-zN-KCB" secondAttribute="centerX" id="mBV-G3-lWx"/>
                                             <constraint firstAttribute="trailing" secondItem="WTB-x3-asZ" secondAttribute="trailing" constant="10" id="mfr-To-Axf"/>
                                             <constraint firstItem="cvq-VT-QUR" firstAttribute="top" secondItem="TZh-zN-KCB" secondAttribute="top" constant="10" id="mvh-ZC-NDM"/>
+                                            <constraint firstItem="Bo2-t0-X8m" firstAttribute="leading" secondItem="TZh-zN-KCB" secondAttribute="leading" constant="20" id="mzq-QZ-EFr"/>
                                             <constraint firstItem="k5m-vg-Vd3" firstAttribute="leading" secondItem="TZh-zN-KCB" secondAttribute="leading" constant="10" id="qMG-hh-397"/>
                                             <constraint firstItem="kgG-XJ-Z00" firstAttribute="leading" secondItem="TZh-zN-KCB" secondAttribute="leading" constant="10" id="sXD-Gt-XXX"/>
                                             <constraint firstItem="h6r-I0-eE6" firstAttribute="top" secondItem="k5m-vg-Vd3" secondAttribute="bottom" constant="8" id="t3l-1A-Mhk"/>

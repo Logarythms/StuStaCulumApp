@@ -29,6 +29,10 @@ class PerformanceDetailViewController: UIViewController {
         super.viewDidLoad()
         loadArtistImage()
         setLabelTexts()
+        
+        self.favouriteButton.layer.cornerRadius = 10
+        self.favouriteButton.clipsToBounds = true
+        
         self.navigationItem.title = performance.artist!
     }
     
