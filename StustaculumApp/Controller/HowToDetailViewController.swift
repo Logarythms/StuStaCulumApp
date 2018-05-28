@@ -21,6 +21,7 @@ class HowToDetailViewController: UIViewController {
         
         howToTextView.attributedText = howTo.description.htmlAttributed(using: .systemFont(ofSize: 13))
         howToTextView.scrollRangeToVisible(NSRange(location: 0, length: 0))
+        howToTextView.textColor = .white
     }
     
     override func viewDidLayoutSubviews() {

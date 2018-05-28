@@ -16,6 +16,7 @@ class AGBViewController: UIViewController {
         super.viewDidLoad()
         
         agbTextView.attributedText = Util.agbString.htmlAttributed(using: .systemFont(ofSize: 13))
+        agbTextView.textColor = .white
         agbTextView.scrollRangeToVisible(NSRange(location: 0, length: 0))
     }
     

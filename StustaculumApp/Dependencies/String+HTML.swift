@@ -62,7 +62,7 @@ extension String {
                 "html *" +
                 "{" +
                 "font-size: \(font.pointSize)pt !important;" +
-                "font-family: \(font.familyName), Helvetica !important;" +
+                "font-family: -apple-system, BlinkMacSystemFont, sans-serif;" +
             "}</style> \(self)"
             
             guard let data = htmlCSSString.data(using: String.Encoding.utf8) else {
