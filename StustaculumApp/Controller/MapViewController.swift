@@ -16,7 +16,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var locations = [Location]()
     
     let initialLocation = CLLocation(latitude: 48.18311, longitude: 11.611556)
-    let regionRadius: CLLocationDistance = 400
+    let regionRadius: CLLocationDistance = 350
     
     var locationManager: CLLocationManager!
 
