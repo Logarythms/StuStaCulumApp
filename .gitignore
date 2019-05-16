@@ -16,7 +16,7 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
-
+StustaculumApp.xcodeproj/xcshareddata/
 ## Other
 *.moved-aside
 *.xccheckout
