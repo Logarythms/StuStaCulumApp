@@ -78,6 +78,9 @@ class Util {
                 let timeslotLength: Int
                 
                 if let previousPerformance = performances[safe: index - 1] {
+                    guard previousPerformance.artist != "Electronic-Night" else {
+                        continue
+                    }
                     timeslotLength = Int(DateInterval(start: getEndOfPerformance(previousPerformance), end: performance.date).duration) / 60
                 } else {
                     timeslotLength = Int(DateInterval(start: startOfDay, end: performance.date).duration) / 60
@@ -137,7 +140,7 @@ class Util {
         calendar.timeZone = TimeZone(abbreviation: "CEST")!
         
         var components = DateComponents()
-        components.year = 2018
+        components.year = 2019
         components.timeZone = TimeZone(abbreviation: "CEST")
         
         let startDate: Date
@@ -146,22 +149,22 @@ class Util {
         switch day.day {
         case .day1:
             components.month = 5
-            components.day = 30
+            components.day = 29
             components.hour = 17
             components.minute = 0
         case .day2:
             components.month = 5
-            components.day = 31
-            components.hour = 15
+            components.day = 30
+            components.hour = 14
             components.minute = 0
         case .day3:
-            components.month = 6
-            components.day = 1
+            components.month = 5
+            components.day = 31
             components.hour = 16
             components.minute = 0
         case .day4:
             components.month = 6
-            components.day = 2
+            components.day = 1
             components.hour = 11
             components.minute = 0
         }
@@ -226,9 +229,9 @@ class Util {
         calendar.timeZone = TimeZone(abbreviation: "CEST")!
         
         dateComponents.timeZone = TimeZone(abbreviation: "CEST")
-        dateComponents.year = 2018
+        dateComponents.year = 2019
         
-        if (1...2).contains(id) {
+        if (1...3).contains(id) {
             dateComponents.month = 5
         } else {
             dateComponents.month = 6
@@ -236,13 +239,13 @@ class Util {
         
         switch id {
         case 1:
-            dateComponents.day = 30
+            dateComponents.day = 29
         case 2:
-            dateComponents.day = 31
+            dateComponents.day = 30
         case 3:
-            dateComponents.day = 1
+            dateComponents.day = 31
         case 4:
-            dateComponents.day = 2
+            dateComponents.day = 1
         default:
             break
         }

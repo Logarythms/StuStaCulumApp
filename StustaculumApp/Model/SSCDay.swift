@@ -24,10 +24,10 @@ class SSCDay {
         case .day1:
             date = Util.getDateForDay(1)
             minHour  = 17
-            maxHour = 25
+            maxHour = 26
         case .day2:
             date = Util.getDateForDay(2)
-            minHour = 15
+            minHour = 14
             maxHour = 25
         case .day3:
             date = Util.getDateForDay(3)

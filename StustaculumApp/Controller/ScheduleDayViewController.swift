@@ -13,6 +13,9 @@ import SVProgressHUD
 
 class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetViewDelegate, IndicatorInfoProvider {
     
+    let dataManager = DataManager.shared
+    let notificationCenter = NotificationCenter.default
+    
     var performances = [Performance]()
     var favouritePerformances = [Performance]()
     var isFavouritesController = false
@@ -29,9 +32,7 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     var day: SSCDay!
     
     var pvc: ButtonBarPagerTabStripViewController?
-    
-    let group = DispatchGroup()
-    
+        
     @IBOutlet weak var spreadsheetView: SpreadsheetView!
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,21 +41,17 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        notificationCenter.addObserver(self, selector: #selector(loadPerformances), name: Notification.Name("fetchComplete"), object: nil)
+        
         setupScheduleView()
         loadFavourites()
         
         if self.isFavouritesController {
             reloadFavouriteView()
         } else {
-            group.enter()
-            
-            SVProgressHUD.setDefaultStyle(.dark)
-            SVProgressHUD.show(withStatus: "Zeitplan wird geladen")
-            NetworkingManager.getPerformancesFor(day, completion: splitPerformances)
-            
-            group.notify(queue: .main) {
-                SVProgressHUD.dismiss()
-            }
+            let performances = dataManager.getPerformancesFor(day)
+            splitPerformances(performances: performances)
         }
     }
     
@@ -63,6 +60,13 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         if self.isFavouritesController {
             reloadFavouriteView()
         }
+    }
+    
+    @objc
+    func loadPerformances() {
+        print("Moin")
+        let performances = dataManager.getPerformancesFor(day)
+        splitPerformances(performances: performances)
     }
     
     func reloadFavouriteView() {
@@ -334,10 +338,6 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         
         if UIDevice.current.systemVersion.contains("10") {
             pvc?.moveToViewController(at: 1)
-        }
-        
-        if !self.isFavouritesController {
-            group.leave()
         }
     }
      

@@ -1,33 +1,42 @@
 PODS:
-  - Alamofire (4.7.2)
-  - AlamofireImage (3.3.1):
-    - Alamofire (~> 4.5)
+  - Alamofire (4.8.2)
+  - AlamofireImage (3.5.2):
+    - Alamofire (~> 4.8)
   - SpreadsheetView (0.8.4)
   - SVProgressHUD (2.2.5)
-  - XLPagerTabStrip (8.0.1)
+  - XLPagerTabStrip (8.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - AlamofireImage (~> 3.3)
   - SpreadsheetView
-  - SVProgressHUD
+  - SVProgressHUD (from `https://github.com/mmdock/SVProgressHUD.git`, branch `patch-1`)
   - XLPagerTabStrip (~> 8.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireImage
     - SpreadsheetView
-    - SVProgressHUD
     - XLPagerTabStrip
 
+EXTERNAL SOURCES:
+  SVProgressHUD:
+    :branch: patch-1
+    :git: https://github.com/mmdock/SVProgressHUD.git
+
+CHECKOUT OPTIONS:
+  SVProgressHUD:
+    :commit: 41afba447103c44c55482db1174569172607c1e6
+    :git: https://github.com/mmdock/SVProgressHUD.git
+
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   SpreadsheetView: 17c55b6dc82099993cc2ceb818248d19f3220998
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
+  XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
 
-PODFILE CHECKSUM: c2b7db9ebc1c7a3d8b2f1f8af26a027536931e8c
+PODFILE CHECKSUM: a0509895892062c0501ca8767ac49106f4228b49
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.6.1

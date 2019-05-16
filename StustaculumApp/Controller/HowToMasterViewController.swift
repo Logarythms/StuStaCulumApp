@@ -11,15 +11,14 @@ import UIKit
 class HowToMasterViewController: UITableViewController {
 
     var howTos = [HowTo]()
+    let dataManager = DataManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkingManager.getHowTos(completion: self.howTosLoaded)
+        
         tableView.backgroundColor = Util.backgroundColor
-    }
-    
-    func howTosLoaded(howTos: [HowTo]) {
-        self.howTos = howTos
+        
+        self.howTos = dataManager.getHowTos()
         self.tableView.reloadData()
     }
 

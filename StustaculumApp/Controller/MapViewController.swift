@@ -12,13 +12,13 @@ import CoreLocation
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
-    var locationCategories = [LocationCategory]()
     var locations = [Location]()
     
     let initialLocation = CLLocation(latitude: 48.18311, longitude: 11.611556)
     let regionRadius: CLLocationDistance = 350
     
     var locationManager: CLLocationManager!
+    let dataManager = DataManager.shared
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -27,8 +27,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         mapView.delegate = self
         
         centerMapOnLocation(initialLocation)
-        NetworkingManager.getLocationCategories(completion: locationCategoriesLoaded)
-        NetworkingManager.getLocations(completion: locationsLoaded)
+        
+        self.locations = dataManager.getLocations()
+        addLocationsToMap()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,7 +37,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func centerMapOnLocation(_ location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
+        let coordinateRegion = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
@@ -50,10 +51,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         }
         
-    }
-    
-    func locationCategoriesLoaded(categories: [LocationCategory]) {
-        self.locationCategories = categories
     }
     
     func locationsLoaded(locations: [Location]) {

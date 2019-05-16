@@ -74,7 +74,7 @@ class PerformanceDetailViewController: UIViewController {
         
     }
     @IBAction func favouriteButtonPressed(_ sender: Any) {
-        if let index = self.favourites.index(where: { (p) -> Bool in
+        if let index = self.favourites.firstIndex(where: { (p) -> Bool in
             p == self.performance
         }) {
             self.favourites.remove(at: index)

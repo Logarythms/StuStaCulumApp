@@ -10,5 +10,5 @@ target 'StustaculumApp' do
 	pod 'SpreadsheetView'
 	pod 'XLPagerTabStrip', '~> 8.0'
 	pod 'AlamofireImage', '~> 3.3'
-	pod 'SVProgressHUD'
+	pod 'SVProgressHUD', :git => 'https://github.com/mmdock/SVProgressHUD.git', :branch => 'patch-1'	
 end

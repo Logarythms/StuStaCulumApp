@@ -53,7 +53,6 @@ class NetworkingManager {
             guard let jsonData = response.data else { return }
             guard let locations = try? JSONDecoder().decode([Location].self, from: jsonData) else { return }
             completion(locations)
-
         }
     }
     
@@ -67,7 +66,7 @@ class NetworkingManager {
         }
     }
     
-    class func getPerformancesFor(_ day: SSCDay, completion: @escaping ([Performance]) -> Void) {
+    class func getPerformances(completion: @escaping ([Performance]) -> Void) {
         let url = getRequestUrlFor(.performances)
         
         Alamofire.request(url).response { (response) in
@@ -78,13 +77,43 @@ class NetworkingManager {
             
             guard let performances = try? decoder.decode([Performance].self, from: jsonData) else { return }
             
-            let test = Util.filterPerformancesBy(day, performances: performances).filter({$0.show})
+            completion(performances)
+        }
+    }
+    
+    class func getPerformancesFor(_ day: SSCDay, completion: @escaping ([Performance]) -> Void) {
+        let url = getRequestUrlFor(.performances)
+        
+        Alamofire.request(url).response { (response) in
+            guard let jsonData = response.data else { return }
             
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
+            guard let performances = try? decoder.decode([Performance].self, from: jsonData) else { return }
+                        
             completion(Util.filterPerformancesBy(day, performances: performances).filter({$0.show}))
         }
     }
     
-    private class func getRequestUrlFor(_ endpoint: Endpoint) -> URL {
+    class func addDeviceForPushNotifications(token: String) {
+        let url = getRequestUrlFor(.devices)
+        let parameters = [
+            "registration_id" : token,
+            "name" : UUID().uuidString,
+            "active" : true
+            ] as [String : Any]
+        print(parameters)
+        print("Adding Device")
+        Alamofire.request(url, method: .post, parameters: parameters).response { response in
+            if response.response?.statusCode == 201 {
+                UserDefaults.standard.set(true, forKey: "pushRegistered")
+                print("Device successfully added")
+            }
+        }
+    }
+    
+    class private func getRequestUrlFor(_ endpoint: Endpoint) -> URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "app.stustaculum.de"
@@ -104,6 +133,7 @@ class NetworkingManager {
         case locations = "/rest/locations/"
         case news = "/rest/news/"
         case performances = "/rest/performances/"
+        case devices = "/rest/apnsdevices/"
     }
     
 }
