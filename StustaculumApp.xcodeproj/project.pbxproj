@@ -41,6 +41,8 @@
 		48F6852D228CED1A007A286E /* LogoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852C228CED1A007A286E /* LogoCell.swift */; };
 		48F6852F228D7F42007A286E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852E228D7F42007A286E /* NewsCell.swift */; };
 		48F68531228DCC35007A286E /* UpcomingEventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F68530228DCC35007A286E /* UpcomingEventsCell.swift */; };
+		48F68533228F1F97007A286E /* SSCMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F68532228F1F97007A286E /* SSCMapOverlay.swift */; };
+		48F68535228F2AD9007A286E /* SSCMapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F68534228F2AD9007A286E /* SSCMapOverlayView.swift */; };
 		48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507320B2EC6B0012FCDB /* HowTo.swift */; };
 		48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507520B2F24E0012FCDB /* LocationCategory.swift */; };
 		48F7507820B2F3950012FCDB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507720B2F3950012FCDB /* Location.swift */; };
@@ -89,6 +91,8 @@
 		48F6852C228CED1A007A286E /* LogoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoCell.swift; sourceTree = "<group>"; };
 		48F6852E228D7F42007A286E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		48F68530228DCC35007A286E /* UpcomingEventsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsCell.swift; sourceTree = "<group>"; };
+		48F68532228F1F97007A286E /* SSCMapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCMapOverlay.swift; sourceTree = "<group>"; };
+		48F68534228F2AD9007A286E /* SSCMapOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCMapOverlayView.swift; sourceTree = "<group>"; };
 		48F7507320B2EC6B0012FCDB /* HowTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowTo.swift; sourceTree = "<group>"; };
 		48F7507520B2F24E0012FCDB /* LocationCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCategory.swift; sourceTree = "<group>"; };
 		48F7507720B2F3950012FCDB /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				488F14BF20B732600058536E /* SSCDay.swift */,
 				485BF26C20B8236000075A64 /* Timeslot.swift */,
 				4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */,
+				48F68532228F1F97007A286E /* SSCMapOverlay.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 				48F6852C228CED1A007A286E /* LogoCell.swift */,
 				48F6852E228D7F42007A286E /* NewsCell.swift */,
 				48F68530228DCC35007A286E /* UpcomingEventsCell.swift */,
+				48F68534228F2AD9007A286E /* SSCMapOverlayView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -380,6 +386,8 @@
 				4802E9E020BAF575005A0085 /* AGBViewController.swift in Sources */,
 				48F6852B228C898F007A286E /* DataManager.swift in Sources */,
 				48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */,
+				48F68535228F2AD9007A286E /* SSCMapOverlayView.swift in Sources */,
+				48F68533228F1F97007A286E /* SSCMapOverlay.swift in Sources */,
 				48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */,
 				48F68531228DCC35007A286E /* UpcomingEventsCell.swift in Sources */,
 				48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */,

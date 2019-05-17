@@ -32,7 +32,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         centerMapOnLocation(initialLocation)
         
-        updateLocations()
+//        updateLocations()
+        addOverlay()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,6 +75,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func addOverlay() {
+        let overlay = SSCMapOverlay()
+        mapView.addOverlay(overlay)
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -114,6 +120,14 @@ extension MapViewController: MKMapViewDelegate {
         let annotation = view.annotation as! SSCAnnotation
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
         annotation.mapItem().openInMaps(launchOptions: launchOptions)
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is SSCMapOverlay {
+            return SSCMapOverlayView(overlay: overlay)
+        }
+        
+        return MKOverlayRenderer()
     }
     
 }
