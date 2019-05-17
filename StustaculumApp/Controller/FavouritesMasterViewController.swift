@@ -16,6 +16,9 @@ class FavouritesMasterViewController: ButtonBarPagerTabStripViewController {
     weak var vc3: ScheduleDayViewController!
     weak var vc4: ScheduleDayViewController!
     
+    var selectedIndex = 0
+    var initialLoad = true
+    
     override func viewDidLoad() {
         loadViewControllers()
         super.viewDidLoad()
@@ -32,6 +35,14 @@ class FavouritesMasterViewController: ButtonBarPagerTabStripViewController {
         containerView.backgroundColor = Util.backgroundColor
         self.view.backgroundColor = Util.backgroundColor
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if initialLoad {
+            self.moveToViewController(at: selectedIndex, animated: false)
+            initialLoad = false
+        }
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {

@@ -82,4 +82,15 @@ class ScheduleMasterViewController: ButtonBarPagerTabStripViewController {
         }
         super.updateIndicator(for: viewController, fromIndex: fromIndex, toIndex: toIndex, withProgressPercentage: progressPercentage, indexWasChanged: indexWasChanged)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "favorite" {
+            guard   let navVC = segue.destination as? UINavigationController,
+                    let favoritesVC = navVC.viewControllers.first as? FavouritesMasterViewController else {
+                    
+                    return
+            }
+            favoritesVC.selectedIndex = self.currentIndex
+        }
+    }
 }
