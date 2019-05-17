@@ -30,6 +30,7 @@ class FavouritesMasterViewController: ButtonBarPagerTabStripViewController {
         settings.style.buttonBarItemBackgroundColor = Util.backgroundColor
         
         containerView.backgroundColor = Util.backgroundColor
+        self.view.backgroundColor = Util.backgroundColor
         
     }
     
