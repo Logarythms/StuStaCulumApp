@@ -16,6 +16,8 @@ class ScheduleMasterViewController: ButtonBarPagerTabStripViewController {
     weak var vc3: ScheduleDayViewController!
     weak var vc4: ScheduleDayViewController!
     
+    var initialLoad = true
+    
     override func viewDidLoad() {
         loadViewControllers()
         super.viewDidLoad()
@@ -33,7 +35,16 @@ class ScheduleMasterViewController: ButtonBarPagerTabStripViewController {
         settings.style.buttonBarItemBackgroundColor = Util.backgroundColor
         
         containerView.backgroundColor = Util.backgroundColor
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        if initialLoad {
+            let dayIndex = Util.getCurrentDayIndex()
+            self.moveToViewController(at: dayIndex)
+            initialLoad = false
+        }
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {

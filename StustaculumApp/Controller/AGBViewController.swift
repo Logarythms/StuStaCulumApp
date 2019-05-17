@@ -18,6 +18,7 @@ class AGBViewController: UIViewController {
         agbTextView.attributedText = Util.agbString.htmlAttributed(using: .systemFont(ofSize: 13))
         agbTextView.textColor = .white
         agbTextView.scrollRangeToVisible(NSRange(location: 0, length: 0))
+        agbTextView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 0, right: 8)
     }
     
     override func viewDidLayoutSubviews() {

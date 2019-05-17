@@ -279,6 +279,67 @@ class Util {
         return date
     }
     
+    class func getCurrentDayIndex() -> Int {
+        let currentDate = Date()
+        
+        let day1 = getCutoffDateForDay(1)
+        let day2 = getCutoffDateForDay(2)
+        let day3 = getCutoffDateForDay(3)
+        let day4 = getCutoffDateForDay(4)
+        
+        if currentDate >= day4 {
+            return 0
+        }
+        if currentDate <= day4 && currentDate > day3 {
+            return 3
+        }
+        if currentDate <= day3 && currentDate > day2 {
+            return 2
+        }
+        if currentDate <= day2 && currentDate > day1 {
+            return 1
+        }
+        
+        return 0
+    }
+    
+    private class func getCutoffDateForDay(_ id: Int) -> Date {
+        var dateComponents = DateComponents()
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "CEST")!
+        
+        dateComponents.timeZone = TimeZone(abbreviation: "CEST")
+        dateComponents.year = 2019
+        
+        if (1...2).contains(id) {
+            dateComponents.month = 5
+        } else {
+            dateComponents.month = 6
+        }
+        
+        switch id {
+        case 1:
+            dateComponents.day = 30
+        case 2:
+            dateComponents.day = 31
+        case 3:
+            dateComponents.day = 1
+        case 4:
+            dateComponents.day = 4
+        default:
+            break
+        }
+        
+        dateComponents.hour = 6
+        dateComponents.minute = 0
+        
+        guard let date = calendar.date(from: dateComponents) else {
+            fatalError("Could not generate Dates")
+        }
+        
+        return date
+    }
+    
     class func getLabelTextFor(_ hour: Int) -> (String, String) {
         let normalizedHour = hour % 24
         let first = "\(normalizedHour):00"
