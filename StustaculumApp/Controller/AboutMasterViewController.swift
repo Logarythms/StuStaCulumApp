@@ -39,9 +39,11 @@ class AboutMasterViewController: UITableViewController {
             if indexPath.row == 0 {
                 aboutCell.textLabel?.text = "Website"
             } else if indexPath.row == 1 {
-                aboutCell.textLabel?.text = "Facebook-Seite"
+                aboutCell.textLabel?.text = "Instagram"
+            } else if indexPath.row == 2 {
+                aboutCell.textLabel?.text = "Facebook"
             } else {
-                aboutCell.textLabel?.text = "Twitter-Seite"
+                aboutCell.textLabel?.text = "Twitter"
             }
         }
         return aboutCell
@@ -60,6 +62,10 @@ class AboutMasterViewController: UITableViewController {
                     tableView.deselectRow(at: indexPath, animated: true)
                 }
             } else if indexPath.row == 1 {
+                UIApplication.shared.open(URL(string: "https://instagram.com/stustaculum/")!, options: [:]) { (_) in
+                    tableView.deselectRow(at: indexPath, animated: true)
+                }
+            } else if indexPath.row == 2 {
                 UIApplication.shared.open(URL(string: "https://www.facebook.com/StuStaCulum/")!, options: [:]) { (_) in
                     tableView.deselectRow(at: indexPath, animated: true)
                 }
@@ -79,7 +85,7 @@ class AboutMasterViewController: UITableViewController {
         if section == 0 {
             return 2
         } else {
-            return 3
+            return 4
         }
     }
     
