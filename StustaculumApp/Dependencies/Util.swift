@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import UserNotifications
 
 class Util {
     
@@ -243,6 +244,45 @@ class Util {
     
     class func getSSCDays() -> [SSCDay] {
         return [SSCDay(.day1), SSCDay(.day2), SSCDay(.day3), SSCDay(.day4)]
+    }
+    
+    class func getNotificationTriggers() -> [UNCalendarNotificationTrigger] {
+        
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "CEST")!
+        
+        var triggers = [UNCalendarNotificationTrigger]()
+        
+        for id in 0...3 {
+            var dateComponents = DateComponents()
+            dateComponents.timeZone = TimeZone(abbreviation: "CEST")
+            dateComponents.year = 2019
+            dateComponents.hour = 2
+            dateComponents.minute = 0
+            
+            if (0...2).contains(id) {
+                dateComponents.month = 5
+            } else {
+                dateComponents.month = 6
+            }
+            
+            switch id {
+            case 0:
+                dateComponents.day = 30
+            case 1:
+                dateComponents.day = 31
+            case 2:
+                dateComponents.day = 1
+            case 3:
+                dateComponents.day = 2
+            default:
+                break
+            }
+            
+            triggers.append(UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false))
+        }
+        
+        return triggers
     }
     
     class func getDateForDay(_ id: Int) -> Date {

@@ -57,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Permission granted: \(granted)")
             guard granted else { return }
             self?.getNotificationSettings()
+            self?.setupPfandNotifications()
         }
     }
     
@@ -68,6 +69,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIApplication.shared.registerForRemoteNotifications()
             }
         }
+    }
+    
+    func setupPfandNotifications() {
+        let defaults = UserDefaults.standard
+        guard !defaults.bool(forKey: "pfandNotifications") else { return }
+        
+        let content = UNMutableNotificationContent()
+        
+        content.title = "Pfandrückgabe!"
+        content.body = "Die Pfandrückgabe endet bald!\nBis 3 Uhr kannst du dein Pfand noch beim Festzelt zurückgeben!"
+        content.sound = UNNotificationSound.default
+        
+        let triggers = Util.getNotificationTriggers()
+        print(triggers)
+        for trigger in triggers {
+            let uuid = UUID()
+            let request = UNNotificationRequest(identifier: uuid.uuidString, content: content, trigger: trigger)
+
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.add(request) { error in
+                if let error = error {
+                    print(error)
+                }
+            }
+        }
+        UserDefaults.standard.set(true, forKey: "pfandNotifications")
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
