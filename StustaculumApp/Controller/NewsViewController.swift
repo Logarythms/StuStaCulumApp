@@ -14,7 +14,7 @@ class NewsViewController: UITableViewController {
     let notificationCenter = NotificationCenter.default
     
     var newsEntries = [NewsEntry]()
-    var upcomingPerformances: (Performance, Performance, Performance, Performance)?
+    var upcomingPerformances = [Performance]()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,19 +56,27 @@ class NewsViewController: UITableViewController {
         let upcomingZeltPerformance = sortedPerformances.first {
             $0.location == 4
         }
-        guard   let p1 = upcomingDadaPerformance,
-                let p2 = upcomingAtriumPerformance,
-                let p3 = upcomingHallePerformance,
-                let p4 = upcomingZeltPerformance else {
-                
-                return
+        
+        if let dada = upcomingDadaPerformance {
+            upcomingPerformances.append(dada)
         }
-        self.upcomingPerformances = (p1, p2, p3, p4)
+        if let atrium = upcomingAtriumPerformance {
+            upcomingPerformances.append(atrium)
+        }
+        if let halle = upcomingHallePerformance {
+            upcomingPerformances.append(halle)
+        }
+        if let zelt = upcomingZeltPerformance {
+            upcomingPerformances.append(zelt)
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        if upcomingPerformances.isEmpty {
+            return 2
+        }
         return 3
     }
 
@@ -111,13 +119,16 @@ class NewsViewController: UITableViewController {
         }
         
         if indexPath.section == 2 {
-            guard   let cell = tableView.dequeueReusableCell(withIdentifier: "upcomingEventsCell", for: indexPath) as? UpcomingEventsCell,
-                    let events = upcomingPerformances else {
-                    
+            guard   let cell = tableView.dequeueReusableCell(withIdentifier: "upcomingEventsCell", for: indexPath) as? UpcomingEventsCell else {
                     return UITableViewCell()
             }
-            let upcomingString = events.0.getEventDescription() + "\n\n" + events.1.getEventDescription() + "\n\n" + events.2.getEventDescription() + "\n\n" + events.3.getEventDescription()
-            cell.upcomingEventsLabel.text = upcomingString
+            
+            var strings = [String]()
+            for performance in upcomingPerformances {
+                strings.append(performance.getEventDescription())
+            }
+            
+            cell.upcomingEventsLabel.text = strings.joined(separator: "\n\n")
             
             return cell
         }
