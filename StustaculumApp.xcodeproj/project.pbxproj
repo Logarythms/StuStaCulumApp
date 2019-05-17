@@ -39,6 +39,8 @@
 		48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */; };
 		48F6852B228C898F007A286E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852A228C898F007A286E /* DataManager.swift */; };
 		48F6852D228CED1A007A286E /* LogoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852C228CED1A007A286E /* LogoCell.swift */; };
+		48F6852F228D7F42007A286E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852E228D7F42007A286E /* NewsCell.swift */; };
+		48F68531228DCC35007A286E /* UpcomingEventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F68530228DCC35007A286E /* UpcomingEventsCell.swift */; };
 		48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507320B2EC6B0012FCDB /* HowTo.swift */; };
 		48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507520B2F24E0012FCDB /* LocationCategory.swift */; };
 		48F7507820B2F3950012FCDB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507720B2F3950012FCDB /* Location.swift */; };
@@ -85,6 +87,8 @@
 		48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMasterViewController.swift; sourceTree = "<group>"; };
 		48F6852A228C898F007A286E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		48F6852C228CED1A007A286E /* LogoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoCell.swift; sourceTree = "<group>"; };
+		48F6852E228D7F42007A286E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		48F68530228DCC35007A286E /* UpcomingEventsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsCell.swift; sourceTree = "<group>"; };
 		48F7507320B2EC6B0012FCDB /* HowTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowTo.swift; sourceTree = "<group>"; };
 		48F7507520B2F24E0012FCDB /* LocationCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCategory.swift; sourceTree = "<group>"; };
 		48F7507720B2F3950012FCDB /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 				4802E9C120B9BE31005A0085 /* TimeCell.xib */,
 				48A3D22D20B33FD700C5EBDD /* Cells.swift */,
 				48F6852C228CED1A007A286E /* LogoCell.swift */,
+				48F6852E228D7F42007A286E /* NewsCell.swift */,
+				48F68530228DCC35007A286E /* UpcomingEventsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -369,11 +375,13 @@
 				4802E9CE20BA2F80005A0085 /* PerformanceDetailViewController.swift in Sources */,
 				48F6852D228CED1A007A286E /* LogoCell.swift in Sources */,
 				4802E9D820BAE560005A0085 /* HowToMasterViewController.swift in Sources */,
+				48F6852F228D7F42007A286E /* NewsCell.swift in Sources */,
 				48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */,
 				4802E9E020BAF575005A0085 /* AGBViewController.swift in Sources */,
 				48F6852B228C898F007A286E /* DataManager.swift in Sources */,
 				48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */,
 				48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */,
+				48F68531228DCC35007A286E /* UpcomingEventsCell.swift in Sources */,
 				48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */,
 				48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */,
 				488F14C420B7389B0058536E /* Util.swift in Sources */,

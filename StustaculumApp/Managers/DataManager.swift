@@ -17,6 +17,7 @@ class DataManager {
     private let notificationCenter = NotificationCenter.default
     
     private var currentSSC: Stustaculum?
+    private var currentLogo: UIImage?
     private var performances: [Performance]?
     private var locations: [Location]?
     private var howTos: [HowTo]?
@@ -24,30 +25,31 @@ class DataManager {
     
     static let shared = DataManager()
     
-    func getCurrentSSC() -> Stustaculum {
-        guard let ssc = currentSSC else {
-            fatalError("currentSSC is nil, this should not happen")
-        }
-        return ssc
+    func getCurrentSSC() -> Stustaculum? {
+        return currentSSC
+    }
+    
+    func getCurrentLogo() -> UIImage? {
+        return currentLogo
     }
     
     func getLocations() -> [Location] {
         guard let locations = self.locations else {
-            fatalError("locations is nil, this should not happen")
+            return [Location]()
         }
         return locations
     }
     
     func getHowTos() -> [HowTo] {
         guard let howTos = self.howTos else {
-            fatalError("hoTos is nil, this should not happen")
+            return [HowTo]()
         }
         return howTos
     }
     
     func getNews() -> [NewsEntry] {
         guard let news = self.news else {
-            fatalError("news is nil, this should not happen")
+            return [NewsEntry]()
         }
         return news
     }
@@ -57,6 +59,13 @@ class DataManager {
             return [Performance]()
         }
         return Util.filterPerformancesBy(day, performances: performances)
+    }
+    
+    func getAllPerformances() -> [Performance] {
+        guard let performances = self.performances else {
+            return [Performance]()
+        }
+        return performances
     }
     
     private init() {
@@ -82,6 +91,9 @@ class DataManager {
     
     private func loadLocalData() -> Bool {
         guard loadCurrentSSC() else {
+            return false
+        }
+        guard loadCurrentLogo() else {
             return false
         }
         guard loadPerformances() else {
@@ -144,6 +156,7 @@ class DataManager {
         case locations = "locations.json"
         case howTos = "howTos.json"
         case news = "news.json"
+        case logo = "logo.png"
     }
 }
 
@@ -156,6 +169,17 @@ extension DataManager {
                 return false
         }
         self.currentSSC = decodedSSC
+        return true
+    }
+    
+    private func loadCurrentLogo() -> Bool {
+        guard   let logoPath = savePaths[.logo],
+                let logoData = try? Data(contentsOf: logoPath),
+                let logo = UIImage(data: logoData) else {
+                
+                return false
+        }
+        self.currentLogo = logo
         return true
     }
     
@@ -216,6 +240,26 @@ extension DataManager {
             do {
                 try encodedData.write(to: path)
                 self.downloadPerformances()
+                self.downloadLogo(ssc.logoURL)
+            } catch let error {
+                print(error)
+            }
+            self.dispatchGroup.leave()
+        }
+    }
+    
+    private func downloadLogo(_ url: URL) {
+        self.dispatchGroup.enter()
+        NetworkingManager.getCurrentLogo(url) { image in
+            self.currentLogo = image
+            guard   let path = self.savePaths[.logo],
+                    let pngData = image.pngData() else {
+                    
+                    self.dispatchGroup.leave()
+                    return
+            }
+            do {
+                try pngData.write(to: path)
             } catch let error {
                 print(error)
             }
@@ -227,9 +271,16 @@ extension DataManager {
         guard let ssc = self.currentSSC else {
             return performances
         }
-        return performances.filter {
+        let filteredPerformances = performances.filter {
             ($0.stustaculumID == ssc.id) && $0.show
         }
+        let verifiedPerformances = filteredPerformances.filter {
+            for performance in filteredPerformances where $0.date == performance.date && $0.location == performance.location && $0.id != performance.id {
+                return $0.lastUpdate >= performance.lastUpdate
+            }
+            return true
+        }
+        return verifiedPerformances
     }
     
     private func downloadPerformances() {

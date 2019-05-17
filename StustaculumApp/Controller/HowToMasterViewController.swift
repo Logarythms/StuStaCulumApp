@@ -12,12 +12,20 @@ class HowToMasterViewController: UITableViewController {
 
     var howTos = [HowTo]()
     let dataManager = DataManager.shared
+    let notificationCenter = NotificationCenter.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        notificationCenter.addObserver(self, selector: #selector(updateHowTos), name: Notification.Name("fetchComplete"), object: nil)
+        
         tableView.backgroundColor = Util.backgroundColor
         
+        updateHowTos()
+    }
+    
+    @objc
+    func updateHowTos() {
         self.howTos = dataManager.getHowTos()
         self.tableView.reloadData()
     }

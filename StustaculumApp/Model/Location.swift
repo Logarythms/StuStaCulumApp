@@ -13,7 +13,7 @@ struct Location: Codable {
     var id: Int
     var name: String
     var shortName: String
-    var navigationString: String
+    var navigationString: String?
     var colorString: String?
     var color: UIColor?
     var latitudeString: String

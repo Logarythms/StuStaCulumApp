@@ -39,6 +39,27 @@ struct Performance: Codable {
         guard let a = artist else { return }
         print("\(a) at \(self.date) for \(self.duration) min")
     }
+    
+    func getEventDescription() -> String {
+        var dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy - HH:mm"
+        
+        var string = ""
+        
+        string += Util.nameForLocation(self.location)
+        string += "\n"
+        string += dateFormatter.string(from: self.date)
+        string += " Uhr"
+        
+        guard let artist = self.artist else {
+            return string
+        }
+        
+        string += "\n"
+        string += artist
+        
+        return string
+    }
 }
 
 extension Performance: Equatable {

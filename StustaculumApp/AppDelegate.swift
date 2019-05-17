@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = Util.backgroundColor
         UINavigationBar.appearance().tintColor = .white
 
-        self.registerForPushNotifications()
+//        self.registerForPushNotifications()
         
         return true
     }
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = tokenParts.joined()
         print("Device Token: \(token)")
         
-//        NetworkingManager.addDeviceForPushNotifications(token: token)
+        NetworkingManager.addDeviceForPushNotifications(token: token)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

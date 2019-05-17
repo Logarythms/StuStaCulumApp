@@ -19,17 +19,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
     let dataManager = DataManager.shared
+    let notificationCenter = NotificationCenter.default
 
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        notificationCenter.addObserver(self, selector: #selector(updateLocations), name: Notification.Name("fetchComplete"), object: nil)
+        
         mapView.delegate = self
         
         centerMapOnLocation(initialLocation)
         
-        self.locations = dataManager.getLocations()
-        addLocationsToMap()
+        updateLocations()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,8 +56,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    func locationsLoaded(locations: [Location]) {
-        self.locations = locations
+    @objc
+    func updateLocations() {
+        self.locations = dataManager.getLocations()
         addLocationsToMap()
     }
     

@@ -34,6 +34,19 @@ class Util {
         }
     }
     
+    class func nameForLocation(_ id: Int) -> String {
+        switch id {
+        case 1:
+            return "Café Dada"
+        case 2:
+            return "Atrium"
+        case 3:
+            return "Hans-Scholl-Halle"
+        default:
+            return "Festzelt"
+        }
+    }
+    
     class func getCoordinatesFor(_ location: Location) -> CLLocationCoordinate2D {
         guard let lat = Double(location.latitudeString) else { fatalError("lol") }
         guard let lon = Double(location.longitudeString) else { fatalError("lol") }
@@ -50,6 +63,13 @@ class Util {
         } else {
             return nil
         }
+    }
+    
+    class func verifyDateInterval(date1: Date, date2: Date) -> Bool {
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "CEST")!
+        
+        return date1 <= date2
     }
     
     class func getTimeslotsFor(_ performances: [Performance], day: SSCDay) -> [Timeslot] {
@@ -78,7 +98,9 @@ class Util {
                 let timeslotLength: Int
                 
                 if let previousPerformance = performances[safe: index - 1] {
-                    guard previousPerformance.artist != "Electronic-Night" else {
+                    guard   previousPerformance.artist != "Electronic-Night",
+                            verifyDateInterval(date1: getEndOfPerformance(previousPerformance), date2: performance.date)
+                    else {
                         continue
                     }
                     timeslotLength = Int(DateInterval(start: getEndOfPerformance(previousPerformance), end: performance.date).duration) / 60

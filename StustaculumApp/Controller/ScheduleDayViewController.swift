@@ -70,8 +70,18 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     }
     
     func reloadFavouriteView() {
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissFavorites))
+        if  let vc = navigationController?.viewControllers[safe: 0] as? FavouritesMasterViewController {
+            vc.navigationItem.rightBarButtonItem = dismissButton
+        }
+        
         let filteredPerformances = Util.filterPerformancesBy(self.day, performances: self.favouritePerformances)
         self.splitPerformances(performances: filteredPerformances)
+    }
+    
+    @objc
+    func dismissFavorites() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func loadFavourites() {
@@ -342,16 +352,23 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     }
      
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "performanceDetailSegue" else { return }
-        guard let performanceVC = segue.destination as? PerformanceDetailViewController else { return }
-        guard let performance = self.selectedPerformance else {
-            fatalError("No performance found, this should not happen")
+        if segue.identifier == "performanceDetailSegue" {
+            guard let performanceVC = segue.destination as? PerformanceDetailViewController else { return }
+            guard let performance = self.selectedPerformance else {
+                fatalError("No performance found, this should not happen")
+            }
+            
+            performanceVC.performance = performance
+            performanceVC.scheduleDayViewController = self
+            performanceVC.favourites = self.favouritePerformances
+        } else if segue.identifier == "favorite" {
+            guard   let navVC = segue.destination as? UINavigationController,
+                    let favoritesVC = navVC.viewControllers.first as? ScheduleDayViewController else {
+                    
+                    return
+            }
+            favoritesVC.isFavouritesController = true
         }
-        
-        performanceVC.performance = performance
-        performanceVC.scheduleDayViewController = self
-        performanceVC.favourites = self.favouritePerformances
-        
     }
 
     override func didReceiveMemoryWarning() {

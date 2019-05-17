@@ -11,6 +11,16 @@ import Alamofire
 
 class NetworkingManager {
     
+    class func getCurrentLogo(_ url: URL, completion: @escaping (UIImage) -> Void) {
+        guard let httpsURL = Util.httpsURLfor(url) else { return }
+        
+        Alamofire.request(httpsURL).responseImage { (response) in
+            if let image = response.result.value {
+                completion(image)
+            }
+        }
+    }
+    
     class func getCurrentSSC(completion: @escaping (Stustaculum) -> Void) {
         let url = getRequestUrlFor(.currentSSC)
         
@@ -51,8 +61,14 @@ class NetworkingManager {
         
         Alamofire.request(url).response { (response) in
             guard let jsonData = response.data else { return }
-            guard let locations = try? JSONDecoder().decode([Location].self, from: jsonData) else { return }
-            completion(locations)
+//            guard let locations = try? JSONDecoder().decode([Location].self, from: jsonData) else { return }
+            
+            do {
+                let locations = try JSONDecoder().decode([Location].self, from: jsonData)
+                completion(locations)
+            } catch let error {
+                print(error)
+            }
         }
     }
     
