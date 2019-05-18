@@ -333,15 +333,11 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         
         self.performances = performances
         
-        let performancesDada = performances.filter({$0.location == 1}).sorted(by: {$0.date < $1.date})
-        let performancesAtrium = performances.filter({$0.location == 2}).sorted(by: {$0.date < $1.date})
-        let performancesHalle = performances.filter({$0.location == 3}).sorted(by: {$0.date < $1.date})
-        let performancesZelt = performances.filter({$0.location == 4}).sorted(by: {$0.date < $1.date})
-        
-        self.timeslotsDada = Util.getTimeslotsFor(performancesDada, day: self.day)
-        self.timeslotsAtrium = Util.getTimeslotsFor(performancesAtrium, day: self.day)
-        self.timeslotsHalle = Util.getTimeslotsFor(performancesHalle, day: self.day)
-        self.timeslotsZelt = Util.getTimeslotsFor(performancesZelt, day: self.day)
+        let timeslots = dataManager.getTimeslotsFor(self.day)
+        self.timeslotsDada = timeslots.0
+        self.timeslotsAtrium = timeslots.1
+        self.timeslotsHalle = timeslots.2
+        self.timeslotsZelt = timeslots.3
         
         spreadsheetView.reloadData()
         spreadsheetView.reloadData()

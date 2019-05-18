@@ -89,6 +89,9 @@ class Util {
         let endOfDay = dateRange.1
         
         if performances.isEmpty {
+            guard verifyDateInterval(date1: startOfDay, date2: endOfDay) else {
+                return [Timeslot]()
+            }
             let timeslotLength = Int(DateInterval(start: startOfDay, end: endOfDay).duration) / 60
             timeslots.append(Timeslot(duration: timeslotLength, isEvent: false))
         }
@@ -106,10 +109,13 @@ class Util {
                 
                 if let previousPerformance = performances[safe: index - 1] {
                     guard verifyDateInterval(date1: getEndOfPerformance(previousPerformance), date2: performance.date) else {
-                        continue
+                        return [Timeslot]()
                     }
                     timeslotLength = Int(DateInterval(start: getEndOfPerformance(previousPerformance), end: performance.date).duration) / 60
                 } else {
+                    guard verifyDateInterval(date1: startOfDay, date2: performance.date) else {
+                        return [Timeslot]()
+                    }
                     timeslotLength = Int(DateInterval(start: startOfDay, end: performance.date).duration) / 60
                 }
                 if timeslotLength > 0 {
@@ -119,6 +125,9 @@ class Util {
             }
             
             if performances[safe: index + 1] == nil && endComparison != .orderedSame {
+                guard verifyDateInterval(date1: performanceEnd, date2: endOfDay) else {
+                    return [Timeslot]()
+                }
                 let timeslotLength = Int(DateInterval(start: performanceEnd, end: endOfDay).duration) / 60
                 timeslots.append(Timeslot(duration: timeslotLength, isEvent: false))
             }
@@ -137,7 +146,7 @@ class Util {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(abbreviation: "CEST")!
         
-        return performances.filter({ (performance) -> Bool in
+        let filteredPerformances = performances.filter({ (performance) -> Bool in
             guard let nextDate = calendar.date(byAdding: .day, value: 1, to: day.date) else { fatalError("this should not happen") }
             
             let isSameDay = (calendar.compare(performance.date, to: day.date, toGranularity: .day)) == .orderedSame
@@ -152,6 +161,9 @@ class Util {
                 return false
             }
         })
+        return filteredPerformances.sorted {
+            $0.date <= $1.date
+        }
     }
     
     class func getEndOfPerformance(_ performance: Performance) -> Date {

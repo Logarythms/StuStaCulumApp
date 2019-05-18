@@ -62,6 +62,43 @@ class DataManager {
         return news
     }
     
+    func validatePerformances(_ performances: [Performance]) -> Bool {
+        for day in Util.getSSCDays() {
+            let filteredPerformances = Util.filterPerformancesBy(day, performances: performances)
+            
+            for index in (1...4) {
+                guard !Util.getTimeslotsFor(filteredPerformances.filter {
+                    $0.location == index
+                }, day: day).isEmpty else {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+    func getTimeslotsFor(_ day: SSCDay) -> ([Timeslot], [Timeslot], [Timeslot], [Timeslot]) {
+        guard let performances = self.performances else {
+            return ([Timeslot](), [Timeslot](), [Timeslot](), [Timeslot]())
+        }
+        let filteredPerformances = Util.filterPerformancesBy(day, performances: performances)
+        
+        let dada = filteredPerformances.filter {
+            $0.location == 1
+        }
+        let atrium = filteredPerformances.filter {
+            $0.location == 2
+        }
+        let halle = filteredPerformances.filter {
+            $0.location == 3
+        }
+        let zelt = filteredPerformances.filter {
+            $0.location == 4
+        }
+        
+        return (Util.getTimeslotsFor(dada, day: day), Util.getTimeslotsFor(atrium, day: day), Util.getTimeslotsFor(halle, day: day), Util.getTimeslotsFor(zelt, day: day))
+    }
+    
     func getPerformancesFor(_ day: SSCDay) -> [Performance] {
         guard let performances = self.performances else {
             return [Performance]()
@@ -292,15 +329,16 @@ extension DataManager {
         self.dispatchGroup.enter()
         NetworkingManager.getPerformances { performances in
             let filteredPerformances = self.filterPerformances(performances)
-            self.performances = filteredPerformances
             guard   let path = self.savePaths[.performances],
-                    let encodedData = try? self.encoder.encode(filteredPerformances) else {
+                    let encodedData = try? self.encoder.encode(filteredPerformances),
+                    self.validatePerformances(filteredPerformances) else {
                     
                     self.dispatchGroup.leave()
                     return
             }
             do {
                 try encodedData.write(to: path)
+                self.performances = filteredPerformances
             } catch let error {
                 print(error)
             }
@@ -315,11 +353,12 @@ extension DataManager {
         NetworkingManager.getPerformances { performances in
             let filteredPerformances = self.filterPerformances(performances)
             guard   let compareDate = Util.getLastUpdatedFor(filteredPerformances),
-                    compareDate > lastUpdate else {
+                    compareDate > lastUpdate,
+                    self.validatePerformances(filteredPerformances) else {
                     
                     return
             }
-            self.performances = filteredPerformances
+            
             
             guard   let path = self.savePaths[.performances],
                     let encodedData = try? self.encoder.encode(filteredPerformances) else {
@@ -328,6 +367,7 @@ extension DataManager {
             }
             do {
                 try encodedData.write(to: path)
+                self.performances = filteredPerformances
                 self.notificationCenter.post(name: Notification.Name("performancesUpdated"), object: nil)
             } catch let error {
                 print(error)
