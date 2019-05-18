@@ -19,7 +19,13 @@ class NewsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        notificationCenter.addObserver(self, selector: #selector(updateNews), name: Notification.Name("fetchComplete"), object: nil)
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(updateContent), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
+        notificationCenter.addObserver(self, selector: #selector(updateContent), name: Notification.Name("fetchComplete"), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(updateContent), name: Notification.Name("newsUpdated"), object: nil)
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 250
@@ -27,14 +33,25 @@ class NewsViewController: UITableViewController {
         tableView.backgroundColor = Util.backgroundColor
         tableView.tableFooterView = UIView()
         
-        updateNews()
+        updateContent()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        getUpcomingPerformances()
+        dataManager.updateNews()
+        tableView.reloadData()
     }
     
     @objc
-    func updateNews() {
+    func updateContent() {
+        print("updating")
         self.newsEntries = dataManager.getNews()
         getUpcomingPerformances()
-        tableView.reloadData()
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
     
     func getUpcomingPerformances() {
@@ -57,6 +74,8 @@ class NewsViewController: UITableViewController {
             $0.location == 4
         }
         
+        upcomingPerformances.removeAll()
+        
         if let dada = upcomingDadaPerformance {
             upcomingPerformances.append(dada)
         }
@@ -68,6 +87,9 @@ class NewsViewController: UITableViewController {
         }
         if let zelt = upcomingZeltPerformance {
             upcomingPerformances.append(zelt)
+        }
+        upcomingPerformances.sort {
+            $0.date <= $1.date
         }
     }
 
@@ -101,7 +123,7 @@ class NewsViewController: UITableViewController {
             }
             
             let size = cell.logoImageView.bounds.size
-            let scaledImage = image.af_imageAspectScaled(toFill: size)
+            let scaledImage = image.af_imageAspectScaled(toFit: size)
             cell.logoImageView.image = scaledImage
             
             return cell

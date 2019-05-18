@@ -25,6 +25,14 @@ class DataManager {
     
     static let shared = DataManager()
     
+    func updateNews() {
+        downloadNews(update: true)
+    }
+    
+    func updatePerformances() {
+        downloadUpdatedPerformances()
+    }
+    
     func getCurrentSSC() -> Stustaculum? {
         return currentSSC
     }
@@ -108,7 +116,7 @@ class DataManager {
         guard loadNews() else {
             return false
         }
-        
+        UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
         return true
     }
     
@@ -126,18 +134,15 @@ class DataManager {
         downloadCurrentSSC()
         downloadLocations()
         downloadHowTos()
-        downloadNews()
+        downloadNews(update: false)
         
         self.dispatchGroup.leave()
         
         self.dispatchGroup.notify(queue: .main) {
             SVProgressHUD.dismiss()
+            UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
             self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
         }
-        
-    }
-    
-    private func updateData() {
         
     }
     
@@ -272,7 +277,7 @@ extension DataManager {
             return performances
         }
         let filteredPerformances = performances.filter {
-            ($0.stustaculumID == ssc.id) && $0.show
+            ($0.stustaculumID == ssc.id) && $0.show && ($0.artist != "Electronic-Night")
         }
         let verifiedPerformances = filteredPerformances.filter {
             for performance in filteredPerformances where $0.date == performance.date && $0.location == performance.location && $0.id != performance.id {
@@ -300,6 +305,33 @@ extension DataManager {
                 print(error)
             }
             self.dispatchGroup.leave()
+        }
+    }
+    
+    private func downloadUpdatedPerformances() {
+        guard let lastUpdate = Util.getLastUpdatedFor(performances) else {
+            return
+        }
+        NetworkingManager.getPerformances { performances in
+            let filteredPerformances = self.filterPerformances(performances)
+            guard   let compareDate = Util.getLastUpdatedFor(filteredPerformances),
+                    compareDate > lastUpdate else {
+                    
+                    return
+            }
+            self.performances = filteredPerformances
+            
+            guard   let path = self.savePaths[.performances],
+                    let encodedData = try? self.encoder.encode(filteredPerformances) else {
+                    
+                    return
+            }
+            do {
+                try encodedData.write(to: path)
+                self.notificationCenter.post(name: Notification.Name("performancesUpdated"), object: nil)
+            } catch let error {
+                print(error)
+            }
         }
     }
     
@@ -341,22 +373,29 @@ extension DataManager {
         }
     }
     
-    private func downloadNews() {
-        self.dispatchGroup.enter()
+    private func downloadNews(update: Bool) {
+        if !update {
+            self.dispatchGroup.enter()
+        }
         NetworkingManager.getNews { news in
             self.news = news
             guard   let path = self.savePaths[.news],
                     let encodedData = try? self.encoder.encode(news) else {
                     
-                    self.dispatchGroup.leave()
+                        if !update {
+                            self.dispatchGroup.leave()
+                        }
                     return
             }
             do {
                 try encodedData.write(to: path)
+                self.notificationCenter.post(name: Notification.Name("newsUpdated"), object: nil)
             } catch let error {
                 print(error)
             }
-            self.dispatchGroup.leave()
+            if !update {
+                self.dispatchGroup.leave()
+            }
         }
     }
 }

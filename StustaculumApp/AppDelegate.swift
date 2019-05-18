@@ -22,8 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().backgroundColor = Util.backgroundColor
         UINavigationBar.appearance().tintColor = .white
-
-//        self.registerForPushNotifications()
+        
+        //        self.registerForPushNotifications()
+        
+        guard UserDefaults.standard.bool(forKey: "initialLoadCompleted") else {
+            return true
+        }
+        
+        DataManager.shared.updatePerformances()
         
         return true
     }

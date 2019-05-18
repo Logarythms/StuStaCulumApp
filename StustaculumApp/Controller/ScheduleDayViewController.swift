@@ -43,6 +43,7 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         super.viewDidLoad()
         
         notificationCenter.addObserver(self, selector: #selector(loadPerformances), name: Notification.Name("fetchComplete"), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(loadPerformances), name: Notification.Name("performancesUpdated"), object: nil)
         
         setupScheduleView()
         loadFavourites()
@@ -64,7 +65,6 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     
     @objc
     func loadPerformances() {
-        print("Moin")
         let performances = dataManager.getPerformancesFor(day)
         splitPerformances(performances: performances)
     }

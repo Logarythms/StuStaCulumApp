@@ -20,6 +20,12 @@ class Util {
     static var backgroundColor = UIColor(red:0.18, green:0.18, blue:0.18, alpha:1.0)
     static var stageCellBackgroundColor = UIColor(red:0.26, green:0.26, blue:0.26, alpha:1.0)
     
+    class func getLastUpdatedFor(_ performances: [Performance]?) -> Date? {
+        return performances?.sorted(by: {
+            $0.lastUpdate >= $1.lastUpdate
+        }).first?.lastUpdate
+    }
+    
     class func colorForStage(_ id: Int) -> UIColor {
         switch id {
         case 1:
@@ -99,9 +105,7 @@ class Util {
                 let timeslotLength: Int
                 
                 if let previousPerformance = performances[safe: index - 1] {
-                    guard   previousPerformance.artist != "Electronic-Night",
-                            verifyDateInterval(date1: getEndOfPerformance(previousPerformance), date2: performance.date)
-                    else {
+                    guard verifyDateInterval(date1: getEndOfPerformance(previousPerformance), date2: performance.date) else {
                         continue
                     }
                     timeslotLength = Int(DateInterval(start: getEndOfPerformance(previousPerformance), end: performance.date).duration) / 60
