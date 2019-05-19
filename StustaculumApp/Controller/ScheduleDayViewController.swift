@@ -164,6 +164,9 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
                     cell.borders.right = .solid(width: 1, color: .darkGray)
                     cell.borders.bottom = .solid(width: 1, color: .darkGray)
                     
+                    let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCellAt))
+                    cell.addGestureRecognizer(gestureRecognizer)
+                    
                     return cell
                 }
             case 2:
@@ -172,6 +175,9 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
                     
                     cell.borders.right = .solid(width: 1, color: .darkGray)
                     cell.borders.bottom = .solid(width: 1, color: .darkGray)
+                    
+                    let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCellAt))
+                    cell.addGestureRecognizer(gestureRecognizer)
                     
                     return cell
                 }
@@ -182,6 +188,9 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
                     cell.borders.right = .solid(width: 1, color: .darkGray)
                     cell.borders.bottom = .solid(width: 1, color: .darkGray)
                     
+                    let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCellAt(sender:)))
+                    cell.addGestureRecognizer(gestureRecognizer)
+                    
                     return cell
                 }
             case 4:
@@ -190,6 +199,9 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
                     
                     cell.borders.right = .solid(width: 1, color: .darkGray)
                     cell.borders.bottom = .solid(width: 1, color: .darkGray)
+                    
+                    let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCellAt))
+                    cell.addGestureRecognizer(gestureRecognizer)
                     
                     return cell
                 }
@@ -205,12 +217,38 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         return cell
     }
     
-    func spreadsheetView(_ spreadsheetView: SpreadsheetView, didSelectItemAt indexPath: IndexPath) {
-        if let performance = slotInfo[indexPath] {
-            self.selectedPerformance = performance
-            self.performSegue(withIdentifier: "performanceDetailSegue", sender: self)
+    @objc
+    func didTapCellAt(sender: UITapGestureRecognizer) {
+        let artistTitle: String
+        
+        if let title = (sender.view as? AtriumCell)?.title.text {
+            artistTitle = title
+        } else if let title = (sender.view as? DadaCell)?.title.text {
+            artistTitle = title
+        } else if let title = (sender.view as? HalleCell)?.title.text {
+            artistTitle = title
+        } else if let title = (sender.view as? ZeltCell)?.title.text {
+            artistTitle = title
+        } else {
+            return
         }
+        
+        guard let performance = self.performances.first(where: {
+            $0.artist == artistTitle
+        }) else {
+            return
+        }
+        self.selectedPerformance = performance
+        self.performSegue(withIdentifier: "performanceDetailSegue", sender: self)
     }
+    
+//    func spreadsheetView(_ spreadsheetView: SpreadsheetView, didSelectItemAt indexPath: IndexPath) {
+//        print("check")
+//        if let performance = slotInfo[indexPath] {
+//            self.selectedPerformance = performance
+//            self.performSegue(withIdentifier: "performanceDetailSegue", sender: self)
+//        }
+//    }
 
     func mergedCells(in spreadsheetView: SpreadsheetView) -> [CellRange] {
         var mergedCells = [CellRange]()
