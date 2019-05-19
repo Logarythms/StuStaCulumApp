@@ -41,7 +41,7 @@ struct Performance: Codable {
     }
     
     func getEventDescription() -> String {
-        var dateFormatter = DateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy - HH:mm"
         
         var string = ""
