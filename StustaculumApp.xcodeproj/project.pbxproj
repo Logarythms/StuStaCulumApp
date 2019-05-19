@@ -43,6 +43,14 @@
 		48F68531228DCC35007A286E /* UpcomingEventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F68530228DCC35007A286E /* UpcomingEventsCell.swift */; };
 		48F68533228F1F97007A286E /* SSCMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F68532228F1F97007A286E /* SSCMapOverlay.swift */; };
 		48F68535228F2AD9007A286E /* SSCMapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F68534228F2AD9007A286E /* SSCMapOverlayView.swift */; };
+		48F6853722919C0B007A286E /* DispatchGroup+NotifyTimeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6853622919C0B007A286E /* DispatchGroup+NotifyTimeout.swift */; };
+		48F685402291A24E007A286E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F6853A2291A24E007A286E /* logo.png */; };
+		48F685412291A24E007A286E /* news.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F6853B2291A24E007A286E /* news.json */; };
+		48F685422291A24E007A286E /* performances.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F6853C2291A24E007A286E /* performances.json */; };
+		48F685432291A24E007A286E /* currentSSC.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F6853D2291A24E007A286E /* currentSSC.json */; };
+		48F685442291A24E007A286E /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F6853E2291A24E007A286E /* locations.json */; };
+		48F685452291A24E007A286E /* howTos.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F6853F2291A24E007A286E /* howTos.json */; };
+		48F685472291B245007A286E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F685462291B245007A286E /* Reachability.swift */; };
 		48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507320B2EC6B0012FCDB /* HowTo.swift */; };
 		48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507520B2F24E0012FCDB /* LocationCategory.swift */; };
 		48F7507820B2F3950012FCDB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507720B2F3950012FCDB /* Location.swift */; };
@@ -93,6 +101,14 @@
 		48F68530228DCC35007A286E /* UpcomingEventsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsCell.swift; sourceTree = "<group>"; };
 		48F68532228F1F97007A286E /* SSCMapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCMapOverlay.swift; sourceTree = "<group>"; };
 		48F68534228F2AD9007A286E /* SSCMapOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCMapOverlayView.swift; sourceTree = "<group>"; };
+		48F6853622919C0B007A286E /* DispatchGroup+NotifyTimeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchGroup+NotifyTimeout.swift"; sourceTree = "<group>"; };
+		48F6853A2291A24E007A286E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		48F6853B2291A24E007A286E /* news.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = news.json; sourceTree = "<group>"; };
+		48F6853C2291A24E007A286E /* performances.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = performances.json; sourceTree = "<group>"; };
+		48F6853D2291A24E007A286E /* currentSSC.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = currentSSC.json; sourceTree = "<group>"; };
+		48F6853E2291A24E007A286E /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
+		48F6853F2291A24E007A286E /* howTos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = howTos.json; sourceTree = "<group>"; };
+		48F685462291B245007A286E /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		48F7507320B2EC6B0012FCDB /* HowTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowTo.swift; sourceTree = "<group>"; };
 		48F7507520B2F24E0012FCDB /* LocationCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCategory.swift; sourceTree = "<group>"; };
 		48F7507720B2F3950012FCDB /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -118,6 +134,8 @@
 			children = (
 				488F14C320B7389B0058536E /* Util.swift */,
 				4802E9CF20BA3D0F005A0085 /* String+HTML.swift */,
+				48F6853622919C0B007A286E /* DispatchGroup+NotifyTimeout.swift */,
+				48F685462291B245007A286E /* Reachability.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -149,6 +167,7 @@
 				48C03CC520B2E01100EED86A /* Managers */,
 				48F7507D20B302630012FCDB /* Controller */,
 				48F7507E20B30F9D0012FCDB /* View */,
+				48F685392291A0A4007A286E /* Resources */,
 				48C03CB720B2DA1E00EED86A /* Assets.xcassets */,
 				48C03CB020B2DA1D00EED86A /* AppDelegate.swift */,
 				48C03CB920B2DA1E00EED86A /* LaunchScreen.storyboard */,
@@ -181,6 +200,19 @@
 				48F6852A228C898F007A286E /* DataManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		48F685392291A0A4007A286E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				48F6853D2291A24E007A286E /* currentSSC.json */,
+				48F6853F2291A24E007A286E /* howTos.json */,
+				48F6853E2291A24E007A286E /* locations.json */,
+				48F6853A2291A24E007A286E /* logo.png */,
+				48F6853B2291A24E007A286E /* news.json */,
+				48F6853C2291A24E007A286E /* performances.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		48F7507D20B302630012FCDB /* Controller */ = {
@@ -306,9 +338,15 @@
 			files = (
 				4802E9CA20BA09C2005A0085 /* ZeltCell.xib in Resources */,
 				4802E9C220B9BE31005A0085 /* TimeCell.xib in Resources */,
+				48F685422291A24E007A286E /* performances.json in Resources */,
+				48F685402291A24E007A286E /* logo.png in Resources */,
 				4802E9C620BA0984005A0085 /* AtriumCell.xib in Resources */,
+				48F685432291A24E007A286E /* currentSSC.json in Resources */,
 				48C03CBB20B2DA1E00EED86A /* LaunchScreen.storyboard in Resources */,
+				48F685452291A24E007A286E /* howTos.json in Resources */,
+				48F685442291A24E007A286E /* locations.json in Resources */,
 				4802E9C420BA08D6005A0085 /* DadaCell.xib in Resources */,
+				48F685412291A24E007A286E /* news.json in Resources */,
 				48C03CB820B2DA1E00EED86A /* Assets.xcassets in Resources */,
 				48A3D22C20B33E0F00C5EBDD /* PerformanceCell.xib in Resources */,
 				48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */,
@@ -383,6 +421,7 @@
 				4802E9D820BAE560005A0085 /* HowToMasterViewController.swift in Sources */,
 				48F6852F228D7F42007A286E /* NewsCell.swift in Sources */,
 				48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */,
+				48F6853722919C0B007A286E /* DispatchGroup+NotifyTimeout.swift in Sources */,
 				4802E9E020BAF575005A0085 /* AGBViewController.swift in Sources */,
 				48F6852B228C898F007A286E /* DataManager.swift in Sources */,
 				48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */,
@@ -399,6 +438,7 @@
 				48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */,
 				488F14C020B732600058536E /* SSCDay.swift in Sources */,
 				48F7507820B2F3950012FCDB /* Location.swift in Sources */,
+				48F685472291B245007A286E /* Reachability.swift in Sources */,
 				4802E9D220BA488A005A0085 /* MapViewController.swift in Sources */,
 				4802E9D620BAC833005A0085 /* FavouritesMasterViewController.swift in Sources */,
 				4802E9E220BAF591005A0085 /* AboutDetailViewController.swift in Sources */,

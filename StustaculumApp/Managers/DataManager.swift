@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 import SVProgressHUD
 
 class DataManager {
@@ -157,7 +158,46 @@ class DataManager {
         return true
     }
     
-   
+    private func handleTimeOut() {
+        print("initializing from local data")
+        guard   initializeLocalData(),
+                loadLocalData() else {
+                
+                fatalError("This should definitely not happen")
+        }
+        self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
+    }
+    
+    private func deleteIncompleteData() {
+        let fileManager = FileManager.default
+        for savePath in SavePath.allCases {
+            guard let path = savePaths[savePath] else {
+                return
+            }
+            try? fileManager.removeItem(at: path)
+        }
+    }
+    
+    private func initializeLocalData() -> Bool {
+        deleteIncompleteData()
+        
+        let fileManager = FileManager.default
+        for savePath in SavePath.allCases {
+            guard   let localSavePath = localSavePathFor(savePath),
+                    let savePath = savePaths[savePath] else {
+                    
+                    return false
+            }
+            do {
+                try fileManager.copyItem(at: localSavePath, to: savePath)
+            } catch let error {
+                print(error)
+                return false
+            }
+        }
+        
+        return true
+    }
     
     private func initializeData() {
         
@@ -180,7 +220,18 @@ class DataManager {
             UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
             self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
         }
-        
+        self.dispatchGroup.notifyWait(target: .main, timeout: .now() + 10) {
+            if $0 == .success {
+                SVProgressHUD.dismiss()
+                UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
+                self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
+
+            }
+            if $0 == .timedOut {
+                SVProgressHUD.dismiss()
+                self.handleTimeOut()
+            }
+        }
     }
     
     private func localDataExists() -> Bool {
@@ -190,6 +241,23 @@ class DataManager {
             }
         }
         return true
+    }
+    
+    private func localSavePathFor(_ savePath: SavePath) -> URL? {
+        switch savePath {
+        case .currentSSC:
+            return Bundle.main.url(forResource: "currentSSC", withExtension: "json")
+        case .performances:
+            return Bundle.main.url(forResource: "performances", withExtension: "json")
+        case .locations:
+            return Bundle.main.url(forResource: "locations", withExtension: "json")
+        case .howTos:
+            return Bundle.main.url(forResource: "howTos", withExtension: "json")
+        case .news:
+            return Bundle.main.url(forResource: "news", withExtension: "json")
+        case .logo:
+            return Bundle.main.url(forResource: "logo", withExtension: "png")
+        }
     }
     
     private enum SavePath: String, CaseIterable {
@@ -232,7 +300,7 @@ extension DataManager {
                 
                 return false
         }
-        self.performances = decodedPerformances
+        self.performances = filterPerformances(decodedPerformances)
         return true
     }
     
