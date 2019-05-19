@@ -332,8 +332,13 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     func splitPerformances(performances: [Performance]) {
         
         self.performances = performances
+        let timeslots: ([Timeslot], [Timeslot], [Timeslot], [Timeslot])
+        if isFavouritesController {
+            timeslots = dataManager.getTimeslotsFor(self.day, favoritePerformances: performances)
+        } else {
+            timeslots = dataManager.getTimeslotsFor(self.day)
+        }
         
-        let timeslots = dataManager.getTimeslotsFor(self.day)
         self.timeslotsDada = timeslots.0
         self.timeslotsAtrium = timeslots.1
         self.timeslotsHalle = timeslots.2

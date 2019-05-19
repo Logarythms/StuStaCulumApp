@@ -78,10 +78,18 @@ class DataManager {
         return true
     }
     
-    func getTimeslotsFor(_ day: SSCDay) -> ([Timeslot], [Timeslot], [Timeslot], [Timeslot]) {
-        guard let performances = self.performances else {
-            return ([Timeslot](), [Timeslot](), [Timeslot](), [Timeslot]())
+    func getTimeslotsFor(_ day: SSCDay, favoritePerformances: [Performance]? = nil) -> ([Timeslot], [Timeslot], [Timeslot], [Timeslot]) {
+        let performances: [Performance]
+        
+        if let favorites = favoritePerformances {
+            performances = favorites
+        } else {
+            guard let allPerformances = self.performances else {
+                return ([Timeslot](), [Timeslot](), [Timeslot](), [Timeslot]())
+            }
+            performances = allPerformances
         }
+        
         let filteredPerformances = Util.filterPerformancesBy(day, performances: performances)
         
         let dada = filteredPerformances.filter {
@@ -163,7 +171,7 @@ class DataManager {
         guard   initializeLocalData(),
                 loadLocalData() else {
                 
-                fatalError("This should definitely not happen")
+                return
         }
         self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
     }
@@ -396,7 +404,6 @@ extension DataManager {
                     let encodedData = try? self.encoder.encode(filteredPerformances),
                     self.validatePerformances(filteredPerformances) else {
                     
-                    self.dispatchGroup.leave()
                     return
             }
             do {
