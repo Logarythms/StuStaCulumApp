@@ -356,7 +356,7 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         if segue.identifier == "performanceDetailSegue" {
             guard let performanceVC = segue.destination as? PerformanceDetailViewController else { return }
             guard let performance = self.selectedPerformance else {
-                fatalError("No performance found, this should not happen")
+                return
             }
             
             performanceVC.performance = performance
