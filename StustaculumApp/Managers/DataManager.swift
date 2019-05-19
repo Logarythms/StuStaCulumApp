@@ -215,11 +215,6 @@ class DataManager {
         
         self.dispatchGroup.leave()
         
-        self.dispatchGroup.notify(queue: .main) {
-            SVProgressHUD.dismiss()
-            UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
-            self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
-        }
         self.dispatchGroup.notifyWait(target: .main, timeout: .now() + 10) {
             if $0 == .success {
                 SVProgressHUD.dismiss()
