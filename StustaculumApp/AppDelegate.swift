@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = Util.backgroundColor
         UINavigationBar.appearance().tintColor = .white
         
-        //        self.registerForPushNotifications()
+        self.registerForPushNotifications()
         
         guard UserDefaults.standard.bool(forKey: "initialLoadCompleted") else {
             return true
@@ -57,17 +57,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func registerForPushNotifications() {
-        let defaults = UserDefaults.standard
-        guard !defaults.bool(forKey: "pushRegistered") else { return }
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
             print("Permission granted: \(granted)")
             guard granted else { return }
-            self?.getNotificationSettings()
+//            self?.getNotificationSettings()
             self?.setupPfandNotifications()
         }
     }
     
     func getNotificationSettings() {
+        let defaults = UserDefaults.standard
+        guard !defaults.bool(forKey: "pushRegistered") else { return }
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             print("Notification Settings: \(settings)")
             guard settings.authorizationStatus == .authorized else { return }
@@ -97,6 +97,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             notificationCenter.add(request) { error in
                 if let error = error {
                     print(error)
+                } else {
+                    print("registered Pfand-notifications")
                 }
             }
         }

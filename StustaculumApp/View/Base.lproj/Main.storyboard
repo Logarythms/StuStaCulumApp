@@ -89,20 +89,20 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0JP-SF-Dk2">
-                                                <rect key="frame" x="162.5" y="305" width="50" height="21"/>
+                                                <rect key="frame" x="160" y="305" width="55" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="SLX-zV-YdZ"/>
-                                                    <constraint firstAttribute="width" constant="50" id="tgd-w7-NnT"/>
+                                                    <constraint firstAttribute="width" constant="55" id="tgd-w7-NnT"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6r-I0-eE6">
-                                                <rect key="frame" x="162.5" y="276" width="50" height="21"/>
+                                                <rect key="frame" x="160" y="276" width="55" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="B45-Ru-4Xw"/>
-                                                    <constraint firstAttribute="width" constant="50" id="Tgz-ll-4mJ"/>
+                                                    <constraint firstAttribute="width" constant="55" id="Tgz-ll-4mJ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
