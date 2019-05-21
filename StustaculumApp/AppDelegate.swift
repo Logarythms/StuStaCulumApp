@@ -88,7 +88,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         content.sound = UNNotificationSound.default
         
         let triggers = Util.getNotificationTriggers()
-        print(triggers)
         for trigger in triggers {
             let uuid = UUID()
             let request = UNNotificationRequest(identifier: uuid.uuidString, content: content, trigger: trigger)

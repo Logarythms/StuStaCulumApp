@@ -438,6 +438,7 @@ extension DataManager {
             do {
                 try encodedData.write(to: path)
                 self.performances = filteredPerformances
+                print("updated performances")
                 self.notificationCenter.post(name: Notification.Name("performancesUpdated"), object: nil)
             } catch let error {
                 print(error)
