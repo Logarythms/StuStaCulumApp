@@ -24,6 +24,7 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     var timeslotsAtrium = [Timeslot]()
     var timeslotsHalle = [Timeslot]()
     var timeslotsZelt = [Timeslot]()
+    var timeslotsGelände = [Timeslot]()
     
     var slotInfo = [IndexPath: Performance]()
     
@@ -115,7 +116,9 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         spreadsheetView.register(UINib(nibName: String(describing: ZeltCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ZeltCell.self))
         spreadsheetView.register(UINib(nibName: String(describing: TimeCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: TimeCell.self))
         spreadsheetView.register(UINib(nibName: String(describing: StageCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: StageCell.self))
+        spreadsheetView.register(UINib(nibName: String(describing: GeländeCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: GeländeCell.self))
         spreadsheetView.register(EmptyCell.self, forCellWithReuseIdentifier: String(describing: EmptyCell.self))
+        
         spreadsheetView.dataSource = self
         spreadsheetView.delegate = self
         spreadsheetView.isDirectionalLockEnabled = true
@@ -205,6 +208,18 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
                     
                     return cell
                 }
+            case 5:
+                if let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: GeländeCell.self), for: indexPath) as? GeländeCell {
+                    cell.title.text = performance.artist
+                    
+                    cell.borders.right = .solid(width: 1, color: .darkGray)
+                    cell.borders.bottom = .solid(width: 1, color: .darkGray)
+                    
+                    let gestureRecogizer = UITapGestureRecognizer(target: self, action: #selector(didTapCellAt))
+                    cell.addGestureRecognizer(gestureRecogizer)
+                    
+                    return cell
+                }
             default:
                 print("lol")
             }
@@ -228,6 +243,8 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         } else if let title = (sender.view as? HalleCell)?.title.text {
             artistTitle = title
         } else if let title = (sender.view as? ZeltCell)?.title.text {
+            artistTitle = title
+        } else if let title = (sender.view as? GeländeCell)?.title.text {
             artistTitle = title
         } else {
             return
@@ -261,9 +278,9 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         for row in 0..<hours {
             mergedCells.append(CellRange(from: (60 * row + 1, 0), to: (60 * (row + 1), 0)))
         }
-        
+
         var minutes = 0
-        
+
         for timeslot in timeslotsDada {
             let cellRange = CellRange(from: (minutes + 1, 1), to: (minutes + timeslot.duration, 1))
             if cellRange.to.row <= spreadsheetView.numberOfRows {
@@ -272,9 +289,9 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
                 minutes += timeslot.duration
             }
         }
-        
+
         minutes = 0
-        
+
         for timeslot in timeslotsAtrium {
             let cellRange = CellRange(from: (minutes + 1, 2), to: (minutes + timeslot.duration, 2))
             if cellRange.to.row <= spreadsheetView.numberOfRows {
@@ -283,11 +300,22 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
                 minutes += timeslot.duration
             }
         }
-        
+
         minutes = 0
-        
+
         for timeslot in timeslotsHalle {
             let cellRange = CellRange(from: (minutes + 1, 3), to: (minutes + timeslot.duration, 3))
+            if cellRange.to.row <= spreadsheetView.numberOfRows {
+                mergedCells.append(cellRange)
+                slotInfo[IndexPath(row: cellRange.from.row, column: cellRange.from.column)] = timeslot.performance
+                minutes += timeslot.duration
+            }
+        }
+
+        minutes = 0
+
+        for timeslot in timeslotsZelt {
+            let cellRange = CellRange(from: (minutes + 1, 4), to: (minutes + timeslot.duration, 4))
             if cellRange.to.row <= spreadsheetView.numberOfRows {
                 mergedCells.append(cellRange)
                 slotInfo[IndexPath(row: cellRange.from.row, column: cellRange.from.column)] = timeslot.performance
@@ -297,8 +325,8 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         
         minutes = 0
         
-        for timeslot in timeslotsZelt {
-            let cellRange = CellRange(from: (minutes + 1, 4), to: (minutes + timeslot.duration, 4))
+        for timeslot in timeslotsGelände {
+            let cellRange = CellRange(from: (minutes + 1, 5), to: (minutes + timeslot.duration, 5))
             if cellRange.to.row <= spreadsheetView.numberOfRows {
                 mergedCells.append(cellRange)
                 slotInfo[IndexPath(row: cellRange.from.row, column: cellRange.from.column)] = timeslot.performance
@@ -310,7 +338,7 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     }
     
     func numberOfColumns(in spreadsheetView: SpreadsheetView) -> Int {
-        return 5
+        return 6
     }
     
     func numberOfRows(in spreadsheetView: SpreadsheetView) -> Int {
@@ -326,10 +354,10 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, widthForColumn column: Int) -> CGFloat {
         if column == 0 {
-            return 55
+            return 37
         }
-        let scheduleWidth = UIScreen.main.bounds.width - 55
-        return scheduleWidth / 4
+        let scheduleWidth = UIScreen.main.bounds.width - 40
+        return scheduleWidth / 5
     }
     
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, heightForRow row: Int) -> CGFloat {
@@ -362,6 +390,8 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
             return "Halle"
         case 4:
             return "Zelt"
+        case 5:
+            return "Gelände"
         default:
             return ""
         }
@@ -370,7 +400,8 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
     func splitPerformances(performances: [Performance]) {
         
         self.performances = performances
-        let timeslots: ([Timeslot], [Timeslot], [Timeslot], [Timeslot])
+        
+        let timeslots: ([Timeslot], [Timeslot], [Timeslot], [Timeslot], [Timeslot])
         if isFavouritesController {
             timeslots = dataManager.getTimeslotsFor(self.day, favoritePerformances: performances)
         } else {
@@ -381,13 +412,14 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         self.timeslotsAtrium = timeslots.1
         self.timeslotsHalle = timeslots.2
         self.timeslotsZelt = timeslots.3
-        
-        spreadsheetView.reloadData()
-        spreadsheetView.reloadData()
+        self.timeslotsGelände = timeslots.4
         
         if UIDevice.current.systemVersion.contains("10") {
             pvc?.moveToViewController(at: 1)
         }
+        
+        spreadsheetView.reloadData()
+        spreadsheetView.reloadData()
     }
      
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

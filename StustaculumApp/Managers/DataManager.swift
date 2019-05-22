@@ -78,14 +78,14 @@ class DataManager {
         return true
     }
     
-    func getTimeslotsFor(_ day: SSCDay, favoritePerformances: [Performance]? = nil) -> ([Timeslot], [Timeslot], [Timeslot], [Timeslot]) {
+    func getTimeslotsFor(_ day: SSCDay, favoritePerformances: [Performance]? = nil) -> ([Timeslot], [Timeslot], [Timeslot], [Timeslot], [Timeslot]) {
         let performances: [Performance]
         
         if let favorites = favoritePerformances {
             performances = favorites
         } else {
             guard let allPerformances = self.performances else {
-                return ([Timeslot](), [Timeslot](), [Timeslot](), [Timeslot]())
+                return ([Timeslot](), [Timeslot](), [Timeslot](), [Timeslot](), [Timeslot]())
             }
             performances = allPerformances
         }
@@ -104,8 +104,11 @@ class DataManager {
         let zelt = filteredPerformances.filter {
             $0.location == 4
         }
+        let gelände = filteredPerformances.filter {
+            $0.location == 5
+        }
         
-        return (Util.getTimeslotsFor(dada, day: day), Util.getTimeslotsFor(atrium, day: day), Util.getTimeslotsFor(halle, day: day), Util.getTimeslotsFor(zelt, day: day))
+        return (Util.getTimeslotsFor(dada, day: day), Util.getTimeslotsFor(atrium, day: day), Util.getTimeslotsFor(halle, day: day), Util.getTimeslotsFor(zelt, day: day), Util.getTimeslotsFor(gelände, day: day))
     }
     
     func getPerformancesFor(_ day: SSCDay) -> [Performance] {
@@ -385,7 +388,7 @@ extension DataManager {
             return performances
         }
         let filteredPerformances = performances.filter {
-            ($0.stustaculumID == ssc.id) && $0.show && ($0.artist != "Electronic-Night")
+            ($0.stustaculumID == ssc.id) && $0.show && ($0.artist != "Electronic-Night") && $0.duration > 0
         }
         let verifiedPerformances = filteredPerformances.filter {
             for performance in filteredPerformances where $0.date == performance.date && $0.location == performance.location && $0.id != performance.id {

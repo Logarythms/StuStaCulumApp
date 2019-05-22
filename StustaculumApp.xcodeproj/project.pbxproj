@@ -23,6 +23,7 @@
 		4802E9DE20BAF509005A0085 /* AboutMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9DD20BAF509005A0085 /* AboutMasterViewController.swift */; };
 		4802E9E020BAF575005A0085 /* AGBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9DF20BAF575005A0085 /* AGBViewController.swift */; };
 		4802E9E220BAF591005A0085 /* AboutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */; };
+		4842E0A0229592170089F9AB /* GeländeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4842E09F229592170089F9AB /* GeländeCell.xib */; };
 		485BF26D20B8236000075A64 /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485BF26C20B8236000075A64 /* Timeslot.swift */; };
 		488F14C020B732600058536E /* SSCDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14BF20B732600058536E /* SSCDay.swift */; };
 		488F14C420B7389B0058536E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14C320B7389B0058536E /* Util.swift */; };
@@ -78,6 +79,7 @@
 		4802E9DD20BAF509005A0085 /* AboutMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMasterViewController.swift; sourceTree = "<group>"; };
 		4802E9DF20BAF575005A0085 /* AGBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGBViewController.swift; sourceTree = "<group>"; };
 		4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDetailViewController.swift; sourceTree = "<group>"; };
+		4842E09F229592170089F9AB /* GeländeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GeländeCell.xib"; sourceTree = "<group>"; };
 		485BF26C20B8236000075A64 /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		488F14BF20B732600058536E /* SSCDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDay.swift; sourceTree = "<group>"; };
 		488F14C320B7389B0058536E /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				48C03CB420B2DA1D00EED86A /* Main.storyboard */,
 				48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */,
 				4802E9C320BA08D6005A0085 /* DadaCell.xib */,
+				4842E09F229592170089F9AB /* GeländeCell.xib */,
 				4802E9C520BA0984005A0085 /* AtriumCell.xib */,
 				4802E9C720BA09B5005A0085 /* HalleCell.xib */,
 				4802E9C920BA09C2005A0085 /* ZeltCell.xib */,
@@ -351,6 +354,7 @@
 				48A3D22C20B33E0F00C5EBDD /* PerformanceCell.xib in Resources */,
 				48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */,
 				4802E9C020B9BE19005A0085 /* StageCell.xib in Resources */,
+				4842E0A0229592170089F9AB /* GeländeCell.xib in Resources */,
 				4802E9C820BA09B5005A0085 /* HalleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
