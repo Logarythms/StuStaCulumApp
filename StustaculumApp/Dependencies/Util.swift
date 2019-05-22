@@ -195,7 +195,7 @@ class Util {
         case .day2:
             components.month = 5
             components.day = 30
-            components.hour = 14
+            components.hour = 15
             components.minute = 0
         case .day3:
             components.month = 5
