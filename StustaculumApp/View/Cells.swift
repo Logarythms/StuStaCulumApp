@@ -23,6 +23,12 @@ class PerformanceCell: Cell {
         super.init(coder: aDecoder)
         backgroundColor = Util.backgroundColor
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        shadowLayer.removeFromSuperlayer()
+        shadowLayer = nil
+    }
 }
 
 class GeländeCell: PerformanceCell {
