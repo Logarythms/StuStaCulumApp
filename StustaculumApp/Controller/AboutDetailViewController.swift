@@ -9,11 +9,14 @@
 import UIKit
 
 class AboutDetailViewController: UIViewController {
-
+    
+    @IBOutlet weak var versionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            versionLabel.text = appVersion
+        }
     }
 
     override func didReceiveMemoryWarning() {
