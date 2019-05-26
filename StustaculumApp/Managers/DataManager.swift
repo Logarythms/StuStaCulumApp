@@ -339,7 +339,9 @@ extension DataManager {
                 
                 return false
         }
-        self.news = decodedNews
+        self.news = decodedNews.sorted {
+            $0.id >= $1.id
+        }
         return true
     }
     

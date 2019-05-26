@@ -103,10 +103,7 @@ class NewsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if newsEntries.isEmpty {
-            return 0
-        }
-        if section == 0 || section == 2 {
+        if section == 0 || (section == 1 && numberOfSections(in: tableView) == 3) {
             return 1
         } else {
             return newsEntries.count
@@ -129,20 +126,9 @@ class NewsViewController: UITableViewController {
             return cell
         }
         
-        if indexPath.section == 1 {
-            let newsEntry = newsEntries[indexPath.row]
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as? NewsCell else {
-                return UITableViewCell()
-            }
-            cell.titleLabel.text = newsEntry.title
-            cell.descriptionLabel.text = newsEntry.description
-            
-            return cell
-        }
-        
-        if indexPath.section == 2 {
+        if indexPath.section == 1 && numberOfSections(in: tableView) == 3 {
             guard   let cell = tableView.dequeueReusableCell(withIdentifier: "upcomingEventsCell", for: indexPath) as? UpcomingEventsCell else {
-                    return UITableViewCell()
+                return UITableViewCell()
             }
             
             var strings = [String]()
@@ -154,6 +140,18 @@ class NewsViewController: UITableViewController {
             
             return cell
         }
+        
+        if (indexPath.section == 2 && numberOfSections(in: tableView) == 3) || (indexPath.section == 1 && numberOfSections(in: tableView) == 2) {
+            let newsEntry = newsEntries[indexPath.row]
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as? NewsCell else {
+                return UITableViewCell()
+            }
+            cell.titleLabel.text = newsEntry.title
+            cell.descriptionLabel.text = newsEntry.description
+            
+            return cell
+        }
+        
         return UITableViewCell()
     }
 }
