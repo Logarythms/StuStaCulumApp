@@ -14,7 +14,6 @@ class DataManager {
     
     private let decoder = JSONDecoder()
     private let encoder = JSONEncoder()
-    private let dispatchGroup = DispatchGroup()
     private let notificationCenter = NotificationCenter.default
     private let networkingManager = NetworkingManager.shared
     
@@ -229,42 +228,32 @@ class DataManager {
         
         Task {
             do {
-//                try await withTimeout(seconds: 10, operation: {
-                await withTaskGroup(of: Bool.self) { group in
-                        group.addTask {
-                            await self.downloadCurrentSSC()
-                            return true
-                        }
-                        group.addTask {
-                            await self.downloadLocations()
-                            return true
-                        }
-                        group.addTask {
-                            await self.downloadHowTos()
-                            return true
-                        }
-                        group.addTask {
-                            await self.downloadNews()
-                            return true
-                        }
-                        
-                        for await task in group {
-                            print("completed")
-                        }
-                    }
-//                })
-                
-                UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
-                self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
-                await SVProgressHUD.dismiss()
-            }
-            catch {
+                try await withTimeout(seconds: 10) {
+                    
+                    print("start initial load")
+                    
+                    async let ssc = self.downloadCurrentSSC()
+                    async let locations = self.downloadLocations()
+                    async let howTos = self.downloadHowTos()
+                    async let news = self.downloadNews()
+                    
+                    let (sscLoaded, locationsLoaded, howTosLoaded, newsLoaded) = await (ssc, locations, howTos, news)
+                    guard sscLoaded && locationsLoaded && howTosLoaded && newsLoaded else { throw DataManagerError.initialLoadFailed }
+                    
+                    UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
+                    self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
+                    
+                    print("initial load complete")
+                    await SVProgressHUD.dismiss()
+                }
+            } catch {
                 self.handleTimeOut()
                 await SVProgressHUD.dismiss()
             }
-                        
+            
         }
     }
+                                      
     
     private func localDataExists() -> Bool {
         for (_, url) in self.savePaths {
@@ -371,7 +360,7 @@ extension DataManager {
         return true
     }
     
-    private func downloadCurrentSSC() async {
+    private func downloadCurrentSSC() async -> Bool {
         do {
             let ssc = try await networkingManager.getCurrentSSC()
             let path = savePathURLFor(.currentSSC)
@@ -381,22 +370,32 @@ extension DataManager {
             
             self.currentSSC = ssc
             
-            async let _ = await self.downloadPerformances()
-            async let _ = await self.downloadLogo(ssc.logoURL)
+            async let performancesLoad = self.downloadPerformances()
+            async let logoLoad = self.downloadLogo(ssc.logoURL)
+            
+            let (p,l) = await (performancesLoad, logoLoad)
+            
+            print("ssc loaded")
+            
+            return p && l
         } catch let error {
             print(error)
+            return false
         }
     }
     
-    private func downloadLogo(_ url: URL) async {
+    private func downloadLogo(_ url: URL) async -> Bool {
         do {
             let image = try await networkingManager.getCurrentLogo(url)
             self.currentLogo = image
             
             let path = savePathURLFor(.logo)
             try image.pngData()?.write(to: path)
+            print("logo loaded")
+            return true
         } catch let error {
             print(error)
+            return false
         }
         
     }
@@ -417,7 +416,7 @@ extension DataManager {
         return verifiedPerformances
     }
     
-    private func downloadPerformances() async {
+    private func downloadPerformances() async -> Bool {
         
         do {
             let performances = try await networkingManager.getPerformances()
@@ -431,13 +430,16 @@ extension DataManager {
             try encodedData.write(to: path)
             
             self.performances = filteredPerformances
+            print("performances loaded")
+            return true
         } catch let error {
             print(error)
+            return false
         }
         
     }
     
-    private func downloadUpdatedPerformances() async {
+    private func downloadUpdatedPerformances() async -> Bool {
         do {
             let performances = try await networkingManager.getPerformances()
             let filteredPerformances = self.filterPerformances(performances)
@@ -447,7 +449,7 @@ extension DataManager {
             let compareDate = Util.getLastUpdatedFor(filteredPerformances)
             let lastUpdated = Util.getLastUpdatedFor(self.performances)
             
-            guard compareDate > lastUpdated else { return }
+            guard compareDate > lastUpdated else { return false }
             
             let encodedData = try self.encoder.encode(filteredPerformances)
             
@@ -458,13 +460,16 @@ extension DataManager {
             print("updated performances")
             
             self.notificationCenter.post(name: Notification.Name("performancesUpdated"), object: nil)
+            print("updated performances loaded")
+            return true
         } catch let error {
             print(error)
+            return false
         }
         
     }
     
-    private func downloadLocations() async {
+    private func downloadLocations() async -> Bool {
         do {
             let locations = try await networkingManager.getLocations()
             
@@ -474,13 +479,17 @@ extension DataManager {
             try encodedData.write(to: path)
             
             self.locations = locations
+            print("locations loaded")
+
+            return true
         } catch let error {
             print(error)
+            return false
         }
         
     }
     
-    private func downloadHowTos() async {
+    private func downloadHowTos() async -> Bool {
         do {
             let howTos = try await networkingManager.getHowTos()
             
@@ -490,12 +499,16 @@ extension DataManager {
             try encodedData.write(to: path)
             
             self.howTos = howTos
+            print("howTos loaded")
+
+            return true
         } catch let error {
             print(error)
+            return false
         }
     }
     
-    private func downloadNews() async {
+    private func downloadNews() async -> Bool {
         do {
             let news = try await networkingManager.getNews()
             
@@ -506,12 +519,17 @@ extension DataManager {
             
             self.news = news
             self.notificationCenter.post(name: Notification.Name("newsUpdated"), object: nil)
+            print("news loaded")
+
+            return true
         } catch let error {
             print(error)
+            return false
         }
     }
     
     enum DataManagerError: Error {
         case validationFailed
+        case initialLoadFailed
     }
 }
