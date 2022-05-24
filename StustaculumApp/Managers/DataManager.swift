@@ -16,6 +16,7 @@ class DataManager {
     private let encoder = JSONEncoder()
     private let dispatchGroup = DispatchGroup()
     private let notificationCenter = NotificationCenter.default
+    private let networkingManager = NetworkingManager.shared
     
     private var currentSSC: Stustaculum?
     private var currentLogo: UIImage?
@@ -27,11 +28,15 @@ class DataManager {
     static let shared = DataManager()
     
     func updateNews() {
-        downloadNews(update: true)
+        Task {
+            await downloadNews()
+        }
     }
     
     func updatePerformances() {
-        downloadUpdatedPerformances()
+        Task {
+            await downloadUpdatedPerformances()
+        }
     }
     
     func getCurrentSSC() -> Stustaculum? {
@@ -146,6 +151,10 @@ class DataManager {
         return paths
     }
     
+    private func savePathURLFor(_ path: SavePath) -> URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(path.rawValue)
+    }
+    
     private func loadLocalData() -> Bool {
         guard loadCurrentSSC() else {
             return false
@@ -217,26 +226,43 @@ class DataManager {
             SVProgressHUD.show(withStatus: "Daten werden geladen")
         }
         
-        self.dispatchGroup.enter()
         
-        downloadCurrentSSC()
-        downloadLocations()
-        downloadHowTos()
-        downloadNews(update: false)
-        
-        self.dispatchGroup.leave()
-        
-        self.dispatchGroup.notifyWait(target: .main, timeout: .now() + 10) {
-            if $0 == .success {
-                SVProgressHUD.dismiss()
+        Task {
+            do {
+//                try await withTimeout(seconds: 10, operation: {
+                await withTaskGroup(of: Bool.self) { group in
+                        group.addTask {
+                            await self.downloadCurrentSSC()
+                            return true
+                        }
+                        group.addTask {
+                            await self.downloadLocations()
+                            return true
+                        }
+                        group.addTask {
+                            await self.downloadHowTos()
+                            return true
+                        }
+                        group.addTask {
+                            await self.downloadNews()
+                            return true
+                        }
+                        
+                        for await task in group {
+                            print("completed")
+                        }
+                    }
+//                })
+                
                 UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
                 self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
-
+                await SVProgressHUD.dismiss()
             }
-            if $0 == .timedOut {
-                SVProgressHUD.dismiss()
+            catch {
                 self.handleTimeOut()
+                await SVProgressHUD.dismiss()
             }
+                        
         }
     }
     
@@ -345,44 +371,34 @@ extension DataManager {
         return true
     }
     
-    private func downloadCurrentSSC() {
-        self.dispatchGroup.enter()
-        NetworkingManager.getCurrentSSC { ssc in
+    private func downloadCurrentSSC() async {
+        do {
+            let ssc = try await networkingManager.getCurrentSSC()
+            let path = savePathURLFor(.currentSSC)
+            
+            let encodedData = try self.encoder.encode(ssc)
+            try encodedData.write(to: path)
+            
             self.currentSSC = ssc
-            guard   let path = self.savePaths[.currentSSC],
-                    let encodedData = try? self.encoder.encode(ssc) else {
-                    
-                    self.dispatchGroup.leave()
-                    return
-            }
-            do {
-                try encodedData.write(to: path)
-                self.downloadPerformances()
-                self.downloadLogo(ssc.logoURL)
-            } catch let error {
-                print(error)
-            }
-            self.dispatchGroup.leave()
+            
+            async let _ = await self.downloadPerformances()
+            async let _ = await self.downloadLogo(ssc.logoURL)
+        } catch let error {
+            print(error)
         }
     }
     
-    private func downloadLogo(_ url: URL) {
-        self.dispatchGroup.enter()
-        NetworkingManager.getCurrentLogo(url) { image in
+    private func downloadLogo(_ url: URL) async {
+        do {
+            let image = try await networkingManager.getCurrentLogo(url)
             self.currentLogo = image
-            guard   let path = self.savePaths[.logo],
-                    let pngData = image.pngData() else {
-                    
-                    self.dispatchGroup.leave()
-                    return
-            }
-            do {
-                try pngData.write(to: path)
-            } catch let error {
-                print(error)
-            }
-            self.dispatchGroup.leave()
+            
+            let path = savePathURLFor(.logo)
+            try image.pngData()?.write(to: path)
+        } catch let error {
+            print(error)
         }
+        
     }
     
     private func filterPerformances(_ performances: [Performance]) -> [Performance] {
@@ -401,117 +417,101 @@ extension DataManager {
         return verifiedPerformances
     }
     
-    private func downloadPerformances() {
-        self.dispatchGroup.enter()
-        NetworkingManager.getPerformances { performances in
+    private func downloadPerformances() async {
+        
+        do {
+            let performances = try await networkingManager.getPerformances()
             let filteredPerformances = self.filterPerformances(performances)
-            guard   let path = self.savePaths[.performances],
-                    let encodedData = try? self.encoder.encode(filteredPerformances),
-                    self.validatePerformances(filteredPerformances) else {
-                    
-                    return
-            }
-            do {
-                try encodedData.write(to: path)
-                self.performances = filteredPerformances
-            } catch let error {
-                print(error)
-            }
-            self.dispatchGroup.leave()
+            
+            guard validatePerformances(filteredPerformances) else { throw DataManagerError.validationFailed }
+            
+            let encodedData = try self.encoder.encode(filteredPerformances)
+            
+            let path = savePathURLFor(.performances)
+            try encodedData.write(to: path)
+            
+            self.performances = filteredPerformances
+        } catch let error {
+            print(error)
         }
+        
     }
     
-    private func downloadUpdatedPerformances() {
-        guard let lastUpdate = Util.getLastUpdatedFor(performances) else {
-            return
-        }
-        NetworkingManager.getPerformances { performances in
+    private func downloadUpdatedPerformances() async {
+        do {
+            let performances = try await networkingManager.getPerformances()
             let filteredPerformances = self.filterPerformances(performances)
-            guard   let compareDate = Util.getLastUpdatedFor(filteredPerformances),
-                    compareDate > lastUpdate,
-                    self.validatePerformances(filteredPerformances) else {
-                    
-                    return
-            }
             
+            guard validatePerformances(filteredPerformances) else { throw DataManagerError.validationFailed }
             
-            guard   let path = self.savePaths[.performances],
-                    let encodedData = try? self.encoder.encode(filteredPerformances) else {
-                    
-                    return
-            }
-            do {
-                try encodedData.write(to: path)
-                self.performances = filteredPerformances
-                print("updated performances")
-                self.notificationCenter.post(name: Notification.Name("performancesUpdated"), object: nil)
-            } catch let error {
-                print(error)
-            }
+            let compareDate = Util.getLastUpdatedFor(filteredPerformances)
+            let lastUpdated = Util.getLastUpdatedFor(self.performances)
+            
+            guard compareDate > lastUpdated else { return }
+            
+            let encodedData = try self.encoder.encode(filteredPerformances)
+            
+            let path = savePathURLFor(.performances)
+            try encodedData.write(to: path)
+
+            self.performances = filteredPerformances
+            print("updated performances")
+            
+            self.notificationCenter.post(name: Notification.Name("performancesUpdated"), object: nil)
+        } catch let error {
+            print(error)
         }
+        
     }
     
-    private func downloadLocations() {
-        self.dispatchGroup.enter()
-        NetworkingManager.getLocations { locations in
+    private func downloadLocations() async {
+        do {
+            let locations = try await networkingManager.getLocations()
+            
+            let encodedData = try self.encoder.encode(locations)
+            
+            let path = savePathURLFor(.locations)
+            try encodedData.write(to: path)
+            
             self.locations = locations
-            guard   let path = self.savePaths[.locations],
-                    let encodedData = try? self.encoder.encode(locations) else {
-                    
-                    self.dispatchGroup.leave()
-                    return
-            }
-            do {
-                try encodedData.write(to: path)
-            } catch let error {
-                print(error)
-            }
-            self.dispatchGroup.leave()
+        } catch let error {
+            print(error)
         }
+        
     }
     
-    private func downloadHowTos() {
-        self.dispatchGroup.enter()
-        NetworkingManager.getHowTos { howTos in
+    private func downloadHowTos() async {
+        do {
+            let howTos = try await networkingManager.getHowTos()
+            
+            let encodedData = try self.encoder.encode(howTos)
+            
+            let path = savePathURLFor(.howTos)
+            try encodedData.write(to: path)
+            
             self.howTos = howTos
-            guard   let path = self.savePaths[.howTos],
-                    let encodedData = try? self.encoder.encode(howTos) else {
-                    
-                    self.dispatchGroup.leave()
-                    return
-            }
-            do {
-                try encodedData.write(to: path)
-            } catch let error {
-                print(error)
-            }
-            self.dispatchGroup.leave()
+        } catch let error {
+            print(error)
         }
     }
     
-    private func downloadNews(update: Bool) {
-        if !update {
-            self.dispatchGroup.enter()
-        }
-        NetworkingManager.getNews { news in
+    private func downloadNews() async {
+        do {
+            let news = try await networkingManager.getNews()
+            
+            let encodedData = try self.encoder.encode(news)
+            
+            let path = savePathURLFor(.news)
+            try encodedData.write(to: path)
+            
             self.news = news
-            guard   let path = self.savePaths[.news],
-                    let encodedData = try? self.encoder.encode(news) else {
-                    
-                        if !update {
-                            self.dispatchGroup.leave()
-                        }
-                    return
-            }
-            do {
-                try encodedData.write(to: path)
-                self.notificationCenter.post(name: Notification.Name("newsUpdated"), object: nil)
-            } catch let error {
-                print(error)
-            }
-            if !update {
-                self.dispatchGroup.leave()
-            }
+            self.notificationCenter.post(name: Notification.Name("newsUpdated"), object: nil)
+        } catch let error {
+            print(error)
         }
+    }
+    
+    enum DataManagerError: Error {
+        case validationFailed
     }
 }

@@ -109,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = tokenParts.joined()
         print("Device Token: \(token)")
         
-        NetworkingManager.addDeviceForPushNotifications(token: token)
+        NetworkingManager.shared.addDeviceForPushNotifications(token: token)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
