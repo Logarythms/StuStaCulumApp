@@ -12,8 +12,8 @@ struct Stustaculum: Codable {
     
     var id: Int
     var lastUpdated: Date
-    var startDate: String
-    var endDate: String
+    var startDate: Date
+    var endDate: Date
     var year: Int
     var updateURL: URL
     var logoURL: URL

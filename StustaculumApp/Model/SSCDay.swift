@@ -16,25 +16,25 @@ class SSCDay {
     let maxHour: Int
     let duration: Int
     
-    init(_ day: Day) {
+    init(_ day: Day) throws {
         self.day = day
         let date: Date
         
         switch day {
         case .day1:
-            date = Util.getDateForDay(1)
+            date = try Util.getDateForDay(1)
             minHour  = 17
             maxHour = 26
         case .day2:
-            date = Util.getDateForDay(2)
+            date = try Util.getDateForDay(2)
             minHour = 15
             maxHour = 25
         case .day3:
-            date = Util.getDateForDay(3)
+            date = try Util.getDateForDay(3)
             minHour = 15
             maxHour = 26
         case .day4:
-            date = Util.getDateForDay(4)
+            date = try Util.getDateForDay(4)
             minHour = 11
             maxHour = 25
         }

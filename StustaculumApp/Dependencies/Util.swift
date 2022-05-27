@@ -262,7 +262,15 @@ class Util {
     }
     
     class func getSSCDays() -> [SSCDay] {
-        return [SSCDay(.day1), SSCDay(.day2), SSCDay(.day3), SSCDay(.day4)]
+        guard
+            let day1 = try? SSCDay(.day1),
+            let day2 = try? SSCDay(.day2),
+            let day3 = try? SSCDay(.day3),
+            let day4 = try? SSCDay(.day4)
+        else {
+            return []
+        }
+        return [day1, day2, day3, day4]
     }
     
     class func getNotificationTriggers() -> [UNCalendarNotificationTrigger] {
@@ -304,38 +312,23 @@ class Util {
         return triggers
     }
     
-    class func getDateForDay(_ id: Int) -> Date {
-        var dateComponents = DateComponents()
+    enum DateError: Error {
+        case noStartDate
+        case calculationError
+    }
+    
+    class func getDateForDay(_ id: Int) throws -> Date {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(abbreviation: "CEST")!
         
-        dateComponents.timeZone = TimeZone(abbreviation: "CEST")
-        dateComponents.year = 2019
+        guard let startDate = DataManager.shared.getCurrentSSC()?.startDate else { throw DateError.noStartDate }
         
-        if (1...3).contains(id) {
-            dateComponents.month = 5
+        if id == 0 {
+            return startDate
         } else {
-            dateComponents.month = 6
+            guard let date = calendar.date(byAdding: .day, value: id - 1, to: startDate) else { throw DateError.calculationError }
+            return date
         }
-        
-        switch id {
-        case 1:
-            dateComponents.day = 29
-        case 2:
-            dateComponents.day = 30
-        case 3:
-            dateComponents.day = 31
-        case 4:
-            dateComponents.day = 1
-        default:
-            break
-        }
-        
-        guard let date = calendar.date(from: dateComponents) else {
-            fatalError("Could not generate SSC Dates")
-        }
-        
-        return date
     }
     
     class func getCurrentDayIndex() -> Int {

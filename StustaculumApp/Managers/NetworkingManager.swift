@@ -18,7 +18,7 @@ class NetworkingManager {
     static let shared = NetworkingManager()
     
     private init() {
-        decoder.dateDecodingStrategy = .iso8601
+        decoder.dateDecodingStrategy = .custom(SSCDateFormatter.shared.customDateDecoder(_:))
     }
     
     enum NetworkingError: Error {
