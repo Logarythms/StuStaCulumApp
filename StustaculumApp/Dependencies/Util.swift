@@ -241,10 +241,7 @@ class Util {
         
     }
     
-    internal class func getComparisonDateFor(_ endDate: Date) -> Date {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
+    class func getComparisonDateFor(_ endDate: Date) -> Date {
         let endComponents = calendar.dateComponents([.day, .hour, .minute, .month, .year], from: endDate)
         
         var comparisonComponents = DateComponents()
@@ -310,11 +307,6 @@ class Util {
         }
         
         return triggers
-    }
-    
-    enum DateError: Error {
-        case noStartDate
-        case calculationError
     }
     
     class func getDateForDay(_ id: Int) throws -> Date {
