@@ -269,13 +269,12 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
 
     func mergedCells(in spreadsheetView: SpreadsheetView) -> [CellRange] {
         var mergedCells = [CellRange]()
-        let hours = day.maxHour - day.minHour
         
         guard !self.performances.isEmpty || isFavouritesController else {
             return mergedCells
         }
         
-        for row in 0..<hours {
+        for row in 0..<day.duration {
             mergedCells.append(CellRange(from: (60 * row + 1, 0), to: (60 * (row + 1), 0)))
         }
 

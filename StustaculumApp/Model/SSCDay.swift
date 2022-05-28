@@ -36,20 +36,25 @@ struct SSCDay {
         guard let startOfDay = calendar.date(from: startComponents) else { throw DateError.calculationError }
         
         //calculate endOfDay by adding duration to the last performance
-        guard let endOfDay = calendar.date(byAdding: .minute, value: lastPerformance.duration, to: lastPerformance.date) else { throw DateError.calculationError }
+        guard let endOfLastPerformance = calendar.date(byAdding: .minute, value: lastPerformance.duration, to: lastPerformance.date) else { throw DateError.calculationError }
         
-        //calculate time between start and end of day
-        let delta = calendar.dateComponents([.hour, .minute], from: startOfDay, to: endOfDay)
-        guard let hourDelta = delta.hour, let minuteDelta = delta.minute else { throw DateError.calculationError }
-        
-        
-        
-        if minuteDelta == 0 {
-            self.maxHour = minHour + hourDelta
-        } else {
-            self.maxHour = minHour + hourDelta + 1
+        var endOfDayComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: endOfLastPerformance)
+        guard let minute = endOfDayComponents.minute, let hour = endOfDayComponents.hour else {
+            throw DateError.calculationError
         }
         
+        if minute > 0 {
+            endOfDayComponents.minute = 0
+            endOfDayComponents.hour = hour + 1
+        }
+        
+        guard let endOfDay = calendar.date(from: endOfDayComponents) else { throw DateError.calculationError }
+        
+        //calculate time between start and end of day
+        let delta = calendar.dateComponents([.hour], from: startOfDay, to: endOfDay)
+        guard let hourDelta = delta.hour else { throw DateError.calculationError }
+        
+        self.maxHour = minHour + hourDelta
         self.date = date
         self.duration = maxHour - minHour
         self.day = day
