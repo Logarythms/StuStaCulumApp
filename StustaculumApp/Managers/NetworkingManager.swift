@@ -103,8 +103,8 @@ class NetworkingManager {
     }
     
     enum Endpoint: String {
-//        case currentSSC = "/rest/stustaculum/current/"
-        case currentSSC = "/rest/stustaculum/4/"
+        case currentSSC = "/rest/stustaculum/current/"
+//        case currentSSC = "/rest/stustaculum/4/"
         case howTo = "/rest/howtos/"
         case locationCategories = "/rest/location/categories/"
         case locations = "/rest/locations/"
