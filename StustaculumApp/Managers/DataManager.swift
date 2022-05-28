@@ -19,12 +19,32 @@ class DataManager {
     
     private var currentSSC: Stustaculum?
     private var currentLogo: UIImage?
-    private var performances: [Performance]?
+    private var performances = [Performance]() {
+        didSet {
+            updateSSCDays()
+        }
+    }
     private var locations: [Location]?
     private var howTos: [HowTo]?
     private var news: [NewsEntry]?
     
+    var days = [SSCDay]()
+    
     static let shared = DataManager()
+    
+    func updateSSCDays() {
+        guard !self.performances.isEmpty else { return }
+        do {
+            let day1 = try SSCDay(.day1, performances: performances)
+            let day2 = try SSCDay(.day2, performances: performances)
+            let day3 = try SSCDay(.day3, performances: performances)
+            let day4 = try SSCDay(.day4, performances: performances)
+            
+            self.days = [day1, day2, day3, day4]
+        } catch {
+            print(error)
+        }
+    }
     
     func updateNews() {
         Task {
@@ -68,7 +88,7 @@ class DataManager {
     }
     
     func validatePerformances(_ performances: [Performance]) -> Bool {
-        for day in Util.getSSCDays() {
+        for day in days {
             let filteredPerformances = Util.filterPerformancesBy(day, performances: performances)
             
             for index in (1...4) {
@@ -83,15 +103,13 @@ class DataManager {
     }
     
     func getTimeslotsFor(_ day: SSCDay, favoritePerformances: [Performance]? = nil) -> ([Timeslot], [Timeslot], [Timeslot], [Timeslot], [Timeslot]) {
-        let performances: [Performance]
         
         if let favorites = favoritePerformances {
             performances = favorites
         } else {
-            guard let allPerformances = self.performances else {
+            guard !performances.isEmpty else {
                 return ([Timeslot](), [Timeslot](), [Timeslot](), [Timeslot](), [Timeslot]())
             }
-            performances = allPerformances
         }
         
         let filteredPerformances = Util.filterPerformancesBy(day, performances: performances)
@@ -116,14 +134,14 @@ class DataManager {
     }
     
     func getPerformancesFor(_ day: SSCDay) -> [Performance] {
-        guard let performances = self.performances else {
+        guard !performances.isEmpty else {
             return [Performance]()
         }
         return Util.filterPerformancesBy(day, performances: performances)
     }
     
     func getAllPerformances() -> [Performance] {
-        guard let performances = self.performances else {
+        guard !performances.isEmpty else {
             return [Performance]()
         }
         return performances
@@ -423,7 +441,7 @@ extension DataManager {
             let filteredPerformances = self.filterPerformances(performances)
             
             guard validatePerformances(filteredPerformances) else { throw DataManagerError.validationFailed }
-            
+                        
             let encodedData = try self.encoder.encode(filteredPerformances)
             
             let path = savePathURLFor(.performances)

@@ -58,7 +58,9 @@ class ScheduleMasterViewController: ButtonBarPagerTabStripViewController {
         guard let vc3 = storyboard?.instantiateViewController(withIdentifier: "dayViewController") as? ScheduleDayViewController else { return }
         guard let vc4 = storyboard?.instantiateViewController(withIdentifier: "dayViewController") as? ScheduleDayViewController else { return }
         
-        let sscDays = Util.getSSCDays()
+        let sscDays = DataManager.shared.days
+        guard !sscDays.isEmpty && sscDays.count == 4 else { return }
+        
         vc1.day = sscDays[0]
         vc1.pvc = self
         vc2.day = sscDays[1]

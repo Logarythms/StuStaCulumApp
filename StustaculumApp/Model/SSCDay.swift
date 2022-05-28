@@ -12,37 +12,14 @@ struct SSCDay {
     
     let day: Day
     let date: Date
+    
+    let startOfDay: Date
+    let endOfDay: Date
+    
     let minHour: Int
     let maxHour: Int
     let duration: Int
-    
-    init(_ day: Day) throws {
-        self.day = day
-        let date: Date
         
-        switch day {
-        case .day1:
-            date = try Util.getDateForDay(1)
-            minHour  = 17
-            maxHour = 26
-        case .day2:
-            date = try Util.getDateForDay(2)
-            minHour = 15
-            maxHour = 25
-        case .day3:
-            date = try Util.getDateForDay(3)
-            minHour = 15
-            maxHour = 26
-        case .day4:
-            date = try Util.getDateForDay(4)
-            minHour = 11
-            maxHour = 25
-        }
-        
-        self.date = date
-        self.duration = self.maxHour-self.minHour
-    }
-    
     init(_ day: Day, performances: [Performance]) throws {
         
         //calculate date of SSCDay
@@ -76,6 +53,8 @@ struct SSCDay {
         self.date = date
         self.duration = maxHour - minHour
         self.day = day
+        self.startOfDay = startOfDay
+        self.endOfDay = endOfDay
     }
     
     static func getFirstLastPerformancesFor(_ date: Date, performances: [Performance]) throws -> (Performance, Performance) {
