@@ -120,9 +120,9 @@ class NewsViewController: UITableViewController {
             }
             
             let size = cell.logoImageView.bounds.size
-            let scaledImage = image.af_imageAspectScaled(toFit: size)
-            cell.logoImageView.image = scaledImage
+            let scaledImage = image.scalePreservingAspectRatio(targetSize: size)
             
+            cell.logoImageView.image = scaledImage
             return cell
         }
         

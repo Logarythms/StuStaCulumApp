@@ -2,8 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z1L-kV-ljv">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -234,12 +234,13 @@
             </objects>
             <point key="canvasLocation" x="2886" y="785"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Plan-->
         <scene sceneID="qxm-WI-eEX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qwr-pw-8xF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Calendar" selectedImage="Calendar" id="MWN-2X-TdR">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    <tabBarItem key="tabBarItem" title="Plan" id="MWN-2X-TdR">
+                        <imageReference key="image" image="calendar.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="calendar.circle.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="AIO-3j-9yv">
@@ -568,7 +569,7 @@
         <scene sceneID="dhZ-fC-eTZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sSi-Lz-FwQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" image="Favourite" selectedImage="Favourite" id="4Gu-Q8-bK7"/>
+                    <tabBarItem key="tabBarItem" title="" image="Favourite" selectedImage="Favourite" id="4Gu-Q8-bK7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="7ys-u6-8Tp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -634,11 +635,14 @@
             </objects>
             <point key="canvasLocation" x="3599" y="1497"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--FAQ-->
         <scene sceneID="92p-x8-4sZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Es-FX-FL4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="HowTo" selectedImage="HowTo" id="DBR-0B-kxG"/>
+                    <tabBarItem key="tabBarItem" title="FAQ" id="DBR-0B-kxG">
+                        <imageReference key="image" image="questionmark.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="questionmark.circle.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="lIy-h0-ZHv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
@@ -653,11 +657,14 @@
             </objects>
             <point key="canvasLocation" x="-234" y="2408"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Info-->
         <scene sceneID="WPN-LX-lAm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nRd-yP-TVl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="About" selectedImage="About" id="MN9-bi-hcK"/>
+                    <tabBarItem key="tabBarItem" title="Info" id="MN9-bi-hcK">
+                        <imageReference key="image" image="info.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="info.circle.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="IHG-GA-wlr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
@@ -672,11 +679,14 @@
             </objects>
             <point key="canvasLocation" x="124" y="25.637181409295355"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Karte-->
         <scene sceneID="HUL-7m-f9D">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kc7-Fv-te2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Map" selectedImage="Map" id="lcV-DF-9Qc"/>
+                    <tabBarItem key="tabBarItem" title="Karte" id="lcV-DF-9Qc">
+                        <imageReference key="image" image="map.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="map.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="ht1-Cp-SBe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -807,11 +817,14 @@
             </objects>
             <point key="canvasLocation" x="3656.8000000000002" y="2415.7421289355325"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--News-->
         <scene sceneID="DJv-9U-ABD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yRQ-C8-KSE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Bell" selectedImage="Bell" id="8ZB-ip-taC"/>
+                    <tabBarItem key="tabBarItem" title="News" id="8ZB-ip-taC">
+                        <imageReference key="image" image="house.fill" catalog="system" symbolScale="default"/>
+                        <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="Ftf-OH-c1O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
@@ -829,12 +842,12 @@
     </scenes>
     <color key="tintColor" red="0.21176470588235294" green="0.49803921568627452" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
-        <image name="About" width="30" height="30"/>
-        <image name="Bell" width="30" height="30"/>
-        <image name="Calendar" width="30" height="30"/>
         <image name="Favourite" width="30" height="30"/>
-        <image name="HowTo" width="30" height="30"/>
-        <image name="Map" width="30" height="30"/>
+        <image name="calendar.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="map.fill" catalog="system" width="128" height="110"/>
+        <image name="questionmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import AlamofireImage
 
 class PerformanceDetailViewController: UIViewController {
     
@@ -64,13 +62,13 @@ class PerformanceDetailViewController: UIViewController {
         guard let imageURL = performance.imageURL else { return }
         guard let httpsURL = Util.httpsURLfor(imageURL) else { return }
         
-        Alamofire.request(httpsURL).responseImage { (response) in
-            if let image = response.result.value {
-                let size = self.artistImageView.bounds.size
-                let scaledImage = image.af_imageAspectScaled(toFit: size)
-                self.artistImageView.image = scaledImage
-            }
-        }
+//        Alamofire.request(httpsURL).responseImage { (response) in
+//            if let image = response.result.value {
+//                let size = self.artistImageView.bounds.size
+//                let scaledImage = image.af_imageAspectScaled(toFit: size)
+//                self.artistImageView.image = scaledImage
+//            }
+//        }
         
     }
     @IBAction func favouriteButtonPressed(_ sender: Any) {

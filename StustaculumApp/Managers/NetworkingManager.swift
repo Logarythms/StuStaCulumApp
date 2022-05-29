@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 import UIKit
 
 class NetworkingManager {
@@ -72,22 +71,22 @@ class NetworkingManager {
         return Util.filterPerformancesBy(day, performances: performances).filter { $0.show }
     }
     
-    func addDeviceForPushNotifications(token: String) {
-        let url = requestUrlFor(.devices)
-        let parameters = [
-            "registration_id" : token,
-            "name" : UUID().uuidString,
-            "active" : true
-        ] as [String : Any]
-        print(parameters)
-        print("Adding Device")
-        Alamofire.request(url, method: .post, parameters: parameters).response { response in
-            if response.response?.statusCode == 201 {
-                UserDefaults.standard.set(true, forKey: "pushRegistered")
-                print("Device successfully added")
-            }
-        }
-    }
+//    func addDeviceForPushNotifications(token: String) {
+//        let url = requestUrlFor(.devices)
+//        let parameters = [
+//            "registration_id" : token,
+//            "name" : UUID().uuidString,
+//            "active" : true
+//        ] as [String : Any]
+//        print(parameters)
+//        print("Adding Device")
+//        Alamofire.request(url, method: .post, parameters: parameters).response { response in
+//            if response.response?.statusCode == 201 {
+//                UserDefaults.standard.set(true, forKey: "pushRegistered")
+//                print("Device successfully added")
+//            }
+//        }
+//    }
     
     func requestUrlFor(_ endpoint: Endpoint) -> URL {
         var urlComponents = URLComponents()

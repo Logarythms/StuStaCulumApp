@@ -7,25 +7,11 @@
 //
 
 import UIKit
-import AlamofireImage
-import Alamofire
+
 
 class LogoCell: UITableViewCell {
 
     @IBOutlet weak var logoImageView: UIImageView!
-    
-    func loadLogo(_ url: URL) {
-        guard let httpsURL = Util.httpsURLfor(url) else { return }
-        
-        Alamofire.request(httpsURL).responseImage { (response) in
-            if let image = response.result.value {
-                let size = self.logoImageView.bounds.size
-                let scaledImage = image.af_imageAspectScaled(toFit: size)
-                self.logoImageView.image = scaledImage
-            }
-        }
-        
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
