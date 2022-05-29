@@ -151,12 +151,14 @@ class DataManager {
         decoder.dateDecodingStrategy = .iso8601
         encoder.dateEncodingStrategy = .iso8601
         
-        guard   self.localDataExists(),
-                self.loadLocalData() else {
-            
-                self.initializeData()
-                return
-        }
+        self.initializeData()
+        
+//        guard   self.localDataExists(),
+//                self.loadLocalData() else {
+//
+//                self.initializeData()
+//                return
+//        }
         
     }
     
