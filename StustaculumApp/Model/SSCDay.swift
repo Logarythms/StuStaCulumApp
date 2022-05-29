@@ -29,34 +29,34 @@ struct SSCDay {
         let (firstPerformance, lastPerformance) = try SSCDay.getFirstLastPerformancesFor(date, performances: performances)
         
         //get minHour of Day
-        self.minHour = calendar.component(.hour, from: firstPerformance.date)
+        let minHour = calendar.component(.hour, from: firstPerformance.date)
         
         //build start of day Date
         let startComponents = calendar.dateComponents([.year, .month, .day, .hour], from: firstPerformance.date)
         guard let startOfDay = calendar.date(from: startComponents) else { throw DateError.calculationError }
         
-        //calculate endOfDay by adding duration to the last performance
+        //calculate end time of the last performance by adding duration to its start time
         guard let endOfLastPerformance = calendar.date(byAdding: .minute, value: lastPerformance.duration, to: lastPerformance.date) else { throw DateError.calculationError }
         
+        //calculate end of day time by rounding up endOfLastPerformance to the next full hour
         var endOfDayComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: endOfLastPerformance)
         guard let minute = endOfDayComponents.minute, let hour = endOfDayComponents.hour else {
             throw DateError.calculationError
         }
-        
         if minute > 0 {
             endOfDayComponents.minute = 0
             endOfDayComponents.hour = hour + 1
         }
-        
         guard let endOfDay = calendar.date(from: endOfDayComponents) else { throw DateError.calculationError }
         
         //calculate time between start and end of day
-        let delta = calendar.dateComponents([.hour], from: startOfDay, to: endOfDay)
-        guard let hourDelta = delta.hour else { throw DateError.calculationError }
+        let durationComponents = calendar.dateComponents([.hour], from: startOfDay, to: endOfDay)
+        guard let duration = durationComponents.hour else { throw DateError.calculationError }
         
-        self.maxHour = minHour + hourDelta
         self.date = date
-        self.duration = maxHour - minHour
+        self.minHour = minHour
+        self.maxHour = minHour + duration
+        self.duration = duration
         self.day = day
         self.startOfDay = startOfDay
         self.endOfDay = endOfDay

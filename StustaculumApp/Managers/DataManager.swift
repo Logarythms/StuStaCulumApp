@@ -102,13 +102,13 @@ class DataManager {
         return true
     }
     
-    func getTimeslotsFor(_ day: SSCDay, favoritePerformances: [Performance]? = nil) -> ([Timeslot], [Timeslot], [Timeslot], [Timeslot], [Timeslot]) {
+    func getTimeslotsFor(_ day: SSCDay, favoritePerformances: [Performance]? = nil) -> ([Timeslot], [Timeslot], [Timeslot], [Timeslot]) {
         
         if let favorites = favoritePerformances {
             performances = favorites
         } else {
             guard !performances.isEmpty else {
-                return ([Timeslot](), [Timeslot](), [Timeslot](), [Timeslot](), [Timeslot]())
+                return ([Timeslot](), [Timeslot](), [Timeslot](), [Timeslot]())
             }
         }
         
@@ -120,9 +120,9 @@ class DataManager {
         let atrium = filteredPerformances.filter {
             $0.location == 2
         }
-        let halle = filteredPerformances.filter {
-            $0.location == 3
-        }
+//        let halle = filteredPerformances.filter {
+//            $0.location == 3
+//        }
         let zelt = filteredPerformances.filter {
             $0.location == 4
         }
@@ -130,7 +130,7 @@ class DataManager {
             $0.location == 5
         }
         
-        return (Util.getTimeslotsFor(dada, day: day), Util.getTimeslotsFor(atrium, day: day), Util.getTimeslotsFor(halle, day: day), Util.getTimeslotsFor(zelt, day: day), Util.getTimeslotsFor(gelände, day: day))
+        return (Util.getTimeslotsFor(dada, day: day), Util.getTimeslotsFor(atrium, day: day), Util.getTimeslotsFor(zelt, day: day), Util.getTimeslotsFor(gelände, day: day))
     }
     
     func getPerformancesFor(_ day: SSCDay) -> [Performance] {

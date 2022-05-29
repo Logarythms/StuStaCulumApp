@@ -67,9 +67,9 @@ class NewsViewController: UITableViewController {
         let upcomingAtriumPerformance = sortedPerformances.first {
             $0.location == 2
         }
-        let upcomingHallePerformance = sortedPerformances.first {
-            $0.location == 3
-        }
+//        let upcomingHallePerformance = sortedPerformances.first {
+//            $0.location == 3
+//        }
         let upcomingZeltPerformance = sortedPerformances.first {
             $0.location == 4
         }
@@ -82,9 +82,9 @@ class NewsViewController: UITableViewController {
         if let atrium = upcomingAtriumPerformance {
             upcomingPerformances.append(atrium)
         }
-        if let halle = upcomingHallePerformance {
-            upcomingPerformances.append(halle)
-        }
+//        if let halle = upcomingHallePerformance {
+//            upcomingPerformances.append(halle)
+//        }
         if let zelt = upcomingZeltPerformance {
             upcomingPerformances.append(zelt)
         }
