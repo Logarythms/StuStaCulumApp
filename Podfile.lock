@@ -1,22 +1,15 @@
 PODS:
-  - Alamofire (4.9.1)
-  - AlamofireImage (3.6.0):
-    - Alamofire (~> 4.9)
   - SpreadsheetView (0.9.1)
   - SVProgressHUD (2.2.5)
   - XLPagerTabStrip (8.1.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.7)
-  - AlamofireImage (~> 3.3)
   - SpreadsheetView
   - SVProgressHUD (from `https://github.com/mmdock/SVProgressHUD.git`, branch `patch-1`)
   - XLPagerTabStrip (~> 8.0)
 
 SPEC REPOS:
   trunk:
-    - Alamofire
-    - AlamofireImage
     - SpreadsheetView
     - XLPagerTabStrip
 
@@ -31,12 +24,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/mmdock/SVProgressHUD.git
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   SpreadsheetView: 688dbd19f2b355df0eb09e486266fd913a013449
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
 
-PODFILE CHECKSUM: a0509895892062c0501ca8767ac49106f4228b49
+PODFILE CHECKSUM: 04c519d85527106850e61157417fec92568471cc
 
 COCOAPODS: 1.11.2
