@@ -76,9 +76,6 @@ class Util {
     }
     
     class func verifyDateInterval(date1: Date, date2: Date) -> Bool {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
         return date1 <= date2
     }
     
@@ -140,9 +137,6 @@ class Util {
     }
     
     class func filterPerformancesBy(_ day: SSCDay, performances: [Performance]) -> [Performance] {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
         let filteredPerformances = performances.filter({ (performance) -> Bool in
             guard let nextDate = calendar.date(byAdding: .day, value: 1, to: day.date) else { fatalError("this should not happen") }
             
@@ -164,17 +158,11 @@ class Util {
     }
     
     class func getEndOfPerformance(_ performance: Performance) -> Date {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
         let performanceEnd = calendar.date(byAdding: .minute, value: performance.duration, to: performance.date)!
         return performanceEnd
     }
     
     class func performanceOverlaps(_ performance: Performance) -> Bool {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
         let start = performance.date
         let end = calendar.date(byAdding: .minute, value: performance.duration, to: start)!
         
@@ -224,10 +212,6 @@ class Util {
 //    }
     
     class func getNotificationTriggers() -> [UNCalendarNotificationTrigger] {
-        
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
         var triggers = [UNCalendarNotificationTrigger]()
         
         for id in 0...3 {
@@ -263,9 +247,6 @@ class Util {
     }
     
     class func getDateForDay(_ id: Int) throws -> Date {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
         guard let startDate = DataManager.shared.getCurrentSSC()?.startDate else { throw DateError.noStartDate }
         
         if id == 0 {
@@ -302,8 +283,6 @@ class Util {
     
     private class func getCutoffDateForDay(_ id: Int) -> Date {
         var dateComponents = DateComponents()
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
         
         dateComponents.timeZone = TimeZone(abbreviation: "CEST")
         dateComponents.year = 2019
