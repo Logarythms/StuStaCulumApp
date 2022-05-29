@@ -62,15 +62,25 @@ class PerformanceDetailViewController: UIViewController {
         guard let imageURL = performance.imageURL else { return }
         guard let httpsURL = Util.httpsURLfor(imageURL) else { return }
         
-//        Alamofire.request(httpsURL).responseImage { (response) in
-//            if let image = response.result.value {
-//                let size = self.artistImageView.bounds.size
-//                let scaledImage = image.af_imageAspectScaled(toFit: size)
-//                self.artistImageView.image = scaledImage
-//            }
-//        }
+        Task(priority: .userInitiated) {
+            do {
+                let image = try await NetworkingManager.shared.getImageFrom(httpsURL)
+                self.setArtistImage(image)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
         
     }
+    
+    @MainActor
+    func setArtistImage(_ image: UIImage) {
+        let size = artistImageView.bounds.size
+        let scaledImage = image.scalePreservingAspectRatio(targetSize: size)
+        
+        self.artistImageView.image = scaledImage
+    }
+    
     @IBAction func favouriteButtonPressed(_ sender: Any) {
         if let index = self.favourites.firstIndex(where: { (p) -> Bool in
             p == self.performance

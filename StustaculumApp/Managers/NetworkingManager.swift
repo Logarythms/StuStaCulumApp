@@ -30,10 +30,7 @@ class NetworkingManager {
     func getCurrentLogo(_ url: URL) async throws -> UIImage {
         guard let httpsURL = Util.httpsURLfor(url) else { throw NetworkingError.httpsURLmissing }
         
-        let (data, _) = try await session.data(from: httpsURL)
-        guard let image = UIImage(data: data) else { throw NetworkingError.imageMissing }
-        
-        return image
+        return try await getImageFrom(httpsURL)
     }
     
     func getCurrentSSC() async throws -> Stustaculum {
@@ -115,6 +112,13 @@ class NetworkingManager {
     func getDecodedData<T: Codable>(_ url: URL) async throws -> T {
         let (data, _) = try await session.data(from: url)
         return try decoder.decode(T.self, from: data)
+    }
+    
+    func getImageFrom(_ url: URL) async throws -> UIImage {
+        let (data, _) = try await session.data(from: url)
+        guard let image = UIImage(data: data) else { throw NetworkingError.imageMissing }
+        
+        return image
     }
     
 }
