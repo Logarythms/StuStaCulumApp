@@ -22,7 +22,6 @@ struct NewsView: View {
                             .resizable()
                             .scaledToFit()
                             .cornerRadius(10)
-//                            .frame(height: 250)
                             .centered()
                     }
                 }
@@ -40,7 +39,6 @@ struct NewsView: View {
                 Section {
                     ForEach(dataManager.news) { newsEntry in
                         NewsEntryView(newsEntry: newsEntry)
-                            .centered()
                     }
                 } header: {
                     if !dataManager.news.isEmpty {

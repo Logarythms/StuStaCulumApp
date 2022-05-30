@@ -13,13 +13,14 @@ struct NewsEntryView: View {
     let newsEntry: NewsEntry
     
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(newsEntry.title)
-                .font(.title3)
-            Text(newsEntry.description)
                 .font(.body)
+                .fontWeight(.heavy)
+            Text(newsEntry.description)
+                .font(.footnote)
+                .fontWeight(.semibold)
         }
-        .padding([.leading, .trailing])
     }
 }
 
