@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().barTintColor = .black
         UITabBar.appearance().tintColor = .white
         
-        UINavigationBar.appearance().backgroundColor = Util.backgroundColor
-        UINavigationBar.appearance().tintColor = .white
+//        UINavigationBar.appearance().backgroundColor = Util.backgroundColor
+//        UINavigationBar.appearance().tintColor = .white
         
         self.registerForPushNotifications()
         
