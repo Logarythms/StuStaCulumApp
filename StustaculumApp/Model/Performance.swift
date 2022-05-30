@@ -40,7 +40,7 @@ struct Performance: Codable, Identifiable {
         print("\(a) at \(self.date) for \(self.duration) min")
     }
     
-    func getEventDescription() -> String {
+    func getOldEventDescription() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy - HH:mm"
         
@@ -61,22 +61,23 @@ struct Performance: Codable, Identifiable {
         return string
     }
     
-    func getEventDescriptionSplit() -> [String] {
+    func getEventDescription() -> EventDescripton {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy - HH:mm"
+//        dateFormatter.dateFormat = "dd.MM.yyyy - HH:mm"
+        dateFormatter.dateFormat = "EEEE HH:mm"
+        dateFormatter.locale = Locale.init(identifier: "de_DE")
+                        
+        let locationName = Util.nameForLocation(self.location)
+        let formattedDate = dateFormatter.string(from: self.date) + " Uhr"
         
-        var strings = [String]()
-        
-        var string = ""
-        
-        strings.append(Util.nameForLocation(self.location))
-        strings.append(dateFormatter.string(from: self.date) + " Uhr")
-        
-        if let artist = self.artist {
-            strings.append(artist)
-        }
-        
-        return strings
+        return EventDescripton(locationName: locationName, formattedDate: formattedDate, artist: artist, genre: genre)
+    }
+    
+    struct EventDescripton {
+        let locationName: String
+        let formattedDate: String
+        let artist: String?
+        let genre: String?
     }
 }
 

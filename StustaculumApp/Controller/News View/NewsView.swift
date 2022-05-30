@@ -17,19 +17,40 @@ struct NewsView: View {
         NavigationView {
             List{
                 if let logo = dataManager.logo {
-                    Image(uiImage: logo)
-                        .resizable()
-                        .scaledToFit()
-                        .centered()
-                }
-                UpcomingPerformanceView(upcomingPerformances: viewModel.upcomingPerformances)
-                    .centered()
-                
-                ForEach(dataManager.news) { newsEntry in
-                    NewsEntryView(newsEntry: newsEntry)
-                        .centered()
+                    Section {
+                        Image(uiImage: logo)
+                            .resizable()
+                            .scaledToFit()
+                            .cornerRadius(10)
+//                            .frame(height: 250)
+                            .centered()
+                    }
                 }
                 
+                Section {
+                    ForEach(viewModel.upcomingPerformances) { performance in
+                        UpcomingPerformanceView(performance: performance)
+                    }
+                } header: {
+                    Text("Kommende Veranstaltungen")
+                        .font(.title3)
+                        .fontWeight(.heavy)
+                }
+
+                Section {
+                    ForEach(dataManager.news) { newsEntry in
+                        NewsEntryView(newsEntry: newsEntry)
+                            .centered()
+                    }
+                } header: {
+                    if !dataManager.news.isEmpty {
+                        Text("Meldungen")
+                            .font(.title3)
+                            .fontWeight(.heavy)
+                    } else {
+                        EmptyView()
+                    }
+                }
             }
             .refreshable {
                 dataManager.updateNews()

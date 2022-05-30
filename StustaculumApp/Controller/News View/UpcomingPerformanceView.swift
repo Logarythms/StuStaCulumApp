@@ -10,26 +10,38 @@ import SwiftUI
 
 struct UpcomingPerformanceView: View {
     
-    let upcomingPerformances: [Performance]
+    let performance: Performance
     
     var body: some View {
-        VStack(alignment: .center) {
-            Text("Kommende Veranstaltungen")
-                .font(.title2)
-                .padding(.bottom, 10)
-            if upcomingPerformances.isEmpty {
-                Text("Keine Veranstaltungen geplant 😞")
+        HStack {
+            VStack(alignment: .leading, spacing: 2) {
+                let description = performance.getEventDescription()
+                
+                Text(description.locationName)
                     .font(.body)
-                    .padding()
-            }
-            ForEach(upcomingPerformances) { performance in
-                ForEach(values: performance.getEventDescriptionSplit()) { string in
-                    Text(string)
-                        .font(.body)
+                    .fontWeight(.heavy)
+                    .foregroundColor(.white)
+                    .padding([.leading, .trailing], 5)
+                    .padding([.top, .bottom], 2)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(Util.colorForStage(performance.location)))
+                    )
+                    .offset(x: -3)
+                if let artist = description.artist, let genre = description.genre, let attributedString = try? AttributedString(markdown: "**\(artist)** (_\(genre)_)") {
+                    Text(attributedString)
+                        .font(.subheadline)
+//                        .bold()
                 }
-                Spacer()
+                
+                Text(description.formattedDate)
+                    .font(.caption)
+                    .bold()
             }
+            Spacer()
         }
+        .padding(5)
+
     }
 }
 

@@ -133,7 +133,7 @@ class NewsViewController: UITableViewController {
             
             var strings = [String]()
             for performance in upcomingPerformances {
-                strings.append(performance.getEventDescription())
+                strings.append(performance.getOldEventDescription())
             }
             
             cell.upcomingEventsLabel.text = strings.joined(separator: "\n\n")
