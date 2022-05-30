@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewsEntry: Codable {
+struct NewsEntry: Codable, Identifiable {
     var id: Int
     var title: String
     var description: String

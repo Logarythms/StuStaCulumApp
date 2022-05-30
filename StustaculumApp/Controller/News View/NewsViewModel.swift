@@ -11,6 +11,7 @@ import Foundation
 class NewsViewModel: ObservableObject {
     
     @Published var upcomingPerformances = [Performance]()
+    @Published var news = [NewsEntry]()
     
     let dataManager = DataManager.shared
     
@@ -20,8 +21,8 @@ class NewsViewModel: ObservableObject {
                 await updateUpcomingPerformances()
             }
         }
-        
     }
+
     
     @MainActor
     func updateUpcomingPerformances() {
