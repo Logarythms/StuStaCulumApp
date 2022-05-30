@@ -10,13 +10,24 @@ import SwiftUI
 
 struct UpcomingPerformanceView: View {
     
-    let performance: Performance
+    let upcomingPerformances: [Performance]
     
     var body: some View {
         VStack(alignment: .center) {
-            ForEach(values: performance.getEventDescriptionSplit()) { string in
-                Text(string)
+            Text("Kommende Veranstaltungen")
+                .font(.title2)
+                .padding(.bottom, 10)
+            if upcomingPerformances.isEmpty {
+                Text("Keine Veranstaltungen geplant 😞")
                     .font(.body)
+                    .padding()
+            }
+            ForEach(upcomingPerformances) { performance in
+                ForEach(values: performance.getEventDescriptionSplit()) { string in
+                    Text(string)
+                        .font(.body)
+                }
+                Spacer()
             }
         }
     }

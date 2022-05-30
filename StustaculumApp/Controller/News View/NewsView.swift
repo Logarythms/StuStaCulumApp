@@ -15,31 +15,23 @@ struct NewsView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .center, spacing: 10) {
-                    if let logo = dataManager.logo {
-                        Image(uiImage: logo)
-                            .resizable()
-                            .scaledToFit()
-                        Divider()
-                    }
-                    if !viewModel.upcomingPerformances.isEmpty {
-                        Text("Kommende Veranstaltungen")
-                            .font(.title2)
-                    }
-                    ForEach(viewModel.upcomingPerformances) { performance in
-                        UpcomingPerformanceView(performance: performance)
-                    }
-                    Divider()
-                    ForEach(dataManager.news) { newsEntry in
-                        NewsEntryView(newsEntry: newsEntry)
-                        Divider()
-                    }
-                    
-                    Spacer()
+            List{
+                if let logo = dataManager.logo {
+                    Image(uiImage: logo)
+                        .resizable()
+                        .scaledToFit()
+                        .centered()
                 }
-
+                UpcomingPerformanceView(upcomingPerformances: viewModel.upcomingPerformances)
+                    .centered()
+                
+                ForEach(dataManager.news) { newsEntry in
+                    NewsEntryView(newsEntry: newsEntry)
+                        .centered()
+                }
+                
             }
+            .listStyle(.plain)
             .navigationTitle("News")
         }
         .onAppear {
