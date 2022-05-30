@@ -40,6 +40,10 @@
 		48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */; };
 		48F50E542841126200DF11C7 /* SSCDateDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E532841126200DF11C7 /* SSCDateDecoder.swift */; };
 		48F50E572844299200DF11C7 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E562844299200DF11C7 /* UIImage+Resize.swift */; };
+		48F50E592844340700DF11C7 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E582844340700DF11C7 /* NewsView.swift */; };
+		48F50E5C2844CDE700DF11C7 /* UpcomingPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E5B2844CDE700DF11C7 /* UpcomingPerformanceView.swift */; };
+		48F50E602844D28800DF11C7 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E5F2844D28800DF11C7 /* NewsViewModel.swift */; };
+		48F50E622844D79800DF11C7 /* ForEach+Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E612844D79800DF11C7 /* ForEach+Values.swift */; };
 		48F6852B228C898F007A286E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852A228C898F007A286E /* DataManager.swift */; };
 		48F6852D228CED1A007A286E /* LogoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852C228CED1A007A286E /* LogoCell.swift */; };
 		48F6852F228D7F42007A286E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852E228D7F42007A286E /* NewsCell.swift */; };
@@ -101,6 +105,10 @@
 		48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMasterViewController.swift; sourceTree = "<group>"; };
 		48F50E532841126200DF11C7 /* SSCDateDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDateDecoder.swift; sourceTree = "<group>"; };
 		48F50E562844299200DF11C7 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		48F50E582844340700DF11C7 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		48F50E5B2844CDE700DF11C7 /* UpcomingPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingPerformanceView.swift; sourceTree = "<group>"; };
+		48F50E5F2844D28800DF11C7 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		48F50E612844D79800DF11C7 /* ForEach+Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForEach+Values.swift"; sourceTree = "<group>"; };
 		48F6852A228C898F007A286E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		48F6852C228CED1A007A286E /* LogoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoCell.swift; sourceTree = "<group>"; };
 		48F6852E228D7F42007A286E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -143,6 +151,7 @@
 				48F6853622919C0B007A286E /* DispatchGroup+NotifyTimeout.swift */,
 				48F685462291B245007A286E /* Reachability.swift */,
 				48F50E562844299200DF11C7 /* UIImage+Resize.swift */,
+				48F50E612844D79800DF11C7 /* ForEach+Values.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -210,6 +219,16 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		48F50E5A2844CD0F00DF11C7 /* News View */ = {
+			isa = PBXGroup;
+			children = (
+				48F50E582844340700DF11C7 /* NewsView.swift */,
+				48F50E5F2844D28800DF11C7 /* NewsViewModel.swift */,
+				48F50E5B2844CDE700DF11C7 /* UpcomingPerformanceView.swift */,
+			);
+			path = "News View";
+			sourceTree = "<group>";
+		};
 		48F685392291A0A4007A286E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +256,7 @@
 				4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */,
 				4802E9DF20BAF575005A0085 /* AGBViewController.swift */,
 				48C035DE228C786500665052 /* NewsViewController.swift */,
+				48F50E5A2844CD0F00DF11C7 /* News View */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -417,20 +437,24 @@
 				4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */,
 				485BF26D20B8236000075A64 /* Timeslot.swift in Sources */,
 				4802E9D020BA3D0F005A0085 /* String+HTML.swift in Sources */,
+				48F50E622844D79800DF11C7 /* ForEach+Values.swift in Sources */,
 				48F50E542841126200DF11C7 /* SSCDateDecoder.swift in Sources */,
 				4802E9CE20BA2F80005A0085 /* PerformanceDetailViewController.swift in Sources */,
+				48F50E602844D28800DF11C7 /* NewsViewModel.swift in Sources */,
 				48F6852D228CED1A007A286E /* LogoCell.swift in Sources */,
 				4802E9D820BAE560005A0085 /* HowToMasterViewController.swift in Sources */,
 				48F6852F228D7F42007A286E /* NewsCell.swift in Sources */,
 				48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */,
 				48F6853722919C0B007A286E /* DispatchGroup+NotifyTimeout.swift in Sources */,
 				4802E9E020BAF575005A0085 /* AGBViewController.swift in Sources */,
+				48F50E5C2844CDE700DF11C7 /* UpcomingPerformanceView.swift in Sources */,
 				48F6852B228C898F007A286E /* DataManager.swift in Sources */,
 				48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */,
 				48F68535228F2AD9007A286E /* SSCMapOverlayView.swift in Sources */,
 				48F68533228F1F97007A286E /* SSCMapOverlay.swift in Sources */,
 				48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */,
 				48F68531228DCC35007A286E /* UpcomingEventsCell.swift in Sources */,
+				48F50E592844340700DF11C7 /* NewsView.swift in Sources */,
 				48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */,
 				48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */,
 				488F14C420B7389B0058536E /* Util.swift in Sources */,

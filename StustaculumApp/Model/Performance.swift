@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Performance: Codable {
+struct Performance: Codable, Identifiable {
     var id: Int
     var artist: String?
     var description: String?
@@ -59,6 +59,24 @@ struct Performance: Codable {
         string += artist
         
         return string
+    }
+    
+    func getEventDescriptionSplit() -> [String] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy - HH:mm"
+        
+        var strings = [String]()
+        
+        var string = ""
+        
+        strings.append(Util.nameForLocation(self.location))
+        strings.append(dateFormatter.string(from: self.date) + " Uhr")
+        
+        if let artist = self.artist {
+            strings.append(artist)
+        }
+        
+        return strings
     }
 }
 

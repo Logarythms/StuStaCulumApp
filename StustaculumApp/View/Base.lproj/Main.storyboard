@@ -357,6 +357,7 @@
                             <constraint firstItem="Fpm-qa-kd3" firstAttribute="leading" secondItem="W3g-1S-ing" secondAttribute="leading" id="rBP-Qj-whv"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="sAf-0F-1yv"/>
                     <connections>
                         <outlet property="howToTextView" destination="Fpm-qa-kd3" id="jfb-77-TA7"/>
                     </connections>
@@ -500,6 +501,7 @@
                             <constraint firstItem="USL-Vi-lRs" firstAttribute="trailing" secondItem="Wje-iQ-fvc" secondAttribute="trailing" constant="10" id="yZk-Uz-BKa"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="fKw-Xt-wfh"/>
                     <connections>
                         <outlet property="versionLabel" destination="KeJ-dW-PUH" id="CWe-8Y-xve"/>
                     </connections>
@@ -533,6 +535,7 @@
                             <constraint firstItem="Myc-8u-dN6" firstAttribute="trailing" secondItem="AJl-BX-fNQ" secondAttribute="trailing" id="bvP-hJ-a7j"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Mc3-hf-QPj"/>
                     <connections>
                         <outlet property="agbTextView" destination="AJl-BX-fNQ" id="Kc7-5J-lEG"/>
                     </connections>
@@ -554,7 +557,7 @@
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="yRQ-C8-KSE" kind="relationship" relationship="viewControllers" id="tdq-9t-Bky"/>
+                        <segue destination="RaQ-eW-Jxx" kind="relationship" relationship="viewControllers" id="yUJ-Jj-ohM"/>
                         <segue destination="qwr-pw-8xF" kind="relationship" relationship="viewControllers" id="MyY-eG-AhB"/>
                         <segue destination="kc7-Fv-te2" kind="relationship" relationship="viewControllers" id="JGn-dk-6bl"/>
                         <segue destination="7Es-FX-FL4" kind="relationship" relationship="viewControllers" id="27i-Mu-Ft6"/>
@@ -826,7 +829,7 @@
                         <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="Ftf-OH-c1O">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="Ftf-OH-c1O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -838,6 +841,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcA-oH-aoZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2665" y="2416"/>
+        </scene>
+        <!--News-->
+        <scene sceneID="n85-hW-PIh">
+            <objects>
+                <hostingController id="RaQ-eW-Jxx" customClass="NewsViewHostingController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="News" id="M9B-F3-Ftz">
+                        <imageReference key="image" image="house.fill" catalog="system" symbolScale="default"/>
+                        <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LT0-Nm-OZR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1087" y="765"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.21176470588235294" green="0.49803921568627452" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
