@@ -59,7 +59,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     @objc
     func updateLocations() {
-        self.locations = dataManager.getLocations()
+        self.locations = dataManager.locations
         addLocationsToMap()
     }
     

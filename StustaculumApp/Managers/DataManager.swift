@@ -25,10 +25,10 @@ class DataManager: ObservableObject {
             updateSSCDays()
         }
     }
-    private var locations: [Location]?
     private var howTos: [HowTo]?
     
     var days = [SSCDay]()
+    var locations = [Location]()
     
     static let shared = DataManager()
     
@@ -60,13 +60,6 @@ class DataManager: ObservableObject {
     
     func getCurrentSSC() -> Stustaculum? {
         return currentSSC
-    }
-    
-    func getLocations() -> [Location] {
-        guard let locations = self.locations else {
-            return [Location]()
-        }
-        return locations
     }
     
     func getHowTos() -> [HowTo] {
@@ -297,6 +290,14 @@ class DataManager: ObservableObject {
         case howTos = "howTos.json"
         case news = "news.json"
         case logo = "logo.png"
+    }
+    
+    func getLocationFor(_ stage: Stage) -> Location? {
+        getLocationFor(stage.rawValue)
+    }
+    
+    func getLocationFor(_ id: Int) -> Location? {
+        locations.first { $0.id == id }
     }
 }
 

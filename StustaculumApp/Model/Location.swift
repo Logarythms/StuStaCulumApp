@@ -15,7 +15,6 @@ struct Location: Codable {
     var shortName: String
     var navigationString: String?
     var colorString: String?
-    var color: UIColor?
     var latitudeString: String
     var longitudeString: String
     var coordinates: CLLocationCoordinate2D?
@@ -33,4 +32,19 @@ struct Location: Codable {
         case typeInt = "type"
     }
     
+    func color() -> UIColor? {
+        if let colorString = colorString {
+            return UIColor(hex: colorString)
+        } else {
+            return nil
+        }
+    }
+}
+
+enum Stage: Int {
+    case dada = 1
+    case atrium = 2
+    case halle = 3
+    case zelt = 4
+    case gelände = 5
 }

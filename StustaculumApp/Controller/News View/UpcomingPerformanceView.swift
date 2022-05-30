@@ -25,7 +25,7 @@ struct UpcomingPerformanceView: View {
                     .padding([.top, .bottom], 2)
                     .background(
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(Color(Util.colorForStage(performance.location)))
+                            .fill(Color(DataManager.shared.getLocationFor(performance.location)?.color() ?? Util.colorForStage(performance.location)))
                     )
                     .offset(x: -3)
                 if let artist = description.artist, let genre = description.genre, let attributedString = try? AttributedString(markdown: "**\(artist)** (_\(genre)_)") {

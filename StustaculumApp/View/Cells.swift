@@ -32,7 +32,7 @@ class PerformanceCell: Cell {
 }
 
 class GeländeCell: PerformanceCell {
-    private let fillColor = Util.geländeColor
+    private let fillColor = DataManager.shared.getLocationFor(.gelände)?.color() ?? Util.geländeColor
     @IBOutlet weak var title: UILabel!
     
     override func layoutSubviews() {
@@ -56,7 +56,8 @@ class GeländeCell: PerformanceCell {
 }
 
 class DadaCell: PerformanceCell {
-    private let fillColor = Util.dadaColor
+    private let fillColor = DataManager.shared.getLocationFor(.dada)?.color() ?? Util.dadaColor
+    
     @IBOutlet weak var title: UILabel!
     
     override func layoutSubviews() {
@@ -80,7 +81,7 @@ class DadaCell: PerformanceCell {
 }
 
 class AtriumCell: PerformanceCell {
-    private let fillColor = Util.atriumColor
+    private let fillColor = DataManager.shared.getLocationFor(.atrium)?.color() ?? Util.atriumColor
     @IBOutlet weak var title: UILabel!
     
     override func layoutSubviews() {
@@ -104,7 +105,7 @@ class AtriumCell: PerformanceCell {
 }
 
 class HalleCell: PerformanceCell {
-    private let fillColor = Util.halleColor
+    private let fillColor = DataManager.shared.getLocationFor(.halle)?.color() ?? Util.halleColor
     @IBOutlet weak var title: UILabel!
     
     override func layoutSubviews() {
@@ -128,7 +129,7 @@ class HalleCell: PerformanceCell {
 }
 
 class ZeltCell: PerformanceCell {
-    private let fillColor = Util.zeltColor
+    private let fillColor = DataManager.shared.getLocationFor(.zelt)?.color() ?? Util.zeltColor
     @IBOutlet weak var title: UILabel!
     
     override func layoutSubviews() {
