@@ -60,7 +60,7 @@ class NewsViewModel: ObservableObject {
         if let zelt = upcomingZeltPerformance {
             upcoming.append(zelt)
         }
-        upcomingPerformances.sort {
+        upcoming.sort {
             $0.date <= $1.date
         }
         
