@@ -45,7 +45,7 @@ class NewsViewController: UITableViewController {
     @objc
     func updateContent() {
         print("updating")
-        self.newsEntries = dataManager.getNews()
+        self.newsEntries = dataManager.news
         getUpcomingPerformances()
         
         DispatchQueue.main.async {
@@ -115,7 +115,7 @@ class NewsViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "logoCell", for: indexPath) as? LogoCell else {
                 return UITableViewCell()
             }
-            guard let image = dataManager.getCurrentLogo() else {
+            guard let image = dataManager.logo else {
                 return UITableViewCell()
             }
             

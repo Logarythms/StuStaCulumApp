@@ -9,7 +9,10 @@
 import UIKit
 import SVProgressHUD
 
-class DataManager {
+class DataManager: ObservableObject {
+    
+    @Published var news = [NewsEntry]()
+    @Published var logo: UIImage?
     
     private let decoder = JSONDecoder()
     private let encoder = JSONEncoder()
@@ -17,7 +20,6 @@ class DataManager {
     private let networkingManager = NetworkingManager.shared
     
     private var currentSSC: Stustaculum?
-    private var currentLogo: UIImage?
     private var performances = [Performance]() {
         didSet {
             updateSSCDays()
@@ -25,7 +27,6 @@ class DataManager {
     }
     private var locations: [Location]?
     private var howTos: [HowTo]?
-    private var news: [NewsEntry]?
     
     var days = [SSCDay]()
     
@@ -61,10 +62,6 @@ class DataManager {
         return currentSSC
     }
     
-    func getCurrentLogo() -> UIImage? {
-        return currentLogo
-    }
-    
     func getLocations() -> [Location] {
         guard let locations = self.locations else {
             return [Location]()
@@ -77,13 +74,6 @@ class DataManager {
             return [HowTo]()
         }
         return howTos
-    }
-    
-    func getNews() -> [NewsEntry] {
-        guard let news = self.news else {
-            return [NewsEntry]()
-        }
-        return news
     }
     
     func validatePerformances(_ performances: [Performance]) -> Bool {
@@ -329,7 +319,7 @@ extension DataManager {
                 
                 return false
         }
-        self.currentLogo = logo
+        self.logo = logo
         return true
     }
     
@@ -403,14 +393,19 @@ extension DataManager {
         }
     }
     
+    @MainActor func updateLogo(_ image: UIImage) {
+        self.logo = image
+    }
+    
     private func downloadLogo(_ url: URL) async -> Bool {
         do {
             let image = try await networkingManager.getCurrentLogo(url)
-            self.currentLogo = image
-            
             let path = savePathURLFor(.logo)
             try image.pngData()?.write(to: path)
             print("logo loaded")
+            
+            await updateLogo(image)
+            
             return true
         } catch let error {
             print(error)
@@ -527,6 +522,11 @@ extension DataManager {
         }
     }
     
+    @MainActor
+    func publishNews(_ news: [NewsEntry]) {
+        self.news = news
+    }
+    
     private func downloadNews() async -> Bool {
         do {
             let news = try await networkingManager.getNews()
@@ -536,10 +536,11 @@ extension DataManager {
             let path = savePathURLFor(.news)
             try encodedData.write(to: path)
             
-            self.news = news
             self.notificationCenter.post(name: Notification.Name("newsUpdated"), object: nil)
             print("news loaded")
 
+            await self.publishNews(news)
+            
             return true
         } catch let error {
             print(error)
