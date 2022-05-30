@@ -419,7 +419,7 @@ extension DataManager {
             return performances
         }
         let filteredPerformances = performances.filter {
-            ($0.stustaculumID == ssc.id) && $0.show && ($0.artist != "Electronic-Night") && $0.duration > 0
+            ($0.stustaculumID == ssc.id) && $0.show && ($0.artist != "Electronic-Night" && $0.id != 3427 && $0.artist != "Kinderprogramm") && $0.duration > 0
         }
         let verifiedPerformances = filteredPerformances.filter {
             for performance in filteredPerformances where $0.date == performance.date && $0.location == performance.location && $0.id != performance.id {
