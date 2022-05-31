@@ -42,6 +42,7 @@
 		48C03CBB20B2DA1E00EED86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB920B2DA1E00EED86A /* LaunchScreen.storyboard */; };
 		48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC320B2DBF400EED86A /* Stustaculum.swift */; };
 		48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC620B2E03000EED86A /* NetworkingManager.swift */; };
+		48D10F6B28463B4F0090AB17 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F6A28463B4F0090AB17 /* AboutView.swift */; };
 		48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */; };
 		48F50E542841126200DF11C7 /* SSCDateDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E532841126200DF11C7 /* SSCDateDecoder.swift */; };
 		48F50E572844299200DF11C7 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E562844299200DF11C7 /* UIImage+Resize.swift */; };
@@ -116,6 +117,7 @@
 		48C03CBC20B2DA1E00EED86A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48C03CC320B2DBF400EED86A /* Stustaculum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stustaculum.swift; sourceTree = "<group>"; };
 		48C03CC620B2E03000EED86A /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		48D10F6A28463B4F0090AB17 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMasterViewController.swift; sourceTree = "<group>"; };
 		48F50E532841126200DF11C7 /* SSCDateDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDateDecoder.swift; sourceTree = "<group>"; };
 		48F50E562844299200DF11C7 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				48092C7A28462C0700E70913 /* InfoView.swift */,
 				48092C7E2846362900E70913 /* AGBView.swift */,
 				48092C7C284630FC00E70913 /* LinkButton.swift */,
+				48D10F6A28463B4F0090AB17 /* AboutView.swift */,
 			);
 			path = InfoView;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				48F50E572844299200DF11C7 /* UIImage+Resize.swift in Sources */,
 				488F14C020B732600058536E /* SSCDay.swift in Sources */,
 				48F7507820B2F3950012FCDB /* Location.swift in Sources */,
+				48D10F6B28463B4F0090AB17 /* AboutView.swift in Sources */,
 				48F685472291B245007A286E /* Reachability.swift in Sources */,
 				4802E9D220BA488A005A0085 /* MapViewController.swift in Sources */,
 				48092C7F2846362900E70913 /* AGBView.swift in Sources */,

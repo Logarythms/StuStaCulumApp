@@ -20,7 +20,7 @@ struct InfoView: View {
                         AGBView()
                     }
                     NavigationLink("Über diese App") {
-                        EmptyView()
+                        AboutView()
                     }
                 }
                 Section {
