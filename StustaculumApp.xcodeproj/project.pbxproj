@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,7 +24,6 @@
 		4802E9E020BAF575005A0085 /* AGBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9DF20BAF575005A0085 /* AGBViewController.swift */; };
 		4802E9E220BAF591005A0085 /* AboutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */; };
 		48092C732845601D00E70913 /* FaqDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C722845601D00E70913 /* FaqDetailView.swift */; };
-		48092C7628458FFF00E70913 /* HTML2Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = 48092C7528458FFF00E70913 /* HTML2Markdown */; };
 		48092C78284597CA00E70913 /* Text+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C77284597CA00E70913 /* Text+HTML.swift */; };
 		4842E0A0229592170089F9AB /* GeländeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4842E09F229592170089F9AB /* GeländeCell.xib */; };
 		485BF26D20B8236000075A64 /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485BF26C20B8236000075A64 /* Timeslot.swift */; };
@@ -150,7 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				656C9D74B2EF55C7A566EFA9 /* Pods_StustaculumApp.framework in Frameworks */,
-				48092C7628458FFF00E70913 /* HTML2Markdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +344,6 @@
 			);
 			name = StustaculumApp;
 			packageProductDependencies = (
-				48092C7528458FFF00E70913 /* HTML2Markdown */,
 			);
 			productName = StustaculumApp;
 			productReference = 48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */;
@@ -383,7 +380,6 @@
 			);
 			mainGroup = 48C03CA420B2DA1D00EED86A;
 			packageReferences = (
-				48092C7428458FFF00E70913 /* XCRemoteSwiftPackageReference "HTML2Markdown" */,
 			);
 			productRefGroup = 48C03CAE20B2DA1D00EED86A /* Products */;
 			projectDirPath = "";
@@ -720,25 +716,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		48092C7428458FFF00E70913 /* XCRemoteSwiftPackageReference "HTML2Markdown" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://gitlab.com/mflint/HTML2Markdown";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		48092C7528458FFF00E70913 /* HTML2Markdown */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 48092C7428458FFF00E70913 /* XCRemoteSwiftPackageReference "HTML2Markdown" */;
-			productName = HTML2Markdown;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 48C03CA520B2DA1D00EED86A /* Project object */;
 }

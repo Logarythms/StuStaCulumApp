@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftUI
-import HTML2Markdown
 
 struct FaqDetailView: View {
     let howTo: HowTo
