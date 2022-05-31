@@ -8,10 +8,12 @@
 
 import Foundation
 
-struct SSCDay {
+struct SSCDay: Identifiable {
     
     let day: Day
     let date: Date
+    
+    let id: Int
     
     let startOfDay: Date
     let endOfDay: Date
@@ -21,6 +23,8 @@ struct SSCDay {
     let duration: Int
         
     init(_ day: Day, performances: [Performance]) throws {
+        
+        id = day.rawValue
         
         //calculate date of SSCDay
         guard let startDate = DataManager.shared.getCurrentSSC()?.startDate else { throw DateError.noStartDate }
@@ -100,6 +104,13 @@ struct SSCDay {
         case day2 = 1
         case day3 = 2
         case day4 = 3
+    }
+    
+    func getShortWeekDay() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EE"
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        return dateFormatter.string(from: self.date)
     }
 }
 

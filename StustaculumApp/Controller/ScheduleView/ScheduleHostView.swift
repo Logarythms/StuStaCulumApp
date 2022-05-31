@@ -7,14 +7,38 @@
 //
 
 import SwiftUI
+import PagerTabStripView
 
 struct ScheduleHostView: View {
+    @ObservedObject var dataManager = DataManager.shared
+    
     var body: some View {
         NavigationView {
-            ScheduleView()
-                .navigationTitle("Zeitplan")
-//                .navigationBarTitleDisplayMode(.inline)
+            PagerTabStripView {
+                ForEach(dataManager.days) { day in
+                    ScheduleView(day: day)
+                        .pagerTabItem {
+                            Text(day.getShortWeekDay())
+                        }
+                }
+            }
+            .pagerTabStripViewStyle(.segmentedControl(backgroundColor: Color(Util.ssc2022Color)))
+            .navigationTitle("Zeitplan")
         }
+    }
+}
+
+struct TitleNavBarItem: View {
+    let title: String
+
+    var body: some View {
+        VStack {
+            Text(title)
+                .foregroundColor(Color.gray)
+                .font(.subheadline)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.white)
     }
 }
 

@@ -21,20 +21,17 @@ class ScheduleMasterViewController: ButtonBarPagerTabStripViewController {
     override func viewDidLoad() {
         loadViewControllers()
         super.viewDidLoad()
-        if UIDevice.current.systemVersion.contains("10") {
-            containerView.isScrollEnabled = false
-        }
         
-        buttonBarView.backgroundColor = Util.backgroundColor
-        buttonBarView.tintColor = .white
+        buttonBarView.backgroundColor = .systemBackground
+        buttonBarView.tintColor = .label
         
         buttonBarView.selectedBar.backgroundColor = UIColor(red:0.67, green:0.04, blue:0.20, alpha:1.0)
         
         settings.style.buttonBarHeight = 1
         
-        settings.style.buttonBarItemBackgroundColor = Util.backgroundColor
+        settings.style.buttonBarItemBackgroundColor = .systemBackground
         
-        containerView.backgroundColor = Util.backgroundColor
+        containerView.backgroundColor = .systemBackground
     }
     
     override func viewDidAppear(_ animated: Bool) {

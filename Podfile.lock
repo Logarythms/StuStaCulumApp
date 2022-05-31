@@ -1,12 +1,14 @@
 PODS:
   - SpreadsheetView (0.9.1)
-  - SVProgressHUD (2.2.5)
-  - XLPagerTabStrip (8.1.1)
+  - SVProgressHUD (2.2.6):
+    - SVProgressHUD/Core (= 2.2.6)
+  - SVProgressHUD/Core (2.2.6)
+  - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
   - SpreadsheetView
-  - SVProgressHUD (from `https://github.com/mmdock/SVProgressHUD.git`, branch `patch-1`)
-  - XLPagerTabStrip (~> 8.0)
+  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
+  - XLPagerTabStrip (~> 9.0)
 
 SPEC REPOS:
   trunk:
@@ -15,19 +17,18 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   SVProgressHUD:
-    :branch: patch-1
-    :git: https://github.com/mmdock/SVProgressHUD.git
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 CHECKOUT OPTIONS:
   SVProgressHUD:
-    :commit: 41afba447103c44c55482db1174569172607c1e6
-    :git: https://github.com/mmdock/SVProgressHUD.git
+    :commit: de1d4dba816a19454329031156b8788692bcfa2c
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
   SpreadsheetView: 688dbd19f2b355df0eb09e486266fd913a013449
-  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
+  SVProgressHUD: de812b4f0e1d65358f0064416473174ae619843f
+  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 04c519d85527106850e61157417fec92568471cc
+PODFILE CHECKSUM: deffadc2263d572ffb0620e57cd458f4bcb33e9c
 
 COCOAPODS: 1.11.2

@@ -13,8 +13,9 @@ class DataManager: ObservableObject {
     
     @Published var news = [NewsEntry]()
     @Published var howTos = [HowTo]()
+    @Published var days = [SSCDay]()
     @Published var logo: UIImage?
-    
+
     private let decoder = JSONDecoder()
     private let encoder = JSONEncoder()
     private let notificationCenter = NotificationCenter.default
@@ -23,11 +24,12 @@ class DataManager: ObservableObject {
     private var currentSSC: Stustaculum?
     private var performances = [Performance]() {
         didSet {
-            updateSSCDays()
+            Task {
+                await updateSSCDays()
+            }
         }
     }
     
-    var days = [SSCDay]()
     var locations = [Location]()
     
     let aboutURLs = [("Offizielle Website", URL(string: "https://www.stustaculum.de")!),
@@ -37,6 +39,7 @@ class DataManager: ObservableObject {
     
     static let shared = DataManager()
     
+    @MainActor
     func updateSSCDays() {
         guard !self.performances.isEmpty else { return }
         do {
