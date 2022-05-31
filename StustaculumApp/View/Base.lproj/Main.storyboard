@@ -867,7 +867,7 @@
         <!--Infos-->
         <scene sceneID="vF1-fD-LMY">
             <objects>
-                <hostingController id="YcR-fL-aWI" customClass="AboutViewHostingController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                <hostingController id="YcR-fL-aWI" customClass="InfoViewHostingController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Infos" id="lDn-du-v7y">
                         <imageReference key="image" image="info.circle.fill" catalog="system" symbolScale="large"/>
                         <imageReference key="selectedImage" image="info.circle.fill" catalog="system" symbolScale="large"/>

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AboutView: View {
+struct InfoView: View {
     
     let dataManager = DataManager.shared
     
@@ -40,16 +40,16 @@ struct AboutView: View {
     }
 }
 
-struct AboutView_Previews: PreviewProvider {
+struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutView()
+        InfoView()
     }
 }
 
-class AboutViewHostingController: UIHostingController<AboutView> {
+class InfoViewHostingController: UIHostingController<InfoView> {
 
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder, rootView: AboutView())
+        super.init(coder: aDecoder, rootView: InfoView())
     }
     
     override func viewDidLoad() {
