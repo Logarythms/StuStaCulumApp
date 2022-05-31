@@ -41,7 +41,7 @@ class PerformanceDetailViewController: UIViewController {
         self.descriptionLabel.textColor = .white
         
         self.startTimeLabel.text = getFormattedDateStringFor(performance.date)
-        self.endTimeLabel.text = getFormattedDateStringFor(Util.getEndOfPerformance(performance))
+        self.endTimeLabel.text = getFormattedDateStringFor(performance.endDate())
         
         if self.favourites.contains(where: { (p) -> Bool in
             p == self.performance

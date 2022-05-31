@@ -104,10 +104,10 @@ class Util {
                 let timeslotLength: Int
                 
                 if let previousPerformance = performances[safe: index - 1] {
-                    guard verifyDateInterval(date1: getEndOfPerformance(previousPerformance), date2: performance.date) else {
+                    guard verifyDateInterval(date1: previousPerformance.endDate(), date2: performance.date) else {
                         return [Timeslot]()
                     }
-                    timeslotLength = Int(DateInterval(start: getEndOfPerformance(previousPerformance), end: performance.date).duration) / 60
+                    timeslotLength = Int(DateInterval(start: previousPerformance.endDate(), end: performance.date).duration) / 60
                 } else {
                     guard verifyDateInterval(date1: day.startOfDay, date2: performance.date) else {
                         return [Timeslot]()
@@ -157,11 +157,6 @@ class Util {
         return filteredPerformances.sorted {
             $0.date <= $1.date
         }
-    }
-    
-    class func getEndOfPerformance(_ performance: Performance) -> Date {
-        let performanceEnd = calendar.date(byAdding: .minute, value: performance.duration, to: performance.date)!
-        return performanceEnd
     }
     
     class func performanceOverlaps(_ performance: Performance) -> Bool {

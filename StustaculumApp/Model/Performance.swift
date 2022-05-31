@@ -35,6 +35,10 @@ struct Performance: Codable, Identifiable {
         case stustaculumID = "stustaculum"
     }
     
+    func endDate() -> Date {
+        calendar.date(byAdding: .minute, value: self.duration, to: self.date)!
+    }
+    
     func printDescripton() {
         guard let a = artist else { return }
         print("\(a) at \(self.date) for \(self.duration) min")
