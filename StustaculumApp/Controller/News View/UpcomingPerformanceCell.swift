@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct UpcomingPerformanceView: View {
+struct UpcomingPerformanceCell: View {
     
     let performance: Performance
     

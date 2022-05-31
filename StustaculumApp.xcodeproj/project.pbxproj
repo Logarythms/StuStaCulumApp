@@ -18,11 +18,6 @@
 		4802E9D220BA488A005A0085 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D120BA488A005A0085 /* MapViewController.swift */; };
 		4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */; };
 		4802E9D620BAC833005A0085 /* FavouritesMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */; };
-		4802E9D820BAE560005A0085 /* HowToMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D720BAE560005A0085 /* HowToMasterViewController.swift */; };
-		4802E9DA20BAE570005A0085 /* HowToDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D920BAE570005A0085 /* HowToDetailViewController.swift */; };
-		4802E9DE20BAF509005A0085 /* AboutMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9DD20BAF509005A0085 /* AboutMasterViewController.swift */; };
-		4802E9E020BAF575005A0085 /* AGBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9DF20BAF575005A0085 /* AGBViewController.swift */; };
-		4802E9E220BAF591005A0085 /* AboutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */; };
 		48092C732845601D00E70913 /* FaqDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C722845601D00E70913 /* FaqDetailView.swift */; };
 		48092C78284597CA00E70913 /* Text+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C77284597CA00E70913 /* Text+HTML.swift */; };
 		48092C7B28462C0700E70913 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C7A28462C0700E70913 /* InfoView.swift */; };
@@ -34,7 +29,6 @@
 		488F14C420B7389B0058536E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14C320B7389B0058536E /* Util.swift */; };
 		48A3D22C20B33E0F00C5EBDD /* PerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */; };
 		48A3D22E20B33FD700C5EBDD /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A3D22D20B33FD700C5EBDD /* Cells.swift */; };
-		48C035DF228C786500665052 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C035DE228C786500665052 /* NewsViewController.swift */; };
 		48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB020B2DA1D00EED86A /* AppDelegate.swift */; };
 		48C03CB320B2DA1D00EED86A /* ScheduleDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */; };
 		48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB420B2DA1D00EED86A /* Main.storyboard */; };
@@ -43,11 +37,12 @@
 		48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC320B2DBF400EED86A /* Stustaculum.swift */; };
 		48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC620B2E03000EED86A /* NetworkingManager.swift */; };
 		48D10F6B28463B4F0090AB17 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F6A28463B4F0090AB17 /* AboutView.swift */; };
+		48D10F6E284645290090AB17 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F6D284645290090AB17 /* PerformanceView.swift */; };
 		48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */; };
 		48F50E542841126200DF11C7 /* SSCDateDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E532841126200DF11C7 /* SSCDateDecoder.swift */; };
 		48F50E572844299200DF11C7 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E562844299200DF11C7 /* UIImage+Resize.swift */; };
 		48F50E592844340700DF11C7 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E582844340700DF11C7 /* NewsView.swift */; };
-		48F50E5C2844CDE700DF11C7 /* UpcomingPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E5B2844CDE700DF11C7 /* UpcomingPerformanceView.swift */; };
+		48F50E5C2844CDE700DF11C7 /* UpcomingPerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E5B2844CDE700DF11C7 /* UpcomingPerformanceCell.swift */; };
 		48F50E602844D28800DF11C7 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E5F2844D28800DF11C7 /* NewsViewModel.swift */; };
 		48F50E622844D79800DF11C7 /* ForEach+Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E612844D79800DF11C7 /* ForEach+Values.swift */; };
 		48F50E642844E12E00DF11C7 /* NewsEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E632844E12E00DF11C7 /* NewsEntryView.swift */; };
@@ -90,11 +85,6 @@
 		4802E9D120BA488A005A0085 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCAnnotation.swift; sourceTree = "<group>"; };
 		4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesMasterViewController.swift; sourceTree = "<group>"; };
-		4802E9D720BAE560005A0085 /* HowToMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToMasterViewController.swift; sourceTree = "<group>"; };
-		4802E9D920BAE570005A0085 /* HowToDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToDetailViewController.swift; sourceTree = "<group>"; };
-		4802E9DD20BAF509005A0085 /* AboutMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMasterViewController.swift; sourceTree = "<group>"; };
-		4802E9DF20BAF575005A0085 /* AGBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGBViewController.swift; sourceTree = "<group>"; };
-		4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDetailViewController.swift; sourceTree = "<group>"; };
 		48092C722845601D00E70913 /* FaqDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqDetailView.swift; sourceTree = "<group>"; };
 		48092C77284597CA00E70913 /* Text+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+HTML.swift"; sourceTree = "<group>"; };
 		48092C7A28462C0700E70913 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
@@ -107,7 +97,6 @@
 		48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerformanceCell.xib; sourceTree = "<group>"; };
 		48A3D22D20B33FD700C5EBDD /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		48B11244228C51310063AA7E /* StustaculumApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StustaculumApp.entitlements; sourceTree = "<group>"; };
-		48C035DE228C786500665052 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StustaculumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C03CB020B2DA1D00EED86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDayViewController.swift; sourceTree = "<group>"; };
@@ -118,11 +107,12 @@
 		48C03CC320B2DBF400EED86A /* Stustaculum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stustaculum.swift; sourceTree = "<group>"; };
 		48C03CC620B2E03000EED86A /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		48D10F6A28463B4F0090AB17 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		48D10F6D284645290090AB17 /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMasterViewController.swift; sourceTree = "<group>"; };
 		48F50E532841126200DF11C7 /* SSCDateDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDateDecoder.swift; sourceTree = "<group>"; };
 		48F50E562844299200DF11C7 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		48F50E582844340700DF11C7 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
-		48F50E5B2844CDE700DF11C7 /* UpcomingPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingPerformanceView.swift; sourceTree = "<group>"; };
+		48F50E5B2844CDE700DF11C7 /* UpcomingPerformanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingPerformanceCell.swift; sourceTree = "<group>"; };
 		48F50E5F2844D28800DF11C7 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		48F50E612844D79800DF11C7 /* ForEach+Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForEach+Values.swift"; sourceTree = "<group>"; };
 		48F50E632844E12E00DF11C7 /* NewsEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEntryView.swift; sourceTree = "<group>"; };
@@ -262,12 +252,20 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		48D10F6C284645180090AB17 /* PerformanceView */ = {
+			isa = PBXGroup;
+			children = (
+				48D10F6D284645290090AB17 /* PerformanceView.swift */,
+			);
+			path = PerformanceView;
+			sourceTree = "<group>";
+		};
 		48F50E5A2844CD0F00DF11C7 /* News View */ = {
 			isa = PBXGroup;
 			children = (
 				48F50E582844340700DF11C7 /* NewsView.swift */,
 				48F50E5F2844D28800DF11C7 /* NewsViewModel.swift */,
-				48F50E5B2844CDE700DF11C7 /* UpcomingPerformanceView.swift */,
+				48F50E5B2844CDE700DF11C7 /* UpcomingPerformanceCell.swift */,
 				48F50E632844E12E00DF11C7 /* NewsEntryView.swift */,
 			);
 			path = "News View";
@@ -294,12 +292,7 @@
 				4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */,
 				4802E9CD20BA2F80005A0085 /* PerformanceDetailViewController.swift */,
 				4802E9D120BA488A005A0085 /* MapViewController.swift */,
-				4802E9D720BAE560005A0085 /* HowToMasterViewController.swift */,
-				4802E9D920BAE570005A0085 /* HowToDetailViewController.swift */,
-				4802E9DD20BAF509005A0085 /* AboutMasterViewController.swift */,
-				4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */,
-				4802E9DF20BAF575005A0085 /* AGBViewController.swift */,
-				48C035DE228C786500665052 /* NewsViewController.swift */,
+				48D10F6C284645180090AB17 /* PerformanceView */,
 				48092C7928462BF400E70913 /* InfoView */,
 				48092C712845600100E70913 /* Faq View */,
 				48F50E5A2844CD0F00DF11C7 /* News View */,
@@ -482,8 +475,6 @@
 			files = (
 				48A3D22E20B33FD700C5EBDD /* Cells.swift in Sources */,
 				48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */,
-				4802E9DE20BAF509005A0085 /* AboutMasterViewController.swift in Sources */,
-				48C035DF228C786500665052 /* NewsViewController.swift in Sources */,
 				48092C732845601D00E70913 /* FaqDetailView.swift in Sources */,
 				4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */,
 				485BF26D20B8236000075A64 /* Timeslot.swift in Sources */,
@@ -493,12 +484,10 @@
 				4802E9CE20BA2F80005A0085 /* PerformanceDetailViewController.swift in Sources */,
 				48F50E602844D28800DF11C7 /* NewsViewModel.swift in Sources */,
 				48F6852D228CED1A007A286E /* LogoCell.swift in Sources */,
-				4802E9D820BAE560005A0085 /* HowToMasterViewController.swift in Sources */,
 				48F6852F228D7F42007A286E /* NewsCell.swift in Sources */,
 				48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */,
 				48F6853722919C0B007A286E /* DispatchGroup+NotifyTimeout.swift in Sources */,
-				4802E9E020BAF575005A0085 /* AGBViewController.swift in Sources */,
-				48F50E5C2844CDE700DF11C7 /* UpcomingPerformanceView.swift in Sources */,
+				48F50E5C2844CDE700DF11C7 /* UpcomingPerformanceCell.swift in Sources */,
 				48F6852B228C898F007A286E /* DataManager.swift in Sources */,
 				48092C78284597CA00E70913 /* Text+HTML.swift in Sources */,
 				48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */,
@@ -509,10 +498,10 @@
 				48F68531228DCC35007A286E /* UpcomingEventsCell.swift in Sources */,
 				48F50E592844340700DF11C7 /* NewsView.swift in Sources */,
 				48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */,
+				48D10F6E284645290090AB17 /* PerformanceView.swift in Sources */,
 				48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */,
 				488F14C420B7389B0058536E /* Util.swift in Sources */,
 				48C03CB320B2DA1D00EED86A /* ScheduleDayViewController.swift in Sources */,
-				4802E9DA20BAE570005A0085 /* HowToDetailViewController.swift in Sources */,
 				48092C7D284630FC00E70913 /* LinkButton.swift in Sources */,
 				48F7507C20B2FD780012FCDB /* Performance.swift in Sources */,
 				48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */,
@@ -528,7 +517,6 @@
 				4802E9D220BA488A005A0085 /* MapViewController.swift in Sources */,
 				48092C7F2846362900E70913 /* AGBView.swift in Sources */,
 				4802E9D620BAC833005A0085 /* FavouritesMasterViewController.swift in Sources */,
-				4802E9E220BAF591005A0085 /* AboutDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

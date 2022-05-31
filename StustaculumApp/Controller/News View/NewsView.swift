@@ -28,7 +28,12 @@ struct NewsView: View {
                 
                 Section {
                     ForEach(viewModel.upcomingPerformances) { performance in
-                        UpcomingPerformanceView(performance: performance)
+                        NavigationLink {
+                            PerformanceView(performance: performance)
+                        } label: {
+                            UpcomingPerformanceCell(performance: performance)
+                        }
+
                     }
                 } header: {
                     Text("Kommende Veranstaltungen")
