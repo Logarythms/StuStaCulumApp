@@ -16,18 +16,7 @@ struct UpcomingPerformanceCell: View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
                 let description = performance.getEventDescription()
-                
-                Text(description.locationName)
-                    .font(.body)
-                    .fontWeight(.heavy)
-                    .foregroundColor(.white)
-                    .padding([.leading, .trailing], 5)
-                    .padding([.top, .bottom], 2)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color(DataManager.shared.getLocationFor(performance.location)?.color() ?? Util.colorForStage(performance.location)))
-                    )
-                    .offset(x: -3)
+                LocationLabel(locationName: description.locationName, locationColor: description.locationColor)
                 if let artist = description.artist, let genre = description.genre, let attributedString = try? AttributedString(markdown: "**\(artist)** (_\(genre)_)") {
                     Text(attributedString)
                         .font(.subheadline)
@@ -50,3 +39,22 @@ struct UpcomingPerformanceCell: View {
 //        UpcomingPerformanceView()
 //    }
 //}
+
+struct LocationLabel: View {
+    let locationName: String
+    let locationColor: Color
+    
+    var body: some View {
+        Text(locationName)
+            .font(.body)
+            .fontWeight(.heavy)
+            .foregroundColor(.white)
+            .padding([.leading, .trailing], 5)
+            .padding([.top, .bottom], 2)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(locationColor)
+            )
+            .offset(x: -3)
+    }
+}

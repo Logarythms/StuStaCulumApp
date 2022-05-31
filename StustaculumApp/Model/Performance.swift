@@ -6,7 +6,8 @@
 //  Copyright © 2018 stustaculum. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import SwiftUI
 
 struct Performance: Codable, Identifiable {
     var id: Int
@@ -44,45 +45,27 @@ struct Performance: Codable, Identifiable {
         print("\(a) at \(self.date) for \(self.duration) min")
     }
     
-    func getOldEventDescription() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy - HH:mm"
-        
-        var string = ""
-        
-        string += Util.nameForLocation(self.location)
-        string += "\n"
-        string += dateFormatter.string(from: self.date)
-        string += " Uhr"
-        
-        guard let artist = self.artist else {
-            return string
-        }
-        
-        string += "\n"
-        string += artist
-        
-        return string
-    }
-    
     func getEventDescription() -> EventDescripton {
         let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "dd.MM.yyyy - HH:mm"
+        
         dateFormatter.dateFormat = "EEEE HH:mm"
         dateFormatter.locale = Locale.init(identifier: "de_DE")
                         
         let locationName = Util.nameForLocation(self.location)
         let formattedDate = dateFormatter.string(from: self.date) + " Uhr"
         
-        return EventDescripton(locationName: locationName, formattedDate: formattedDate, artist: artist, genre: genre)
+        let color = Color(DataManager.shared.getLocationFor(location)?.color() ?? Util.colorForStage(location))
+        
+        return EventDescripton(locationName: locationName, locationColor: color ,formattedDate: formattedDate, artist: artist, genre: genre)
     }
-    
-    struct EventDescripton {
-        let locationName: String
-        let formattedDate: String
-        let artist: String?
-        let genre: String?
-    }
+}
+
+struct EventDescripton {
+    let locationName: String
+    let locationColor: Color
+    let formattedDate: String
+    let artist: String?
+    let genre: String?
 }
 
 extension Performance: Equatable {
