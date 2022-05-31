@@ -63,9 +63,7 @@ extension Text {
                 text = text.font(.init(font))
             }
             
-            if let color = attrs[.foregroundColor] as? UIColor {
-                text = text.foregroundColor(Color(color))
-            }
+            text = text.foregroundColor(.primary)
             
             if let kern = attrs[.kern] as? CGFloat {
                 text = text.kerning(kern)
