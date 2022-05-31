@@ -26,7 +26,7 @@ class HowToMasterViewController: UITableViewController {
     
     @objc
     func updateHowTos() {
-        self.howTos = dataManager.getHowTos()
+        self.howTos = dataManager.howTos
         self.tableView.reloadData()
     }
 

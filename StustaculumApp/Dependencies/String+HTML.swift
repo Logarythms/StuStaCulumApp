@@ -10,15 +10,27 @@ import UIKit
 import Foundation
 
 extension UIColor {
-    var hexString:String? {
-        if let components = self.cgColor.components {
-            let r = components[0]
-            let g = components[1]
-            let b = components[2]
-            return  String(format: "%02X%02X%02X", (Int)(r * 255), (Int)(g * 255), (Int)(b * 255))
+    var hexString: String {
+            let cgColorInRGB = cgColor.converted(to: CGColorSpace(name: CGColorSpace.sRGB)!, intent: .defaultIntent, options: nil)!
+            let colorRef = cgColorInRGB.components
+            let r = colorRef?[0] ?? 0
+            let g = colorRef?[1] ?? 0
+            let b = ((colorRef?.count ?? 0) > 2 ? colorRef?[2] : g) ?? 0
+            let a = cgColor.alpha
+
+            var color = String(
+                format: "#%02lX%02lX%02lX",
+                lroundf(Float(r * 255)),
+                lroundf(Float(g * 255)),
+                lroundf(Float(b * 255))
+            )
+
+            if a < 1 {
+                color += String(format: "%02lX", lroundf(Float(a * 255)))
+            }
+
+            return color
         }
-        return nil
-    }
 }
 
 extension String {
@@ -85,7 +97,7 @@ extension String {
                 "html *" +
                 "{" +
                 "font-size: \(font.pointSize)pt !important;" +
-                "color: #\(color.hexString!) !important;" +
+                "color: #\(color.hexString) !important;" +
                 "font-family: \(font.familyName), Helvetica !important;" +
                 "}</style> \(self)"
 
@@ -109,7 +121,7 @@ extension String {
                 "html *" +
                 "{" +
                 "font-size: \(size)pt !important;" +
-                "color: #\(color.hexString!) !important;" +
+                "color: #\(color.hexString) !important;" +
                 "font-family: \(family ?? "Helvetica"), Helvetica !important;" +
             "}</style> \(self)"
 

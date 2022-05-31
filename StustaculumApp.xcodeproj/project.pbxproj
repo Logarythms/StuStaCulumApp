@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,9 @@
 		4802E9DE20BAF509005A0085 /* AboutMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9DD20BAF509005A0085 /* AboutMasterViewController.swift */; };
 		4802E9E020BAF575005A0085 /* AGBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9DF20BAF575005A0085 /* AGBViewController.swift */; };
 		4802E9E220BAF591005A0085 /* AboutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */; };
+		48092C732845601D00E70913 /* FaqDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C722845601D00E70913 /* FaqDetailView.swift */; };
+		48092C7628458FFF00E70913 /* HTML2Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = 48092C7528458FFF00E70913 /* HTML2Markdown */; };
+		48092C78284597CA00E70913 /* Text+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C77284597CA00E70913 /* Text+HTML.swift */; };
 		4842E0A0229592170089F9AB /* GeländeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4842E09F229592170089F9AB /* GeländeCell.xib */; };
 		485BF26D20B8236000075A64 /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485BF26C20B8236000075A64 /* Timeslot.swift */; };
 		488F14C020B732600058536E /* SSCDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14BF20B732600058536E /* SSCDay.swift */; };
@@ -47,6 +50,7 @@
 		48F50E642844E12E00DF11C7 /* NewsEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E632844E12E00DF11C7 /* NewsEntryView.swift */; };
 		48F50E662844EA3200DF11C7 /* List+Centered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E652844EA3200DF11C7 /* List+Centered.swift */; };
 		48F50E6828454F8200DF11C7 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E6728454F8200DF11C7 /* UIColor+Hex.swift */; };
+		48F50E6A28455FAA00DF11C7 /* FaqListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E6928455FAA00DF11C7 /* FaqListView.swift */; };
 		48F6852B228C898F007A286E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852A228C898F007A286E /* DataManager.swift */; };
 		48F6852D228CED1A007A286E /* LogoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852C228CED1A007A286E /* LogoCell.swift */; };
 		48F6852F228D7F42007A286E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852E228D7F42007A286E /* NewsCell.swift */; };
@@ -88,6 +92,8 @@
 		4802E9DD20BAF509005A0085 /* AboutMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMasterViewController.swift; sourceTree = "<group>"; };
 		4802E9DF20BAF575005A0085 /* AGBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGBViewController.swift; sourceTree = "<group>"; };
 		4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDetailViewController.swift; sourceTree = "<group>"; };
+		48092C722845601D00E70913 /* FaqDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqDetailView.swift; sourceTree = "<group>"; };
+		48092C77284597CA00E70913 /* Text+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+HTML.swift"; sourceTree = "<group>"; };
 		4842E09F229592170089F9AB /* GeländeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GeländeCell.xib"; sourceTree = "<group>"; };
 		485BF26C20B8236000075A64 /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		488F14BF20B732600058536E /* SSCDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDay.swift; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 		48F50E632844E12E00DF11C7 /* NewsEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEntryView.swift; sourceTree = "<group>"; };
 		48F50E652844EA3200DF11C7 /* List+Centered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Centered.swift"; sourceTree = "<group>"; };
 		48F50E6728454F8200DF11C7 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		48F50E6928455FAA00DF11C7 /* FaqListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqListView.swift; sourceTree = "<group>"; };
 		48F6852A228C898F007A286E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		48F6852C228CED1A007A286E /* LogoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoCell.swift; sourceTree = "<group>"; };
 		48F6852E228D7F42007A286E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -143,12 +150,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				656C9D74B2EF55C7A566EFA9 /* Pods_StustaculumApp.framework in Frameworks */,
+				48092C7628458FFF00E70913 /* HTML2Markdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48092C712845600100E70913 /* Faq View */ = {
+			isa = PBXGroup;
+			children = (
+				48F50E6928455FAA00DF11C7 /* FaqListView.swift */,
+				48092C722845601D00E70913 /* FaqDetailView.swift */,
+			);
+			path = "Faq View";
+			sourceTree = "<group>";
+		};
 		488F14C220B738930058536E /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +177,7 @@
 				48F50E562844299200DF11C7 /* UIImage+Resize.swift */,
 				48F50E652844EA3200DF11C7 /* List+Centered.swift */,
 				48F50E612844D79800DF11C7 /* ForEach+Values.swift */,
+				48092C77284597CA00E70913 /* Text+HTML.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -265,6 +283,7 @@
 				4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */,
 				4802E9DF20BAF575005A0085 /* AGBViewController.swift */,
 				48C035DE228C786500665052 /* NewsViewController.swift */,
+				48092C712845600100E70913 /* Faq View */,
 				48F50E5A2844CD0F00DF11C7 /* News View */,
 			);
 			path = Controller;
@@ -326,6 +345,9 @@
 			dependencies = (
 			);
 			name = StustaculumApp;
+			packageProductDependencies = (
+				48092C7528458FFF00E70913 /* HTML2Markdown */,
+			);
 			productName = StustaculumApp;
 			productReference = 48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */;
 			productType = "com.apple.product-type.application";
@@ -360,6 +382,9 @@
 				Base,
 			);
 			mainGroup = 48C03CA420B2DA1D00EED86A;
+			packageReferences = (
+				48092C7428458FFF00E70913 /* XCRemoteSwiftPackageReference "HTML2Markdown" */,
+			);
 			productRefGroup = 48C03CAE20B2DA1D00EED86A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -443,6 +468,7 @@
 				48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */,
 				4802E9DE20BAF509005A0085 /* AboutMasterViewController.swift in Sources */,
 				48C035DF228C786500665052 /* NewsViewController.swift in Sources */,
+				48092C732845601D00E70913 /* FaqDetailView.swift in Sources */,
 				4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */,
 				485BF26D20B8236000075A64 /* Timeslot.swift in Sources */,
 				4802E9D020BA3D0F005A0085 /* String+HTML.swift in Sources */,
@@ -458,6 +484,7 @@
 				4802E9E020BAF575005A0085 /* AGBViewController.swift in Sources */,
 				48F50E5C2844CDE700DF11C7 /* UpcomingPerformanceView.swift in Sources */,
 				48F6852B228C898F007A286E /* DataManager.swift in Sources */,
+				48092C78284597CA00E70913 /* Text+HTML.swift in Sources */,
 				48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */,
 				48F68535228F2AD9007A286E /* SSCMapOverlayView.swift in Sources */,
 				48F50E6828454F8200DF11C7 /* UIColor+Hex.swift in Sources */,
@@ -474,6 +501,7 @@
 				48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */,
 				48F50E642844E12E00DF11C7 /* NewsEntryView.swift in Sources */,
 				48F50E662844EA3200DF11C7 /* List+Centered.swift in Sources */,
+				48F50E6A28455FAA00DF11C7 /* FaqListView.swift in Sources */,
 				48F50E572844299200DF11C7 /* UIImage+Resize.swift in Sources */,
 				488F14C020B732600058536E /* SSCDay.swift in Sources */,
 				48F7507820B2F3950012FCDB /* Location.swift in Sources */,
@@ -692,6 +720,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		48092C7428458FFF00E70913 /* XCRemoteSwiftPackageReference "HTML2Markdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://gitlab.com/mflint/HTML2Markdown";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		48092C7528458FFF00E70913 /* HTML2Markdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 48092C7428458FFF00E70913 /* XCRemoteSwiftPackageReference "HTML2Markdown" */;
+			productName = HTML2Markdown;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 48C03CA520B2DA1D00EED86A /* Project object */;
 }

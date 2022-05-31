@@ -12,6 +12,7 @@ import SVProgressHUD
 class DataManager: ObservableObject {
     
     @Published var news = [NewsEntry]()
+    @Published var howTos = [HowTo]()
     @Published var logo: UIImage?
     
     private let decoder = JSONDecoder()
@@ -25,7 +26,6 @@ class DataManager: ObservableObject {
             updateSSCDays()
         }
     }
-    private var howTos: [HowTo]?
     
     var days = [SSCDay]()
     var locations = [Location]()
@@ -60,13 +60,6 @@ class DataManager: ObservableObject {
     
     func getCurrentSSC() -> Stustaculum? {
         return currentSSC
-    }
-    
-    func getHowTos() -> [HowTo] {
-        guard let howTos = self.howTos else {
-            return [HowTo]()
-        }
-        return howTos
     }
     
     func validatePerformances(_ performances: [Performance]) -> Bool {
@@ -504,6 +497,11 @@ extension DataManager {
         
     }
     
+    @MainActor
+    func publishHowTos(_ howTos: [HowTo]) {
+        self.howTos = howTos
+    }
+    
     private func downloadHowTos() async -> Bool {
         do {
             let howTos = try await networkingManager.getHowTos()
@@ -513,9 +511,10 @@ extension DataManager {
             let path = savePathURLFor(.howTos)
             try encodedData.write(to: path)
             
-            self.howTos = howTos
             print("howTos loaded")
-
+            
+            await self.publishHowTos(howTos.sorted { $0.title < $1.title })
+            
             return true
         } catch let error {
             print(error)
