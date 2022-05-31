@@ -10,6 +10,7 @@ import UIKit
 import SpreadsheetView
 import XLPagerTabStrip
 import SVProgressHUD
+import SwiftUI
 
 class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetViewDelegate, IndicatorInfoProvider {
     
@@ -254,7 +255,10 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
             return
         }
         self.selectedPerformance = performance
-        self.performSegue(withIdentifier: "performanceDetailSegue", sender: self)
+        
+        let performanceView = UIHostingController(rootView: PerformanceView(performance: performance))
+        
+        self.navigationController?.pushViewController(performanceView, animated: true)
     }
     
 //    func spreadsheetView(_ spreadsheetView: SpreadsheetView, didSelectItemAt indexPath: IndexPath) {
@@ -417,26 +421,6 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
         
         spreadsheetView.reloadData()
         spreadsheetView.reloadData()
-    }
-     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "performanceDetailSegue" {
-            guard let performanceVC = segue.destination as? PerformanceDetailViewController else { return }
-            guard let performance = self.selectedPerformance else {
-                return
-            }
-            
-            performanceVC.performance = performance
-            performanceVC.scheduleDayViewController = self
-            performanceVC.favourites = self.favouritePerformances
-        } else if segue.identifier == "favorite" {
-            guard   let navVC = segue.destination as? UINavigationController,
-                    let favoritesVC = navVC.viewControllers.first as? ScheduleDayViewController else {
-                    
-                    return
-            }
-            favoritesVC.isFavouritesController = true
-        }
     }
 
     override func didReceiveMemoryWarning() {

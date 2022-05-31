@@ -57,8 +57,8 @@ struct PerformanceView: View {
                 Text(html: performance.description ?? "", size: 15)
                     .padding()
                     .font(.body)
-                    .navigationTitle(performance.artist ?? "Veranstaltung")
             }
+            .navigationTitle(performance.artist ?? "Veranstaltung")
         }
     }
     

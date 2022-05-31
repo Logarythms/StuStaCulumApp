@@ -38,6 +38,8 @@
 		48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC620B2E03000EED86A /* NetworkingManager.swift */; };
 		48D10F6B28463B4F0090AB17 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F6A28463B4F0090AB17 /* AboutView.swift */; };
 		48D10F6E284645290090AB17 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F6D284645290090AB17 /* PerformanceView.swift */; };
+		48D10F7128466BA80090AB17 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F7028466BA80090AB17 /* ScheduleView.swift */; };
+		48D10F7328466E640090AB17 /* ScheduleHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F7228466E640090AB17 /* ScheduleHostView.swift */; };
 		48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */; };
 		48F50E542841126200DF11C7 /* SSCDateDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E532841126200DF11C7 /* SSCDateDecoder.swift */; };
 		48F50E572844299200DF11C7 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E562844299200DF11C7 /* UIImage+Resize.swift */; };
@@ -108,6 +110,8 @@
 		48C03CC620B2E03000EED86A /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		48D10F6A28463B4F0090AB17 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		48D10F6D284645290090AB17 /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
+		48D10F7028466BA80090AB17 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		48D10F7228466E640090AB17 /* ScheduleHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHostView.swift; sourceTree = "<group>"; };
 		48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMasterViewController.swift; sourceTree = "<group>"; };
 		48F50E532841126200DF11C7 /* SSCDateDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDateDecoder.swift; sourceTree = "<group>"; };
 		48F50E562844299200DF11C7 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
@@ -162,7 +166,7 @@
 			path = "Faq View";
 			sourceTree = "<group>";
 		};
-		48092C7928462BF400E70913 /* InfoView */ = {
+		48092C7928462BF400E70913 /* Info View */ = {
 			isa = PBXGroup;
 			children = (
 				48092C7A28462C0700E70913 /* InfoView.swift */,
@@ -170,7 +174,7 @@
 				48092C7C284630FC00E70913 /* LinkButton.swift */,
 				48D10F6A28463B4F0090AB17 /* AboutView.swift */,
 			);
-			path = InfoView;
+			path = "Info View";
 			sourceTree = "<group>";
 		};
 		488F14C220B738930058536E /* Dependencies */ = {
@@ -260,6 +264,15 @@
 			path = PerformanceView;
 			sourceTree = "<group>";
 		};
+		48D10F6F28466B5E0090AB17 /* ScheduleView */ = {
+			isa = PBXGroup;
+			children = (
+				48D10F7028466BA80090AB17 /* ScheduleView.swift */,
+				48D10F7228466E640090AB17 /* ScheduleHostView.swift */,
+			);
+			path = ScheduleView;
+			sourceTree = "<group>";
+		};
 		48F50E5A2844CD0F00DF11C7 /* News View */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,13 +300,14 @@
 		48F7507D20B302630012FCDB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				48D10F6F28466B5E0090AB17 /* ScheduleView */,
 				48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */,
 				48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */,
 				4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */,
 				4802E9CD20BA2F80005A0085 /* PerformanceDetailViewController.swift */,
 				4802E9D120BA488A005A0085 /* MapViewController.swift */,
 				48D10F6C284645180090AB17 /* PerformanceView */,
-				48092C7928462BF400E70913 /* InfoView */,
+				48092C7928462BF400E70913 /* Info View */,
 				48092C712845600100E70913 /* Faq View */,
 				48F50E5A2844CD0F00DF11C7 /* News View */,
 			);
@@ -478,6 +492,7 @@
 				48092C732845601D00E70913 /* FaqDetailView.swift in Sources */,
 				4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */,
 				485BF26D20B8236000075A64 /* Timeslot.swift in Sources */,
+				48D10F7128466BA80090AB17 /* ScheduleView.swift in Sources */,
 				4802E9D020BA3D0F005A0085 /* String+HTML.swift in Sources */,
 				48F50E622844D79800DF11C7 /* ForEach+Values.swift in Sources */,
 				48F50E542841126200DF11C7 /* SSCDateDecoder.swift in Sources */,
@@ -491,6 +506,7 @@
 				48F6852B228C898F007A286E /* DataManager.swift in Sources */,
 				48092C78284597CA00E70913 /* Text+HTML.swift in Sources */,
 				48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */,
+				48D10F7328466E640090AB17 /* ScheduleHostView.swift in Sources */,
 				48F68535228F2AD9007A286E /* SSCMapOverlayView.swift in Sources */,
 				48F50E6828454F8200DF11C7 /* UIColor+Hex.swift in Sources */,
 				48F68533228F1F97007A286E /* SSCMapOverlay.swift in Sources */,
