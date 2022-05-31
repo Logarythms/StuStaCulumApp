@@ -18,6 +18,8 @@ class Util {
     static let zeltColor = UIColor(red:0.00, green:0.45, blue:0.64, alpha:1.0)
     static let geländeColor = UIColor(red:0.38, green:0.38, blue:0.38, alpha:1.0)
     
+    static let ssc2022Color = UIColor(red: 0.92, green: 0.15, blue: 0.76, alpha: 1.00)
+    
     static var backgroundColor = UIColor(red:0.18, green:0.18, blue:0.18, alpha:1.0)
     static var stageCellBackgroundColor = UIColor(red:0.26, green:0.26, blue:0.26, alpha:1.0)
     

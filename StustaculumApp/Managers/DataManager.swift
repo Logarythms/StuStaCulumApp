@@ -30,6 +30,11 @@ class DataManager: ObservableObject {
     var days = [SSCDay]()
     var locations = [Location]()
     
+    let aboutURLs = [("Offizielle Website", URL(string: "https://www.stustaculum.de")!),
+                     ("Instagram", URL(string: "https://instagram.com/stustaculum/")!),
+                     ("Twitter", URL(string: "https://twitter.com/stustaculum")!),
+                     ("Facebook", URL(string: "https://www.facebook.com/StuStaCulum/")!)]
+    
     static let shared = DataManager()
     
     func updateSSCDays() {

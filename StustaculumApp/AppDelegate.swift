@@ -16,12 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//
-//        UITabBar.appearance().barTintColor = .black
-        UITabBar.appearance().tintColor = UIColor(red: 0.92, green: 0.15, blue: 0.76, alpha: 1.00)
-        
-//        UINavigationBar.appearance().backgroundColor = Util.backgroundColor
-//        UINavigationBar.appearance().tintColor = .white
         
         self.registerForPushNotifications()
         

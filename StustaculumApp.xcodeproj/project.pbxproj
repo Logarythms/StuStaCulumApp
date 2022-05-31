@@ -25,6 +25,9 @@
 		4802E9E220BAF591005A0085 /* AboutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */; };
 		48092C732845601D00E70913 /* FaqDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C722845601D00E70913 /* FaqDetailView.swift */; };
 		48092C78284597CA00E70913 /* Text+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C77284597CA00E70913 /* Text+HTML.swift */; };
+		48092C7B28462C0700E70913 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C7A28462C0700E70913 /* AboutView.swift */; };
+		48092C7D284630FC00E70913 /* LinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C7C284630FC00E70913 /* LinkButton.swift */; };
+		48092C7F2846362900E70913 /* AGBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C7E2846362900E70913 /* AGBView.swift */; };
 		4842E0A0229592170089F9AB /* GeländeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4842E09F229592170089F9AB /* GeländeCell.xib */; };
 		485BF26D20B8236000075A64 /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485BF26C20B8236000075A64 /* Timeslot.swift */; };
 		488F14C020B732600058536E /* SSCDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14BF20B732600058536E /* SSCDay.swift */; };
@@ -93,6 +96,9 @@
 		4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDetailViewController.swift; sourceTree = "<group>"; };
 		48092C722845601D00E70913 /* FaqDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqDetailView.swift; sourceTree = "<group>"; };
 		48092C77284597CA00E70913 /* Text+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+HTML.swift"; sourceTree = "<group>"; };
+		48092C7A28462C0700E70913 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		48092C7C284630FC00E70913 /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
+		48092C7E2846362900E70913 /* AGBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGBView.swift; sourceTree = "<group>"; };
 		4842E09F229592170089F9AB /* GeländeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GeländeCell.xib"; sourceTree = "<group>"; };
 		485BF26C20B8236000075A64 /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		488F14BF20B732600058536E /* SSCDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDay.swift; sourceTree = "<group>"; };
@@ -162,6 +168,16 @@
 				48092C722845601D00E70913 /* FaqDetailView.swift */,
 			);
 			path = "Faq View";
+			sourceTree = "<group>";
+		};
+		48092C7928462BF400E70913 /* AboutView */ = {
+			isa = PBXGroup;
+			children = (
+				48092C7A28462C0700E70913 /* AboutView.swift */,
+				48092C7E2846362900E70913 /* AGBView.swift */,
+				48092C7C284630FC00E70913 /* LinkButton.swift */,
+			);
+			path = AboutView;
 			sourceTree = "<group>";
 		};
 		488F14C220B738930058536E /* Dependencies */ = {
@@ -281,6 +297,7 @@
 				4802E9E120BAF591005A0085 /* AboutDetailViewController.swift */,
 				4802E9DF20BAF575005A0085 /* AGBViewController.swift */,
 				48C035DE228C786500665052 /* NewsViewController.swift */,
+				48092C7928462BF400E70913 /* AboutView */,
 				48092C712845600100E70913 /* Faq View */,
 				48F50E5A2844CD0F00DF11C7 /* News View */,
 			);
@@ -493,9 +510,11 @@
 				488F14C420B7389B0058536E /* Util.swift in Sources */,
 				48C03CB320B2DA1D00EED86A /* ScheduleDayViewController.swift in Sources */,
 				4802E9DA20BAE570005A0085 /* HowToDetailViewController.swift in Sources */,
+				48092C7D284630FC00E70913 /* LinkButton.swift in Sources */,
 				48F7507C20B2FD780012FCDB /* Performance.swift in Sources */,
 				48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */,
 				48F50E642844E12E00DF11C7 /* NewsEntryView.swift in Sources */,
+				48092C7B28462C0700E70913 /* AboutView.swift in Sources */,
 				48F50E662844EA3200DF11C7 /* List+Centered.swift in Sources */,
 				48F50E6A28455FAA00DF11C7 /* FaqListView.swift in Sources */,
 				48F50E572844299200DF11C7 /* UIImage+Resize.swift in Sources */,
@@ -503,6 +522,7 @@
 				48F7507820B2F3950012FCDB /* Location.swift in Sources */,
 				48F685472291B245007A286E /* Reachability.swift in Sources */,
 				4802E9D220BA488A005A0085 /* MapViewController.swift in Sources */,
+				48092C7F2846362900E70913 /* AGBView.swift in Sources */,
 				4802E9D620BAC833005A0085 /* FavouritesMasterViewController.swift in Sources */,
 				4802E9E220BAF591005A0085 /* AboutDetailViewController.swift in Sources */,
 			);
@@ -651,6 +671,7 @@
 			baseConfigurationReference = 1B3E3F778DA1B8CCDD686A63 /* Pods-StustaculumApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = SSC2022;
 				CODE_SIGN_ENTITLEMENTS = StustaculumApp/StustaculumApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
@@ -675,6 +696,7 @@
 			baseConfigurationReference = 18BE3EC760297CD2FCFD742A /* Pods-StustaculumApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = SSC2022;
 				CODE_SIGN_ENTITLEMENTS = StustaculumApp/StustaculumApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
