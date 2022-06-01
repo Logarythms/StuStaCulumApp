@@ -414,10 +414,7 @@ class ScheduleDayViewController: UIViewController, SpreadsheetViewDataSource, Sp
 //        self.timeslotsHalle = timeslots.2
         self.timeslotsZelt = timeslots.2
         self.timeslotsGelände = timeslots.3
-        
-        if UIDevice.current.systemVersion.contains("10") {
-            pvc?.moveToViewController(at: 1)
-        }
+
         
         spreadsheetView.reloadData()
         spreadsheetView.reloadData()

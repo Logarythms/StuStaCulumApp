@@ -14,19 +14,44 @@ struct NewScheduleView: View {
     let day: SSCDay
     
     var body: some View {
-        ScrollView {
-//            HStack(alignment: .top) {
-//                ForEach(Stage.allCases, id: \.rawValue) { stage in
-//                    LocationLabel(locationName: Util.nameForLocation(stage.rawValue), locationColor: Color(dataManager.getLocationFor(stage)?.color() ?? Util.colorForStage(stage.rawValue)))
-//                }
-//            }
-//            .frame(height: 40)
-            HStack(alignment: .top, spacing: 5) {
+        let width = (UIScreen.main.bounds.size.width - 55) / 4
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(alignment: .top, spacing: 0) {
+                Text("")
+                    .frame(width: 40, height: 40)
+                    .background(Color(UIColor.tertiarySystemGroupedBackground))
+                    
                 ForEach(Stage.allCases, id: \.rawValue) { stage in
-                    VStack(alignment: .center) {
-                        LocationLabel(locationName: Util.nameForLocation(stage.rawValue), locationColor: Color(dataManager.getLocationFor(stage)?.color() ?? Util.colorForStage(stage.rawValue)))
-                            .frame(height: 40)
+//                    Spacer()
+//                        .frame(width: stage != .dada ? 2.5 : 0, alignment: .trailing)
+                    Text(Util.nameForLocation(stage.rawValue))
+                        .font(.subheadline)
+                        .fontWeight(.heavy)
+                        .frame(width: width, height: 40, alignment: .center)
+                        .background(Color(dataManager.getLocationFor(stage)?.color() ?? Util.colorForStage(stage.rawValue)))
+                    Spacer()
+                        .frame(width: stage != .gelände ? 5 : 0)
+                    
+                }
+            }
+            .frame(height: 40)
+            ScrollView {
+                Spacer()
+                    .frame(height: 10)
+                HStack(alignment: .top, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        ForEach(day.getScheduleTimeStrings(), id: \.self) { timeString in
+                            Text(timeString)
+                                .font(.caption)
+                                .bold()
+                                .foregroundColor(.white)
+                                .frame(width: 40, height: 58, alignment: .top)
+                        }
+                    }
+                    ForEach(Stage.allCases, id: \.rawValue) { stage in
                         DaySchedule(timeslots: dataManager.getTimeslotsFor(day, location: stage))
+                        Spacer()
+                            .frame(width: stage != .gelände ? 5 : 0)
                     }
                 }
             }

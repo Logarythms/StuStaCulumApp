@@ -34,26 +34,27 @@ struct DaySchedule: View {
 }
 
 struct EmptCell: View {
-    let duration: Int 
+    let duration: Int
+    let width = (UIScreen.main.bounds.size.width - 55) / 4
+    
     var body: some View {
         VStack {
-            Text("\(duration)")
-            Spacer()
+           Text("")
         }
-        .frame(height: CGFloat(duration * 2 - 4))
+        .frame(width: width, height: CGFloat(duration * 2 - 4))
+//        .background(Color(UIColor.secondarySystemGroupedBackground))
         .cornerRadius(10)
-        .border(.yellow, width: 3)
+//        .shadow(color: .gray, radius: 3)
+//        .border(.yellow, width: 3)
     }
 }
 
 struct PerformCell: View {
-    @Environment(\.colorScheme) var colorScheme
-    
     let performance: Performance
     let artist: String
     let description: EventDescripton
     
-    let width = (UIScreen.main.bounds.size.width - 10) / 4
+    let width = (UIScreen.main.bounds.size.width - 55) / 4
     
     init(performance: Performance) {
         self.performance = performance
@@ -64,9 +65,8 @@ struct PerformCell: View {
     var body: some View {
         VStack(alignment: .center) {
             Text(artist)
-                .font(.system(size: 12))
+                .font(.system(size: 11))
                 .fontWeight(.heavy)
-//                .lineLimit(3)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
                 .padding([.top], 5)
@@ -77,7 +77,7 @@ struct PerformCell: View {
         .frame(width: width, height: CGFloat(performance.duration * 2 - 4))
         .background(description.locationColor)
         .cornerRadius(8)
-        .shadow(color: .gray, radius: 3)
+//        .shadow(color: .gray, radius: 2)
     }
 }
 

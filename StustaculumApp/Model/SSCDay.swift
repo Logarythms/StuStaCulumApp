@@ -60,7 +60,7 @@ struct SSCDay: Identifiable {
         self.date = date
         self.minHour = minHour
         self.maxHour = minHour + duration
-        self.duration = duration
+        self.duration = duration * 60
         self.day = day
         self.startOfDay = startOfDay
         self.endOfDay = endOfDay
@@ -111,6 +111,25 @@ struct SSCDay: Identifiable {
         dateFormatter.dateFormat = "EE"
         dateFormatter.locale = Locale(identifier: "de_DE")
         return dateFormatter.string(from: self.date)
+    }
+    
+    func getScheduleTimeStrings() -> [String] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        var strings: [String] = []
+        
+        var currentDate = self.startOfDay
+        
+        while (currentDate < self.endOfDay) {
+            strings.append(dateFormatter.string(from: currentDate))
+            guard let nextDate = calendar.date(byAdding: .minute, value: 30, to: currentDate) else {
+                break
+            }
+            currentDate = nextDate
+        }
+        
+        return strings
     }
 }
 
