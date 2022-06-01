@@ -29,6 +29,8 @@
 		488F14C420B7389B0058536E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14C320B7389B0058536E /* Util.swift */; };
 		48A3D22C20B33E0F00C5EBDD /* PerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */; };
 		48A3D22E20B33FD700C5EBDD /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A3D22D20B33FD700C5EBDD /* Cells.swift */; };
+		48A830652846E72B0005D871 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830642846E72B0005D871 /* MapView.swift */; };
+		48A830672846E85D0005D871 /* MapHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830662846E85D0005D871 /* MapHostView.swift */; };
 		48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB020B2DA1D00EED86A /* AppDelegate.swift */; };
 		48C03CB320B2DA1D00EED86A /* ScheduleDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */; };
 		48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB420B2DA1D00EED86A /* Main.storyboard */; };
@@ -99,6 +101,8 @@
 		488F14C320B7389B0058536E /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerformanceCell.xib; sourceTree = "<group>"; };
 		48A3D22D20B33FD700C5EBDD /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
+		48A830642846E72B0005D871 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		48A830662846E85D0005D871 /* MapHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHostView.swift; sourceTree = "<group>"; };
 		48B11244228C51310063AA7E /* StustaculumApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StustaculumApp.entitlements; sourceTree = "<group>"; };
 		48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StustaculumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C03CB020B2DA1D00EED86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +197,15 @@
 				48092C77284597CA00E70913 /* Text+HTML.swift */,
 			);
 			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		48A830632846E71B0005D871 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				48A830642846E72B0005D871 /* MapView.swift */,
+				48A830662846E85D0005D871 /* MapHostView.swift */,
+			);
+			path = MapView;
 			sourceTree = "<group>";
 		};
 		48C03CA420B2DA1D00EED86A = {
@@ -302,6 +315,7 @@
 		48F7507D20B302630012FCDB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				48A830632846E71B0005D871 /* MapView */,
 				48D10F6F28466B5E0090AB17 /* ScheduleView */,
 				48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */,
 				48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */,
@@ -494,6 +508,7 @@
 				48A3D22E20B33FD700C5EBDD /* Cells.swift in Sources */,
 				48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */,
 				48092C732845601D00E70913 /* FaqDetailView.swift in Sources */,
+				48A830672846E85D0005D871 /* MapHostView.swift in Sources */,
 				4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */,
 				485BF26D20B8236000075A64 /* Timeslot.swift in Sources */,
 				48D10F7128466BA80090AB17 /* ScheduleMainView.swift in Sources */,
@@ -530,6 +545,7 @@
 				48F50E662844EA3200DF11C7 /* List+Centered.swift in Sources */,
 				48F50E6A28455FAA00DF11C7 /* FaqListView.swift in Sources */,
 				48F50E572844299200DF11C7 /* UIImage+Resize.swift in Sources */,
+				48A830652846E72B0005D871 /* MapView.swift in Sources */,
 				488F14C020B732600058536E /* SSCDay.swift in Sources */,
 				48F7507820B2F3950012FCDB /* Location.swift in Sources */,
 				48D10F6B28463B4F0090AB17 /* AboutView.swift in Sources */,

@@ -62,7 +62,6 @@
         <!--Schedule Day View Controller-->
         <scene sceneID="0gn-Hm-nxt">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ywE-rI-brR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="dayViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sVF-Sa-im8" customClass="ScheduleDayViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Eq-uM-jdW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -85,19 +84,20 @@
                         <outlet property="spreadsheetView" destination="DNR-L8-XP9" id="jUe-iw-QBC"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ywE-rI-brR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2886" y="785"/>
         </scene>
         <!--Karte-->
         <scene sceneID="YFS-fz-8Yp">
             <objects>
-                <viewController id="B59-dA-rkg" customClass="MapViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B59-dA-rkg" customClass="MapViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Avn-dA-PsD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rua-jQ-vxD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1DX-qS-3ab"/>
@@ -130,7 +130,7 @@
                     <connections>
                         <segue destination="RaQ-eW-Jxx" kind="relationship" relationship="viewControllers" id="yUJ-Jj-ohM"/>
                         <segue destination="F9w-9N-oJe" kind="relationship" relationship="viewControllers" id="4gA-Rt-nQS"/>
-                        <segue destination="kc7-Fv-te2" kind="relationship" relationship="viewControllers" id="JGn-dk-6bl"/>
+                        <segue destination="F9g-8h-42v" kind="relationship" relationship="viewControllers" id="7vP-dW-fqX"/>
                         <segue destination="PnR-NN-9sQ" kind="relationship" relationship="viewControllers" id="MUa-3o-S2K"/>
                         <segue destination="YcR-fL-aWI" kind="relationship" relationship="viewControllers" id="23t-GL-O4F"/>
                     </connections>
@@ -282,6 +282,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMF-Vn-Hlr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1009" y="-83"/>
+        </scene>
+        <!--Karte-->
+        <scene sceneID="SXD-U4-4aR">
+            <objects>
+                <hostingController id="F9g-8h-42v" customClass="MapViewHostingController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Karte" id="cRz-RU-qp5">
+                        <imageReference key="image" image="map.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="map.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z7Q-C9-qaG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1062" y="769"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.21176470588235294" green="0.49803921568627452" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

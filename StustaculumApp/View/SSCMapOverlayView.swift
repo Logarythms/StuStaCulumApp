@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class SSCMapOverlayView: MKOverlayRenderer {
-    let overlayImage = UIImage(named: "mapOverlay")
+    let overlayImage = UIImage(named: "mapOverlay2022")
     
     override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
         guard let imageReference = overlayImage?.cgImage else { return }
