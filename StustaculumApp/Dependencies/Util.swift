@@ -20,8 +20,8 @@ class Util {
     
     static let ssc2022Color = UIColor(red: 0.92, green: 0.15, blue: 0.76, alpha: 1.00)
     
-//    static var backgroundColor = UIColor(red:0.18, green:0.18, blue:0.18, alpha:1.0)
-    static let backgroundColor = UIColor(named: "Background")!
+    static var backgroundColor = UIColor(red:0.18, green:0.18, blue:0.18, alpha:1.0)
+//    static let backgroundColor = UIColor(named: "Background")!
     static var stageCellBackgroundColor = UIColor(red:0.26, green:0.26, blue:0.26, alpha:1.0)
     
     class func getLastUpdatedFor(_ performances: [Performance]?) -> Date {
