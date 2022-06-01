@@ -105,7 +105,7 @@ class AtriumCell: PerformanceCell {
 }
 
 class HalleCell: PerformanceCell {
-    private let fillColor = DataManager.shared.getLocationFor(.halle)?.color() ?? Util.halleColor
+    private let fillColor = DataManager.shared.getLocationFor(3)?.color() ?? Util.halleColor
     @IBOutlet weak var title: UILabel!
     
     override func layoutSubviews() {

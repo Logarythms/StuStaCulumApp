@@ -31,6 +31,8 @@
 		48A3D22E20B33FD700C5EBDD /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A3D22D20B33FD700C5EBDD /* Cells.swift */; };
 		48A830652846E72B0005D871 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830642846E72B0005D871 /* MapView.swift */; };
 		48A830672846E85D0005D871 /* MapHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830662846E85D0005D871 /* MapHostView.swift */; };
+		48A830692847817D0005D871 /* NewScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830682847817C0005D871 /* NewScheduleView.swift */; };
+		48A8306B284781D50005D871 /* DaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A8306A284781D50005D871 /* DaySchedule.swift */; };
 		48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB020B2DA1D00EED86A /* AppDelegate.swift */; };
 		48C03CB320B2DA1D00EED86A /* ScheduleDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */; };
 		48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB420B2DA1D00EED86A /* Main.storyboard */; };
@@ -103,6 +105,8 @@
 		48A3D22D20B33FD700C5EBDD /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		48A830642846E72B0005D871 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		48A830662846E85D0005D871 /* MapHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHostView.swift; sourceTree = "<group>"; };
+		48A830682847817C0005D871 /* NewScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewScheduleView.swift; sourceTree = "<group>"; };
+		48A8306A284781D50005D871 /* DaySchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySchedule.swift; sourceTree = "<group>"; };
 		48B11244228C51310063AA7E /* StustaculumApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StustaculumApp.entitlements; sourceTree = "<group>"; };
 		48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StustaculumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C03CB020B2DA1D00EED86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -284,6 +288,8 @@
 			children = (
 				48D10F7028466BA80090AB17 /* ScheduleMainView.swift */,
 				48D10F7228466E640090AB17 /* ScheduleHostView.swift */,
+				48A830682847817C0005D871 /* NewScheduleView.swift */,
+				48A8306A284781D50005D871 /* DaySchedule.swift */,
 			);
 			path = ScheduleView;
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 				48092C732845601D00E70913 /* FaqDetailView.swift in Sources */,
 				48A830672846E85D0005D871 /* MapHostView.swift in Sources */,
 				4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */,
+				48A8306B284781D50005D871 /* DaySchedule.swift in Sources */,
 				485BF26D20B8236000075A64 /* Timeslot.swift in Sources */,
 				48D10F7128466BA80090AB17 /* ScheduleMainView.swift in Sources */,
 				4802E9D020BA3D0F005A0085 /* String+HTML.swift in Sources */,
@@ -519,6 +526,7 @@
 				48F50E602844D28800DF11C7 /* NewsViewModel.swift in Sources */,
 				48F6852D228CED1A007A286E /* LogoCell.swift in Sources */,
 				48F6852F228D7F42007A286E /* NewsCell.swift in Sources */,
+				48A830692847817D0005D871 /* NewScheduleView.swift in Sources */,
 				48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */,
 				48F6853722919C0B007A286E /* DispatchGroup+NotifyTimeout.swift in Sources */,
 				48F50E5C2844CDE700DF11C7 /* UpcomingPerformanceCell.swift in Sources */,

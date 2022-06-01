@@ -41,10 +41,10 @@ struct Location: Codable {
     }
 }
 
-enum Stage: Int {
+enum Stage: Int, CaseIterable {
     case dada = 1
     case atrium = 2
-    case halle = 3
+//    case halle = 3
     case zelt = 4
     case gelände = 5
 }

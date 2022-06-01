@@ -8,7 +8,6 @@
 
 import SwiftUI
 import PagerTabStripView
-
 struct ScheduleHostView: View {
     @ObservedObject var dataManager = DataManager.shared
     
@@ -16,13 +15,24 @@ struct ScheduleHostView: View {
         NavigationView {
             PagerTabStripView {
                 ForEach(dataManager.days) { day in
-                    ScheduleView(day: day)
+                    NewScheduleView(day: day)
                         .pagerTabItem {
                             Text(day.getShortWeekDay())
                         }
+                        
                 }
             }
-            .pagerTabStripViewStyle(.segmentedControl(backgroundColor: Color(Util.ssc2022Color)))
+            .background(Color("UIColor.secondarySystemGroupedBackground"))
+            .pagerTabStripViewStyle(.segmentedControl(backgroundColor: .accentColor))
+//            PagerTabStripView {
+//                ForEach(dataManager.days) { day in
+//                    ScheduleView(day: day)
+//                        .pagerTabItem {
+//                            Text(day.getShortWeekDay())
+//                        }
+//                }
+//            }
+//            .pagerTabStripViewStyle(.segmentedControl(backgroundColor: Color(Util.ssc2022Color)))
             .navigationTitle("Zeitplan")
         }
     }

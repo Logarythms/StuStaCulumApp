@@ -55,8 +55,12 @@ class Util {
             return "Atrium"
         case 3:
             return "Hans-Scholl-Halle"
-        default:
+        case 4:
             return "Festzelt"
+        case 5:
+            return "Gelände"
+        default:
+            return ""
         }
     }
     

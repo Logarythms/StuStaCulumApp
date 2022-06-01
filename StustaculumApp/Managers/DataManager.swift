@@ -85,6 +85,13 @@ class DataManager: ObservableObject {
         return true
     }
     
+    func getTimeslotsFor(_ day: SSCDay, location: Stage) -> [Timeslot] {
+        guard !performances.isEmpty else { return [] }
+        let filteredPerformances = Util.filterPerformancesBy(day, performances: performances).filter { $0.location == location.rawValue }
+        
+        return Util.getTimeslotsFor(filteredPerformances, day: day)
+    }
+    
     func getTimeslotsFor(_ day: SSCDay, favoritePerformances: [Performance]? = nil) -> ([Timeslot], [Timeslot], [Timeslot], [Timeslot]) {
         
         if let favorites = favoritePerformances {
