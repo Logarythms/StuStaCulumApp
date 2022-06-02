@@ -24,6 +24,7 @@ struct NewsView: View {
                             .cornerRadius(10)
                             .centered()
                     }
+                    .listRowSeparator(.hidden)
                 }
                 
                 Section {
