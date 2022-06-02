@@ -1,6 +1,24 @@
 {
   "pins" : [
     {
+      "identity" : "html2markdown",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitlab.com/mflint/HTML2Markdown",
+      "state" : {
+        "branch" : "main",
+        "revision" : "3ca89a6bbe7e0b0810405d130c75a0b37ca632e2"
+      }
+    },
+    {
+      "identity" : "htmlstring",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/alexaubry/HTMLString",
+      "state" : {
+        "revision" : "04613a3b0f40a91e554b5174c0a10657f1a26357",
+        "version" : "6.0.1"
+      }
+    },
+    {
       "identity" : "pagertabstripview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/xmartlabs/PagerTabStripView",

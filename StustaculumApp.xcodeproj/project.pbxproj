@@ -19,6 +19,8 @@
 		488F14C020B732600058536E /* SSCDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14BF20B732600058536E /* SSCDay.swift */; };
 		488F14C420B7389B0058536E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14C320B7389B0058536E /* Util.swift */; };
 		4893CAC32848F67400DA27D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4893CAC22848F67400DA27D9 /* LaunchScreen.storyboard */; };
+		4893CAC62849102A00DA27D9 /* HTML2Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = 4893CAC52849102A00DA27D9 /* HTML2Markdown */; };
+		4893CAC92849188100DA27D9 /* HTMLString in Frameworks */ = {isa = PBXBuildFile; productRef = 4893CAC82849188100DA27D9 /* HTMLString */; };
 		48A830652846E72B0005D871 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830642846E72B0005D871 /* MapView.swift */; };
 		48A830672846E85D0005D871 /* MapHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830662846E85D0005D871 /* MapHostView.swift */; };
 		48A830692847817D0005D871 /* NewScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830682847817C0005D871 /* NewScheduleView.swift */; };
@@ -122,6 +124,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				48D10F76284684A20090AB17 /* PagerTabStripView in Frameworks */,
+				4893CAC92849188100DA27D9 /* HTMLString in Frameworks */,
+				4893CAC62849102A00DA27D9 /* HTML2Markdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +321,8 @@
 			name = StustaculumApp;
 			packageProductDependencies = (
 				48D10F75284684A20090AB17 /* PagerTabStripView */,
+				4893CAC52849102A00DA27D9 /* HTML2Markdown */,
+				4893CAC82849188100DA27D9 /* HTMLString */,
 			);
 			productName = StustaculumApp;
 			productReference = 48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */;
@@ -354,6 +360,8 @@
 			mainGroup = 48C03CA420B2DA1D00EED86A;
 			packageReferences = (
 				48D10F74284684A20090AB17 /* XCRemoteSwiftPackageReference "PagerTabStripView" */,
+				4893CAC42849102A00DA27D9 /* XCRemoteSwiftPackageReference "HTML2Markdown" */,
+				4893CAC72849188100DA27D9 /* XCRemoteSwiftPackageReference "HTMLString" */,
 			);
 			productRefGroup = 48C03CAE20B2DA1D00EED86A /* Products */;
 			projectDirPath = "";
@@ -634,6 +642,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4893CAC42849102A00DA27D9 /* XCRemoteSwiftPackageReference "HTML2Markdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://gitlab.com/mflint/HTML2Markdown";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		4893CAC72849188100DA27D9 /* XCRemoteSwiftPackageReference "HTMLString" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexaubry/HTMLString";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		48D10F74284684A20090AB17 /* XCRemoteSwiftPackageReference "PagerTabStripView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/xmartlabs/PagerTabStripView";
@@ -645,6 +669,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4893CAC52849102A00DA27D9 /* HTML2Markdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4893CAC42849102A00DA27D9 /* XCRemoteSwiftPackageReference "HTML2Markdown" */;
+			productName = HTML2Markdown;
+		};
+		4893CAC82849188100DA27D9 /* HTMLString */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4893CAC72849188100DA27D9 /* XCRemoteSwiftPackageReference "HTMLString" */;
+			productName = HTMLString;
+		};
 		48D10F75284684A20090AB17 /* PagerTabStripView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 48D10F74284684A20090AB17 /* XCRemoteSwiftPackageReference "PagerTabStripView" */;
