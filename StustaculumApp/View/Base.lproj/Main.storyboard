@@ -8,96 +8,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Zeitplan-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController restorationIdentifier="scheduleMainView" storyboardIdentifier="scheduleMainView" id="BYZ-38-t0r" customClass="ScheduleMasterViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-1p-HZr">
-                                <rect key="frame" x="0.0" y="40" width="375" height="627"/>
-                            </scrollView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MQF-hJ-6aK" customClass="ButtonBarView" customModule="XLPagerTabStrip">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="cye-km-1DV"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wkO-WC-Wjd">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SJ5-1p-HZr" secondAttribute="bottom" id="1P4-A9-0H8"/>
-                            <constraint firstItem="MQF-hJ-6aK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BFx-rG-Jqm"/>
-                            <constraint firstItem="SJ5-1p-HZr" firstAttribute="top" secondItem="MQF-hJ-6aK" secondAttribute="bottom" id="obF-Ve-9Zo"/>
-                            <constraint firstItem="SJ5-1p-HZr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rWQ-eH-5Iw"/>
-                            <constraint firstItem="MQF-hJ-6aK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="sjz-cF-Dm4"/>
-                            <constraint firstItem="SJ5-1p-HZr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="u99-pp-cna"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MQF-hJ-6aK" secondAttribute="trailing" id="v7B-LE-TQ6"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Zeitplan" id="Pxd-Z9-CWg">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="Favourite" id="n3H-Nl-sOl"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="buttonBarView" destination="MQF-hJ-6aK" id="ftK-HM-CQr"/>
-                        <outlet property="containerView" destination="SJ5-1p-HZr" id="oJh-nH-TX3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1840.8" y="784.85757121439292"/>
-        </scene>
-        <!--Schedule Day View Controller-->
-        <scene sceneID="0gn-Hm-nxt">
-            <objects>
-                <viewController storyboardIdentifier="dayViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sVF-Sa-im8" customClass="ScheduleDayViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1Eq-uM-jdW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNR-L8-XP9" customClass="SpreadsheetView" customModule="SpreadsheetView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Icq-FR-wZx"/>
-                        <color key="backgroundColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="Icq-FR-wZx" firstAttribute="bottom" secondItem="DNR-L8-XP9" secondAttribute="bottom" id="3FY-uY-4Ko"/>
-                            <constraint firstItem="DNR-L8-XP9" firstAttribute="top" secondItem="Icq-FR-wZx" secondAttribute="top" id="MkV-Jk-8fU"/>
-                            <constraint firstItem="DNR-L8-XP9" firstAttribute="leading" secondItem="Icq-FR-wZx" secondAttribute="leading" id="ewo-uZ-ZkT"/>
-                            <constraint firstItem="Icq-FR-wZx" firstAttribute="trailing" secondItem="DNR-L8-XP9" secondAttribute="trailing" id="hYK-HM-RZz"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="spreadsheetView" destination="DNR-L8-XP9" id="jUe-iw-QBC"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ywE-rI-brR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2886" y="785"/>
-        </scene>
         <!--Karte-->
         <scene sceneID="YFS-fz-8Yp">
             <objects>
                 <viewController storyboardIdentifier="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B59-dA-rkg" customClass="MapViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Avn-dA-PsD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rua-jQ-vxD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1DX-qS-3ab"/>
@@ -138,98 +58,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nI1-hl-ZGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="133.59999999999999" y="784.85757121439292"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="dhZ-fC-eTZ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sSi-Lz-FwQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Favourite" selectedImage="Favourite" id="4Gu-Q8-bK7"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="7ys-u6-8Tp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="nht-QQ-nWo" kind="relationship" relationship="rootViewController" id="6Nl-Yb-VZv"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Uac-Fk-rlj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1841" y="1526"/>
-        </scene>
-        <!--Favoriten-->
-        <scene sceneID="F5J-6i-QLD">
-            <objects>
-                <viewController id="nht-QQ-nWo" customClass="FavouritesMasterViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3sE-uf-ANZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ns-re-aho">
-                                <rect key="frame" x="0.0" y="40" width="375" height="583"/>
-                            </scrollView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SEz-AI-0Pv" customClass="ButtonBarView" customModule="XLPagerTabStrip">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="yiZ-0B-4gx"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G8p-3I-LeM">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="MOl-4p-vWj"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="MOl-4p-vWj" firstAttribute="bottom" secondItem="7Ns-re-aho" secondAttribute="bottom" id="59O-lR-PZ4"/>
-                            <constraint firstItem="7Ns-re-aho" firstAttribute="trailing" secondItem="MOl-4p-vWj" secondAttribute="trailing" id="7Kh-SM-CWV"/>
-                            <constraint firstItem="7Ns-re-aho" firstAttribute="leading" secondItem="MOl-4p-vWj" secondAttribute="leading" id="A4l-Pu-vB4"/>
-                            <constraint firstItem="MOl-4p-vWj" firstAttribute="trailing" secondItem="SEz-AI-0Pv" secondAttribute="trailing" id="H4x-L0-w5X"/>
-                            <constraint firstItem="7Ns-re-aho" firstAttribute="top" secondItem="SEz-AI-0Pv" secondAttribute="bottom" id="QlX-MA-bLm"/>
-                            <constraint firstItem="SEz-AI-0Pv" firstAttribute="leading" secondItem="MOl-4p-vWj" secondAttribute="leading" id="RZn-ci-78M"/>
-                            <constraint firstItem="SEz-AI-0Pv" firstAttribute="top" secondItem="MOl-4p-vWj" secondAttribute="top" id="eQ1-2V-LsF"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Favoriten" id="pSD-xo-dmn"/>
-                    <connections>
-                        <outlet property="buttonBarView" destination="SEz-AI-0Pv" id="cEC-af-3tu"/>
-                        <outlet property="containerView" destination="7Ns-re-aho" id="ydm-3e-gzd"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I7A-vy-WEn" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2513" y="1525"/>
-        </scene>
-        <!--Karte-->
-        <scene sceneID="HUL-7m-f9D">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kc7-Fv-te2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Karte" id="lcV-DF-9Qc">
-                        <imageReference key="image" image="map.fill" catalog="system" symbolScale="large"/>
-                        <imageReference key="selectedImage" image="map.fill" catalog="system" symbolScale="large"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="ht1-Cp-SBe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="B59-dA-rkg" kind="relationship" relationship="rootViewController" id="3sA-6z-dIX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ULQ-lt-jbC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-234.40000000000001" y="1612.4437781109445"/>
         </scene>
         <!--News-->
         <scene sceneID="n85-hW-PIh">
@@ -299,7 +127,6 @@
     </scenes>
     <color key="tintColor" red="0.21176470588235294" green="0.49803921568627452" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
-        <image name="Favourite" width="30" height="30"/>
         <image name="calendar.circle.fill" catalog="system" width="128" height="121"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>

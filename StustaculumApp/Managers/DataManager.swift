@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SVProgressHUD
 
 class DataManager: ObservableObject {
     
@@ -236,12 +235,6 @@ class DataManager: ObservableObject {
     
     private func initializeData() {
         
-        DispatchQueue.main.async {
-            SVProgressHUD.setDefaultStyle(.dark)
-            SVProgressHUD.show(withStatus: "Daten werden geladen")
-        }
-        
-        
         Task {
             do {
                 try await withTimeout(seconds: 10) {
@@ -260,11 +253,9 @@ class DataManager: ObservableObject {
                     self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
                     
                     print("initial load complete")
-                    await SVProgressHUD.dismiss()
                 }
             } catch {
                 self.handleTimeOut()
-                await SVProgressHUD.dismiss()
             }
             
         }

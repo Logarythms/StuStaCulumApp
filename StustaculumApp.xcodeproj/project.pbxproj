@@ -7,34 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4802E9C020B9BE19005A0085 /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9BF20B9BE19005A0085 /* StageCell.xib */; };
-		4802E9C220B9BE31005A0085 /* TimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C120B9BE31005A0085 /* TimeCell.xib */; };
-		4802E9C420BA08D6005A0085 /* DadaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C320BA08D6005A0085 /* DadaCell.xib */; };
-		4802E9C620BA0984005A0085 /* AtriumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C520BA0984005A0085 /* AtriumCell.xib */; };
-		4802E9C820BA09B5005A0085 /* HalleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C720BA09B5005A0085 /* HalleCell.xib */; };
-		4802E9CA20BA09C2005A0085 /* ZeltCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4802E9C920BA09C2005A0085 /* ZeltCell.xib */; };
-		4802E9CE20BA2F80005A0085 /* PerformanceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9CD20BA2F80005A0085 /* PerformanceDetailViewController.swift */; };
 		4802E9D020BA3D0F005A0085 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9CF20BA3D0F005A0085 /* String+HTML.swift */; };
 		4802E9D220BA488A005A0085 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D120BA488A005A0085 /* MapViewController.swift */; };
 		4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */; };
-		4802E9D620BAC833005A0085 /* FavouritesMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */; };
 		48092C732845601D00E70913 /* FaqDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C722845601D00E70913 /* FaqDetailView.swift */; };
 		48092C78284597CA00E70913 /* Text+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C77284597CA00E70913 /* Text+HTML.swift */; };
 		48092C7B28462C0700E70913 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C7A28462C0700E70913 /* InfoView.swift */; };
 		48092C7D284630FC00E70913 /* LinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C7C284630FC00E70913 /* LinkButton.swift */; };
 		48092C7F2846362900E70913 /* AGBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C7E2846362900E70913 /* AGBView.swift */; };
-		4842E0A0229592170089F9AB /* GeländeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4842E09F229592170089F9AB /* GeländeCell.xib */; };
 		485BF26D20B8236000075A64 /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485BF26C20B8236000075A64 /* Timeslot.swift */; };
 		488F14C020B732600058536E /* SSCDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14BF20B732600058536E /* SSCDay.swift */; };
 		488F14C420B7389B0058536E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14C320B7389B0058536E /* Util.swift */; };
-		48A3D22C20B33E0F00C5EBDD /* PerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */; };
-		48A3D22E20B33FD700C5EBDD /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A3D22D20B33FD700C5EBDD /* Cells.swift */; };
 		48A830652846E72B0005D871 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830642846E72B0005D871 /* MapView.swift */; };
 		48A830672846E85D0005D871 /* MapHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830662846E85D0005D871 /* MapHostView.swift */; };
 		48A830692847817D0005D871 /* NewScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830682847817C0005D871 /* NewScheduleView.swift */; };
 		48A8306B284781D50005D871 /* DaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A8306A284781D50005D871 /* DaySchedule.swift */; };
 		48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB020B2DA1D00EED86A /* AppDelegate.swift */; };
-		48C03CB320B2DA1D00EED86A /* ScheduleDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */; };
 		48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB420B2DA1D00EED86A /* Main.storyboard */; };
 		48C03CB820B2DA1E00EED86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB720B2DA1E00EED86A /* Assets.xcassets */; };
 		48C03CBB20B2DA1E00EED86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB920B2DA1E00EED86A /* LaunchScreen.storyboard */; };
@@ -42,10 +30,8 @@
 		48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC620B2E03000EED86A /* NetworkingManager.swift */; };
 		48D10F6B28463B4F0090AB17 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F6A28463B4F0090AB17 /* AboutView.swift */; };
 		48D10F6E284645290090AB17 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F6D284645290090AB17 /* PerformanceView.swift */; };
-		48D10F7128466BA80090AB17 /* ScheduleMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F7028466BA80090AB17 /* ScheduleMainView.swift */; };
 		48D10F7328466E640090AB17 /* ScheduleHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F7228466E640090AB17 /* ScheduleHostView.swift */; };
 		48D10F76284684A20090AB17 /* PagerTabStripView in Frameworks */ = {isa = PBXBuildFile; productRef = 48D10F75284684A20090AB17 /* PagerTabStripView */; };
-		48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */; };
 		48F50E542841126200DF11C7 /* SSCDateDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E532841126200DF11C7 /* SSCDateDecoder.swift */; };
 		48F50E572844299200DF11C7 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E562844299200DF11C7 /* UIImage+Resize.swift */; };
 		48F50E592844340700DF11C7 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E582844340700DF11C7 /* NewsView.swift */; };
@@ -57,9 +43,6 @@
 		48F50E6828454F8200DF11C7 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E6728454F8200DF11C7 /* UIColor+Hex.swift */; };
 		48F50E6A28455FAA00DF11C7 /* FaqListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E6928455FAA00DF11C7 /* FaqListView.swift */; };
 		48F6852B228C898F007A286E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852A228C898F007A286E /* DataManager.swift */; };
-		48F6852D228CED1A007A286E /* LogoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852C228CED1A007A286E /* LogoCell.swift */; };
-		48F6852F228D7F42007A286E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6852E228D7F42007A286E /* NewsCell.swift */; };
-		48F68531228DCC35007A286E /* UpcomingEventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F68530228DCC35007A286E /* UpcomingEventsCell.swift */; };
 		48F68533228F1F97007A286E /* SSCMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F68532228F1F97007A286E /* SSCMapOverlay.swift */; };
 		48F68535228F2AD9007A286E /* SSCMapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F68534228F2AD9007A286E /* SSCMapOverlayView.swift */; };
 		48F6853722919C0B007A286E /* DispatchGroup+NotifyTimeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F6853622919C0B007A286E /* DispatchGroup+NotifyTimeout.swift */; };
@@ -75,34 +58,20 @@
 		48F7507820B2F3950012FCDB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507720B2F3950012FCDB /* Location.swift */; };
 		48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507920B2F9480012FCDB /* NewsEntry.swift */; };
 		48F7507C20B2FD780012FCDB /* Performance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507B20B2FD780012FCDB /* Performance.swift */; };
-		656C9D74B2EF55C7A566EFA9 /* Pods_StustaculumApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A484DCFA941B0ECE8684BAE /* Pods_StustaculumApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		18BE3EC760297CD2FCFD742A /* Pods-StustaculumApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StustaculumApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp.release.xcconfig"; sourceTree = "<group>"; };
-		1B3E3F778DA1B8CCDD686A63 /* Pods-StustaculumApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StustaculumApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp.debug.xcconfig"; sourceTree = "<group>"; };
-		4802E9BF20B9BE19005A0085 /* StageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
-		4802E9C120B9BE31005A0085 /* TimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeCell.xib; sourceTree = "<group>"; };
-		4802E9C320BA08D6005A0085 /* DadaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DadaCell.xib; sourceTree = "<group>"; };
-		4802E9C520BA0984005A0085 /* AtriumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AtriumCell.xib; sourceTree = "<group>"; };
-		4802E9C720BA09B5005A0085 /* HalleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HalleCell.xib; sourceTree = "<group>"; };
-		4802E9C920BA09C2005A0085 /* ZeltCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZeltCell.xib; sourceTree = "<group>"; };
-		4802E9CD20BA2F80005A0085 /* PerformanceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceDetailViewController.swift; sourceTree = "<group>"; };
 		4802E9CF20BA3D0F005A0085 /* String+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
 		4802E9D120BA488A005A0085 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCAnnotation.swift; sourceTree = "<group>"; };
-		4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesMasterViewController.swift; sourceTree = "<group>"; };
 		48092C722845601D00E70913 /* FaqDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqDetailView.swift; sourceTree = "<group>"; };
 		48092C77284597CA00E70913 /* Text+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+HTML.swift"; sourceTree = "<group>"; };
 		48092C7A28462C0700E70913 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		48092C7C284630FC00E70913 /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
 		48092C7E2846362900E70913 /* AGBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGBView.swift; sourceTree = "<group>"; };
-		4842E09F229592170089F9AB /* GeländeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GeländeCell.xib"; sourceTree = "<group>"; };
 		485BF26C20B8236000075A64 /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		488F14BF20B732600058536E /* SSCDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDay.swift; sourceTree = "<group>"; };
 		488F14C320B7389B0058536E /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerformanceCell.xib; sourceTree = "<group>"; };
-		48A3D22D20B33FD700C5EBDD /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		48A830642846E72B0005D871 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		48A830662846E85D0005D871 /* MapHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHostView.swift; sourceTree = "<group>"; };
 		48A830682847817C0005D871 /* NewScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewScheduleView.swift; sourceTree = "<group>"; };
@@ -110,7 +79,6 @@
 		48B11244228C51310063AA7E /* StustaculumApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StustaculumApp.entitlements; sourceTree = "<group>"; };
 		48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StustaculumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C03CB020B2DA1D00EED86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDayViewController.swift; sourceTree = "<group>"; };
 		48C03CB520B2DA1D00EED86A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48C03CB720B2DA1E00EED86A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48C03CBA20B2DA1E00EED86A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -119,9 +87,7 @@
 		48C03CC620B2E03000EED86A /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		48D10F6A28463B4F0090AB17 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		48D10F6D284645290090AB17 /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
-		48D10F7028466BA80090AB17 /* ScheduleMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMainView.swift; sourceTree = "<group>"; };
 		48D10F7228466E640090AB17 /* ScheduleHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHostView.swift; sourceTree = "<group>"; };
-		48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMasterViewController.swift; sourceTree = "<group>"; };
 		48F50E532841126200DF11C7 /* SSCDateDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDateDecoder.swift; sourceTree = "<group>"; };
 		48F50E562844299200DF11C7 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		48F50E582844340700DF11C7 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
@@ -133,9 +99,6 @@
 		48F50E6728454F8200DF11C7 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		48F50E6928455FAA00DF11C7 /* FaqListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqListView.swift; sourceTree = "<group>"; };
 		48F6852A228C898F007A286E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		48F6852C228CED1A007A286E /* LogoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoCell.swift; sourceTree = "<group>"; };
-		48F6852E228D7F42007A286E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
-		48F68530228DCC35007A286E /* UpcomingEventsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsCell.swift; sourceTree = "<group>"; };
 		48F68532228F1F97007A286E /* SSCMapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCMapOverlay.swift; sourceTree = "<group>"; };
 		48F68534228F2AD9007A286E /* SSCMapOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCMapOverlayView.swift; sourceTree = "<group>"; };
 		48F6853622919C0B007A286E /* DispatchGroup+NotifyTimeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchGroup+NotifyTimeout.swift"; sourceTree = "<group>"; };
@@ -151,7 +114,6 @@
 		48F7507720B2F3950012FCDB /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		48F7507920B2F9480012FCDB /* NewsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEntry.swift; sourceTree = "<group>"; };
 		48F7507B20B2FD780012FCDB /* Performance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Performance.swift; sourceTree = "<group>"; };
-		8A484DCFA941B0ECE8684BAE /* Pods_StustaculumApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StustaculumApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +122,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				48D10F76284684A20090AB17 /* PagerTabStripView in Frameworks */,
-				656C9D74B2EF55C7A566EFA9 /* Pods_StustaculumApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,8 +178,6 @@
 			children = (
 				48C03CAF20B2DA1D00EED86A /* StustaculumApp */,
 				48C03CAE20B2DA1D00EED86A /* Products */,
-				8BDBEF9E2AE52DB819180FF3 /* Pods */,
-				D7AF718D13A823FF43649E8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -286,7 +245,6 @@
 		48D10F6F28466B5E0090AB17 /* ScheduleView */ = {
 			isa = PBXGroup;
 			children = (
-				48D10F7028466BA80090AB17 /* ScheduleMainView.swift */,
 				48D10F7228466E640090AB17 /* ScheduleHostView.swift */,
 				48A830682847817C0005D871 /* NewScheduleView.swift */,
 				48A8306A284781D50005D871 /* DaySchedule.swift */,
@@ -323,10 +281,6 @@
 			children = (
 				48A830632846E71B0005D871 /* MapView */,
 				48D10F6F28466B5E0090AB17 /* ScheduleView */,
-				48C03CB220B2DA1D00EED86A /* ScheduleDayViewController.swift */,
-				48DD9B3420B717AB00F6559E /* ScheduleMasterViewController.swift */,
-				4802E9D520BAC833005A0085 /* FavouritesMasterViewController.swift */,
-				4802E9CD20BA2F80005A0085 /* PerformanceDetailViewController.swift */,
 				4802E9D120BA488A005A0085 /* MapViewController.swift */,
 				48D10F6C284645180090AB17 /* PerformanceView */,
 				48092C7928462BF400E70913 /* Info View */,
@@ -340,38 +294,9 @@
 			isa = PBXGroup;
 			children = (
 				48C03CB420B2DA1D00EED86A /* Main.storyboard */,
-				48A3D22B20B33E0F00C5EBDD /* PerformanceCell.xib */,
-				4802E9C320BA08D6005A0085 /* DadaCell.xib */,
-				4842E09F229592170089F9AB /* GeländeCell.xib */,
-				4802E9C520BA0984005A0085 /* AtriumCell.xib */,
-				4802E9C720BA09B5005A0085 /* HalleCell.xib */,
-				4802E9C920BA09C2005A0085 /* ZeltCell.xib */,
-				4802E9BF20B9BE19005A0085 /* StageCell.xib */,
-				4802E9C120B9BE31005A0085 /* TimeCell.xib */,
-				48A3D22D20B33FD700C5EBDD /* Cells.swift */,
-				48F6852C228CED1A007A286E /* LogoCell.swift */,
-				48F6852E228D7F42007A286E /* NewsCell.swift */,
-				48F68530228DCC35007A286E /* UpcomingEventsCell.swift */,
 				48F68534228F2AD9007A286E /* SSCMapOverlayView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		8BDBEF9E2AE52DB819180FF3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1B3E3F778DA1B8CCDD686A63 /* Pods-StustaculumApp.debug.xcconfig */,
-				18BE3EC760297CD2FCFD742A /* Pods-StustaculumApp.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		D7AF718D13A823FF43649E8D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8A484DCFA941B0ECE8684BAE /* Pods_StustaculumApp.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,11 +306,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48C03CBF20B2DA1E00EED86A /* Build configuration list for PBXNativeTarget "StustaculumApp" */;
 			buildPhases = (
-				D5FA67FDA323263071EAA359 /* [CP] Check Pods Manifest.lock */,
 				48C03CA920B2DA1D00EED86A /* Sources */,
 				48C03CAA20B2DA1D00EED86A /* Frameworks */,
 				48C03CAB20B2DA1D00EED86A /* Resources */,
-				6AA2B1A655D5B6B81D43BC2E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -446,88 +369,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4802E9CA20BA09C2005A0085 /* ZeltCell.xib in Resources */,
-				4802E9C220B9BE31005A0085 /* TimeCell.xib in Resources */,
 				48F685422291A24E007A286E /* performances.json in Resources */,
 				48F685402291A24E007A286E /* logo.png in Resources */,
-				4802E9C620BA0984005A0085 /* AtriumCell.xib in Resources */,
 				48F685432291A24E007A286E /* currentSSC.json in Resources */,
 				48C03CBB20B2DA1E00EED86A /* LaunchScreen.storyboard in Resources */,
 				48F685452291A24E007A286E /* howTos.json in Resources */,
 				48F685442291A24E007A286E /* locations.json in Resources */,
-				4802E9C420BA08D6005A0085 /* DadaCell.xib in Resources */,
 				48F685412291A24E007A286E /* news.json in Resources */,
 				48C03CB820B2DA1E00EED86A /* Assets.xcassets in Resources */,
-				48A3D22C20B33E0F00C5EBDD /* PerformanceCell.xib in Resources */,
 				48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */,
-				4802E9C020B9BE19005A0085 /* StageCell.xib in Resources */,
-				4842E0A0229592170089F9AB /* GeländeCell.xib in Resources */,
-				4802E9C820BA09B5005A0085 /* HalleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		6AA2B1A655D5B6B81D43BC2E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StustaculumApp/Pods-StustaculumApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D5FA67FDA323263071EAA359 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-StustaculumApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		48C03CA920B2DA1D00EED86A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48A3D22E20B33FD700C5EBDD /* Cells.swift in Sources */,
 				48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */,
 				48092C732845601D00E70913 /* FaqDetailView.swift in Sources */,
 				48A830672846E85D0005D871 /* MapHostView.swift in Sources */,
 				4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */,
 				48A8306B284781D50005D871 /* DaySchedule.swift in Sources */,
 				485BF26D20B8236000075A64 /* Timeslot.swift in Sources */,
-				48D10F7128466BA80090AB17 /* ScheduleMainView.swift in Sources */,
 				4802E9D020BA3D0F005A0085 /* String+HTML.swift in Sources */,
 				48F50E622844D79800DF11C7 /* ForEach+Values.swift in Sources */,
 				48F50E542841126200DF11C7 /* SSCDateDecoder.swift in Sources */,
-				4802E9CE20BA2F80005A0085 /* PerformanceDetailViewController.swift in Sources */,
 				48F50E602844D28800DF11C7 /* NewsViewModel.swift in Sources */,
-				48F6852D228CED1A007A286E /* LogoCell.swift in Sources */,
-				48F6852F228D7F42007A286E /* NewsCell.swift in Sources */,
 				48A830692847817D0005D871 /* NewScheduleView.swift in Sources */,
-				48DD9B3520B717AB00F6559E /* ScheduleMasterViewController.swift in Sources */,
 				48F6853722919C0B007A286E /* DispatchGroup+NotifyTimeout.swift in Sources */,
 				48F50E5C2844CDE700DF11C7 /* UpcomingPerformanceCell.swift in Sources */,
 				48F6852B228C898F007A286E /* DataManager.swift in Sources */,
@@ -538,13 +409,11 @@
 				48F50E6828454F8200DF11C7 /* UIColor+Hex.swift in Sources */,
 				48F68533228F1F97007A286E /* SSCMapOverlay.swift in Sources */,
 				48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */,
-				48F68531228DCC35007A286E /* UpcomingEventsCell.swift in Sources */,
 				48F50E592844340700DF11C7 /* NewsView.swift in Sources */,
 				48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */,
 				48D10F6E284645290090AB17 /* PerformanceView.swift in Sources */,
 				48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */,
 				488F14C420B7389B0058536E /* Util.swift in Sources */,
-				48C03CB320B2DA1D00EED86A /* ScheduleDayViewController.swift in Sources */,
 				48092C7D284630FC00E70913 /* LinkButton.swift in Sources */,
 				48F7507C20B2FD780012FCDB /* Performance.swift in Sources */,
 				48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */,
@@ -560,7 +429,6 @@
 				48F685472291B245007A286E /* Reachability.swift in Sources */,
 				4802E9D220BA488A005A0085 /* MapViewController.swift in Sources */,
 				48092C7F2846362900E70913 /* AGBView.swift in Sources */,
-				4802E9D620BAC833005A0085 /* FavouritesMasterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,7 +572,6 @@
 		};
 		48C03CC020B2DA1E00EED86A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B3E3F778DA1B8CCDD686A63 /* Pods-StustaculumApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = SSC2022;
@@ -729,7 +596,6 @@
 		};
 		48C03CC120B2DA1E00EED86A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18BE3EC760297CD2FCFD742A /* Pods-StustaculumApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = SSC2022;
