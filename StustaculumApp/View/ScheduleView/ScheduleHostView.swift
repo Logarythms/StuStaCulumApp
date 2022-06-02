@@ -23,7 +23,7 @@ struct ScheduleHostView: View {
                         
                 }
             }
-            .pagerTabStripViewStyle(.segmentedControl(backgroundColor: .accentColor, padding: EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)))
+            .pagerTabStripViewStyle(.segmentedControl(backgroundColor: .accentColor, padding: EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10)))
 //            PagerTabStripView {
 //                ForEach(dataManager.days) { day in
 //                    ScheduleView(day: day)
