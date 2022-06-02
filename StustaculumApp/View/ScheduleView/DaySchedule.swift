@@ -54,6 +54,8 @@ struct PerformCell: View {
     let artist: String
     let description: EventDescripton
     
+    @Environment(\.colorScheme) var colorScheme
+    
     let width = (UIScreen.main.bounds.size.width - 55) / 4
     
     init(performance: Performance) {
@@ -77,7 +79,7 @@ struct PerformCell: View {
         .frame(width: width, height: CGFloat(performance.duration * 2 - 4))
         .background(description.locationColor)
         .cornerRadius(8)
-        .shadow(color: .gray, radius: 2)
+        .shadow(color: .gray, radius: colorScheme == .light ? 5 : 2.5)
     }
 }
 

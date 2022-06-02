@@ -12,6 +12,7 @@ struct NewScheduleView: View {
     
     let dataManager = DataManager.shared
     let day: SSCDay
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         let width = (UIScreen.main.bounds.size.width - 55) / 4
@@ -60,6 +61,7 @@ struct NewScheduleView: View {
 
                         )
                         .frame(width: width, height: 40, alignment: .center)
+                        .shadow(color: .gray, radius: colorScheme == .light ? 5 : 2.5)
                     Spacer()
                         .frame(width: stage != .gelände ? 5 : 0)
                     
