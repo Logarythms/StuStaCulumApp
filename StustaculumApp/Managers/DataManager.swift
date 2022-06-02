@@ -525,7 +525,9 @@ extension DataManager {
             
             print("howTos loaded")
             
-            await self.publishHowTos(howTos.sorted { $0.title < $1.title })
+            await self.publishHowTos(howTos.sorted {
+                $0.title.compare($1.title, locale: Locale(identifier: "de_DE")) == .orderedAscending
+            })
             
             return true
         } catch let error {
