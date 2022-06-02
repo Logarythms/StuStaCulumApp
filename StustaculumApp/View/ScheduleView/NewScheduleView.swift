@@ -15,28 +15,10 @@ struct NewScheduleView: View {
     
     var body: some View {
         let width = (UIScreen.main.bounds.size.width - 55) / 4
-        VStack(alignment: .leading, spacing: 0) {
-            HStack(alignment: .top, spacing: 0) {
-                Text("")
-                    .frame(width: 40, height: 40)
-                    .background(Color("TimeCell"))
-                    
-                ForEach(Stage.allCases, id: \.rawValue) { stage in
-//                    Spacer()
-//                        .frame(width: stage != .dada ? 2.5 : 0, alignment: .trailing)
-                    Text(Util.nameForLocation(stage.rawValue))
-                        .font(.subheadline)
-                        .fontWeight(.heavy)
-                        .foregroundColor(.white)
-                        .frame(width: width, height: 40, alignment: .center)
-                        .background(Color(dataManager.getLocationFor(stage)?.color() ?? Util.colorForStage(stage.rawValue)))
-                    Spacer()
-                        .frame(width: stage != .gelände ? 5 : 0)
-                    
-                }
-            }
-            .frame(height: 40)
+        ZStack(alignment: .top) {
             ScrollView {
+                Spacer()
+                    .frame(height: 20)
                 HStack(spacing: 0) {
                     Text("")
                         .frame(width: 40, height: 10)
@@ -61,6 +43,29 @@ struct NewScheduleView: View {
                     }
                 }
             }
+            .padding([.top], 20)
+            HStack(alignment: .top, spacing: 0) {
+                Text("")
+                    .frame(width: 40, height: 40)
+                    .background(Color.clear)
+                    
+                ForEach(Stage.allCases, id: \.rawValue) { stage in
+                    Capsule(style: .continuous)
+                        .fill(Color(dataManager.getLocationFor(stage)?.color() ?? Util.colorForStage(stage.rawValue)))
+                        .overlay(
+                            Text(Util.nameForLocation(stage.rawValue))
+                                .font(.subheadline)
+                                .fontWeight(.heavy)
+                                .foregroundColor(.white)
+
+                        )
+                        .frame(width: width, height: 40, alignment: .center)
+                    Spacer()
+                        .frame(width: stage != .gelände ? 5 : 0)
+                    
+                }
+            }
+            .frame(height: 40)
         }
     }
 }
