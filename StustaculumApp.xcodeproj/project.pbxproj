@@ -18,6 +18,7 @@
 		485BF26D20B8236000075A64 /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485BF26C20B8236000075A64 /* Timeslot.swift */; };
 		488F14C020B732600058536E /* SSCDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14BF20B732600058536E /* SSCDay.swift */; };
 		488F14C420B7389B0058536E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F14C320B7389B0058536E /* Util.swift */; };
+		4893CAC32848F67400DA27D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4893CAC22848F67400DA27D9 /* LaunchScreen.storyboard */; };
 		48A830652846E72B0005D871 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830642846E72B0005D871 /* MapView.swift */; };
 		48A830672846E85D0005D871 /* MapHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830662846E85D0005D871 /* MapHostView.swift */; };
 		48A830692847817D0005D871 /* NewScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A830682847817C0005D871 /* NewScheduleView.swift */; };
@@ -25,7 +26,6 @@
 		48C03CB120B2DA1D00EED86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CB020B2DA1D00EED86A /* AppDelegate.swift */; };
 		48C03CB620B2DA1D00EED86A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB420B2DA1D00EED86A /* Main.storyboard */; };
 		48C03CB820B2DA1E00EED86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB720B2DA1E00EED86A /* Assets.xcassets */; };
-		48C03CBB20B2DA1E00EED86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C03CB920B2DA1E00EED86A /* LaunchScreen.storyboard */; };
 		48C03CC420B2DBF400EED86A /* Stustaculum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC320B2DBF400EED86A /* Stustaculum.swift */; };
 		48C03CC720B2E03000EED86A /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C03CC620B2E03000EED86A /* NetworkingManager.swift */; };
 		48D10F6B28463B4F0090AB17 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F6A28463B4F0090AB17 /* AboutView.swift */; };
@@ -72,6 +72,7 @@
 		485BF26C20B8236000075A64 /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		488F14BF20B732600058536E /* SSCDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCDay.swift; sourceTree = "<group>"; };
 		488F14C320B7389B0058536E /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		4893CAC22848F67400DA27D9 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48A830642846E72B0005D871 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		48A830662846E85D0005D871 /* MapHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHostView.swift; sourceTree = "<group>"; };
 		48A830682847817C0005D871 /* NewScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewScheduleView.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		48C03CB020B2DA1D00EED86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C03CB520B2DA1D00EED86A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48C03CB720B2DA1E00EED86A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		48C03CBA20B2DA1E00EED86A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48C03CBC20B2DA1E00EED86A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48C03CC320B2DBF400EED86A /* Stustaculum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stustaculum.swift; sourceTree = "<group>"; };
 		48C03CC620B2E03000EED86A /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
@@ -168,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				48C03CB420B2DA1D00EED86A /* Main.storyboard */,
+				4893CAC22848F67400DA27D9 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -210,7 +211,6 @@
 				48F685392291A0A4007A286E /* Resources */,
 				48C03CB720B2DA1E00EED86A /* Assets.xcassets */,
 				48C03CB020B2DA1D00EED86A /* AppDelegate.swift */,
-				48C03CB920B2DA1E00EED86A /* LaunchScreen.storyboard */,
 				48C03CBC20B2DA1E00EED86A /* Info.plist */,
 			);
 			path = StustaculumApp;
@@ -372,7 +372,7 @@
 				48F685422291A24E007A286E /* performances.json in Resources */,
 				48F685402291A24E007A286E /* logo.png in Resources */,
 				48F685432291A24E007A286E /* currentSSC.json in Resources */,
-				48C03CBB20B2DA1E00EED86A /* LaunchScreen.storyboard in Resources */,
+				4893CAC32848F67400DA27D9 /* LaunchScreen.storyboard in Resources */,
 				48F685452291A24E007A286E /* howTos.json in Resources */,
 				48F685442291A24E007A286E /* locations.json in Resources */,
 				48F685412291A24E007A286E /* news.json in Resources */,
@@ -441,14 +441,6 @@
 				48C03CB520B2DA1D00EED86A /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		48C03CB920B2DA1E00EED86A /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				48C03CBA20B2DA1E00EED86A /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
