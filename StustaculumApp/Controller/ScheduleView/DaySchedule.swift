@@ -77,7 +77,7 @@ struct PerformCell: View {
         .frame(width: width, height: CGFloat(performance.duration * 2 - 4))
         .background(description.locationColor)
         .cornerRadius(8)
-//        .shadow(color: .gray, radius: 2)
+        .shadow(color: .gray, radius: 2)
     }
 }
 

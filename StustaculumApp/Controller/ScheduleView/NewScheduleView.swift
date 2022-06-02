@@ -19,7 +19,7 @@ struct NewScheduleView: View {
             HStack(alignment: .top, spacing: 0) {
                 Text("")
                     .frame(width: 40, height: 40)
-                    .background(Color(UIColor.tertiarySystemGroupedBackground))
+                    .background(Color("TimeCell"))
                     
                 ForEach(Stage.allCases, id: \.rawValue) { stage in
 //                    Spacer()
@@ -27,6 +27,7 @@ struct NewScheduleView: View {
                     Text(Util.nameForLocation(stage.rawValue))
                         .font(.subheadline)
                         .fontWeight(.heavy)
+                        .foregroundColor(.white)
                         .frame(width: width, height: 40, alignment: .center)
                         .background(Color(dataManager.getLocationFor(stage)?.color() ?? Util.colorForStage(stage.rawValue)))
                     Spacer()
@@ -36,18 +37,23 @@ struct NewScheduleView: View {
             }
             .frame(height: 40)
             ScrollView {
-                Spacer()
-                    .frame(height: 10)
+                HStack(spacing: 0) {
+                    Text("")
+                        .frame(width: 40, height: 10)
+                        .background(Color("TimeCell"))
+                        .padding([.bottom], -10)
+                    Spacer()
+                }
                 HStack(alignment: .top, spacing: 0) {
                     VStack(alignment: .leading, spacing: 2) {
                         ForEach(day.getScheduleTimeStrings(), id: \.self) { timeString in
                             Text(timeString)
                                 .font(.caption)
                                 .bold()
-                                .foregroundColor(.white)
                                 .frame(width: 40, height: 58, alignment: .top)
                         }
                     }
+                        .background(Color("TimeCell"))
                     ForEach(Stage.allCases, id: \.rawValue) { stage in
                         DaySchedule(timeslots: dataManager.getTimeslotsFor(day, location: stage))
                         Spacer()

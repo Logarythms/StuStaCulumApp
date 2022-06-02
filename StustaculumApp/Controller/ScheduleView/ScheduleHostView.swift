@@ -19,11 +19,11 @@ struct ScheduleHostView: View {
                         .pagerTabItem {
                             Text(day.getShortWeekDay())
                         }
-                        .background(Color(UIColor.secondarySystemGroupedBackground))
+                        .background(Color("TimeCell"))
                         
                 }
             }
-            .pagerTabStripViewStyle(.segmentedControl(backgroundColor: .accentColor))
+            .pagerTabStripViewStyle(.segmentedControl(backgroundColor: .accentColor, padding: EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)))
 //            PagerTabStripView {
 //                ForEach(dataManager.days) { day in
 //                    ScheduleView(day: day)

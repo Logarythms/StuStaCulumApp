@@ -20,7 +20,7 @@ struct UpcomingPerformanceCell: View {
                 if let artist = description.artist, let genre = description.genre, let attributedString = try? AttributedString(markdown: "**\(artist)** (_\(genre)_)") {
                     Text(attributedString)
                         .font(.subheadline)
-                        .foregroundColor(.white)
+//                        .foregroundColor(.white)
 //                        .bold()
                 }
                 
