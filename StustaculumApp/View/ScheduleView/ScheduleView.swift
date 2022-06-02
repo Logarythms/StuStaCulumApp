@@ -8,14 +8,15 @@
 
 import SwiftUI
 import PagerTabStripView
-struct ScheduleHostView: View {
+
+struct ScheduleView: View {
     @ObservedObject var dataManager = DataManager.shared
     
     var body: some View {
         NavigationView {
             PagerTabStripView {
                 ForEach(dataManager.days) { day in
-                    NewScheduleView(day: day)
+                    DayView(day: day)
                         .pagerTabItem {
                             Text(day.getShortWeekDay())
                         }
@@ -29,29 +30,15 @@ struct ScheduleHostView: View {
     }
 }
 
-struct TitleNavBarItem: View {
-    let title: String
-
-    var body: some View {
-        VStack {
-            Text(title)
-                .foregroundColor(Color.gray)
-                .font(.subheadline)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.white)
-    }
-}
-
-struct ScheduleHostView_Previews: PreviewProvider {
+struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleHostView()
+        ScheduleView()
     }
 }
 
-class ScheduleHostingViewController: UIHostingController<ScheduleHostView> {
+class ScheduleHostingViewController: UIHostingController<ScheduleView> {
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder, rootView: ScheduleHostView())
+        super.init(coder: aDecoder, rootView: ScheduleView())
     }
     
     override func viewDidLoad() {
