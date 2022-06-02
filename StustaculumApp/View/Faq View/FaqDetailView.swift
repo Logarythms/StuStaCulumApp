@@ -45,7 +45,7 @@ struct FaqDetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 10) {
                 ForEach(splitMarkdownStrings, id: \.self) { string in
                     Text(string)
                 }
