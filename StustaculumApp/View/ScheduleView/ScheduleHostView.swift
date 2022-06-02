@@ -24,15 +24,6 @@ struct ScheduleHostView: View {
                 }
             }
             .pagerTabStripViewStyle(.segmentedControl(backgroundColor: .accentColor, padding: EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10)))
-//            PagerTabStripView {
-//                ForEach(dataManager.days) { day in
-//                    ScheduleView(day: day)
-//                        .pagerTabItem {
-//                            Text(day.getShortWeekDay())
-//                        }
-//                }
-//            }
-//            .pagerTabStripViewStyle(.segmentedControl(backgroundColor: Color(Util.ssc2022Color)))
             .navigationTitle("Zeitplan")
         }
     }
