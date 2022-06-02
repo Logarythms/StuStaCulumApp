@@ -10,9 +10,12 @@ import SwiftUI
 
 struct NewScheduleView: View {
     
+    let headerHeight: CGFloat = 25
+    
     let dataManager = DataManager.shared
-    let day: SSCDay
     @Environment(\.colorScheme) var colorScheme
+    
+    let day: SSCDay
     
     var body: some View {
         let width = (UIScreen.main.bounds.size.width - 55) / 4
@@ -44,30 +47,31 @@ struct NewScheduleView: View {
                     }
                 }
             }
-            .padding([.top], 20)
+            .padding([.top], 5)
             HStack(alignment: .top, spacing: 0) {
                 Text("")
-                    .frame(width: 40, height: 40)
+                    .frame(width: 40, height: headerHeight)
                     .background(Color.clear)
                     
                 ForEach(Stage.allCases, id: \.rawValue) { stage in
-                    Capsule(style: .continuous)
-                        .fill(Color(dataManager.getLocationFor(stage)?.color() ?? Util.colorForStage(stage.rawValue)))
-                        .overlay(
-                            Text(Util.nameForLocation(stage.rawValue))
-                                .font(.subheadline)
-                                .fontWeight(.heavy)
-                                .foregroundColor(.white)
-
-                        )
-                        .frame(width: width, height: 40, alignment: .center)
-                        .shadow(color: .gray, radius: colorScheme == .light ? 5 : 2.5)
+                    VStack {
+                        Spacer()
+                        Text(Util.nameForLocation(stage.rawValue))
+                            .font(.subheadline)
+                            .fontWeight(.heavy)
+                            .foregroundColor(.white)
+                        Spacer()
+                    }
+                    .frame(width: width, height: headerHeight, alignment: .center)
+                    .background(Color(dataManager.getLocationFor(stage)?.color() ?? Util.colorForStage(stage.rawValue)))
+                    .cornerRadius(8)
+                    .shadow(color: .gray, radius: colorScheme == .light ? 5 : 2.5)
                     Spacer()
                         .frame(width: stage != .gelände ? 5 : 0)
                     
                 }
             }
-            .frame(height: 40)
+            .frame(height: headerHeight)
         }
     }
 }
