@@ -164,11 +164,21 @@
 			path = Dependencies;
 			sourceTree = "<group>";
 		};
+		4893CAC12848EEC900DA27D9 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				48C03CB420B2DA1D00EED86A /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		48A830632846E71B0005D871 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
 				48A830642846E72B0005D871 /* MapView.swift */,
 				48A830662846E85D0005D871 /* MapHostView.swift */,
+				48F68534228F2AD9007A286E /* SSCMapOverlayView.swift */,
+				4802E9D120BA488A005A0085 /* MapViewController.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -196,8 +206,7 @@
 				488F14C220B738930058536E /* Dependencies */,
 				48C03CC220B2DBA000EED86A /* Model */,
 				48C03CC520B2E01100EED86A /* Managers */,
-				48F7507D20B302630012FCDB /* Controller */,
-				48F7507E20B30F9D0012FCDB /* View */,
+				48F7507D20B302630012FCDB /* View */,
 				48F685392291A0A4007A286E /* Resources */,
 				48C03CB720B2DA1E00EED86A /* Assets.xcassets */,
 				48C03CB020B2DA1D00EED86A /* AppDelegate.swift */,
@@ -276,25 +285,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		48F7507D20B302630012FCDB /* Controller */ = {
+		48F7507D20B302630012FCDB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4893CAC12848EEC900DA27D9 /* Storyboard */,
 				48A830632846E71B0005D871 /* MapView */,
 				48D10F6F28466B5E0090AB17 /* ScheduleView */,
-				4802E9D120BA488A005A0085 /* MapViewController.swift */,
 				48D10F6C284645180090AB17 /* PerformanceView */,
 				48092C7928462BF400E70913 /* Info View */,
 				48092C712845600100E70913 /* Faq View */,
 				48F50E5A2844CD0F00DF11C7 /* News View */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		48F7507E20B30F9D0012FCDB /* View */ = {
-			isa = PBXGroup;
-			children = (
-				48C03CB420B2DA1D00EED86A /* Main.storyboard */,
-				48F68534228F2AD9007A286E /* SSCMapOverlayView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
