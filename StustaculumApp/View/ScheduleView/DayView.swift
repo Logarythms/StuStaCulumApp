@@ -37,6 +37,7 @@ struct DaySchedule: View {
         ScrollView {
             ZStack(alignment: .topLeading) {
                 TimeColumn(day: day, headerHeight: headerHeight)
+                    .padding([.top], 3)
                 VStack(alignment: .leading, spacing: 0) {
                     Spacer()
                         .frame(height: headerHeight + 5)
