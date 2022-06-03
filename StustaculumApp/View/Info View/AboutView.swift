@@ -29,6 +29,13 @@ struct AboutView: View {
                 
             }
             Section {
+                Text("Camille Mainz")
+            } header: {
+                Text("Entwickler")
+                    .font(.title3)
+                    .fontWeight(.heavy)
+            }
+            Section {
                 Text("Für den Inhalt der App ist alleinig der Verein \"Kulturleben in der Studentenstadt e.V\" verantwortlich.")
             } header: {
                 Text("Haftungsausschluss")
