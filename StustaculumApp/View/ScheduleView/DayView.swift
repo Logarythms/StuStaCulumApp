@@ -35,14 +35,20 @@ struct DaySchedule: View {
     
     var body: some View {
         ScrollView {
-            Spacer()
-                .frame(height: headerHeight + 5)
-            HStack(alignment: .top, spacing: 0) {
-                TimeColumn(day: day)
-                ForEach(Stage.allCases, id: \.rawValue) { stage in
-                    StageColumn(timeslots: dataManager.getTimeslotsFor(day, location: stage), columnWidth: columnWidth)
+            ZStack(alignment: .topLeading) {
+                TimeColumn(day: day, headerHeight: headerHeight)
+                VStack(alignment: .leading, spacing: 0) {
                     Spacer()
-                        .frame(width: stage != .gelände ? 5 : 0)
+                        .frame(height: headerHeight + 5)
+                    HStack(alignment: .top, spacing: 0) {
+                        Spacer()
+                            .frame(width: 40)
+                        ForEach(Stage.allCases, id: \.rawValue) { stage in
+                            StageColumn(timeslots: dataManager.getTimeslotsFor(day, location: stage), columnWidth: columnWidth)
+                            Spacer()
+                                .frame(width: stage != .gelände ? 5 : 0)
+                        }
+                    }
                 }
             }
         }
@@ -50,20 +56,7 @@ struct DaySchedule: View {
     }
 }
 
-struct TimeColumn: View {
-    let day: SSCDay
-    var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            ForEach(day.getScheduleTimeStrings(), id: \.self) { timeString in
-                Text(timeString)
-                    .font(.caption)
-                    .bold()
-                    .frame(width: 40, height: 58, alignment: .top)
-            }
-        }
-            .background(Color("TimeCell"))
-    }
-}
+
 
 //struct DayView_Previews: PreviewProvider {
 //    static var previews: some View {
@@ -74,11 +67,5 @@ struct TimeColumn: View {
 //struct DaySchedule_Previews: PreviewProvider {
 //    static var previews: some View {
 //        DaySchedule()
-//    }
-//}
-
-//struct TimeColumn_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TimeColumn()
 //    }
 //}
