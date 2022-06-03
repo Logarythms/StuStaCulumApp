@@ -17,13 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        UITabBar.appearance().barTintColor = .black
-        UITabBar.appearance().tintColor = .white
-        
-        UINavigationBar.appearance().backgroundColor = Util.backgroundColor
-        UINavigationBar.appearance().tintColor = .white
-        
-        self.registerForPushNotifications()
+//        self.registerForPushNotifications()
         
         guard UserDefaults.standard.bool(forKey: "initialLoadCompleted") else {
             return true
@@ -109,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = tokenParts.joined()
         print("Device Token: \(token)")
         
-        NetworkingManager.addDeviceForPushNotifications(token: token)
+//        NetworkingManager.shared.addDeviceForPushNotifications(token: token)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

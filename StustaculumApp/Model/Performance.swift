@@ -6,9 +6,10 @@
 //  Copyright © 2018 stustaculum. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import SwiftUI
 
-struct Performance: Codable {
+struct Performance: Codable, Identifiable {
     var id: Int
     var artist: String?
     var description: String?
@@ -35,31 +36,36 @@ struct Performance: Codable {
         case stustaculumID = "stustaculum"
     }
     
+    func endDate() -> Date {
+        calendar.date(byAdding: .minute, value: self.duration, to: self.date)!
+    }
+    
     func printDescripton() {
         guard let a = artist else { return }
         print("\(a) at \(self.date) for \(self.duration) min")
     }
     
-    func getEventDescription() -> String {
+    func getEventDescription() -> EventDescripton {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy - HH:mm"
         
-        var string = ""
+        dateFormatter.dateFormat = "EEEE HH:mm"
+        dateFormatter.locale = Locale.init(identifier: "de_DE")
+                        
+        let locationName = Util.nameForLocation(self.location)
+        let formattedDate = dateFormatter.string(from: self.date) + " Uhr"
         
-        string += Util.nameForLocation(self.location)
-        string += "\n"
-        string += dateFormatter.string(from: self.date)
-        string += " Uhr"
+        let color = Color(DataManager.shared.getLocationFor(location)?.color() ?? Util.colorForStage(location))
         
-        guard let artist = self.artist else {
-            return string
-        }
-        
-        string += "\n"
-        string += artist
-        
-        return string
+        return EventDescripton(locationName: locationName, locationColor: color ,formattedDate: formattedDate, artist: artist, genre: genre)
     }
+}
+
+struct EventDescripton {
+    let locationName: String
+    let locationColor: Color
+    let formattedDate: String
+    let artist: String?
+    let genre: String?
 }
 
 extension Performance: Equatable {

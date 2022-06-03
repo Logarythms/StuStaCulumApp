@@ -18,13 +18,18 @@ class Util {
     static let zeltColor = UIColor(red:0.00, green:0.45, blue:0.64, alpha:1.0)
     static let geländeColor = UIColor(red:0.38, green:0.38, blue:0.38, alpha:1.0)
     
+    static let ssc2022Color = UIColor(red: 0.92, green: 0.15, blue: 0.76, alpha: 1.00)
+    
     static var backgroundColor = UIColor(red:0.18, green:0.18, blue:0.18, alpha:1.0)
+//    static let backgroundColor = UIColor(named: "Background")!
     static var stageCellBackgroundColor = UIColor(red:0.26, green:0.26, blue:0.26, alpha:1.0)
     
-    class func getLastUpdatedFor(_ performances: [Performance]?) -> Date? {
-        return performances?.sorted(by: {
-            $0.lastUpdate >= $1.lastUpdate
-        }).first?.lastUpdate
+    class func getLastUpdatedFor(_ performances: [Performance]?) -> Date {
+        if let date = performances?.sorted(by: { $0.lastUpdate >= $1.lastUpdate }).first?.lastUpdate {
+            return date
+        } else {
+            return Date()
+        }
     }
     
     class func colorForStage(_ id: Int) -> UIColor {
@@ -50,8 +55,12 @@ class Util {
             return "Atrium"
         case 3:
             return "Hans-Scholl-Halle"
-        default:
+        case 4:
             return "Festzelt"
+        case 5:
+            return "Gelände"
+        default:
+            return ""
         }
     }
     
@@ -74,50 +83,41 @@ class Util {
     }
     
     class func verifyDateInterval(date1: Date, date2: Date) -> Bool {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
         return date1 <= date2
     }
     
     class func getTimeslotsFor(_ performances: [Performance], day: SSCDay) -> [Timeslot] {
         var timeslots = [Timeslot]()
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
-        let dateRange = getDateRangeFor(day)
-        let startOfDay = dateRange.0
-        let endOfDay = dateRange.1
-        
+
         if performances.isEmpty {
-            guard verifyDateInterval(date1: startOfDay, date2: endOfDay) else {
+            guard verifyDateInterval(date1: day.startOfDay, date2: day.endOfDay) else {
                 return [Timeslot]()
             }
-            let timeslotLength = Int(DateInterval(start: startOfDay, end: endOfDay).duration) / 60
+            let timeslotLength = Int(DateInterval(start: day.startOfDay, end: day.endOfDay).duration) / 60
             timeslots.append(Timeslot(duration: timeslotLength, isEvent: false))
         }
         
         for (index, performance) in performances.enumerated() {
-            if (calendar.compare(performance.date, to: startOfDay, toGranularity: .minute) == .orderedSame) && !(performances.count == 1) {
+            if (calendar.compare(performance.date, to: day.startOfDay, toGranularity: .minute) == .orderedSame) && !(performances.count == 1) {
                 timeslots.append(Timeslot(duration: performance.duration, isEvent: true, performance: performance))
                 continue
             }
             let performanceEnd = calendar.date(byAdding: .minute, value: performance.duration, to: performance.date)!
-            let endComparison = calendar.compare(performanceEnd, to: endOfDay, toGranularity: .minute)
+            let endComparison = calendar.compare(performanceEnd, to: day.endOfDay, toGranularity: .minute)
             
             if endComparison != .orderedDescending {
                 let timeslotLength: Int
                 
                 if let previousPerformance = performances[safe: index - 1] {
-                    guard verifyDateInterval(date1: getEndOfPerformance(previousPerformance), date2: performance.date) else {
+                    guard verifyDateInterval(date1: previousPerformance.endDate(), date2: performance.date) else {
                         return [Timeslot]()
                     }
-                    timeslotLength = Int(DateInterval(start: getEndOfPerformance(previousPerformance), end: performance.date).duration) / 60
+                    timeslotLength = Int(DateInterval(start: previousPerformance.endDate(), end: performance.date).duration) / 60
                 } else {
-                    guard verifyDateInterval(date1: startOfDay, date2: performance.date) else {
+                    guard verifyDateInterval(date1: day.startOfDay, date2: performance.date) else {
                         return [Timeslot]()
                     }
-                    timeslotLength = Int(DateInterval(start: startOfDay, end: performance.date).duration) / 60
+                    timeslotLength = Int(DateInterval(start: day.startOfDay, end: performance.date).duration) / 60
                 }
                 if timeslotLength > 0 {
                     timeslots.append(Timeslot(duration: timeslotLength, isEvent: false))
@@ -126,10 +126,10 @@ class Util {
             }
             
             if performances[safe: index + 1] == nil && endComparison != .orderedSame {
-                guard verifyDateInterval(date1: performanceEnd, date2: endOfDay) else {
+                guard verifyDateInterval(date1: performanceEnd, date2: day.endOfDay) else {
                     return [Timeslot]()
                 }
-                let timeslotLength = Int(DateInterval(start: performanceEnd, end: endOfDay).duration) / 60
+                let timeslotLength = Int(DateInterval(start: performanceEnd, end: day.endOfDay).duration) / 60
                 timeslots.append(Timeslot(duration: timeslotLength, isEvent: false))
             }
             
@@ -144,9 +144,6 @@ class Util {
     }
     
     class func filterPerformancesBy(_ day: SSCDay, performances: [Performance]) -> [Performance] {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
         let filteredPerformances = performances.filter({ (performance) -> Bool in
             guard let nextDate = calendar.date(byAdding: .day, value: 1, to: day.date) else { fatalError("this should not happen") }
             
@@ -167,59 +164,7 @@ class Util {
         }
     }
     
-    class func getEndOfPerformance(_ performance: Performance) -> Date {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
-        let performanceEnd = calendar.date(byAdding: .minute, value: performance.duration, to: performance.date)!
-        return performanceEnd
-    }
-    
-    class func getDateRangeFor(_ day: SSCDay) -> (Date, Date) {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
-        var components = DateComponents()
-        components.year = 2019
-        components.timeZone = TimeZone(abbreviation: "CEST")
-        
-        let startDate: Date
-        let endDate: Date
-        
-        switch day.day {
-        case .day1:
-            components.month = 5
-            components.day = 29
-            components.hour = 17
-            components.minute = 0
-        case .day2:
-            components.month = 5
-            components.day = 30
-            components.hour = 15
-            components.minute = 0
-        case .day3:
-            components.month = 5
-            components.day = 31
-            components.hour = 15
-            components.minute = 0
-        case .day4:
-            components.month = 6
-            components.day = 1
-            components.hour = 11
-            components.minute = 0
-        }
-        
-        startDate = calendar.date(from: components)!
-        endDate = calendar.date(byAdding: .hour, value: day.duration, to: startDate)!
-        
-        return (startDate, endDate)
-        
-    }
-    
     class func performanceOverlaps(_ performance: Performance) -> Bool {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
         let start = performance.date
         let end = calendar.date(byAdding: .minute, value: performance.duration, to: start)!
         
@@ -239,10 +184,7 @@ class Util {
         
     }
     
-    internal class func getComparisonDateFor(_ endDate: Date) -> Date {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
+    class func getComparisonDateFor(_ endDate: Date) -> Date {
         let endComponents = calendar.dateComponents([.day, .hour, .minute, .month, .year], from: endDate)
         
         var comparisonComponents = DateComponents()
@@ -259,15 +201,19 @@ class Util {
         return comparisonDate
     }
     
-    class func getSSCDays() -> [SSCDay] {
-        return [SSCDay(.day1), SSCDay(.day2), SSCDay(.day3), SSCDay(.day4)]
-    }
+//    class func getSSCDays() -> [SSCDay] {
+//        guard
+//            let day1 = try? SSCDay(.day1),
+//            let day2 = try? SSCDay(.day2),
+//            let day3 = try? SSCDay(.day3),
+//            let day4 = try? SSCDay(.day4)
+//        else {
+//            return []
+//        }
+//        return [day1, day2, day3, day4]
+//    }
     
     class func getNotificationTriggers() -> [UNCalendarNotificationTrigger] {
-        
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
-        
         var triggers = [UNCalendarNotificationTrigger]()
         
         for id in 0...3 {
@@ -302,38 +248,15 @@ class Util {
         return triggers
     }
     
-    class func getDateForDay(_ id: Int) -> Date {
-        var dateComponents = DateComponents()
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
+    class func getDateForDay(_ id: Int) throws -> Date {
+        guard let startDate = DataManager.shared.getCurrentSSC()?.startDate else { throw DateError.noStartDate }
         
-        dateComponents.timeZone = TimeZone(abbreviation: "CEST")
-        dateComponents.year = 2019
-        
-        if (1...3).contains(id) {
-            dateComponents.month = 5
+        if id == 0 {
+            return startDate
         } else {
-            dateComponents.month = 6
+            guard let date = calendar.date(byAdding: .day, value: id - 1, to: startDate) else { throw DateError.calculationError }
+            return date
         }
-        
-        switch id {
-        case 1:
-            dateComponents.day = 29
-        case 2:
-            dateComponents.day = 30
-        case 3:
-            dateComponents.day = 31
-        case 4:
-            dateComponents.day = 1
-        default:
-            break
-        }
-        
-        guard let date = calendar.date(from: dateComponents) else {
-            fatalError("Could not generate SSC Dates")
-        }
-        
-        return date
     }
     
     class func getCurrentDayIndex() -> Int {
@@ -362,8 +285,6 @@ class Util {
     
     private class func getCutoffDateForDay(_ id: Int) -> Date {
         var dateComponents = DateComponents()
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(abbreviation: "CEST")!
         
         dateComponents.timeZone = TimeZone(abbreviation: "CEST")
         dateComponents.year = 2019

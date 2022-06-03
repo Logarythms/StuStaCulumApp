@@ -8,11 +8,12 @@
 
 import Foundation
 
-struct Timeslot: CustomStringConvertible {
+struct Timeslot: CustomStringConvertible, Identifiable {
     
     let duration: Int
     let isEvent: Bool
     let performance: Performance?
+    let id = UUID()
     
     init(duration: Int, isEvent: Bool, performance: Performance? = nil) {
         self.duration = duration

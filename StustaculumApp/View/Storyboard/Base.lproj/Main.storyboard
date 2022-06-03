@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z1L-kV-ljv">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="oyE-El-6vL">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="z1L-kV-ljv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5n2-vH-CyR">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="RaQ-eW-Jxx" kind="relationship" relationship="viewControllers" id="yUJ-Jj-ohM"/>
+                        <segue destination="F9w-9N-oJe" kind="relationship" relationship="viewControllers" id="4gA-Rt-nQS"/>
+                        <segue destination="F9g-8h-42v" kind="relationship" relationship="viewControllers" id="7vP-dW-fqX"/>
+                        <segue destination="PnR-NN-9sQ" kind="relationship" relationship="viewControllers" id="MUa-3o-S2K"/>
+                        <segue destination="YcR-fL-aWI" kind="relationship" relationship="viewControllers" id="23t-GL-O4F"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nI1-hl-ZGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133.59999999999999" y="784.85757121439292"/>
+        </scene>
+        <!--News-->
+        <scene sceneID="n85-hW-PIh">
+            <objects>
+                <hostingController id="RaQ-eW-Jxx" customClass="NewsViewHostingController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="News" id="M9B-F3-Ftz">
+                        <imageReference key="image" image="house.fill" catalog="system" symbolScale="default"/>
+                        <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LT0-Nm-OZR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1346" y="1612"/>
+        </scene>
+        <!--Plan-->
+        <scene sceneID="IIj-Nq-Jx4">
+            <objects>
+                <hostingController id="F9w-9N-oJe" customClass="ScheduleHostingViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Plan" id="Vih-IB-Q7A">
+                        <imageReference key="image" image="calendar.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="calendar.circle.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GMF-Vn-Hlr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1009" y="-83"/>
+        </scene>
+        <!--Karte-->
+        <scene sceneID="SXD-U4-4aR">
+            <objects>
+                <hostingController id="F9g-8h-42v" customClass="MapViewHostingController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Karte" id="cRz-RU-qp5">
+                        <imageReference key="image" image="map.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="map.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z7Q-C9-qaG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1062" y="769"/>
+        </scene>
+        <!--MapVC-->
+        <scene sceneID="YFS-fz-8Yp">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B59-dA-rkg" userLabel="MapVC" customClass="MapViewController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Avn-dA-PsD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rua-jQ-vxD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1DX-qS-3ab"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rua-jQ-vxD" firstAttribute="leading" secondItem="1DX-qS-3ab" secondAttribute="leading" id="121-E9-glu"/>
+                            <constraint firstItem="rua-jQ-vxD" firstAttribute="top" secondItem="1DX-qS-3ab" secondAttribute="top" id="Cll-fG-oln"/>
+                            <constraint firstItem="1DX-qS-3ab" firstAttribute="bottom" secondItem="rua-jQ-vxD" secondAttribute="bottom" id="lx9-Kb-uBn"/>
+                            <constraint firstItem="1DX-qS-3ab" firstAttribute="trailing" secondItem="rua-jQ-vxD" secondAttribute="trailing" id="zNX-45-82n"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Karte" id="tMW-RJ-4L9"/>
+                    <connections>
+                        <outlet property="mapView" destination="rua-jQ-vxD" id="W4H-Fw-PkK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lR5-hD-Kge" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1831" y="769"/>
+        </scene>
+        <!--FAQ-->
+        <scene sceneID="b9s-WH-94w">
+            <objects>
+                <hostingController id="PnR-NN-9sQ" customClass="FaqViewHostingController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="FAQ" id="o5R-4R-PXQ">
+                        <imageReference key="image" image="questionmark.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="questionmark.circle.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="csD-cu-7Hu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1346" y="785"/>
+        </scene>
+        <!--Infos-->
+        <scene sceneID="vF1-fD-LMY">
+            <objects>
+                <hostingController id="YcR-fL-aWI" customClass="InfoViewHostingController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Infos" id="lDn-du-v7y">
+                        <imageReference key="image" image="info.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="info.circle.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="apg-Ko-te3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="134" y="-83"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" red="0.21176470588235294" green="0.49803921568627452" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <resources>
+        <image name="calendar.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="map.fill" catalog="system" width="128" height="110"/>
+        <image name="questionmark.circle.fill" catalog="system" width="128" height="121"/>
+    </resources>
+</document>

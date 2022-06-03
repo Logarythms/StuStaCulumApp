@@ -1,23 +1,12 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "new_icon_left.png",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "new_icon_left-1.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "new_icon_left-2.png",
-      "scale" : "3x"
+      "filename" : "launchscreen.jpg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

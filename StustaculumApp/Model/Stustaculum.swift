@@ -12,13 +12,14 @@ struct Stustaculum: Codable {
     
     var id: Int
     var lastUpdated: Date
-    var startDate: String
-    var endDate: String
+    var startDate: Date
+    var endDate: Date
     var year: Int
     var updateURL: URL
     var logoURL: URL
     var logo: UIImage?
     var published: Bool
+    var colorString: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -29,8 +30,15 @@ struct Stustaculum: Codable {
         case updateURL = "update_url"
         case logoURL = "logo"
         case published = "published"
+        case colorString = "color"
     }
     
-    
+    func color() -> UIColor? {
+        if let colorString = colorString {
+            return UIColor(hex: colorString)
+        } else {
+            return nil
+        }
+    }
     
 }
