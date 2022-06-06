@@ -24,7 +24,7 @@ struct InfoView: View {
                     }
                 }
                 Section {
-                    ForEach(dataManager.aboutURLs, id: \.0) { (name, url) in
+                    ForEach(dataManager.infoURLs, id: \.0) { (name, url) in
                         LinkButton(name: name, url: url)
                     }
                 } header: {

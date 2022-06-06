@@ -17,8 +17,10 @@ class DataManager: ObservableObject {
 
     private let decoder = JSONDecoder()
     private let encoder = JSONEncoder()
-    private let notificationCenter = NotificationCenter.default
-    private let networkingManager = NetworkingManager.shared
+    
+    let notificationCenter = NotificationCenter.default
+    let networkingManager = NetworkingManager.shared
+    let storageManager = StorageManager.shared
     
     private var currentSSC: Stustaculum?
     private var performances = [Performance]() {
@@ -31,7 +33,7 @@ class DataManager: ObservableObject {
     
     var locations = [Location]()
     
-    let aboutURLs = [("Offizielle Website", URL(string: "https://www.stustaculum.de")!),
+    let infoURLs = [("Offizielle Website", URL(string: "https://www.stustaculum.de")!),
                      ("Instagram", URL(string: "https://instagram.com/stustaculum/")!),
                      ("Twitter", URL(string: "https://twitter.com/stustaculum")!),
                      ("Facebook", URL(string: "https://www.facebook.com/StuStaCulum/")!)]
@@ -55,13 +57,13 @@ class DataManager: ObservableObject {
     
     func updateNews() {
         Task {
-            await downloadNews()
+            try? await downloadNews()
         }
     }
     
     func updatePerformances() {
         Task {
-            await downloadUpdatedPerformances()
+//            await downloadUpdatedPerformances()
         }
     }
     
@@ -69,70 +71,11 @@ class DataManager: ObservableObject {
         return currentSSC
     }
     
-    func validatePerformances(_ performances: [Performance]) -> Bool {
-        for day in days {
-            let filteredPerformances = Util.filterPerformancesBy(day, performances: performances)
-            
-            for index in (1...4) {
-                guard !Util.getTimeslotsFor(filteredPerformances.filter {
-                    $0.location == index
-                }, day: day).isEmpty else {
-                    return false
-                }
-            }
-        }
-        return true
-    }
-    
-    func getTimeslotsFor(_ day: SSCDay, location: Stage) -> [Timeslot] {
-        guard !performances.isEmpty else { return [] }
-        let filteredPerformances = Util.filterPerformancesBy(day, performances: performances).filter { $0.location == location.rawValue }
-        
-        let timeslots =  Util.getTimeslotsFor(filteredPerformances, day: day)
-        
-        guard !timeslots.isEmpty else {
-            return [Timeslot(duration: day.duration, isEvent: false)]
-        }
-        
-        return timeslots
-    }
-    
-    func getTimeslotsFor(_ day: SSCDay, favoritePerformances: [Performance]? = nil) -> ([Timeslot], [Timeslot], [Timeslot], [Timeslot]) {
-        
-        if let favorites = favoritePerformances {
-            performances = favorites
-        } else {
-            guard !performances.isEmpty else {
-                return ([Timeslot](), [Timeslot](), [Timeslot](), [Timeslot]())
-            }
-        }
-        
-        let filteredPerformances = Util.filterPerformancesBy(day, performances: performances)
-        
-        let dada = filteredPerformances.filter {
-            $0.location == 1
-        }
-        let atrium = filteredPerformances.filter {
-            $0.location == 2
-        }
-//        let halle = filteredPerformances.filter {
-//            $0.location == 3
-//        }
-        let zelt = filteredPerformances.filter {
-            $0.location == 4
-        }
-        let gelände = filteredPerformances.filter {
-            $0.location == 5
-        }
-        
-        return (Util.getTimeslotsFor(dada, day: day), Util.getTimeslotsFor(atrium, day: day), Util.getTimeslotsFor(zelt, day: day), Util.getTimeslotsFor(gelände, day: day))
-    }
-    
     func getPerformancesFor(_ day: SSCDay) -> [Performance] {
         guard !performances.isEmpty else {
             return [Performance]()
         }
-        return Util.filterPerformancesBy(day, performances: performances)
+        return TimeslotCalculator().filterPerformancesBy(day, performances: performances)
     }
     
     func getAllPerformances() -> [Performance] {
@@ -157,80 +100,27 @@ class DataManager: ObservableObject {
         
     }
     
-    private var savePaths: [SavePath: URL] {
-        var paths = [SavePath: URL]()
-        for path in SavePath.allCases {
-            paths[path] = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(path.rawValue)
-        }
-        return paths
-    }
-    
-    private func savePathURLFor(_ path: SavePath) -> URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(path.rawValue)
-    }
-    
-    private func loadLocalData() -> Bool {
-        guard loadCurrentSSC() else {
-            return false
-        }
-        guard loadCurrentLogo() else {
-            return false
-        }
-        guard loadPerformances() else {
-            return false
-        }
-        guard loadLocations() else {
-            return false
-        }
-        guard loadHowTos() else {
-            return false
-        }
-        guard loadNews() else {
-            return false
-        }
+    func loadLocalData() throws {
+        let localData = try storageManager.getLocalData()
+        
+        self.currentSSC = localData.0
+        self.logo = localData.1
+        self.performances = localData.2
+        self.locations = localData.3
+        self.howTos = localData.4
+        self.news = localData.5
+        
         UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
-        return true
     }
     
     private func handleTimeOut() {
-        print("initializing from local data")
-        guard   initializeLocalData(),
-                loadLocalData() else {
-                
-                return
-        }
+//        print("initializing from local data")
+//        guard   initializeLocalData(),
+//                loadLocalData() else {
+//
+//                return
+//        }
         self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
-    }
-    
-    private func deleteIncompleteData() {
-        let fileManager = FileManager.default
-        for savePath in SavePath.allCases {
-            guard let path = savePaths[savePath] else {
-                return
-            }
-            try? fileManager.removeItem(at: path)
-        }
-    }
-    
-    private func initializeLocalData() -> Bool {
-        deleteIncompleteData()
-        
-        let fileManager = FileManager.default
-        for savePath in SavePath.allCases {
-            guard   let localSavePath = localSavePathFor(savePath),
-                    let savePath = savePaths[savePath] else {
-                    
-                    return false
-            }
-            do {
-                try fileManager.copyItem(at: localSavePath, to: savePath)
-            } catch let error {
-                print(error)
-                return false
-            }
-        }
-        
-        return true
     }
     
     private func initializeData() {
@@ -246,8 +136,12 @@ class DataManager: ObservableObject {
                     async let howTos = self.downloadHowTos()
                     async let news = self.downloadNews()
                     
-                    let (sscLoaded, locationsLoaded, howTosLoaded, newsLoaded) = await (ssc, locations, howTos, news)
-                    guard sscLoaded && locationsLoaded && howTosLoaded && newsLoaded else { throw DataManagerError.initialLoadFailed }
+                    let performances = try await self.downloadPerformancesFor(ssc)
+                    let logo = try await self.downloadLogo(ssc.logoURL)
+                    
+                    try await self.setInitialData(ssc, logo: logo, performances: performances, locations: locations, howTos: howTos, news: news)
+                    
+                    try await self.storageManager.saveData(ssc, logo: logo, performances: performances, locations: locations, howTos: howTos, news: news)
                     
                     UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
                     self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
@@ -255,46 +149,26 @@ class DataManager: ObservableObject {
                     print("initial load complete")
                 }
             } catch {
-                self.handleTimeOut()
+                print("timeout")
+//                self.handleTimeOut()
             }
             
         }
     }
-                                      
     
-    private func localDataExists() -> Bool {
-        for (_, url) in self.savePaths {
-            guard FileManager.default.fileExists(atPath: url.path) else {
-                return false
-            }
-        }
-        return true
-    }
-    
-    private func localSavePathFor(_ savePath: SavePath) -> URL? {
-        switch savePath {
-        case .currentSSC:
-            return Bundle.main.url(forResource: "currentSSC", withExtension: "json")
-        case .performances:
-            return Bundle.main.url(forResource: "performances", withExtension: "json")
-        case .locations:
-            return Bundle.main.url(forResource: "locations", withExtension: "json")
-        case .howTos:
-            return Bundle.main.url(forResource: "howTos", withExtension: "json")
-        case .news:
-            return Bundle.main.url(forResource: "news", withExtension: "json")
-        case .logo:
-            return Bundle.main.url(forResource: "logo", withExtension: "png")
-        }
-    }
-    
-    private enum SavePath: String, CaseIterable {
-        case currentSSC = "currentSSC.json"
-        case performances = "performances.json"
-        case locations = "locations.json"
-        case howTos = "howTos.json"
-        case news = "news.json"
-        case logo = "logo.png"
+    @MainActor
+    func setInitialData(_ ssc: Stustaculum,
+                        logo: UIImage, performances: [Performance],
+                        locations: [Location],
+                        howTos: [HowTo], news: [NewsEntry]) {
+        self.currentSSC = ssc
+        self.logo = logo
+        self.performances = performances
+        self.locations = locations
+        self.howTos = howTos
+        self.news = news
+        
+        print("initial data set")
     }
     
     func getLocationFor(_ stage: Stage) -> Location? {
@@ -307,117 +181,16 @@ class DataManager: ObservableObject {
 }
 
 extension DataManager {
-    private func loadCurrentSSC() -> Bool {
-        guard   let sscPath = savePaths[.currentSSC],
-                let sscData = try? Data(contentsOf: sscPath),
-                let decodedSSC = try? decoder.decode(Stustaculum.self, from: sscData) else {
-                
-                return false
-        }
-        self.currentSSC = decodedSSC
-        return true
-    }
-    
-    private func loadCurrentLogo() -> Bool {
-        guard   let logoPath = savePaths[.logo],
-                let logoData = try? Data(contentsOf: logoPath),
-                let logo = UIImage(data: logoData) else {
-                
-                return false
-        }
-        self.logo = logo
-        return true
-    }
-    
-    private func loadPerformances() -> Bool {
-        guard   let performancesPath = savePaths[.performances],
-                let performancesData = try? Data(contentsOf: performancesPath),
-                let decodedPerformances = try? decoder.decode([Performance].self, from: performancesData) else {
-                
-                return false
-        }
-        self.performances = filterPerformances(decodedPerformances)
-        return true
-    }
-    
-    private func loadLocations() -> Bool {
-        guard   let locationsPath = savePaths[.locations],
-                let locationsData = try? Data(contentsOf: locationsPath),
-                let decodedLocations = try? decoder.decode([Location].self, from: locationsData) else {
-                
-                return false
-        }
-        self.locations = decodedLocations
-        return true
-    }
-    
-    private func loadHowTos() -> Bool {
-        guard   let howTosPath = savePaths[.howTos],
-                let howTosData = try? Data(contentsOf: howTosPath),
-                let decodedHowTos = try? decoder.decode([HowTo].self, from: howTosData) else {
-                
-                return false
-        }
-        self.howTos = decodedHowTos
-        return true
-    }
-    
-    private func loadNews() -> Bool {
-        guard   let newsPath = savePaths[.news],
-                let newsData = try? Data(contentsOf: newsPath),
-                let decodedNews = try? decoder.decode([NewsEntry].self, from: newsData) else {
-                
-                return false
-        }
-        self.news = decodedNews.sorted {
-            $0.id >= $1.id
-        }
-        return true
-    }
-    
-    private func downloadCurrentSSC() async -> Bool {
-        do {
-            let ssc = try await networkingManager.getCurrentSSC()
-            let path = savePathURLFor(.currentSSC)
-            
-            let encodedData = try self.encoder.encode(ssc)
-            try encodedData.write(to: path)
-            
-            self.currentSSC = ssc
-            
-            async let performancesLoad = self.downloadPerformances()
-            async let logoLoad = self.downloadLogo(ssc.logoURL)
-            
-            let (p,l) = await (performancesLoad, logoLoad)
-            
-            print("ssc loaded")
-            
-            return p && l
-        } catch let error {
-            print(error)
-            return false
-        }
+    private func downloadCurrentSSC() async throws -> Stustaculum {
+        return try await networkingManager.getCurrentSSC()
     }
     
     @MainActor func updateLogo(_ image: UIImage) {
         self.logo = image
     }
     
-    private func downloadLogo(_ url: URL) async -> Bool {
-        do {
-            let image = try await networkingManager.getCurrentLogo(url)
-            let path = savePathURLFor(.logo)
-            try image.pngData()?.write(to: path)
-            print("logo loaded")
-            
-            await updateLogo(image)
-            
-            return true
-        } catch let error {
-            print(error)
-            return false
-        }
-        
+    private func downloadLogo(_ url: URL) async throws -> UIImage {
+        return try await networkingManager.getCurrentLogo(url)
     }
     
     private func filterPerformances(_ performances: [Performance]) -> [Performance] {
@@ -427,86 +200,56 @@ extension DataManager {
         let filteredPerformances = performances.filter {
             ($0.stustaculumID == ssc.id) && $0.show && ($0.artist != "Electronic-Night" && $0.id != 3427 && $0.artist != "Kinderprogramm") && $0.duration > 0
         }
-        let verifiedPerformances = filteredPerformances.filter {
-            for performance in filteredPerformances where $0.date == performance.date && $0.location == performance.location && $0.id != performance.id {
-                return $0.lastUpdate >= performance.lastUpdate
-            }
-            return true
-        }
-        return verifiedPerformances
+        //        let verifiedPerformances = filteredPerformances.filter {
+        //            for performance in filteredPerformances where $0.date == performance.date && $0.location == performance.location && $0.id != performance.id {
+        //                return $0.lastUpdate >= performance.lastUpdate
+        //            }
+        //            return true
+        //        }
+        //        return verifiedPerformances
+        return filteredPerformances
     }
     
-    private func downloadPerformances() async -> Bool {
+    private func downloadPerformancesFor(_ ssc: Stustaculum) async throws -> [Performance] {
         
-        do {
-            let performances = try await networkingManager.getPerformances()
-            let filteredPerformances = self.filterPerformances(performances)
-            
-            guard validatePerformances(filteredPerformances) else { throw DataManagerError.validationFailed }
-                        
-            let encodedData = try self.encoder.encode(filteredPerformances)
-            
-            let path = savePathURLFor(.performances)
-            try encodedData.write(to: path)
-            
-            self.performances = filteredPerformances
-            print("performances loaded")
-            return true
-        } catch let error {
-            print(error)
-            return false
-        }
+        let performances = try await networkingManager.getPerformances(ssc)
+        let filteredPerformances = self.filterPerformances(performances)
         
+        guard TimeslotCalculator().validatePerformances(filteredPerformances) else { throw DataManagerError.validationFailed }
+        return filteredPerformances
     }
     
-    private func downloadUpdatedPerformances() async -> Bool {
-        do {
-            let performances = try await networkingManager.getPerformances()
-            let filteredPerformances = self.filterPerformances(performances)
-            
-            guard validatePerformances(filteredPerformances) else { throw DataManagerError.validationFailed }
-            
-            let compareDate = Util.getLastUpdatedFor(filteredPerformances)
-            let lastUpdated = Util.getLastUpdatedFor(self.performances)
-            
-            guard compareDate > lastUpdated else { return false }
-            
-            let encodedData = try self.encoder.encode(filteredPerformances)
-            
-            let path = savePathURLFor(.performances)
-            try encodedData.write(to: path)
-
-            self.performances = filteredPerformances
-            print("updated performances")
-            
-            self.notificationCenter.post(name: Notification.Name("performancesUpdated"), object: nil)
-            print("updated performances loaded")
-            return true
-        } catch let error {
-            print(error)
-            return false
-        }
-        
-    }
+//    private func downloadUpdatedPerformances() async -> Bool {
+//        do {
+//            let performances = try await networkingManager.getPerformances()
+//            let filteredPerformances = self.filterPerformances(performances)
+//
+//            guard TimeslotCalculator().validatePerformances(filteredPerformances) else { throw DataManagerError.validationFailed }
+//
+//            let compareDate = Util.getLastUpdatedFor(filteredPerformances)
+//            let lastUpdated = Util.getLastUpdatedFor(self.performances)
+//
+//            guard compareDate > lastUpdated else { return false }
+//
+//            let encodedData = try self.encoder.encode(filteredPerformances)
+//
+//            try encodedData.write(to: SavePath.performances.url)
+//
+//            self.performances = filteredPerformances
+//            print("updated performances")
+//
+//            self.notificationCenter.post(name: Notification.Name("performancesUpdated"), object: nil)
+//            print("updated performances loaded")
+//            return true
+//        } catch let error {
+//            print(error)
+//            return false
+//        }
+//
+//    }
     
-    private func downloadLocations() async -> Bool {
-        do {
-            let locations = try await networkingManager.getLocations()
-            
-            let encodedData = try self.encoder.encode(locations)
-            
-            let path = savePathURLFor(.locations)
-            try encodedData.write(to: path)
-            
-            self.locations = locations
-            print("locations loaded")
-
-            return true
-        } catch let error {
-            print(error)
-            return false
-        }
-        
+    private func downloadLocations() async throws -> [Location] {
+        return try await networkingManager.getLocations()
     }
     
     @MainActor
@@ -514,25 +257,11 @@ extension DataManager {
         self.howTos = howTos
     }
     
-    private func downloadHowTos() async -> Bool {
-        do {
-            let howTos = try await networkingManager.getHowTos()
-            
-            let encodedData = try self.encoder.encode(howTos)
-            
-            let path = savePathURLFor(.howTos)
-            try encodedData.write(to: path)
-            
-            print("howTos loaded")
-            
-            await self.publishHowTos(howTos.sorted {
-                $0.title.compare($1.title, locale: Locale(identifier: "de_DE")) == .orderedAscending
-            })
-            
-            return true
-        } catch let error {
-            print(error)
-            return false
+    private func downloadHowTos() async throws -> [HowTo] {
+        let howTos = try await networkingManager.getHowTos()
+        
+        return howTos.sorted {
+            $0.title.compare($1.title, locale: Locale(identifier: "de_DE")) == .orderedAscending
         }
     }
     
@@ -541,25 +270,8 @@ extension DataManager {
         self.news = news
     }
     
-    private func downloadNews() async -> Bool {
-        do {
-            let news = try await networkingManager.getNews()
-            
-            let encodedData = try self.encoder.encode(news)
-            
-            let path = savePathURLFor(.news)
-            try encodedData.write(to: path)
-            
-            self.notificationCenter.post(name: Notification.Name("newsUpdated"), object: nil)
-            print("news loaded")
-
-            await self.publishNews(news)
-            
-            return true
-        } catch let error {
-            print(error)
-            return false
-        }
+    private func downloadNews() async throws -> [NewsEntry] {
+        return try await networkingManager.getNews()
     }
     
     enum DataManagerError: Error {

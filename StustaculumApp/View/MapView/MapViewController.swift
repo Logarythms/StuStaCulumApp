@@ -25,14 +25,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        notificationCenter.addObserver(self, selector: #selector(updateLocations), name: Notification.Name("fetchComplete"), object: nil)
-        
+                
         mapView.delegate = self
-        
         centerMapOnLocation(initialLocation)
-        
-//        updateLocations()
         addOverlay()
     }
     
@@ -57,21 +52,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    @objc
-    func updateLocations() {
-        self.locations = dataManager.locations
-        addLocationsToMap()
-    }
-    
-    func addLocationsToMap() {
-        var annotations = [SSCAnnotation]()
-        for location in locations {
-            let annotation = SSCAnnotation(title: location.shortName, coordinate: Util.getCoordinatesFor(location))
-            annotations.append(annotation)
-        }
-        mapView.addAnnotations(annotations)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
