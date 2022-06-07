@@ -75,6 +75,13 @@ class DataManager: ObservableObject {
         guard !performances.isEmpty else {
             return [Performance]()
         }
+        
+        let filtered1 = performances.filter {
+            (day.startOfDay <= $0.date) && ($0.date <= day.endOfDay)
+        }
+        
+        let filtered2 = TimeslotCalculator().filterPerformancesBy(day, performances: performances)
+        
         return TimeslotCalculator().filterPerformancesBy(day, performances: performances)
     }
     
@@ -90,7 +97,7 @@ class DataManager: ObservableObject {
         encoder.dateEncodingStrategy = .iso8601
                 
         if !storageManager.localDataExists() {
-            initializeData()
+            downloadInitialData()
             return
         }
         
@@ -126,7 +133,7 @@ class DataManager: ObservableObject {
         }
     }
     
-    private func initializeData() {
+    private func downloadInitialData() {
         
         Task {
             do {
@@ -253,22 +260,12 @@ extension DataManager {
         return try await networkingManager.getLocations()
     }
     
-    @MainActor
-    func publishHowTos(_ howTos: [HowTo]) {
-        self.howTos = howTos
-    }
-    
     private func downloadHowTos() async throws -> [HowTo] {
         let howTos = try await networkingManager.getHowTos()
         
         return howTos.sorted {
             $0.title.compare($1.title, locale: Locale(identifier: "de_DE")) == .orderedAscending
         }
-    }
-    
-    @MainActor
-    func publishNews(_ news: [NewsEntry]) {
-        self.news = news
     }
     
     private func downloadNews() async throws -> [NewsEntry] {
