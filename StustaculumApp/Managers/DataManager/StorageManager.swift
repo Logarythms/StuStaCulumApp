@@ -23,18 +23,17 @@ class StorageManager {
     }
     
     
-    func getLocalData() throws -> (Stustaculum, UIImage?, [Performance], [Location], [HowTo], [NewsEntry]) {
+    func getLocalData() throws -> (Stustaculum, [Performance], [Location], [HowTo], [NewsEntry]) {
         let ssc = try loadCurrentSSC()
-        let logo = try loadCurrentLogo()
         let performances = try loadPerformances()
         let locations = try loadLocations()
         let howTos = try loadHowTos()
         let news = try loadNews()
         
-        return (ssc, logo, performances, locations, howTos, news)
+        return (ssc, performances, locations, howTos, news)
     }
     
-    func initializeLocalData() throws {
+    func initializeFallbackData() throws {
         deleteIncompleteData()
         
         for savePath in SavePath.allCases {
@@ -48,9 +47,9 @@ class StorageManager {
         }
     }
     
-    private func localDataExists() -> Bool {
+    func localDataExists() -> Bool {
         for savePath in SavePath.allCases {
-            guard fileManager.fileExists(atPath: savePath.url.absoluteString) else { return false }
+            guard fileManager.fileExists(atPath: savePath.url.path) else { return false }
         }
         return true
     }
@@ -61,13 +60,6 @@ class StorageManager {
         let decodedSSC = try decoder.decode(Stustaculum.self, from: sscData)
 
         return decodedSSC
-    }
-    
-    private func loadCurrentLogo() throws -> UIImage? {
-        let logoData = try Data(contentsOf: SavePath.logo.url)
-        let logo = UIImage(data: logoData)
-
-        return logo
     }
     
     private func loadPerformances() throws -> [Performance] {
@@ -104,7 +96,6 @@ class StorageManager {
                   logo: UIImage, performances: [Performance],
                   locations: [Location], howTos: [HowTo], news: [NewsEntry]) throws {
         try saveCurrentSSC(ssc)
-        try saveCurrentLogo(logo)
         try savePerformances(performances)
         try saveLocations(locations)
         try saveHowTos(howTos)
@@ -116,10 +107,6 @@ class StorageManager {
     func saveCurrentSSC(_ ssc: Stustaculum) throws {
         let data = try self.encoder.encode(ssc)
         try data.write(to: SavePath.currentSSC.url)
-    }
-    
-    func saveCurrentLogo(_ logo: UIImage) throws {
-        try logo.pngData()?.write(to: SavePath.logo.url)
     }
     
     func savePerformances(_ performances: [Performance]) throws {

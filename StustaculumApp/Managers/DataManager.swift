@@ -13,7 +13,7 @@ class DataManager: ObservableObject {
     @Published var news = [NewsEntry]()
     @Published var howTos = [HowTo]()
     @Published var days = [SSCDay]()
-    @Published var logo: UIImage?
+    @Published var logo = UIImage(named: "logo2022")
 
     private let decoder = JSONDecoder()
     private let encoder = JSONEncoder()
@@ -88,39 +88,43 @@ class DataManager: ObservableObject {
     private init() {
         decoder.dateDecodingStrategy = .iso8601
         encoder.dateEncodingStrategy = .iso8601
+                
+        if !storageManager.localDataExists() {
+            initializeData()
+            return
+        }
         
-        self.initializeData()
-        
-//        guard   self.localDataExists(),
-//                self.loadLocalData() else {
-//
-//                self.initializeData()
-//                return
-//        }
+        Task {
+            try? await loadLocalData()
+        }
         
     }
     
+    @MainActor
     func loadLocalData() throws {
-        let localData = try storageManager.getLocalData()
+        let (ssc, performances, locations, howTos, news) = try storageManager.getLocalData()
         
-        self.currentSSC = localData.0
-        self.logo = localData.1
-        self.performances = localData.2
-        self.locations = localData.3
-        self.howTos = localData.4
-        self.news = localData.5
+        self.currentSSC = ssc
+        self.performances = performances
+        self.locations = locations
+        self.howTos = howTos
+        self.news = news
         
-        UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
+        print("local data loaded")
+        
+        UserDefaults.standard.set(true, forKey: "initialLoadCompleted")        
+        self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
     }
     
     private func handleTimeOut() {
-//        print("initializing from local data")
-//        guard   initializeLocalData(),
-//                loadLocalData() else {
-//
-//                return
-//        }
-        self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
+        print("initializing fallback data")
+        
+        try? storageManager.initializeFallbackData()
+        
+        Task {
+            try? await loadLocalData()
+            self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
+        }
     }
     
     private func initializeData() {
@@ -139,7 +143,7 @@ class DataManager: ObservableObject {
                     let performances = try await self.downloadPerformancesFor(ssc)
                     let logo = try await self.downloadLogo(ssc.logoURL)
                     
-                    try await self.setInitialData(ssc, logo: logo, performances: performances, locations: locations, howTos: howTos, news: news)
+                    try await self.setInitialData(ssc, performances: performances, locations: locations, howTos: howTos, news: news)
                     
                     try await self.storageManager.saveData(ssc, logo: logo, performances: performances, locations: locations, howTos: howTos, news: news)
                     
@@ -149,8 +153,8 @@ class DataManager: ObservableObject {
                     print("initial load complete")
                 }
             } catch {
-                print("timeout")
-//                self.handleTimeOut()
+                print(error.localizedDescription)
+                self.handleTimeOut()
             }
             
         }
@@ -158,11 +162,9 @@ class DataManager: ObservableObject {
     
     @MainActor
     func setInitialData(_ ssc: Stustaculum,
-                        logo: UIImage, performances: [Performance],
-                        locations: [Location],
+                        performances: [Performance], locations: [Location],
                         howTos: [HowTo], news: [NewsEntry]) {
         self.currentSSC = ssc
-        self.logo = logo
         self.performances = performances
         self.locations = locations
         self.howTos = howTos

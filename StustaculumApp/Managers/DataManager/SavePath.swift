@@ -14,24 +14,12 @@ enum SavePath: String, CaseIterable {
     case locations = "locations"
     case howTos = "howTos"
     case news = "news"
-    case logo = "logo"
     
     var url: URL {
-        switch self {
-        case .logo:
-            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(self.rawValue).png")
-        default:
-            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(self.rawValue).json")
-        }
-        
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(self.rawValue).json")
     }
     
     var localResource: URL {
-        switch self {
-        case .logo:
-            return Bundle.main.url(forResource: self.rawValue, withExtension: "png")!
-        default:
-            return Bundle.main.url(forResource: self.rawValue, withExtension: "json")!
-        }
+        Bundle.main.url(forResource: self.rawValue, withExtension: "json")!
     }
 }
