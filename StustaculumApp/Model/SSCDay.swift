@@ -27,7 +27,7 @@ struct SSCDay: Identifiable {
         id = day.rawValue
         
         //calculate date of SSCDay
-        guard let startDate = DataManager.shared.getCurrentSSC()?.startDate else { throw DateError.noStartDate }
+        guard let startDate = DataManager.shared.currentSSC?.startDate else { throw DateError.noStartDate }
         guard let date = calendar.date(byAdding: .day, value: day.rawValue, to: startDate) else { throw DateError.calculationError }
         
         let (firstPerformance, lastPerformance) = try SSCDay.getFirstLastPerformancesFor(date, performances: performances)
@@ -99,7 +99,7 @@ struct SSCDay: Identifiable {
         return (firstPerformance, lastPerformance)
     }
     
-    enum Day: Int {
+    enum Day: Int, CaseIterable {
         case day1 = 0
         case day2 = 1
         case day3 = 2

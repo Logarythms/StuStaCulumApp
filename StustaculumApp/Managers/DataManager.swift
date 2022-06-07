@@ -10,6 +10,8 @@ import UIKit
 
 class DataManager: ObservableObject {
     
+    @Published var currentSSC: Stustaculum?
+    @Published var performances = [Performance]()
     @Published var news = [NewsEntry]()
     @Published var howTos = [HowTo]()
     @Published var days = [SSCDay]()
@@ -21,37 +23,19 @@ class DataManager: ObservableObject {
     let notificationCenter = NotificationCenter.default
     let networkingManager = NetworkingManager.shared
     let storageManager = StorageManager.shared
-    
-    private var currentSSC: Stustaculum?
-    private var performances = [Performance]() {
-        didSet {
-            Task {
-                await updateSSCDays()
-            }
-        }
-    }
-    
+        
     var locations = [Location]()
-    
-    let infoURLs = [("Offizielle Website", URL(string: "https://www.stustaculum.de")!),
-                     ("Instagram", URL(string: "https://instagram.com/stustaculum/")!),
-                     ("Twitter", URL(string: "https://twitter.com/stustaculum")!),
-                     ("Facebook", URL(string: "https://www.facebook.com/StuStaCulum/")!)]
     
     static let shared = DataManager()
     
-    @MainActor
-    func updateSSCDays() {
-        guard !self.performances.isEmpty else { return }
+    func sscDays(_ performances: [Performance]) -> [SSCDay] {
         do {
-            let day1 = try SSCDay(.day1, performances: performances)
-            let day2 = try SSCDay(.day2, performances: performances)
-            let day3 = try SSCDay(.day3, performances: performances)
-            let day4 = try SSCDay(.day4, performances: performances)
-            
-            self.days = [day1, day2, day3, day4]
+            return try SSCDay.Day.allCases.map {
+                try SSCDay($0, performances: performances)
+            }
         } catch {
             print(error)
+            return []
         }
     }
     
@@ -67,22 +51,10 @@ class DataManager: ObservableObject {
         }
     }
     
-    func getCurrentSSC() -> Stustaculum? {
-        return currentSSC
-    }
-    
     func getPerformancesFor(_ day: SSCDay) -> [Performance] {
-        guard !performances.isEmpty else {
-            return [Performance]()
-        }
-        
-        let filtered1 = performances.filter {
+        performances.filter {
             (day.startOfDay <= $0.date) && ($0.date <= day.endOfDay)
         }
-        
-        let filtered2 = TimeslotCalculator().filterPerformancesBy(day, performances: performances)
-        
-        return TimeslotCalculator().filterPerformancesBy(day, performances: performances)
     }
     
     func getAllPerformances() -> [Performance] {
@@ -116,6 +88,9 @@ class DataManager: ObservableObject {
         self.locations = locations
         self.howTos = howTos
         self.news = news
+        
+        let days = sscDays(performances)
+        self.days = days
         
         print("local data loaded")
         
@@ -169,12 +144,15 @@ class DataManager: ObservableObject {
     @MainActor
     func setInitialData(_ ssc: Stustaculum,
                         performances: [Performance], locations: [Location],
-                        howTos: [HowTo], news: [NewsEntry]) {
+                        howTos: [HowTo], news: [NewsEntry]) throws {
         self.currentSSC = ssc
         self.performances = performances
         self.locations = locations
         self.howTos = howTos
         self.news = news
+        
+        let days = sscDays(performances)
+        self.days = days
         
         print("initial data set")
     }
@@ -201,10 +179,7 @@ extension DataManager {
         return try await networkingManager.getCurrentLogo(url)
     }
     
-    private func filterPerformances(_ performances: [Performance]) -> [Performance] {
-        guard let ssc = self.currentSSC else {
-            return performances
-        }
+    private func filterPerformances(_ performances: [Performance], ssc: Stustaculum) -> [Performance] {
         let filteredPerformances = performances.filter {
             ($0.stustaculumID == ssc.id) && $0.show && ($0.artist != "Electronic-Night" && $0.id != 3427 && $0.artist != "Kinderprogramm") && $0.duration > 0
         }
@@ -221,7 +196,7 @@ extension DataManager {
     private func downloadPerformancesFor(_ ssc: Stustaculum) async throws -> [Performance] {
         
         let performances = try await networkingManager.getPerformances(ssc)
-        let filteredPerformances = self.filterPerformances(performances)
+        let filteredPerformances = self.filterPerformances(performances, ssc: ssc)
         
         guard TimeslotCalculator().validatePerformances(filteredPerformances) else { throw DataManagerError.validationFailed }
         return filteredPerformances
