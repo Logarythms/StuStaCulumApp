@@ -112,7 +112,7 @@ class DataManager: ObservableObject {
         
         print("local data loaded")
         
-        UserDefaults.standard.set(true, forKey: "initialLoadCompleted")        
+        UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
         self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
     }
     
@@ -123,7 +123,6 @@ class DataManager: ObservableObject {
         
         Task {
             try? await loadLocalData()
-            self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
         }
     }
     
