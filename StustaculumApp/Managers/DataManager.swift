@@ -89,8 +89,7 @@ class DataManager: ObservableObject {
         self.howTos = howTos
         self.news = news
         
-        let days = sscDays(performances)
-        self.days = days
+        self.days = sscDays(performances)
         
         print("local data loaded")
         
@@ -151,8 +150,7 @@ class DataManager: ObservableObject {
         self.howTos = howTos
         self.news = news
         
-        let days = sscDays(performances)
-        self.days = days
+        self.days = sscDays(performances)
         
         print("initial data set")
     }
