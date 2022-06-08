@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4802E9D220BA488A005A0085 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D120BA488A005A0085 /* MapViewController.swift */; };
-		4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */; };
 		48092C732845601D00E70913 /* FaqDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C722845601D00E70913 /* FaqDetailView.swift */; };
 		48092C78284597CA00E70913 /* Text+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C77284597CA00E70913 /* Text+HTML.swift */; };
 		48092C7B28462C0700E70913 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48092C7A28462C0700E70913 /* InfoView.swift */; };
@@ -68,7 +67,6 @@
 
 /* Begin PBXFileReference section */
 		4802E9D120BA488A005A0085 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCAnnotation.swift; sourceTree = "<group>"; };
 		48092C722845601D00E70913 /* FaqDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqDetailView.swift; sourceTree = "<group>"; };
 		48092C77284597CA00E70913 /* Text+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+HTML.swift"; sourceTree = "<group>"; };
 		48092C7A28462C0700E70913 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
@@ -256,7 +254,6 @@
 				48F7507B20B2FD780012FCDB /* Performance.swift */,
 				488F14BF20B732600058536E /* SSCDay.swift */,
 				485BF26C20B8236000075A64 /* Timeslot.swift */,
-				4802E9D320BA4CBE005A0085 /* SSCAnnotation.swift */,
 				48F68532228F1F97007A286E /* SSCMapOverlay.swift */,
 			);
 			path = Model;
@@ -426,7 +423,6 @@
 				48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */,
 				48092C732845601D00E70913 /* FaqDetailView.swift in Sources */,
 				48A830672846E85D0005D871 /* MapHostView.swift in Sources */,
-				4802E9D420BA4CBE005A0085 /* SSCAnnotation.swift in Sources */,
 				48A8306B284781D50005D871 /* StageColumn.swift in Sources */,
 				485BF26D20B8236000075A64 /* Timeslot.swift in Sources */,
 				48F50E622844D79800DF11C7 /* ForEach+Values.swift in Sources */,
