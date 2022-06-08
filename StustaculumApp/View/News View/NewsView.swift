@@ -63,6 +63,7 @@ struct NewsView: View {
             .listStyle(.plain)
             .navigationTitle("News")
         }
+        .navigationViewStyle(.stack)
         .onAppear {
             viewModel.updateUpcomingPerformances()
         }

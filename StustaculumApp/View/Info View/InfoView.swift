@@ -41,7 +41,7 @@ struct InfoView: View {
             }
             .navigationTitle("Infos")
         }
-//        .tint(Color(Util.ssc2022Color))
+        .navigationViewStyle(.stack)
     }
 }
 

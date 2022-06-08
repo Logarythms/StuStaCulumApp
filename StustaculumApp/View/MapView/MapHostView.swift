@@ -14,6 +14,7 @@ struct MapHostView: View {
             MapView()
                 .navigationTitle("Karte")
         }
+        .navigationViewStyle(.stack)
     }
 }
 
