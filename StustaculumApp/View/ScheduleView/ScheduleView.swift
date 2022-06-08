@@ -15,10 +15,10 @@ struct ScheduleView: View {
     var body: some View {
         NavigationView {
             PagerTabStripView {
-                ForEach(dataManager.days) { day in
-                    DayView(day: day)
+                ForEach(dataManager.dayslots) { dayslot in
+                    DayView(dayslot: dayslot)
                         .pagerTabItem {
-                            Text(day.getShortWeekDay())
+                            Text(dayslot.day.getShortWeekDay())
                         }
                         .background(Color("TimeCell"))
                         

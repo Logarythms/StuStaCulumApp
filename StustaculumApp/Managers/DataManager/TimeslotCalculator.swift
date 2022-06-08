@@ -12,34 +12,30 @@ struct TimeslotCalculator {
     
     let dataManager = DataManager.shared
     
+    func getDayslots(_ days: [SSCDay]) throws -> [Dayslot] {
+        var dayslots = [Dayslot]()
+        
+        for day in days {
+            var dayslot = Dayslot(day: day)
+            for stage in Stage.allCases {
+                dayslot.timeslots[stage] = timeslotsFor(day, stage)
+            }
+            dayslots.append(dayslot)
+        }
+        
+        return dayslots
+    }
     
-    func getTimeslotsFor(_ day: SSCDay, _ stage: Stage) -> [Timeslot] {
+    private func timeslotsFor(_ day: SSCDay, _ stage: Stage) -> [Timeslot] {
         guard !dataManager.performances.isEmpty else { return [] }
         let filteredPerformances = dataManager.performancesFor(day, stage)
-        let timeslots =  getTimeslotsFor(filteredPerformances, day: day)
+        let timeslots =  try? getTimeslotsFor(filteredPerformances, day: day)
         
-        guard !timeslots.isEmpty else {
+        guard let timeslots = timeslots else {
             return [Timeslot(duration: day.duration, isEvent: false)]
         }
         
         return timeslots
-    }
-    
-    func validatePerformances(_ performances: [Performance]) -> Bool {
-        let days = dataManager.days
-        
-        for day in days {
-            let filteredPerformances = dataManager.performancesFor(day)
-            
-            for index in (1...4) {
-                guard !getTimeslotsFor(filteredPerformances.filter {
-                    $0.location == index
-                }, day: day).isEmpty else {
-                    return false
-                }
-            }
-        }
-        return true
     }
     
     private func getTimeslotsFor(_ performances: [Performance], day: SSCDay) throws -> [Timeslot] {

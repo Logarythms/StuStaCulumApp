@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SSCDay: Codable, Identifiable {
+struct SSCDay: Codable, Identifiable, Hashable {
     
     let day: Day
     let date: Date

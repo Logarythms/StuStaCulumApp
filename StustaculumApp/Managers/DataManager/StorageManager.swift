@@ -23,22 +23,23 @@ class StorageManager {
     }
     
     
-    func getLocalData() throws -> (Stustaculum, [SSCDay], [Performance], [Location], [HowTo], [NewsEntry]) {
+    func getLocalData() throws -> (Stustaculum, [SSCDay], [Dayslot], [Performance], [Location], [HowTo], [NewsEntry]) {
         let ssc = try loadCurrentSSC()
         let days = (try? loadDays()) ?? []
+        let dayslots = (try? loadDayslots()) ?? []
         let performances = try loadPerformances()
         let locations = try loadLocations()
         let howTos = try loadHowTos()
         let news = try loadNews()
         
-        return (ssc, days, performances, locations, howTos, news)
+        return (ssc, days, dayslots, performances, locations, howTos, news)
     }
     
     func initializeFallbackData() throws {
         deleteIncompleteData()
         
         for savePath in SavePath.allCases {
-            if (savePath != .days) {
+            if (savePath != .days && savePath != .dayslots)  {
                 try fileManager.copyItem(at: savePath.localResource, to: savePath.url)
             }
         }
@@ -72,6 +73,13 @@ class StorageManager {
         return decodedDays
     }
     
+    private func loadDayslots() throws -> [Dayslot] {
+        let dayslotData = try Data(contentsOf: SavePath.dayslots.url)
+        let decodedDayslots = try decoder.decode([Dayslot].self, from: dayslotData)
+        
+        return decodedDayslots
+    }
+    
     private func loadPerformances() throws -> [Performance] {
         let performancesData = try Data(contentsOf: SavePath.performances.url)
         let decodedPerformances = try decoder.decode([Performance].self, from: performancesData)
@@ -102,11 +110,12 @@ class StorageManager {
     
     //MARK: save local data
     
-    func saveData(_ ssc: Stustaculum, days: [SSCDay],
+    func saveData(_ ssc: Stustaculum, days: [SSCDay], dayslots: [Dayslot],
                   performances: [Performance], locations: [Location],
                   howTos: [HowTo], news: [NewsEntry]) throws {
         try saveCurrentSSC(ssc)
         try saveDays(days)
+        try saveDayslots(dayslots)
         try savePerformances(performances)
         try saveLocations(locations)
         try saveHowTos(howTos)
@@ -123,6 +132,11 @@ class StorageManager {
     func saveDays(_ days: [SSCDay]) throws {
         let data = try self.encoder.encode(days)
         try data.write(to: SavePath.days.url)
+    }
+    
+    func saveDayslots(_ dayslots: [Dayslot]) throws {
+        let data = try self.encoder.encode(dayslots)
+        try data.write(to: SavePath.dayslots.url)
     }
     
     func savePerformances(_ performances: [Performance]) throws {

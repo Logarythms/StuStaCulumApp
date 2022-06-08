@@ -11,6 +11,7 @@ import Foundation
 enum SavePath: String, CaseIterable {
     case currentSSC = "currentSSC"
     case days = "days"
+    case dayslots = "dayslots"
     case performances = "performances"
     case locations = "locations"
     case howTos = "howTos"

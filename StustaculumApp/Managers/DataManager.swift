@@ -17,6 +17,7 @@ class DataManager: ObservableObject {
     @Published var locations = [Location]()
     @Published var days = [SSCDay]()
     @Published var logo = UIImage(named: "logo2022")
+    @Published var dayslots = [Dayslot]()
     
     static let shared = DataManager()
 
@@ -51,7 +52,7 @@ class DataManager: ObservableObject {
                     
                     try await self.setInitialData(ssc, performances: performances, locations: locations, howTos: howTos, news: news)
                     
-                    try await self.storageManager.saveData(ssc, days: self.days, performances: performances, locations: locations, howTos: howTos, news: news)
+                    try await self.storageManager.saveData(ssc, days: self.days, dayslots: self.dayslots, performances: performances, locations: locations, howTos: howTos, news: news)
                     
                     UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
                     self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
@@ -78,7 +79,7 @@ class DataManager: ObservableObject {
     
     @MainActor
     private func loadLocalData() throws {
-        let (ssc, days, performances, locations, howTos, news) = try storageManager.getLocalData()
+        let (ssc, days, dayslots, performances, locations, howTos, news) = try storageManager.getLocalData()
         
         self.currentSSC = ssc
         self.performances = performances
@@ -90,6 +91,12 @@ class DataManager: ObservableObject {
             self.days = SSCDay.initFor(performances)
         } else {
             self.days = days
+        }
+        
+        if dayslots.isEmpty {
+            self.dayslots = (try? TimeslotCalculator().getDayslots(self.days)) ?? []
+        } else {
+            self.dayslots = dayslots
         }
         
         print("local data loaded")
@@ -109,6 +116,7 @@ class DataManager: ObservableObject {
         self.news = news
         
         self.days = SSCDay.initFor(performances)
+        self.dayslots = (try? TimeslotCalculator().getDayslots(self.days)) ?? []
         
         print("initial data set")
     }
@@ -142,10 +150,6 @@ extension DataManager {
         let performances = try await networkingManager.getPerformances(ssc)
         let filteredPerformances = performances.filter {
             ($0.stustaculumID == ssc.id) && $0.show && ($0.artist != "Electronic-Night" && $0.id != 3427 && $0.artist != "Kinderprogramm") && $0.duration > 0
-        }
-        
-        guard TimeslotCalculator().validatePerformances(filteredPerformances) else {
-            throw DataManagerError.validationFailed
         }
         
         return filteredPerformances

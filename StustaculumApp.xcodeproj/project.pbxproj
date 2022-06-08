@@ -63,6 +63,7 @@
 		48F7507820B2F3950012FCDB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507720B2F3950012FCDB /* Location.swift */; };
 		48F7507A20B2F9480012FCDB /* NewsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507920B2F9480012FCDB /* NewsEntry.swift */; };
 		48F7507C20B2FD780012FCDB /* Performance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507B20B2FD780012FCDB /* Performance.swift */; };
+		48FF50DD285167010067E67F /* Dayslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FF50DC285167010067E67F /* Dayslot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 		48F7507720B2F3950012FCDB /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		48F7507920B2F9480012FCDB /* NewsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEntry.swift; sourceTree = "<group>"; };
 		48F7507B20B2FD780012FCDB /* Performance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Performance.swift; sourceTree = "<group>"; };
+		48FF50DC285167010067E67F /* Dayslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dayslot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +254,7 @@
 				48F7507720B2F3950012FCDB /* Location.swift */,
 				48F7507920B2F9480012FCDB /* NewsEntry.swift */,
 				48F7507B20B2FD780012FCDB /* Performance.swift */,
+				48FF50DC285167010067E67F /* Dayslot.swift */,
 				488F14BF20B732600058536E /* SSCDay.swift */,
 				485BF26C20B8236000075A64 /* Timeslot.swift */,
 				48F68532228F1F97007A286E /* SSCMapOverlay.swift */,
@@ -428,6 +431,7 @@
 				48F50E622844D79800DF11C7 /* ForEach+Values.swift in Sources */,
 				48F50E542841126200DF11C7 /* SSCDateDecoder.swift in Sources */,
 				48F50E602844D28800DF11C7 /* NewsViewModel.swift in Sources */,
+				48FF50DD285167010067E67F /* Dayslot.swift in Sources */,
 				48A830692847817D0005D871 /* DayView.swift in Sources */,
 				487AEB68284C0B2D006A3F0A /* StorageManager.swift in Sources */,
 				48F6853722919C0B007A286E /* Task+Timeout.swift in Sources */,
