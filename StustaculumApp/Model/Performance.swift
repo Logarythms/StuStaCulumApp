@@ -54,7 +54,7 @@ struct Performance: Codable, Identifiable {
         let locationName = Util.nameForLocation(self.location)
         let formattedDate = dateFormatter.string(from: self.date) + " Uhr"
         
-        let color = Color(DataManager.shared.getLocationFor(location)?.color() ?? Util.colorForStage(location))
+        let color = Color(Location.locationFor(location)?.color() ?? Util.colorForStage(location))
         
         return EventDescripton(locationName: locationName, locationColor: color ,formattedDate: formattedDate, artist: artist, genre: genre)
     }

@@ -57,7 +57,6 @@ struct NewsView: View {
                 }
             }
             .refreshable {
-                dataManager.updateNews()
                 viewModel.updateUpcomingPerformances()
             }
             .listStyle(.plain)

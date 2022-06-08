@@ -13,11 +13,9 @@ struct TimeslotCalculator {
     let dataManager = DataManager.shared
     
     func getTimeslotsFor(_ day: SSCDay, location: Stage) -> [Timeslot] {
-        
-        let performances = dataManager.getAllPerformances()
-        
-        guard !performances.isEmpty else { return [] }
-        let filteredPerformances = filterPerformancesBy(day, performances: performances).filter { $0.location == location.rawValue }
+                
+        guard !dataManager.performances.isEmpty else { return [] }
+        let filteredPerformances = filterPerformancesBy(day, performances: dataManager.performances).filter { $0.location == location.rawValue }
         
         let timeslots =  getTimeslotsFor(filteredPerformances, day: day)
         
