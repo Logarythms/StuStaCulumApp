@@ -45,7 +45,7 @@ struct DaySchedule: View {
                         Spacer()
                             .frame(width: 40)
                         ForEach(Stage.allCases, id: \.rawValue) { stage in
-                            StageColumn(timeslots: TimeslotCalculator().getTimeslotsFor(day, location: stage), columnWidth: columnWidth)
+                            StageColumn(timeslots: TimeslotCalculator().getTimeslotsFor(day, stage), columnWidth: columnWidth)
                             Spacer()
                                 .frame(width: stage != .gelände ? 5 : 0)
                         }

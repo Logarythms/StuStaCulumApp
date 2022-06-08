@@ -113,9 +113,17 @@ class DataManager: ObservableObject {
         print("initial data set")
     }
     
-    func getPerformancesFor(_ day: SSCDay) -> [Performance] {
+    func performancesFor(_ day: SSCDay) -> [Performance] {
         performances.filter {
             (day.startOfDay <= $0.date) && ($0.date <= day.endOfDay)
+        }.sorted {
+            $0.date <= $1.date
+        }
+    }
+    
+    func performancesFor(_ day: SSCDay, _ stage: Stage) -> [Performance] {
+        performancesFor(day).filter {
+            $0.location == stage.rawValue
         }
     }
     
