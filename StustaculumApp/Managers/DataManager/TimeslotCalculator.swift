@@ -13,9 +13,12 @@ struct TimeslotCalculator {
     let dataManager = DataManager.shared
     
     func getTimeslotsFor(_ day: SSCDay, location: Stage) -> [Timeslot] {
-                
         guard !dataManager.performances.isEmpty else { return [] }
-        let filteredPerformances = filterPerformancesBy(day, performances: dataManager.performances).filter { $0.location == location.rawValue }
+        let filteredPerformances = dataManager.performances.filter {
+            (day.startOfDay <= $0.date) && ($0.date <= day.endOfDay) && ($0.location == location.rawValue)
+        }.sorted {
+            $0.date <= $1.date
+        }
         
         let timeslots =  getTimeslotsFor(filteredPerformances, day: day)
         
@@ -30,7 +33,11 @@ struct TimeslotCalculator {
         let days = dataManager.days
         
         for day in days {
-            let filteredPerformances = filterPerformancesBy(day, performances: performances)
+            let filteredPerformances = dataManager.performances.filter {
+                (day.startOfDay <= $0.date) && ($0.date <= day.endOfDay)
+            }.sorted {
+                $0.date <= $1.date
+            }
             
             for index in (1...4) {
                 guard !getTimeslotsFor(filteredPerformances.filter {
@@ -43,7 +50,7 @@ struct TimeslotCalculator {
         return true
     }
     
-    func getTimeslotsFor(_ performances: [Performance], day: SSCDay) -> [Timeslot] {
+    private func getTimeslotsFor(_ performances: [Performance], day: SSCDay) -> [Timeslot] {
         var timeslots = [Timeslot]()
 
         if performances.isEmpty {
@@ -92,63 +99,5 @@ struct TimeslotCalculator {
             
         }
         return timeslots
-    }
-    
-    func filterPerformancesBy(_ day: SSCDay, performances: [Performance]) -> [Performance] {
-        let filteredPerformances = performances.filter({ (performance) -> Bool in
-            guard let nextDate = calendar.date(byAdding: .day, value: 1, to: day.date) else { fatalError("this should not happen") }
-            
-            let isSameDay = (calendar.compare(performance.date, to: day.date, toGranularity: .day)) == .orderedSame
-            let isNextDay = (calendar.compare(performance.date, to: nextDate, toGranularity: .day)) == .orderedSame
-            let isOverlapping = performanceOverlaps(performance)
-            
-            if isSameDay && !isOverlapping {
-                return true
-            } else if isNextDay && isOverlapping {
-                return true
-            } else {
-                return false
-            }
-        })
-        return filteredPerformances.sorted {
-            $0.date <= $1.date
-        }
-    }
-    
-    func performanceOverlaps(_ performance: Performance) -> Bool {
-        let start = performance.date
-        let end = calendar.date(byAdding: .minute, value: performance.duration, to: start)!
-        
-        let cutoffDate = getComparisonDateFor(end)
-        
-        let comparison = calendar.compare(start, to: end, toGranularity: .day)
-        let cutoffComparison = calendar.compare(end, to: cutoffDate, toGranularity: .hour)
-        let onSameDay = calendar.isDate(start, equalTo: end, toGranularity: .day)
-        let onDifferentDays = onSameDay ? false : (comparison == .orderedAscending)
-        let cutoff = onDifferentDays ? false : (cutoffComparison == .orderedAscending)
-        
-        if cutoff {
-            return true
-        } else {
-            return false
-        }
-        
-    }
-    
-    func getComparisonDateFor(_ endDate: Date) -> Date {
-        let endComponents = calendar.dateComponents([.day, .hour, .minute, .month, .year], from: endDate)
-        
-        var comparisonComponents = DateComponents()
-        comparisonComponents.year = endComponents.year
-        comparisonComponents.month = endComponents.month
-        comparisonComponents.day = endComponents.day
-        
-        comparisonComponents.hour = 4
-        comparisonComponents.minute = 0
-        
-        guard let comparisonDate = calendar.date(from: comparisonComponents) else {
-            fatalError("Could not generate Comparison Date")
-        }
-        return comparisonDate
     }
 }
