@@ -23,21 +23,24 @@ class StorageManager {
     }
     
     
-    func getLocalData() throws -> (Stustaculum, [Performance], [Location], [HowTo], [NewsEntry]) {
+    func getLocalData() throws -> (Stustaculum, [SSCDay], [Performance], [Location], [HowTo], [NewsEntry]) {
         let ssc = try loadCurrentSSC()
+        let days = (try? loadDays()) ?? []
         let performances = try loadPerformances()
         let locations = try loadLocations()
         let howTos = try loadHowTos()
         let news = try loadNews()
         
-        return (ssc, performances, locations, howTos, news)
+        return (ssc, days, performances, locations, howTos, news)
     }
     
     func initializeFallbackData() throws {
         deleteIncompleteData()
         
         for savePath in SavePath.allCases {
-            try fileManager.copyItem(at: savePath.localResource, to: savePath.url)
+            if (savePath != .days) {
+                try fileManager.copyItem(at: savePath.localResource, to: savePath.url)
+            }
         }
     }
     
@@ -60,6 +63,13 @@ class StorageManager {
         let decodedSSC = try decoder.decode(Stustaculum.self, from: sscData)
 
         return decodedSSC
+    }
+    
+    private func loadDays() throws -> [SSCDay] {
+        let dayData = try Data(contentsOf: SavePath.days.url)
+        let decodedDays = try decoder.decode([SSCDay].self, from: dayData)
+        
+        return decodedDays
     }
     
     private func loadPerformances() throws -> [Performance] {
@@ -92,10 +102,11 @@ class StorageManager {
     
     //MARK: save local data
     
-    func saveData(_ ssc: Stustaculum,
-                  logo: UIImage, performances: [Performance],
-                  locations: [Location], howTos: [HowTo], news: [NewsEntry]) throws {
+    func saveData(_ ssc: Stustaculum, days: [SSCDay],
+                  performances: [Performance], locations: [Location],
+                  howTos: [HowTo], news: [NewsEntry]) throws {
         try saveCurrentSSC(ssc)
+        try saveDays(days)
         try savePerformances(performances)
         try saveLocations(locations)
         try saveHowTos(howTos)
@@ -107,6 +118,11 @@ class StorageManager {
     func saveCurrentSSC(_ ssc: Stustaculum) throws {
         let data = try self.encoder.encode(ssc)
         try data.write(to: SavePath.currentSSC.url)
+    }
+    
+    func saveDays(_ days: [SSCDay]) throws {
+        let data = try self.encoder.encode(days)
+        try data.write(to: SavePath.days.url)
     }
     
     func savePerformances(_ performances: [Performance]) throws {

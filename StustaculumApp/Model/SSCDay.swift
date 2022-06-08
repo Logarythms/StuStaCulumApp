@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SSCDay: Identifiable {
+struct SSCDay: Codable, Identifiable {
     
     let day: Day
     let date: Date
@@ -21,8 +21,19 @@ struct SSCDay: Identifiable {
     let minHour: Int
     let maxHour: Int
     let duration: Int
+    
+    static func initFor(_ performances: [Performance]) -> [SSCDay] {
+        do {
+            return try SSCDay.Day.allCases.map {
+                try SSCDay($0, performances: performances)
+            }
+        } catch {
+            print(error)
+            return []
+        }
+    }
         
-    init(_ day: Day, performances: [Performance]) throws {
+    private init(_ day: Day, performances: [Performance]) throws {
         
         id = day.rawValue
         
@@ -66,7 +77,7 @@ struct SSCDay: Identifiable {
         self.endOfDay = endOfDay
     }
     
-    static func getFirstLastPerformancesFor(_ date: Date, performances: [Performance]) throws -> (Performance, Performance) {
+    private static func getFirstLastPerformancesFor(_ date: Date, performances: [Performance]) throws -> (Performance, Performance) {
         let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
         
         //set cutoff date for first performance to 6am of CURRENT DAY because we don't want late-night events
@@ -99,7 +110,7 @@ struct SSCDay: Identifiable {
         return (firstPerformance, lastPerformance)
     }
     
-    enum Day: Int, CaseIterable {
+    enum Day: Int, Codable, CaseIterable {
         case day1 = 0
         case day2 = 1
         case day3 = 2

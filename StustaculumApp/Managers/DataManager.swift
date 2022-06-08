@@ -28,17 +28,6 @@ class DataManager: ObservableObject {
     
     static let shared = DataManager()
     
-    func sscDays(_ performances: [Performance]) -> [SSCDay] {
-        do {
-            return try SSCDay.Day.allCases.map {
-                try SSCDay($0, performances: performances)
-            }
-        } catch {
-            print(error)
-            return []
-        }
-    }
-    
     func updateNews() {
         Task {
             try? await downloadNews()
@@ -73,7 +62,7 @@ class DataManager: ObservableObject {
             return
         }
         
-        Task {
+        Task(priority: .userInitiated) {
             try? await loadLocalData()
         }
         
@@ -81,7 +70,7 @@ class DataManager: ObservableObject {
     
     @MainActor
     func loadLocalData() throws {
-        let (ssc, performances, locations, howTos, news) = try storageManager.getLocalData()
+        let (ssc, days, performances, locations, howTos, news) = try storageManager.getLocalData()
         
         self.currentSSC = ssc
         self.performances = performances
@@ -89,7 +78,11 @@ class DataManager: ObservableObject {
         self.howTos = howTos
         self.news = news
         
-        self.days = sscDays(performances)
+        if days.isEmpty {
+            self.days = SSCDay.initFor(performances)
+        } else {
+            self.days = days
+        }
         
         print("local data loaded")
         
@@ -109,7 +102,7 @@ class DataManager: ObservableObject {
     
     private func downloadInitialData() {
         
-        Task {
+        Task(priority: .userInitiated) {
             do {
                 try await withTimeout(seconds: 10) {
                     
@@ -121,11 +114,10 @@ class DataManager: ObservableObject {
                     async let news = self.downloadNews()
                     
                     let performances = try await self.downloadPerformancesFor(ssc)
-                    let logo = try await self.downloadLogo(ssc.logoURL)
                     
                     try await self.setInitialData(ssc, performances: performances, locations: locations, howTos: howTos, news: news)
                     
-                    try await self.storageManager.saveData(ssc, logo: logo, performances: performances, locations: locations, howTos: howTos, news: news)
+                    try await self.storageManager.saveData(ssc, days: self.days, performances: performances, locations: locations, howTos: howTos, news: news)
                     
                     UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
                     self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
@@ -143,14 +135,14 @@ class DataManager: ObservableObject {
     @MainActor
     func setInitialData(_ ssc: Stustaculum,
                         performances: [Performance], locations: [Location],
-                        howTos: [HowTo], news: [NewsEntry]) throws {
+                        howTos: [HowTo], news: [NewsEntry]) {
         self.currentSSC = ssc
         self.performances = performances
         self.locations = locations
         self.howTos = howTos
         self.news = news
         
-        self.days = sscDays(performances)
+        self.days = SSCDay.initFor(performances)
         
         print("initial data set")
     }
