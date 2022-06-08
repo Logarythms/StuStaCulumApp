@@ -42,54 +42,44 @@ struct TimeslotCalculator {
         return true
     }
     
-    private func getTimeslotsFor(_ performances: [Performance], day: SSCDay) -> [Timeslot] {
+    private func getTimeslotsFor(_ performances: [Performance], day: SSCDay) throws -> [Timeslot] {
         var timeslots = [Timeslot]()
 
         if performances.isEmpty {
-            guard day.startOfDay <= day.endOfDay else {
-                return [Timeslot]()
-            }
-            let timeslotLength = Int(DateInterval(start: day.startOfDay, end: day.endOfDay).duration) / 60
-            timeslots.append(Timeslot(duration: timeslotLength, isEvent: false))
+            return [Timeslot(duration: day.duration, isEvent: false)]
         }
         
         for (index, performance) in performances.enumerated() {
-            if (calendar.compare(performance.date, to: day.startOfDay, toGranularity: .minute) == .orderedSame) && !(performances.count == 1) {
+            if (performance.date == day.startOfDay) && !(performances.count == 1) {
                 timeslots.append(Timeslot(duration: performance.duration, isEvent: true, performance: performance))
                 continue
             }
-            let performanceEnd = calendar.date(byAdding: .minute, value: performance.duration, to: performance.date)!
-            let endComparison = calendar.compare(performanceEnd, to: day.endOfDay, toGranularity: .minute)
             
-            if endComparison != .orderedDescending {
-                let timeslotLength: Int
-                
-                if let previousPerformance = performances[safe: index - 1] {
-                    guard previousPerformance.endDate() <= performance.date else {
-                        return [Timeslot]()
-                    }
-                    timeslotLength = Int(DateInterval(start: previousPerformance.endDate(), end: performance.date).duration) / 60
-                } else {
-                    guard day.startOfDay <= performance.date else {
-                        return [Timeslot]()
-                    }
-                    timeslotLength = Int(DateInterval(start: day.startOfDay, end: performance.date).duration) / 60
-                }
-                if timeslotLength > 0 {
-                    timeslots.append(Timeslot(duration: timeslotLength, isEvent: false))
-                }
-                timeslots.append(Timeslot(duration: performance.duration, isEvent: true, performance: performance))
+            let emptySlotLength: Int
+            
+            if let previousPerformance = performances[safe: index - 1] {
+                guard previousPerformance.endDate() <= performance.date else { throw TimeslotError.overlap }
+                emptySlotLength = Int(DateInterval(start: previousPerformance.endDate(), end: performance.date).duration) / 60
+            } else {
+                emptySlotLength = Int(DateInterval(start: day.startOfDay, end: performance.date).duration) / 60
             }
             
-            if performances[safe: index + 1] == nil && endComparison != .orderedSame {
-                guard performanceEnd <= day.endOfDay else {
-                    return [Timeslot]()
-                }
-                let timeslotLength = Int(DateInterval(start: performanceEnd, end: day.endOfDay).duration) / 60
+            if emptySlotLength > 0 {
+                timeslots.append(Timeslot(duration: emptySlotLength, isEvent: false))
+            }
+            
+            timeslots.append(Timeslot(duration: performance.duration, isEvent: true, performance: performance))
+            
+            if performances[safe: index + 1] == nil && performance.endDate() != day.endOfDay {
+                let timeslotLength = Int(DateInterval(start: performance.endDate(), end: day.endOfDay).duration) / 60
                 timeslots.append(Timeslot(duration: timeslotLength, isEvent: false))
             }
             
         }
         return timeslots
     }
+}
+
+enum TimeslotError: Error {
+    case overlap
 }
