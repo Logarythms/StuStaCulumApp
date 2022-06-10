@@ -14,22 +14,6 @@ struct PerformanceView: View {
     
     let performance: Performance
     let dataManager = DataManager.shared
-    let splitMarkdownStrings: [AttributedString]
-    
-    init(performance: Performance) {
-        self.performance = performance
-        
-        let dom = try? HTMLParser().parse(html: (performance.description ?? "").removingHTMLEntities())
-        let markdownString = dom?.toMarkdown(options: .unorderedListBullets) ?? ""
-        
-        self.splitMarkdownStrings = markdownString.split(separator: "\n").map {
-            if let attributedString = try? AttributedString(markdown: String($0)) {
-                return attributedString
-            } else {
-                return AttributedString()
-            }
-        }
-    }
     
     var body: some View {
         ScrollView {
@@ -73,7 +57,8 @@ struct PerformanceView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 5) {
-                    ForEach(splitMarkdownStrings, id: \.self) { string in
+                    let strings = splitMarkdownStrings()
+                    ForEach(strings, id: \.self) { string in
                         Text(string)
                             .font(.system(size: 15))
                     }
@@ -81,6 +66,19 @@ struct PerformanceView: View {
                 .padding([.leading, .trailing])
             }
             .navigationTitle(performance.artist ?? "Veranstaltung")
+        }
+    }
+    
+    func splitMarkdownStrings() -> [AttributedString] {
+        let dom = try? HTMLParser().parse(html: (performance.description ?? "").removingHTMLEntities())
+        let markdownString = dom?.toMarkdown(options: .unorderedListBullets) ?? ""
+
+        return markdownString.split(separator: "\n").map {
+            if let attributedString = try? AttributedString(markdown: String($0)) {
+                return attributedString
+            } else {
+                return AttributedString()
+            }
         }
     }
     
