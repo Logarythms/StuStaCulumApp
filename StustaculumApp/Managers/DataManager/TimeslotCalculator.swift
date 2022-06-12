@@ -12,10 +12,10 @@ struct TimeslotCalculator {
     
     let dataManager = DataManager.shared
     
-    func getDayslots(_ days: [SSCDay]) throws -> [Dayslot] {
+    func getDayslots() throws -> [Dayslot] {
         var dayslots = [Dayslot]()
         
-        for day in days {
+        for day in dataManager.days {
             var dayslot = Dayslot(day: day)
             for stage in Stage.allCases {
                 dayslot.timeslots[stage] = try timeslotsFor(day, stage)
