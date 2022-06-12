@@ -35,6 +35,9 @@ class DataManager: ObservableObject {
 
         Task(priority: .userInitiated) {
             try? await loadLocalData()
+            try? await updatePerformances()
+            try? await updateNews()
+            try? await updateHowTos()
         }
     }
     
@@ -67,24 +70,6 @@ class DataManager: ObservableObject {
             }
             
         }
-    }
-    
-    private func downloadPerformancesForUpdate() async throws {
-        guard let ssc = currentSSC else { return }
-        let performances = try await downloadPerformancesFor(ssc)
-        let newUpdatedDate = performances.sorted{ $0.lastUpdate > $1.lastUpdate }.first?.lastUpdate ?? Date()
-        
-        if newUpdatedDate > self.lastUpdated {
-            try? await updatePerformances(performances)
-        }
-    }
-    
-    @MainActor func updatePerformances(_ performances: [Performance]) throws {
-        self.performances = performances
-        self.dayslots = try TimeslotCalculator().getDayslots()
-        
-        try? storageManager.savePerformances(performances)
-        try? storageManager.saveDayslots(dayslots)
     }
     
     private func handleTimeOut() {
@@ -187,5 +172,51 @@ extension DataManager {
     
     private func downloadNews() async throws -> [NewsEntry] {
         return try await networkingManager.getNews()
+    }
+}
+
+extension DataManager {
+    func updatePerformances() async throws {
+        guard let ssc = currentSSC else { return }
+        let performances = try await downloadPerformancesFor(ssc)
+        let newUpdatedDate = performances.sorted{ $0.lastUpdate > $1.lastUpdate }.first?.lastUpdate ?? Date()
+        
+        print("old: \(self.lastUpdated)")
+        print("new: \(newUpdatedDate)")
+        
+        if newUpdatedDate > self.lastUpdated {            
+            try? await setPerformances(performances)
+        }
+    }
+    
+    @MainActor
+    private func setPerformances(_ performances: [Performance]) throws {
+        self.performances = performances
+        self.dayslots = try TimeslotCalculator().getDayslots()
+        
+        try? storageManager.savePerformances(performances)
+        try? storageManager.saveDayslots(dayslots)
+    }
+    
+    func updateNews() async throws {
+        let news = try await downloadNews()
+        await setNews(news)
+        try? storageManager.saveNews(news)
+    }
+    
+    @MainActor
+    private func setNews(_ news: [NewsEntry]) {
+        self.news = news
+    }
+    
+    func updateHowTos() async throws {
+        let howTos = try await downloadHowTos()
+        await setHowTos(howTos)
+        try? storageManager.saveHowTos(howTos)
+    }
+    
+    @MainActor
+    private func setHowTos(_ howTos: [HowTo]) {
+        self.howTos = howTos
     }
 }
