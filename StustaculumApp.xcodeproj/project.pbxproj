@@ -163,6 +163,7 @@
 		487AEB66284C0B1B006A3F0A /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
+				48F6852A228C898F007A286E /* DataManager.swift */,
 				487AEB67284C0B2D006A3F0A /* StorageManager.swift */,
 				487AEB6D284E1496006A3F0A /* SavePath.swift */,
 				487AEB69284C0BEE006A3F0A /* TimeslotCalculator.swift */,
@@ -266,7 +267,6 @@
 			isa = PBXGroup;
 			children = (
 				48C03CC620B2E03000EED86A /* NetworkingManager.swift */,
-				48F6852A228C898F007A286E /* DataManager.swift */,
 				487AEB66284C0B1B006A3F0A /* DataManager */,
 				48F50E532841126200DF11C7 /* SSCDateDecoder.swift */,
 			);

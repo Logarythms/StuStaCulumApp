@@ -18,7 +18,7 @@ struct TimeslotCalculator {
         for day in days {
             var dayslot = Dayslot(day: day)
             for stage in Stage.allCases {
-                dayslot.timeslots[stage] = timeslotsFor(day, stage)
+                dayslot.timeslots[stage] = try timeslotsFor(day, stage)
             }
             dayslots.append(dayslot)
         }
@@ -26,69 +26,106 @@ struct TimeslotCalculator {
         return dayslots
     }
     
-    private func timeslotsFor(_ day: SSCDay, _ stage: Stage) -> [Timeslot] {
+    private func timeslotsFor(_ day: SSCDay, _ stage: Stage) throws -> [Timeslot] {
         guard !dataManager.performances.isEmpty else { return [] }
         let filteredPerformances = dataManager.performancesFor(day, stage)
-        let timeslots =  try? getTimeslotsFor(filteredPerformances, day: day)
-        
-        guard let timeslots = timeslots else {
-            return [Timeslot(duration: day.duration, isEvent: false)]
-        }
+        let timeslots =  try getTimeslotsFor(filteredPerformances, day: day)
         
         return timeslots
     }
     
     private func getTimeslotsFor(_ performances: [Performance], day: SSCDay) throws -> [Timeslot] {
-        var timeslots = [Timeslot]()
-
-        //No performances -> Create empty timeslot for entire day
         if performances.isEmpty {
             return [Timeslot(duration: day.duration, isEvent: false)]
         }
         
+        var timeslots = [Timeslot]()
+        
         for (index, performance) in performances.enumerated() {
+            let previous = performances[safe: index - 1]
+            let next = performances[safe: index + 1]
             
-            //If performance is exactly at start of day, add timeslot for performance
-            if (performance.date == day.startOfDay) && !(performances.count == 1) {
-                timeslots.append(Timeslot(duration: performance.duration, isEvent: true, performance: performance))
+            let previousOverlap = getOverlap(previous, performance)
+            let nextOverlap = getOverlap(performance, next)
+            
+            if index == 0 {
+                if performance.date > day.startOfDay {
+                    timeslots.append(Timeslot(duration: getInterval(day.startOfDay, performance.date), isEvent: false))
+                }
+                timeslots.append(timeslotConsideringNextOverlap(performance, next, nextOverlap))
                 continue
             }
             
-            let emptySlotLength: Int
-            
-            if let previousPerformance = performances[safe: index - 1] {
+            if index < performances.endIndex {
+                guard let previous = previous else { throw TimeslotError.noPrevious }
+                if previousOverlap == .none {
+                    let interval = getInterval(previous.endDate(), performance.date)
+                    if interval > 0 { timeslots.append(Timeslot(duration: interval, isEvent: false)) }
+                }
+                timeslots.append(timeslotConsideringNextOverlap(performance, next, nextOverlap))
+                if previousOverlap == .contained {
+                    let interval = getInterval(performance.endDate(), previous.endDate())
+                    timeslots.append(Timeslot(duration: interval, isEvent: true, performance: previous))
+                }
                 
-                //if pevious performance overlaps the current one throw error
-                //TODO: Handle overlaps
-                
-                guard previousPerformance.endDate() <= performance.date else { throw TimeslotError.overlap }
-                
-                //emptyslot length is time between end of previous performance and start of next one
-                emptySlotLength = Int(DateInterval(start: previousPerformance.endDate(), end: performance.date).duration) / 60
-            } else {
-                //set emptyslot length to interval between start of day and start of performance
-                emptySlotLength = Int(DateInterval(start: day.startOfDay, end: performance.date).duration) / 60
-            }
-            
-            //only add emptyslot if length is greater than 0
-            if emptySlotLength > 0 {
-                timeslots.append(Timeslot(duration: emptySlotLength, isEvent: false))
-            }
-            
-            //add timeslot for the current performance
-            timeslots.append(Timeslot(duration: performance.duration, isEvent: true, performance: performance))
-            
-            //if performance is last of day and ends before end of day, append emptyslot until end of day
-            if performances[safe: index + 1] == nil && performance.endDate() != day.endOfDay {
-                let timeslotLength = Int(DateInterval(start: performance.endDate(), end: day.endOfDay).duration) / 60
-                timeslots.append(Timeslot(duration: timeslotLength, isEvent: false))
+                if (index == performances.endIndex - 1) {
+                    let endTime: Date
+                    if previousOverlap == .none && previousOverlap == .extended {
+                        endTime = performance.endDate()
+                    } else {
+                        endTime = previous.endDate()
+                    }
+                    
+                    if day.endOfDay > endTime {
+                        let interval = getInterval(endTime, day.endOfDay)
+                        timeslots.append(Timeslot(duration: interval, isEvent: false))
+                    }
+                }
             }
             
         }
+        
         return timeslots
     }
+    
+    private func timeslotConsideringNextOverlap(_ first: Performance, _ second: Performance?, _ overlap: Overlap) -> Timeslot {
+        
+        guard let second = second else {
+            return Timeslot(duration: first.duration, isEvent: true, performance: first)
+        }
+        
+        if overlap == .none {
+            return Timeslot(duration: first.duration, isEvent: true, performance: first)
+        } else {
+            let interval = getInterval(first.date, second.date)
+            return Timeslot(duration: interval, isEvent: true, performance: first)
+        }
+    }
+        
+    private func getInterval(_ first: Date, _ second: Date) -> Int {
+        return Int(DateInterval(start: first, end: second).duration) / 60
+    }
+    
+    private func getOverlap(_ first: Performance?, _ second: Performance?) -> Overlap {
+        guard let first = first, let second = second else { return .none }
+        
+        guard second.date < first.endDate() else { return .none }
+        
+        if first.endDate() < second.endDate() {
+            return .extended
+        } else {
+            return .contained
+        }
+    }
+}
+
+enum Overlap {
+    case none
+    case contained
+    case extended
 }
 
 enum TimeslotError: Error {
     case overlap
+    case noPrevious
 }

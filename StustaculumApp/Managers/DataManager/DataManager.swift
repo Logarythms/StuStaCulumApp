@@ -30,7 +30,7 @@ class DataManager: ObservableObject {
             downloadInitialData()
             return
         }
-        
+
         Task(priority: .userInitiated) {
             try? await loadLocalData()
         }
@@ -148,8 +148,12 @@ extension DataManager {
     
     private func downloadPerformancesFor(_ ssc: Stustaculum) async throws -> [Performance] {
         let performances = try await networkingManager.getPerformances(ssc)
+//        let filteredPerformances = performances.filter {
+//            ($0.stustaculumID == ssc.id) && $0.show && ($0.artist != "Electronic-Night" && $0.id != 3427 && $0.artist != "Kinderprogramm") && $0.duration > 0
+//        }
+        
         let filteredPerformances = performances.filter {
-            ($0.stustaculumID == ssc.id) && $0.show && ($0.artist != "Electronic-Night" && $0.id != 3427 && $0.artist != "Kinderprogramm") && $0.duration > 0
+            $0.show && $0.duration > 0
         }
         
         return filteredPerformances

@@ -20,7 +20,7 @@ struct StageColumn: View {
                     NavigationLink {
                         PerformanceView(performance: performance)
                     } label: {
-                        PerformanceCell(performance: performance, columnWidth: columnWidth)
+                        PerformanceCell(performance: performance, duration: timeslot.duration, columnWidth: columnWidth)
                     }
                     .buttonStyle(.plain)
 
