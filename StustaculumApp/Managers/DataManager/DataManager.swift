@@ -194,6 +194,8 @@ extension DataManager {
         self.performances = performances
         self.dayslots = try TimeslotCalculator().getDayslots()
         
+        self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
+        
         try? storageManager.savePerformances(performances)
         try? storageManager.saveDayslots(dayslots)
     }

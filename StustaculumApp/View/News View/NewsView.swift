@@ -58,6 +58,15 @@ struct NewsView: View {
             }
             .refreshable {
                 viewModel.updateUpcomingPerformances()
+                Task(priority: .userInitiated) {
+                    try? await dataManager.updatePerformances()
+                }
+                Task(priority: .userInitiated) {
+                    try? await dataManager.updateNews()
+                }
+                Task(priority: .userInitiated) {
+                    try? await dataManager.updateHowTos()
+                }
             }
             .listStyle(.plain)
             .navigationTitle("News")
