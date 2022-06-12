@@ -25,6 +25,8 @@ class DataManager: ObservableObject {
     private let networkingManager = NetworkingManager.shared
     private let storageManager = StorageManager.shared
     
+    lazy var lastUpdated = performances.sorted{$0.lastUpdate > $1.lastUpdate}.first?.lastUpdate ?? Date()
+    
     private init() {
         if !storageManager.localDataExists() {
             downloadInitialData()
@@ -67,6 +69,24 @@ class DataManager: ObservableObject {
         }
     }
     
+    private func downloadPerformancesForUpdate() async throws {
+        guard let ssc = currentSSC else { return }
+        let performances = try await downloadPerformancesFor(ssc)
+        let newUpdatedDate = performances.sorted{ $0.lastUpdate > $1.lastUpdate }.first?.lastUpdate ?? Date()
+        
+        if newUpdatedDate > self.lastUpdated {
+            try? await updatePerformances(performances)
+        }
+    }
+    
+    @MainActor func updatePerformances(_ performances: [Performance]) throws {
+        self.performances = performances
+        self.dayslots = try TimeslotCalculator().getDayslots()
+        
+        try? storageManager.savePerformances(performances)
+        try? storageManager.saveDayslots(dayslots)
+    }
+    
     private func handleTimeOut() {
         print("initializing fallback data")
         
@@ -94,7 +114,7 @@ class DataManager: ObservableObject {
         }
         
         if dayslots.isEmpty {
-            self.dayslots = (try? TimeslotCalculator().getDayslots(self.days)) ?? []
+            self.dayslots = (try? TimeslotCalculator().getDayslots()) ?? []
         } else {
             self.dayslots = dayslots
         }
@@ -116,7 +136,7 @@ class DataManager: ObservableObject {
         self.news = news
         
         self.days = SSCDay.initFor(performances)
-        self.dayslots = (try? TimeslotCalculator().getDayslots(self.days)) ?? []
+        self.dayslots = (try? TimeslotCalculator().getDayslots()) ?? []
         
         print("initial data set")
     }
