@@ -96,8 +96,9 @@ struct PerformanceView: View {
     }
 }
 
-//struct PerformanceView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PerformanceView()
-//    }
-//}
+struct PerformanceView_Previews: PreviewProvider {
+    static var previews: some View {
+        PerformanceView(performance: SSCPreviewProvider.performance)
+            .previewDevice("iPhone 13")
+    }
+}

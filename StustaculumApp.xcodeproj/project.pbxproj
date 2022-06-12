@@ -58,6 +58,7 @@
 		48F685432291A24E007A286E /* currentSSC.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F6853D2291A24E007A286E /* currentSSC.json */; };
 		48F685442291A24E007A286E /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F6853E2291A24E007A286E /* locations.json */; };
 		48F685452291A24E007A286E /* howTos.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F6853F2291A24E007A286E /* howTos.json */; };
+		48F727D328564142001D66F2 /* SSCPreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F727D228564142001D66F2 /* SSCPreviewProvider.swift */; };
 		48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507320B2EC6B0012FCDB /* HowTo.swift */; };
 		48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507520B2F24E0012FCDB /* LocationCategory.swift */; };
 		48F7507820B2F3950012FCDB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507720B2F3950012FCDB /* Location.swift */; };
@@ -118,6 +119,7 @@
 		48F6853D2291A24E007A286E /* currentSSC.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = currentSSC.json; sourceTree = "<group>"; };
 		48F6853E2291A24E007A286E /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
 		48F6853F2291A24E007A286E /* howTos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = howTos.json; sourceTree = "<group>"; };
+		48F727D228564142001D66F2 /* SSCPreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCPreviewProvider.swift; sourceTree = "<group>"; };
 		48F7507320B2EC6B0012FCDB /* HowTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowTo.swift; sourceTree = "<group>"; };
 		48F7507520B2F24E0012FCDB /* LocationCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCategory.swift; sourceTree = "<group>"; };
 		48F7507720B2F3950012FCDB /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				48C03CC220B2DBA000EED86A /* Model */,
 				48C03CC520B2E01100EED86A /* Managers */,
 				48F7507D20B302630012FCDB /* View */,
+				48F727D128564126001D66F2 /* Previews */,
 				48F685392291A0A4007A286E /* Resources */,
 				48C03CB720B2DA1E00EED86A /* Assets.xcassets */,
 				48C03CB020B2DA1D00EED86A /* AppDelegate.swift */,
@@ -315,6 +318,14 @@
 				48F6853C2291A24E007A286E /* performances.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		48F727D128564126001D66F2 /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+				48F727D228564142001D66F2 /* SSCPreviewProvider.swift */,
+			);
+			path = Previews;
 			sourceTree = "<group>";
 		};
 		48F7507D20B302630012FCDB /* View */ = {
@@ -455,6 +466,7 @@
 				48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */,
 				488F14C420B7389B0058536E /* Util.swift in Sources */,
 				487F5587284981B500B2DB51 /* PerformanceCell.swift in Sources */,
+				48F727D328564142001D66F2 /* SSCPreviewProvider.swift in Sources */,
 				487F558D284A385200B2DB51 /* TimeColumn.swift in Sources */,
 				48092C7D284630FC00E70913 /* LinkButton.swift in Sources */,
 				48F7507C20B2FD780012FCDB /* Performance.swift in Sources */,
