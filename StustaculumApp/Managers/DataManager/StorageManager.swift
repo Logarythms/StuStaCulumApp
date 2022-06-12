@@ -53,7 +53,11 @@ class StorageManager {
     
     func localDataExists() -> Bool {
         for savePath in SavePath.allCases {
-            guard fileManager.fileExists(atPath: savePath.url.path) else { return false }
+            if (savePath != .days && savePath != .dayslots) {
+                guard fileManager.fileExists(atPath: savePath.url.path) else {
+                    return false
+                }
+            }
         }
         return true
     }
