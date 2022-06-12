@@ -70,7 +70,7 @@ struct TimeslotCalculator {
                 
                 if (index == performances.endIndex - 1) {
                     let endTime: Date
-                    if previousOverlap == .none && previousOverlap == .extended {
+                    if previousOverlap == .none || previousOverlap == .extended {
                         endTime = performance.endDate()
                     } else {
                         endTime = previous.endDate()
