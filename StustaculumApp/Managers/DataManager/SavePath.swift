@@ -16,6 +16,7 @@ enum SavePath: String, CaseIterable {
     case locations = "locations"
     case howTos = "howTos"
     case news = "news"
+    case activeNotifications = "notifications"
     
     var url: URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(self.rawValue).json")
@@ -24,4 +25,6 @@ enum SavePath: String, CaseIterable {
     var localResource: URL {
         Bundle.main.url(forResource: self.rawValue, withExtension: "json")!
     }
+    
+    static var excluded: [SavePath] = [.activeNotifications, .days, .dayslots]
 }

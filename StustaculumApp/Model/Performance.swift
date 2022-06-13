@@ -22,6 +22,8 @@ struct Performance: Codable, Identifiable {
     var location: Int
     var stustaculumID: Int
     
+    var notify = false
+    
     enum CodingKeys: String, CodingKey {
         case id
         case artist

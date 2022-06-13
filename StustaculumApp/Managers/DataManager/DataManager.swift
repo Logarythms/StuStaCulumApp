@@ -19,11 +19,18 @@ class DataManager: ObservableObject {
     @Published var logo = UIImage(named: "logo2022")
     @Published var dayslots = [Dayslot]()
     
+    @Published var notificationEnabledToast = false
+    @Published var notificationDisabledToast = false
+    @Published var notificationErrorToast = false
+    
     static let shared = DataManager()
 
     private let notificationCenter = NotificationCenter.default
+    private let userNC = UNUserNotificationCenter.current()
     private let networkingManager = NetworkingManager.shared
     private let storageManager = StorageManager.shared
+    
+    private(set) var activeNotifications = [String]()
     
     lazy var lastUpdated = performances.sorted{$0.lastUpdate > $1.lastUpdate}.first?.lastUpdate ?? Date()
     
@@ -57,7 +64,7 @@ class DataManager: ObservableObject {
                     
                     try await self.setInitialData(ssc, performances: performances, locations: locations, howTos: howTos, news: news)
                     
-                    try await self.storageManager.saveData(ssc, days: self.days, dayslots: self.dayslots, performances: performances, locations: locations, howTos: howTos, news: news)
+                    try await self.storageManager.saveData(ssc, days: self.days, dayslots: self.dayslots, activeNotifications: self.activeNotifications, performances: performances, locations: locations, howTos: howTos, news: news)
                     
                     UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
                     self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
@@ -84,13 +91,14 @@ class DataManager: ObservableObject {
     
     @MainActor
     private func loadLocalData() throws {
-        let (ssc, days, dayslots, performances, locations, howTos, news) = try storageManager.getLocalData()
+        let (ssc, days, dayslots, activeNotifications, performances, locations, howTos, news) = try storageManager.getLocalData()
         
         self.currentSSC = ssc
         self.performances = performances
         self.locations = locations
         self.howTos = howTos
         self.news = news
+        self.activeNotifications = activeNotifications
         
         if days.isEmpty {
             self.days = SSCDay.initFor(performances)
@@ -143,9 +151,11 @@ class DataManager: ObservableObject {
     enum DataManagerError: Error {
         case validationFailed
         case initialLoadFailed
+        case notificationTimeCalculationFailed
     }
 }
 
+//MARK: Downloading
 extension DataManager {
     private func downloadCurrentSSC() async throws -> Stustaculum {
         return try await networkingManager.getCurrentSSC()
@@ -175,6 +185,7 @@ extension DataManager {
     }
 }
 
+//MARK: Updating
 extension DataManager {
     func updatePerformances() async throws {
         guard let ssc = currentSSC else { return }
@@ -220,5 +231,56 @@ extension DataManager {
     @MainActor
     private func setHowTos(_ howTos: [HowTo]) {
         self.howTos = howTos
+    }
+}
+
+//MARK: Notifications
+extension DataManager {
+    
+    func toggleNotificationFor(_ performance: Performance) async throws {
+        try await requestAuthorization()
+        if activeNotifications.contains(String(performance.id)) {
+            removeNotificationFor(performance)
+            print("removed notification for \(performance.id)")
+        } else {
+            try await addNotificationFor(performance)
+            print("enabled notification for \(performance.id)")
+        }
+        try? storageManager.saveActiveNotifications(self.activeNotifications)
+    }
+    
+    private func removeNotificationFor(_ performance: Performance) {
+        userNC.removePendingNotificationRequests(withIdentifiers: [String(performance.id)])
+        activeNotifications.removeAll { $0 == String(performance.id) }
+    }
+    
+    private func addNotificationFor(_ performance: Performance) async throws {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        let content = UNMutableNotificationContent()
+        content.title = performance.artist ?? ""
+        content.body = "Die Veranstaltung beginnt um \(dateFormatter.string(from: performance.date)) Uhr im \(Util.nameForLocation(performance.location))"
+        
+        let components = try notificationComponentsFor(performance)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: String(performance.id), content: content, trigger: trigger)
+        try await userNC.add(request)
+        activeNotifications.append(String(performance.id))
+    }
+    
+    private func notificationComponentsFor(_ performance: Performance) throws -> DateComponents {
+        guard let notificationDate = calendar.date(byAdding: .minute, value: -15, to: performance.date) else {
+            throw DataManagerError.notificationTimeCalculationFailed
+        }
+        return calendar.dateComponents([.year, .month, .day, .hour, .minute], from: notificationDate)
+    }
+    
+    private func requestAuthorization() async throws {
+        let authorization = await userNC.notificationSettings().authorizationStatus
+        if authorization != .authorized {
+            try await userNC.requestAuthorization(options: [.alert, .sound])
+        }
     }
 }

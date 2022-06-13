@@ -7,12 +7,13 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct NewsView: View {
     
     @ObservedObject var dataManager = DataManager.shared
     @ObservedObject var viewModel = NewsViewModel()
-    
+        
     var body: some View {
         NavigationView {
             List{
@@ -75,8 +76,16 @@ struct NewsView: View {
         .onAppear {
             viewModel.updateUpcomingPerformances()
         }
+        .toast(isPresenting: $dataManager.notificationEnabledToast, duration: 1) {
+            AlertToast(displayMode: .hud, type: .systemImage("bell.fill", .red), title: "Benachrichtigung An")
+        }
+        .toast(isPresenting: $dataManager.notificationDisabledToast, duration: 1) {
+            AlertToast(displayMode: .hud, type: .systemImage("bell.slash.fill", .red), title: "Benachrichtigung Aus")
+        }
+        .toast(isPresenting: $dataManager.notificationErrorToast, duration: 1) {
+            AlertToast(displayMode: .hud, type: .error(.red), title: "Fehler")
+        }
     }
-    
 }
 
 struct NewsView_Previews: PreviewProvider {

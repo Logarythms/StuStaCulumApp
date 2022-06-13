@@ -13,6 +13,10 @@ struct StageColumn: View {
     let timeslots: [Timeslot]
     let columnWidth: CGFloat
     
+    @State private var notificationEnabledToast = false
+    @State private var notificationDisabledToast = false
+    @State private var notificationErrorToast = false
+    
     var body: some View {
         VStack(spacing: 4) {
             ForEach(timeslots) { timeslot in

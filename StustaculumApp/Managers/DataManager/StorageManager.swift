@@ -23,23 +23,24 @@ class StorageManager {
     }
     
     
-    func getLocalData() throws -> (Stustaculum, [SSCDay], [Dayslot], [Performance], [Location], [HowTo], [NewsEntry]) {
+    func getLocalData() throws -> (Stustaculum, [SSCDay], [Dayslot], [String], [Performance], [Location], [HowTo], [NewsEntry]) {
         let ssc = try loadCurrentSSC()
         let days = (try? loadDays()) ?? []
         let dayslots = (try? loadDayslots()) ?? []
+        let activeNotifications = (try? loadActiveNotifications()) ?? []
         let performances = try loadPerformances()
         let locations = try loadLocations()
         let howTos = try loadHowTos()
         let news = try loadNews()
         
-        return (ssc, days, dayslots, performances, locations, howTos, news)
+        return (ssc, days, dayslots, activeNotifications, performances, locations, howTos, news)
     }
     
     func initializeFallbackData() throws {
         deleteIncompleteData()
         
         for savePath in SavePath.allCases {
-            if (savePath != .days && savePath != .dayslots)  {
+            if !SavePath.excluded.contains(savePath) {
                 try fileManager.copyItem(at: savePath.localResource, to: savePath.url)
             }
         }
@@ -53,7 +54,7 @@ class StorageManager {
     
     func localDataExists() -> Bool {
         for savePath in SavePath.allCases {
-            if (savePath != .days && savePath != .dayslots) {
+            if !SavePath.excluded.contains(savePath) {
                 guard fileManager.fileExists(atPath: savePath.url.path) else {
                     return false
                 }
@@ -82,6 +83,13 @@ class StorageManager {
         let decodedDayslots = try decoder.decode([Dayslot].self, from: dayslotData)
         
         return decodedDayslots
+    }
+    
+    private func loadActiveNotifications() throws -> [String] {
+        let notificationsData = try Data(contentsOf: SavePath.activeNotifications.url)
+        let decodedNotifications = try decoder.decode([String].self, from: notificationsData)
+        
+        return decodedNotifications
     }
     
     private func loadPerformances() throws -> [Performance] {
@@ -114,12 +122,13 @@ class StorageManager {
     
     //MARK: save local data
     
-    func saveData(_ ssc: Stustaculum, days: [SSCDay], dayslots: [Dayslot],
+    func saveData(_ ssc: Stustaculum, days: [SSCDay], dayslots: [Dayslot], activeNotifications: [String],
                   performances: [Performance], locations: [Location],
                   howTos: [HowTo], news: [NewsEntry]) throws {
         try saveCurrentSSC(ssc)
         try saveDays(days)
         try saveDayslots(dayslots)
+        try saveActiveNotifications(activeNotifications)
         try savePerformances(performances)
         try saveLocations(locations)
         try saveHowTos(howTos)
@@ -141,6 +150,11 @@ class StorageManager {
     func saveDayslots(_ dayslots: [Dayslot]) throws {
         let data = try self.encoder.encode(dayslots)
         try data.write(to: SavePath.dayslots.url)
+    }
+    
+    func saveActiveNotifications(_ notifications: [String]) throws {
+        let data = try self.encoder.encode(notifications)
+        try data.write(to: SavePath.activeNotifications.url)
     }
     
     func savePerformances(_ performances: [Performance]) throws {

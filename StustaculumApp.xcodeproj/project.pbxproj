@@ -59,6 +59,7 @@
 		48F685442291A24E007A286E /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F6853E2291A24E007A286E /* locations.json */; };
 		48F685452291A24E007A286E /* howTos.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F6853F2291A24E007A286E /* howTos.json */; };
 		48F727D328564142001D66F2 /* SSCPreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F727D228564142001D66F2 /* SSCPreviewProvider.swift */; };
+		48F727D62856987D001D66F2 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 48F727D52856987D001D66F2 /* AlertToast */; };
 		48F7507420B2EC6B0012FCDB /* HowTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507320B2EC6B0012FCDB /* HowTo.swift */; };
 		48F7507620B2F24E0012FCDB /* LocationCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507520B2F24E0012FCDB /* LocationCategory.swift */; };
 		48F7507820B2F3950012FCDB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F7507720B2F3950012FCDB /* Location.swift */; };
@@ -134,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48D10F76284684A20090AB17 /* PagerTabStripView in Frameworks */,
+				48F727D62856987D001D66F2 /* AlertToast in Frameworks */,
 				4893CAC92849188100DA27D9 /* HTMLString in Frameworks */,
 				4893CAC62849102A00DA27D9 /* HTML2Markdown in Frameworks */,
 			);
@@ -362,6 +364,7 @@
 				48D10F75284684A20090AB17 /* PagerTabStripView */,
 				4893CAC52849102A00DA27D9 /* HTML2Markdown */,
 				4893CAC82849188100DA27D9 /* HTMLString */,
+				48F727D52856987D001D66F2 /* AlertToast */,
 			);
 			productName = StustaculumApp;
 			productReference = 48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */;
@@ -401,6 +404,7 @@
 				48D10F74284684A20090AB17 /* XCRemoteSwiftPackageReference "PagerTabStripView" */,
 				4893CAC42849102A00DA27D9 /* XCRemoteSwiftPackageReference "HTML2Markdown" */,
 				4893CAC72849188100DA27D9 /* XCRemoteSwiftPackageReference "HTMLString" */,
+				48F727D42856987D001D66F2 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 48C03CAE20B2DA1D00EED86A /* Products */;
 			projectDirPath = "";
@@ -710,6 +714,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		48F727D42856987D001D66F2 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -727,6 +739,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 48D10F74284684A20090AB17 /* XCRemoteSwiftPackageReference "PagerTabStripView" */;
 			productName = PagerTabStripView;
+		};
+		48F727D52856987D001D66F2 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 48F727D42856987D001D66F2 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

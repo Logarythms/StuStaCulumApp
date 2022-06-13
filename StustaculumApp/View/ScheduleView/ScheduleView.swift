@@ -8,6 +8,7 @@
 
 import SwiftUI
 import PagerTabStripView
+import AlertToast
 
 struct ScheduleView: View {
     @ObservedObject var dataManager = DataManager.shared
@@ -28,6 +29,15 @@ struct ScheduleView: View {
             .navigationTitle("Zeitplan")
         }
         .navigationViewStyle(.stack)
+        .toast(isPresenting: $dataManager.notificationEnabledToast, duration: 1) {
+            AlertToast(displayMode: .hud, type: .systemImage("bell.fill", .red), title: "Benachrichtigung An")
+        }
+        .toast(isPresenting: $dataManager.notificationDisabledToast, duration: 1) {
+            AlertToast(displayMode: .hud, type: .systemImage("bell.slash.fill", .red), title: "Benachrichtigung Aus")
+        }
+        .toast(isPresenting: $dataManager.notificationErrorToast, duration: 1) {
+            AlertToast(displayMode: .hud, type: .error(.red), title: "Fehler")
+        }
     }
 }
 
