@@ -53,6 +53,11 @@ class StorageManager {
     }
     
     func localDataExists() -> Bool {
+        if !UserDefaults.standard.bool(forKey: "upgrade") {
+            print("upgrade detected")
+            deleteIncompleteData()
+            return false
+        }
         for savePath in SavePath.allCases {
             if !SavePath.excluded.contains(savePath) {
                 guard fileManager.fileExists(atPath: savePath.url.path) else {

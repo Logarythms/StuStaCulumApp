@@ -83,6 +83,7 @@ class DataManager: ObservableObject {
                     try await self.storageManager.saveData(ssc, days: self.days, dayslots: self.dayslots, activeNotifications: self.activeNotifications, performances: performances, locations: locations, howTos: howTos, news: news)
                     
                     UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
+                    UserDefaults.standard.set(true, forKey: "upgrade")
                     self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
                     
                     print("initial load complete")
