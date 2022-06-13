@@ -88,7 +88,7 @@ struct NewsView: View {
                 }
             }
             .listStyle(.plain)
-            .navigationTitle("News")
+            .navigationTitle("Home")
         }
         .navigationViewStyle(.stack)
         .onAppear {
