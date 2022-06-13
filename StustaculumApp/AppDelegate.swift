@@ -17,14 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-//        self.registerForPushNotifications()
-        
-//        guard UserDefaults.standard.bool(forKey: "initialLoadCompleted") else {
-//            return true
-//        }
-//        
-//        DataManager.shared.updatePerformances()
-        
         return true
     }
 
@@ -50,64 +42,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func registerForPushNotifications() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
-            print("Permission granted: \(granted)")
-            guard granted else { return }
-//            self?.getNotificationSettings()
-            self?.setupPfandNotifications()
-        }
-    }
-    
-    func getNotificationSettings() {
-        let defaults = UserDefaults.standard
-        guard !defaults.bool(forKey: "pushRegistered") else { return }
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            print("Notification Settings: \(settings)")
-            guard settings.authorizationStatus == .authorized else { return }
-            DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications()
-            }
-        }
-    }
-    
-    func setupPfandNotifications() {
-        let defaults = UserDefaults.standard
-        guard !defaults.bool(forKey: "pfandNotifications") else { return }
-        
-        let content = UNMutableNotificationContent()
-        
-        content.title = "Pfandrückgabe!"
-        content.body = "Die Pfandrückgabe endet bald!\nBis 3 Uhr kannst du dein Pfand noch beim Festzelt zurückgeben!"
-        content.sound = UNNotificationSound.default
-        
-        let triggers = Util.getNotificationTriggers()
-        for trigger in triggers {
-            let uuid = UUID()
-            let request = UNNotificationRequest(identifier: uuid.uuidString, content: content, trigger: trigger)
-
-            let notificationCenter = UNUserNotificationCenter.current()
-            notificationCenter.add(request) { error in
-                if let error = error {
-                    print(error)
-                } else {
-                    print("registered Pfand-notifications")
-                }
-            }
-        }
-        UserDefaults.standard.set(true, forKey: "pfandNotifications")
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data)}
-        let token = tokenParts.joined()
-        print("Device Token: \(token)")
-        
-//        NetworkingManager.shared.addDeviceForPushNotifications(token: token)
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Failed to register: \(error)")
-    }
 }
 

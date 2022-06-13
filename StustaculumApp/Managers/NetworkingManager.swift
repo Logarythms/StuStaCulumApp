@@ -62,28 +62,6 @@ class NetworkingManager {
         return performances
     }
     
-//    func getPerformancesFor(_ day: SSCDay) async throws -> [Performance] {
-//        let performances: [Performance] = try await getDecodedData(requestUrlFor(.performances))
-//        return TimeslotCalculator().filterPerformancesBy(day, performances: performances).filter { $0.show }
-//    }
-    
-//    func addDeviceForPushNotifications(token: String) {
-//        let url = requestUrlFor(.devices)
-//        let parameters = [
-//            "registration_id" : token,
-//            "name" : UUID().uuidString,
-//            "active" : true
-//        ] as [String : Any]
-//        print(parameters)
-//        print("Adding Device")
-//        Alamofire.request(url, method: .post, parameters: parameters).response { response in
-//            if response.response?.statusCode == 201 {
-//                UserDefaults.standard.set(true, forKey: "pushRegistered")
-//                print("Device successfully added")
-//            }
-//        }
-//    }
-    
     func requestUrlFor(_ endpoint: Endpoint, ssc: Stustaculum? = nil) -> URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
@@ -99,7 +77,6 @@ class NetworkingManager {
     
     enum Endpoint: String {
         case currentSSC = "/rest/stustaculum/current/"
-//        case currentSSC = "/rest/stustaculum/4/"
         case howTo = "/rest/howtos/"
         case locationCategories = "/rest/location/categories/"
         case locations = "/rest/locations/"
