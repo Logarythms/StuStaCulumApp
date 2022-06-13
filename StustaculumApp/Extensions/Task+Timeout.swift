@@ -8,19 +8,6 @@
 
 import Foundation
 
-extension DispatchGroup {
-    
-    func notifyWait(target: DispatchQueue, timeout: DispatchTime, handler: @escaping ((DispatchTimeoutResult) -> Void)) {
-        DispatchQueue.global(qos: .default).async {
-            let timeout = self.wait(timeout: timeout)
-            target.async {
-                handler(timeout)
-            }
-        }
-    }
-    
-}
-
 struct TimedOutError: Error, Equatable {}
 
 ///

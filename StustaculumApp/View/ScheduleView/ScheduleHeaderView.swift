@@ -32,7 +32,7 @@ struct ScheduleHeaderView: View {
                     Spacer()
                 }
                     .frame(width: columnWidth, height: height, alignment: .center)
-                    .background(Color(dataManager.getLocationFor(stage)?.color() ?? Util.colorForStage(stage.rawValue)))
+                    .background(Color(Location.locationFor(stage)?.color() ?? Util.colorForStage(stage.rawValue)))
                     .cornerRadius(8)
                     .shadow(color: .gray, radius: colorScheme == .light ? 5 : 2.5)
                 Spacer()

@@ -12,6 +12,11 @@ struct InfoView: View {
     
     let dataManager = DataManager.shared
     
+    let infoURLs = [("Offizielle Website", URL(string: "https://www.stustaculum.de")!),
+                     ("Instagram", URL(string: "https://instagram.com/stustaculum/")!),
+                     ("Twitter", URL(string: "https://twitter.com/stustaculum")!),
+                     ("Facebook", URL(string: "https://www.facebook.com/StuStaCulum/")!)]
+    
     var body: some View {
         NavigationView {
             List {
@@ -24,7 +29,7 @@ struct InfoView: View {
                     }
                 }
                 Section {
-                    ForEach(dataManager.aboutURLs, id: \.0) { (name, url) in
+                    ForEach(infoURLs, id: \.0) { (name, url) in
                         LinkButton(name: name, url: url)
                     }
                 } header: {
@@ -36,7 +41,7 @@ struct InfoView: View {
             }
             .navigationTitle("Infos")
         }
-//        .tint(Color(Util.ssc2022Color))
+        .navigationViewStyle(.stack)
     }
 }
 

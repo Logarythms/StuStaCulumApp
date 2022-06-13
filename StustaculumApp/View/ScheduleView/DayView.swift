@@ -15,11 +15,11 @@ struct DayView: View {
     
     let dataManager = DataManager.shared
     
-    let day: SSCDay
+    let dayslot: Dayslot
     
     var body: some View {
         ZStack(alignment: .top) {
-            DaySchedule(day: day, headerHeight: headerHeight, columnWidth: columnWidth)
+            DaySchedule(dayslot: dayslot, headerHeight: headerHeight, columnWidth: columnWidth)
             ScheduleHeaderView(height: headerHeight, columnWidth: columnWidth)
         }
     }
@@ -27,7 +27,7 @@ struct DayView: View {
 
 struct DaySchedule: View {
     
-    let day: SSCDay
+    let dayslot: Dayslot
     let headerHeight: CGFloat
     let columnWidth: CGFloat
     
@@ -36,7 +36,7 @@ struct DaySchedule: View {
     var body: some View {
         ScrollView {
             ZStack(alignment: .topLeading) {
-                TimeColumn(day: day, headerHeight: headerHeight)
+                TimeColumn(day: dayslot.day, headerHeight: headerHeight)
                     .padding([.top], 3)
                 VStack(alignment: .leading, spacing: 0) {
                     Spacer()
@@ -45,7 +45,7 @@ struct DaySchedule: View {
                         Spacer()
                             .frame(width: 40)
                         ForEach(Stage.allCases, id: \.rawValue) { stage in
-                            StageColumn(timeslots: dataManager.getTimeslotsFor(day, location: stage), columnWidth: columnWidth)
+                            StageColumn(timeslots: dayslot.timeslots[stage]!, columnWidth: columnWidth)
                             Spacer()
                                 .frame(width: stage != .gelände ? 5 : 0)
                         }

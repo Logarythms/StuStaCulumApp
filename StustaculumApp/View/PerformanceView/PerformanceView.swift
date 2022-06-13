@@ -9,42 +9,52 @@
 import SwiftUI
 import HTMLString
 import HTML2Markdown
+import AlertToast
 
 struct PerformanceView: View {
     
     let performance: Performance
-    let dataManager = DataManager.shared
-    let splitMarkdownStrings: [AttributedString]
     
-    init(performance: Performance) {
-        self.performance = performance
+    @ObservedObject var dataManager = DataManager.shared
+    @State var notify = false
         
-        let dom = try? HTMLParser().parse(html: (performance.description ?? "").removingHTMLEntities())
-        let markdownString = dom?.toMarkdown(options: .unorderedListBullets) ?? ""
-        
-        self.splitMarkdownStrings = markdownString.split(separator: "\n").map {
-            if let attributedString = try? AttributedString(markdown: String($0)) {
-                return attributedString
-            } else {
-                return AttributedString()
-            }
-        }
-    }
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
                 
-                VStack(alignment: .leading) {
-                    let description = performance.getEventDescription()
-                    LocationLabel(locationName: description.locationName, locationColor: description.locationColor)
-                    Text(getFormattedDateString())
-                        .font(.subheadline)
-                        .bold()
-                    Text(try! AttributedString(markdown: "**Genre:** \(performance.genre ?? "")"))
-                        .font(.subheadline)
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading) {
+                        let description = performance.getEventDescription()
+                        LocationLabel(locationName: description.locationName, locationColor: description.locationColor)
+                        Text(getFormattedDateString())
+                            .font(.subheadline)
+                            .bold()
+                        Text(try! AttributedString(markdown: "**Genre:** \(performance.genre ?? "")"))
+                            .font(.subheadline)
+                    }
+                    .padding([.leading, .trailing])
+                    Spacer()
+                    Button {
+                        Task(priority: .userInitiated) {
+                            do {
+                                try await dataManager.toggleNotificationFor(performance)
+                                if notify {
+                                    dataManager.notificationDisabledToast = true
+                                } else {
+                                    dataManager.notificationEnabledToast = true
+                                }
+                                notify.toggle()
+                            } catch {
+                                dataManager.notificationErrorToast = true
+                            }
+                        }
+                    } label: {
+                        Image(systemName: notify ? "bell.fill" : "bell.slash.fill")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .padding([.trailing])
+
                 }
-                .padding([.leading, .trailing])
                 
                 if let url = performance.imageURL {
                     AsyncImage(url: Util.httpsURLfor(url)) { phase in
@@ -73,7 +83,8 @@ struct PerformanceView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 5) {
-                    ForEach(splitMarkdownStrings, id: \.self) { string in
+                    let strings = splitMarkdownStrings()
+                    ForEach(strings, id: \.self) { string in
                         Text(string)
                             .font(.system(size: 15))
                     }
@@ -81,6 +92,22 @@ struct PerformanceView: View {
                 .padding([.leading, .trailing])
             }
             .navigationTitle(performance.artist ?? "Veranstaltung")
+        }
+        .onAppear {
+            notify = dataManager.activeNotifications.contains(String(performance.id))
+        }
+    }
+    
+    func splitMarkdownStrings() -> [AttributedString] {
+        let dom = try? HTMLParser().parse(html: (performance.description ?? "").removingHTMLEntities())
+        let markdownString = dom?.toMarkdown(options: .unorderedListBullets) ?? ""
+
+        return markdownString.split(separator: "\n").map {
+            if let attributedString = try? AttributedString(markdown: String($0)) {
+                return attributedString
+            } else {
+                return AttributedString()
+            }
         }
     }
     
@@ -100,6 +127,10 @@ struct PerformanceView: View {
 
 //struct PerformanceView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        PerformanceView()
+//        NavigationView {
+//            PerformanceView(performance: SSCPreviewProvider.performance)
+//                .navigationTitle(SSCPreviewProvider.performance.artist!)
+//        }
+//        .previewDevice("iPhone 13")
 //    }
 //}

@@ -1,1 +1,13 @@
-{"id":4,"last_updated":"2019-05-17T15:24:44+02:00","end_date":"2019-06-02","start_date":"2019-05-29","year":2019,"update_url":"https://www.stustaculum.de/StuStaCulum2019_(Edition)?darbietungxmlliste","logo":"http://app.stustaculum.de/media/logos/ssc19_header.png","published":true}
+{
+    "id": 6,
+    "last_updated": "2022-06-04T10:26:01Z",
+    "end_date": "2022-06-19",
+    "start_date": "2022-06-15",
+    "year": 2022,
+    "update_url": "https://www.stustaculum.de/StuStaCulum2022_(Edition)?darbietungxmlliste",
+    "logo": "http://app.stustaculum.de/media/logos/ssc22-super-header.jpg",
+    "published": true,
+    "color": "#ea27c2",
+    "mapoverlay": "http://app.stustaculum.de/media/mapoverlay/overlay_2022.png"
+}
+

@@ -7,12 +7,13 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct NewsView: View {
     
     @ObservedObject var dataManager = DataManager.shared
     @ObservedObject var viewModel = NewsViewModel()
-    
+        
     var body: some View {
         NavigationView {
             List{
@@ -41,6 +42,23 @@ struct NewsView: View {
                         .font(.title3)
                         .fontWeight(.heavy)
                 }
+                
+                if !dataManager.notifiedPerformances.isEmpty {
+                    Section {
+                        ForEach(dataManager.notifiedPerformances) { performance in
+                            NavigationLink {
+                                PerformanceView(performance: performance)
+                            } label: {
+                                UpcomingPerformanceCell(performance: performance)
+                            }
+
+                        }
+                    } header: {
+                        Text("Vorgemerkt")
+                            .font(.title3)
+                            .fontWeight(.heavy)
+                    }
+                }
 
                 Section {
                     ForEach(dataManager.news) { newsEntry in
@@ -57,17 +75,35 @@ struct NewsView: View {
                 }
             }
             .refreshable {
-                dataManager.updateNews()
                 viewModel.updateUpcomingPerformances()
+                Task(priority: .userInitiated) {
+                    try? await dataManager.updatePerformances()
+                    await dataManager.updateNotifiedPerformances()
+                }
+                Task(priority: .userInitiated) {
+                    try? await dataManager.updateNews()
+                }
+                Task(priority: .userInitiated) {
+                    try? await dataManager.updateHowTos()
+                }
             }
             .listStyle(.plain)
-            .navigationTitle("News")
+            .navigationTitle("Home")
         }
+        .navigationViewStyle(.stack)
         .onAppear {
             viewModel.updateUpcomingPerformances()
         }
+        .toast(isPresenting: $dataManager.notificationEnabledToast, duration: 1) {
+            AlertToast(displayMode: .hud, type: .systemImage("bell.fill", .red), title: "Benachrichtigung An")
+        }
+        .toast(isPresenting: $dataManager.notificationDisabledToast, duration: 1) {
+            AlertToast(displayMode: .hud, type: .systemImage("bell.slash.fill", .red), title: "Benachrichtigung Aus")
+        }
+        .toast(isPresenting: $dataManager.notificationErrorToast, duration: 1) {
+            AlertToast(displayMode: .hud, type: .error(.red), title: "Fehler")
+        }
     }
-    
 }
 
 struct NewsView_Previews: PreviewProvider {

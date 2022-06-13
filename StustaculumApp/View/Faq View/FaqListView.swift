@@ -21,6 +21,7 @@ struct FaqListView: View {
             }
             .navigationTitle("FAQ")
         }
+        .navigationViewStyle(.stack)
     }
 }
 

@@ -25,14 +25,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        notificationCenter.addObserver(self, selector: #selector(updateLocations), name: Notification.Name("fetchComplete"), object: nil)
-        
+                
         mapView.delegate = self
-        
         centerMapOnLocation(initialLocation)
-        
-//        updateLocations()
         addOverlay()
     }
     
@@ -57,21 +52,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    @objc
-    func updateLocations() {
-        self.locations = dataManager.locations
-        addLocationsToMap()
-    }
-    
-    func addLocationsToMap() {
-        var annotations = [SSCAnnotation]()
-        for location in locations {
-            let annotation = SSCAnnotation(title: location.shortName, coordinate: Util.getCoordinatesFor(location))
-            annotations.append(annotation)
-        }
-        mapView.addAnnotations(annotations)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -83,45 +63,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 }
 
 extension MapViewController: MKMapViewDelegate {
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let sscAnnotation = annotation as? SSCAnnotation else { return nil }
-        let identifier = "marker"
         
-        if #available(iOS 11, *) {
-            var view: MKMarkerAnnotationView
-
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
-                dequeuedView.annotation = sscAnnotation
-                view = dequeuedView
-            } else {
-                view = MKMarkerAnnotationView(annotation: sscAnnotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            }
-            return view
-        } else {
-            var view: MKAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
-                dequeuedView.annotation = sscAnnotation
-                view = dequeuedView
-            } else {
-                view = MKPinAnnotationView(annotation: sscAnnotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            }
-            return view
-        }
-    }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let annotation = view.annotation as! SSCAnnotation
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
-        annotation.mapItem().openInMaps(launchOptions: launchOptions)
-    }
-    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is SSCMapOverlay {
             return SSCMapOverlayView(overlay: overlay)

@@ -39,9 +39,17 @@ struct Location: Codable {
             return nil
         }
     }
+    
+    static func locationFor(_ stage: Stage) -> Location? {
+        locationFor(stage.rawValue)
+    }
+    
+    static func locationFor(_ id: Int) -> Location? {
+        DataManager.shared.locations.first { $0.id == id }
+    }
 }
 
-enum Stage: Int, CaseIterable {
+enum Stage: Int, CaseIterable, Codable {
     case dada = 1
     case atrium = 2
 //    case halle = 3

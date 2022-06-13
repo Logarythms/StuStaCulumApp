@@ -18,7 +18,7 @@ struct FaqDetailView: View {
     init(howTo: HowTo) {
         self.howTo = howTo
         
-        let kinderProgrammStrings = ["Auch in diesem Jahr gibt es zu folgenden Zeiten wieder ein abwechslungsreiches Programm für unsere kleinen Gäste am Kinderplatz:", "**Mittwoch, 15.06.22 ab 15 Uhr**", "**Donnerstag, 16.06.22 ab 15 Uhr**", "**Freitag, 17.06.22 ab 15 Uhr**", "**Samstag, 18.06.22 ab 15 Uhr**"]
+        let kinderProgrammStrings = ["Auch in diesem Jahr gibt es zu folgenden Zeiten wieder ein abwechslungsreiches Programm für unsere kleinen Gäste am Kinderplatz:", "**Donnerstag, 16.06.22 ab 15 Uhr**", "**Freitag, 17.06.22 ab 15 Uhr**", "**Samstag, 18.06.22 ab 15 Uhr**"]
                 
         let dom = try? HTMLParser().parse(html: howTo.description.removingHTMLEntities())
         let markdownString = dom?.toMarkdown(options: .unorderedListBullets) ?? ""

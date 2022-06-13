@@ -19,11 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        self.registerForPushNotifications()
         
-        guard UserDefaults.standard.bool(forKey: "initialLoadCompleted") else {
-            return true
-        }
-        
-        DataManager.shared.updatePerformances()
+//        guard UserDefaults.standard.bool(forKey: "initialLoadCompleted") else {
+//            return true
+//        }
+//        
+//        DataManager.shared.updatePerformances()
         
         return true
     }

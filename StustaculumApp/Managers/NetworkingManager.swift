@@ -29,7 +29,6 @@ class NetworkingManager {
     
     func getCurrentLogo(_ url: URL) async throws -> UIImage {
         guard let httpsURL = Util.httpsURLfor(url) else { throw NetworkingError.httpsURLmissing }
-        
         return try await getImageFrom(httpsURL)
     }
     
@@ -58,15 +57,15 @@ class NetworkingManager {
         return newsEntries
     }
     
-    func getPerformances() async throws -> [Performance] {
-        let performances: [Performance] = try await getDecodedData(requestUrlFor(.performances))
+    func getPerformances(_ ssc: Stustaculum? = nil) async throws -> [Performance] {
+        let performances: [Performance] = try await getDecodedData(requestUrlFor(.performances, ssc: ssc))
         return performances
     }
     
-    func getPerformancesFor(_ day: SSCDay) async throws -> [Performance] {
-        let performances: [Performance] = try await getDecodedData(requestUrlFor(.performances))
-        return Util.filterPerformancesBy(day, performances: performances).filter { $0.show }
-    }
+//    func getPerformancesFor(_ day: SSCDay) async throws -> [Performance] {
+//        let performances: [Performance] = try await getDecodedData(requestUrlFor(.performances))
+//        return TimeslotCalculator().filterPerformancesBy(day, performances: performances).filter { $0.show }
+//    }
     
 //    func addDeviceForPushNotifications(token: String) {
 //        let url = requestUrlFor(.devices)
@@ -85,17 +84,17 @@ class NetworkingManager {
 //        }
 //    }
     
-    func requestUrlFor(_ endpoint: Endpoint) -> URL {
+    func requestUrlFor(_ endpoint: Endpoint, ssc: Stustaculum? = nil) -> URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "app.stustaculum.de"
         urlComponents.path = endpoint.rawValue
         
-        guard let url = urlComponents.url else {
-            fatalError("Could not create URL")
+        if let ssc = ssc {
+            urlComponents.queryItems = [URLQueryItem(name: "stustaculum", value: "\(ssc.id)")]
         }
         
-        return url
+        return urlComponents.url!
     }
     
     enum Endpoint: String {

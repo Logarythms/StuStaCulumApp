@@ -11,17 +11,17 @@ import SwiftUI
 
 struct PerformanceCell: View {
     let performance: Performance
+    let duration: Int
     let columnWidth: CGFloat
     
     let artist: String
     let description: EventDescripton
     
     @Environment(\.colorScheme) var colorScheme
-    
-//    let width = (UIScreen.main.bounds.size.width - 55) / 4
-    
-    init(performance: Performance, columnWidth: CGFloat) {
+        
+    init(performance: Performance, duration: Int, columnWidth: CGFloat) {
         self.performance = performance
+        self.duration = duration
         self.columnWidth = columnWidth
         
         self.description = performance.getEventDescription()
@@ -39,7 +39,7 @@ struct PerformanceCell: View {
                 .padding([.leading, .trailing], 5)
             Spacer()
         }
-        .frame(width: columnWidth, height: CGFloat(performance.duration * 2 - 4))
+        .frame(width: columnWidth, height: CGFloat(duration * 2 - 4))
         .background(description.locationColor)
         .cornerRadius(8)
         .shadow(color: .gray, radius: colorScheme == .light ? 5 : 2.5)

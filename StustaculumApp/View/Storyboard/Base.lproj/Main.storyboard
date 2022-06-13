@@ -29,11 +29,11 @@
             </objects>
             <point key="canvasLocation" x="133.59999999999999" y="784.85757121439292"/>
         </scene>
-        <!--News-->
+        <!--Home-->
         <scene sceneID="n85-hW-PIh">
             <objects>
                 <hostingController id="RaQ-eW-Jxx" customClass="NewsViewHostingController" customModule="StustaculumApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" id="M9B-F3-Ftz">
+                    <tabBarItem key="tabBarItem" title="Home" id="M9B-F3-Ftz">
                         <imageReference key="image" image="house.fill" catalog="system" symbolScale="default"/>
                         <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>

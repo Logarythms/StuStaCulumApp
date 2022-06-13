@@ -26,8 +26,7 @@ class NewsViewModel: ObservableObject {
     
     @MainActor
     func updateUpcomingPerformances() {
-        print("upcoming")
-        let performances = dataManager.getAllPerformances().filter {
+        let performances = dataManager.performances.filter {
             $0.date >= Date()
         }
         let sortedPerformances = performances.sorted {
