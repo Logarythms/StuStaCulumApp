@@ -42,6 +42,23 @@ struct NewsView: View {
                         .font(.title3)
                         .fontWeight(.heavy)
                 }
+                
+                if !dataManager.notifiedPerformances.isEmpty {
+                    Section {
+                        ForEach(dataManager.notifiedPerformances) { performance in
+                            NavigationLink {
+                                PerformanceView(performance: performance)
+                            } label: {
+                                UpcomingPerformanceCell(performance: performance)
+                            }
+
+                        }
+                    } header: {
+                        Text("Vorgemerkt")
+                            .font(.title3)
+                            .fontWeight(.heavy)
+                    }
+                }
 
                 Section {
                     ForEach(dataManager.news) { newsEntry in
@@ -61,6 +78,7 @@ struct NewsView: View {
                 viewModel.updateUpcomingPerformances()
                 Task(priority: .userInitiated) {
                     try? await dataManager.updatePerformances()
+                    await dataManager.updateNotifiedPerformances()
                 }
                 Task(priority: .userInitiated) {
                     try? await dataManager.updateNews()

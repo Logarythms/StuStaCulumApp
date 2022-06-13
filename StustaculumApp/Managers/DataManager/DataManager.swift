@@ -12,6 +12,7 @@ class DataManager: ObservableObject {
     
     @Published var currentSSC: Stustaculum?
     @Published var performances = [Performance]()
+    @Published var notifiedPerformances = [Performance]()
     @Published var news = [NewsEntry]()
     @Published var howTos = [HowTo]()
     @Published var locations = [Location]()
@@ -30,7 +31,22 @@ class DataManager: ObservableObject {
     private let networkingManager = NetworkingManager.shared
     private let storageManager = StorageManager.shared
     
-    private(set) var activeNotifications = [String]()
+    private(set) var activeNotifications = [String]() {
+        didSet {
+            Task {
+                await updateNotifiedPerformances()
+            }
+        }
+    }
+    
+    @MainActor
+    func updateNotifiedPerformances() {
+        self.notifiedPerformances = performances.filter {
+            activeNotifications.contains(String($0.id)) && Date() < $0.date
+        }.sorted {
+            $0.date < $1.date
+        }
+    }
     
     lazy var lastUpdated = performances.sorted{$0.lastUpdate > $1.lastUpdate}.first?.lastUpdate ?? Date()
     
