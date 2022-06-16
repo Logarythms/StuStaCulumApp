@@ -214,6 +214,13 @@ extension DataManager {
         
         if newUpdatedDate > self.lastUpdated {            
             try? await setPerformances(performances)
+            try? await updateNotifications()
+        }
+    }
+    
+    private func updateNotifications() async throws {
+        for performance in notifiedPerformances {
+            try await updateNotificationFor(performance)
         }
     }
     
@@ -266,12 +273,19 @@ extension DataManager {
         try? storageManager.saveActiveNotifications(self.activeNotifications)
     }
     
+    private func updateNotificationFor(_ performance: Performance) async throws {
+        userNC.removePendingNotificationRequests(withIdentifiers: [String(performance.id)])
+        let request = try getNotificationRequestFor(performance)
+        try await userNC.add(request)
+        print("updated notification for \(performance.id)")
+    }
+    
     private func removeNotificationFor(_ performance: Performance) {
         userNC.removePendingNotificationRequests(withIdentifiers: [String(performance.id)])
         activeNotifications.removeAll { $0 == String(performance.id) }
     }
     
-    private func addNotificationFor(_ performance: Performance) async throws {
+    private func getNotificationRequestFor(_ performance: Performance) throws -> UNNotificationRequest {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         
@@ -283,6 +297,12 @@ extension DataManager {
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
         
         let request = UNNotificationRequest(identifier: String(performance.id), content: content, trigger: trigger)
+        
+        return request
+    }
+    
+    private func addNotificationFor(_ performance: Performance) async throws {
+        let request = try getNotificationRequestFor(performance)
         try await userNC.add(request)
         activeNotifications.append(String(performance.id))
     }
