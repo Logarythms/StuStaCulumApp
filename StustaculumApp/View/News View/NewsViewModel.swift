@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class NewsViewModel: ObservableObject {
     
@@ -21,8 +22,26 @@ class NewsViewModel: ObservableObject {
                 await updateUpcomingPerformances()
             }
         }
+        Task {
+            for await _ in await NotificationCenter.default.notifications(named: UIApplication.willEnterForegroundNotification) {
+                await updateContent()
+            }
+        }
     }
 
+    func updateContent() async {
+        await updateUpcomingPerformances()
+        Task(priority: .userInitiated) {
+            try? await dataManager.updatePerformances()
+            await dataManager.updateNotifiedPerformances()
+        }
+        Task(priority: .userInitiated) {
+            try? await dataManager.updateNews()
+        }
+        Task(priority: .userInitiated) {
+            try? await dataManager.updateHowTos()
+        }
+    }
     
     @MainActor
     func updateUpcomingPerformances() {

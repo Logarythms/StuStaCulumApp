@@ -75,25 +75,20 @@ struct NewsView: View {
                 }
             }
             .refreshable {
-                viewModel.updateUpcomingPerformances()
                 Task(priority: .userInitiated) {
-                    try? await dataManager.updatePerformances()
-                    await dataManager.updateNotifiedPerformances()
-                }
-                Task(priority: .userInitiated) {
-                    try? await dataManager.updateNews()
-                }
-                Task(priority: .userInitiated) {
-                    try? await dataManager.updateHowTos()
+                    await viewModel.updateContent()
                 }
             }
             .listStyle(.plain)
             .navigationTitle("Home")
+            .onAppear {
+                Task(priority: .userInitiated) {
+                    await viewModel.updateContent()
+                }
+            }
+
         }
         .navigationViewStyle(.stack)
-        .onAppear {
-            viewModel.updateUpcomingPerformances()
-        }
         .toast(isPresenting: $dataManager.notificationEnabledToast, duration: 1) {
             AlertToast(displayMode: .hud, type: .systemImage("bell.fill", .red), title: "Benachrichtigung An")
         }
