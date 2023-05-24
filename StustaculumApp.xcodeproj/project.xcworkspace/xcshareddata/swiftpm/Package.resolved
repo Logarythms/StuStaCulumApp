@@ -30,10 +30,10 @@
     {
       "identity" : "pagertabstripview",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/xmartlabs/PagerTabStripView",
+      "location" : "https://github.com/Logarythms/PagerTabStripView",
       "state" : {
-        "revision" : "96967dce463637e070fe17eba6537237b095c2ba",
-        "version" : "3.2.0"
+        "branch" : "xcode143fix",
+        "revision" : "a6e750d0659a96f5256053127ac98ddae81b9d46"
       }
     }
   ],

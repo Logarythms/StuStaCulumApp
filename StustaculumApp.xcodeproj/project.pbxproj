@@ -18,6 +18,7 @@
 		487AEB6A284C0BEE006A3F0A /* TimeslotCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487AEB69284C0BEE006A3F0A /* TimeslotCalculator.swift */; };
 		487AEB6C284D4C70006A3F0A /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487AEB6B284D4C6F006A3F0A /* Collection+Safe.swift */; };
 		487AEB6E284E1496006A3F0A /* SavePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487AEB6D284E1496006A3F0A /* SavePath.swift */; };
+		487F08A52A1EADF200FA5E35 /* PagerTabStripView in Frameworks */ = {isa = PBXBuildFile; productRef = 487F08A42A1EADF200FA5E35 /* PagerTabStripView */; };
 		487F5587284981B500B2DB51 /* PerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F5586284981B500B2DB51 /* PerformanceCell.swift */; };
 		487F5589284981D400B2DB51 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F5588284981D400B2DB51 /* EmptyCell.swift */; };
 		487F558D284A385200B2DB51 /* TimeColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487F558C284A385200B2DB51 /* TimeColumn.swift */; };
@@ -39,7 +40,6 @@
 		48D10F6B28463B4F0090AB17 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F6A28463B4F0090AB17 /* AboutView.swift */; };
 		48D10F6E284645290090AB17 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F6D284645290090AB17 /* PerformanceView.swift */; };
 		48D10F7328466E640090AB17 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D10F7228466E640090AB17 /* ScheduleView.swift */; };
-		48D10F76284684A20090AB17 /* PagerTabStripView in Frameworks */ = {isa = PBXBuildFile; productRef = 48D10F75284684A20090AB17 /* PagerTabStripView */; };
 		48F50E542841126200DF11C7 /* SSCDateDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E532841126200DF11C7 /* SSCDateDecoder.swift */; };
 		48F50E592844340700DF11C7 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E582844340700DF11C7 /* NewsView.swift */; };
 		48F50E5C2844CDE700DF11C7 /* UpcomingPerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F50E5B2844CDE700DF11C7 /* UpcomingPerformanceCell.swift */; };
@@ -134,7 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48D10F76284684A20090AB17 /* PagerTabStripView in Frameworks */,
+				487F08A52A1EADF200FA5E35 /* PagerTabStripView in Frameworks */,
 				48F727D62856987D001D66F2 /* AlertToast in Frameworks */,
 				4893CAC92849188100DA27D9 /* HTMLString in Frameworks */,
 				4893CAC62849102A00DA27D9 /* HTML2Markdown in Frameworks */,
@@ -361,10 +361,10 @@
 			);
 			name = StustaculumApp;
 			packageProductDependencies = (
-				48D10F75284684A20090AB17 /* PagerTabStripView */,
 				4893CAC52849102A00DA27D9 /* HTML2Markdown */,
 				4893CAC82849188100DA27D9 /* HTMLString */,
 				48F727D52856987D001D66F2 /* AlertToast */,
+				487F08A42A1EADF200FA5E35 /* PagerTabStripView */,
 			);
 			productName = StustaculumApp;
 			productReference = 48C03CAD20B2DA1D00EED86A /* StustaculumApp.app */;
@@ -401,10 +401,10 @@
 			);
 			mainGroup = 48C03CA420B2DA1D00EED86A;
 			packageReferences = (
-				48D10F74284684A20090AB17 /* XCRemoteSwiftPackageReference "PagerTabStripView" */,
 				4893CAC42849102A00DA27D9 /* XCRemoteSwiftPackageReference "HTML2Markdown" */,
 				4893CAC72849188100DA27D9 /* XCRemoteSwiftPackageReference "HTMLString" */,
 				48F727D42856987D001D66F2 /* XCRemoteSwiftPackageReference "AlertToast" */,
+				487F08A32A1EADF200FA5E35 /* XCRemoteSwiftPackageReference "PagerTabStripView" */,
 			);
 			productRefGroup = 48C03CAE20B2DA1D00EED86A /* Products */;
 			projectDirPath = "";
@@ -690,6 +690,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		487F08A32A1EADF200FA5E35 /* XCRemoteSwiftPackageReference "PagerTabStripView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Logarythms/PagerTabStripView";
+			requirement = {
+				branch = xcode143fix;
+				kind = branch;
+			};
+		};
 		4893CAC42849102A00DA27D9 /* XCRemoteSwiftPackageReference "HTML2Markdown" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://gitlab.com/mflint/HTML2Markdown";
@@ -706,14 +714,6 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		48D10F74284684A20090AB17 /* XCRemoteSwiftPackageReference "PagerTabStripView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/xmartlabs/PagerTabStripView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 		48F727D42856987D001D66F2 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elai950/AlertToast.git";
@@ -725,6 +725,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		487F08A42A1EADF200FA5E35 /* PagerTabStripView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 487F08A32A1EADF200FA5E35 /* XCRemoteSwiftPackageReference "PagerTabStripView" */;
+			productName = PagerTabStripView;
+		};
 		4893CAC52849102A00DA27D9 /* HTML2Markdown */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4893CAC42849102A00DA27D9 /* XCRemoteSwiftPackageReference "HTML2Markdown" */;
@@ -734,11 +739,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4893CAC72849188100DA27D9 /* XCRemoteSwiftPackageReference "HTMLString" */;
 			productName = HTMLString;
-		};
-		48D10F75284684A20090AB17 /* PagerTabStripView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 48D10F74284684A20090AB17 /* XCRemoteSwiftPackageReference "PagerTabStripView" */;
-			productName = PagerTabStripView;
 		};
 		48F727D52856987D001D66F2 /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;
