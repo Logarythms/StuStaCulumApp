@@ -148,5 +148,85 @@
         "latitude": "0.000000",
         "longitude": "0.000000",
         "type": null
+    },
+    {
+        "id": 22,
+        "name": "KADE",
+        "short_name": "KADE",
+        "navigation_string": "Zum KADE navigieren",
+        "color": "#ea0606",
+        "latitude": "48.181854",
+        "longitude": "11.611589",
+        "type": 1
+    },
+    {
+        "id": 23,
+        "name": "KADE Bierinsel",
+        "short_name": "KADE Bierinsel",
+        "navigation_string": "Zur KADE Bierinsel navigieren",
+        "color": "#000000",
+        "latitude": "48.182009",
+        "longitude": "11.611536",
+        "type": 3
+    },
+    {
+        "id": 24,
+        "name": "TribüHne Ausschank",
+        "short_name": "TribüHne Ausschank",
+        "navigation_string": "Zum TribüHne Ausschank navigieren",
+        "color": "#000000",
+        "latitude": "48.184026",
+        "longitude": "11.610494",
+        "type": 3
+    },
+    {
+        "id": 25,
+        "name": "Kinderprogramm",
+        "short_name": "Kinderprogramm",
+        "navigation_string": "Zum Kinderprogramm navigieren",
+        "color": "#000000",
+        "latitude": "48.182604",
+        "longitude": "11.610718",
+        "type": 2
+    },
+    {
+        "id": 26,
+        "name": "Atrium Aufladestation",
+        "short_name": "Atrium Aufladestation",
+        "navigation_string": "Zur Atrium Aufladestation navigieren",
+        "color": "#02f7f3",
+        "latitude": "48.184050",
+        "longitude": "11.610196",
+        "type": 4
+    },
+    {
+        "id": 27,
+        "name": "Festzelt Aufladestation",
+        "short_name": "Festzelt Aufladestation",
+        "navigation_string": "Zur Festzelt Aufladestation navigieren",
+        "color": "#02f7f3",
+        "latitude": "48.182937",
+        "longitude": "11.611364",
+        "type": 4
+    },
+    {
+        "id": 28,
+        "name": "KADE Aufladestation",
+        "short_name": "KADE Aufladestation",
+        "navigation_string": "Zur KADE Aufladestation navigieren",
+        "color": "#02f7f3",
+        "latitude": "48.181989",
+        "longitude": "11.611003",
+        "type": 4
+    },
+    {
+        "id": 29,
+        "name": "Altstadt Aufladestation",
+        "short_name": "Altstadt Aufladestation",
+        "navigation_string": "Zur Altstadt Aufladestation navigieren",
+        "color": "#02f7f3",
+        "latitude": "48.182949",
+        "longitude": "11.612457",
+        "type": 4
     }
 ]

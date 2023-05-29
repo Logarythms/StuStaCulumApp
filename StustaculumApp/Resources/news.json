@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "id": 24,
+        "title": "StuStaPay",
+        "description": "Dieses Jahr gibt es auf dem Festival ein bargeldlos Bezahlsystem für unsere internen Stände. Mit StuStaPay könnt ihr euch ganz einfach Geld auf den Chip an eurem Festivalbändchen laden. Wie das alles funktioniert und wo ihr euere Chips aufladen könnt, erfahrt ihr auf https://pay.stustaculum.de und in unseren FAQs. ACHTUNG: Externe Essens- und Getränkestände sind nicht im bargeldlosen Bezahlen miteinbezogen!",
+        "is_notification": false,
+        "already_notified": true
+    }
+]
