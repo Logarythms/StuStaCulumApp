@@ -17,7 +17,7 @@ class DataManager: ObservableObject {
     @Published var howTos = [HowTo]()
     @Published var locations = [Location]()
     @Published var days = [SSCDay]()
-    @Published var logo = UIImage(named: "logo2022")
+    @Published var logo = UIImage(named: "logo2023")
     @Published var dayslots = [Dayslot]()
     
     @Published var notificationEnabledToast = false
