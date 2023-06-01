@@ -64,6 +64,10 @@ class NewsViewModel: ObservableObject {
             $0.location == 4
         }
         
+        let upcomingKadePerformance = sortedPerformances.first {
+            $0.location == 22
+        }
+        
         var upcoming = [Performance]()
         
         if let dada = upcomingDadaPerformance {
@@ -77,6 +81,10 @@ class NewsViewModel: ObservableObject {
 //        }
         if let zelt = upcomingZeltPerformance {
             upcoming.append(zelt)
+        }
+        
+        if let kade = upcomingKadePerformance {
+            upcoming.append(kade)
         }
         upcoming.sort {
             $0.date <= $1.date

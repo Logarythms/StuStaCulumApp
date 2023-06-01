@@ -95,16 +95,17 @@ struct SSCDay: Codable, Identifiable, Hashable {
         guard let lastDate = calendar.date(from: lastComponents) else { throw DateError.calculationError }
         
         //sort performances by date
-        let sorted = performances.sorted { $0.date < $1.date }
+        let sortedStart = performances.sorted { $0.date < $1.date }
+        let sortedEnd = performances.sorted { $0.endDate() < $1.endDate() }
         
         //filter performances before cutoff, then take first as firstPerformance
-        guard let firstPerformance = sorted.filter ({
+        guard let firstPerformance = sortedStart.filter ({
             calendar.compare(firstDate, to: $0.date, toGranularity: .minute) == .orderedAscending
         }).first else { throw DateError.calculationError }
         
         //filter performances after cutoff, then take last as lastPerformance
-        guard let lastPerformance = sorted.filter({
-            calendar.compare($0.date, to: lastDate, toGranularity: .minute) == .orderedAscending
+        guard let lastPerformance = sortedEnd.filter({
+            calendar.compare($0.endDate(), to: lastDate, toGranularity: .minute) == .orderedAscending
         }).last else { throw DateError.calculationError }
         
         return (firstPerformance, lastPerformance)

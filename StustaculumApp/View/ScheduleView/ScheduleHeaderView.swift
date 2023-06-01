@@ -25,7 +25,7 @@ struct ScheduleHeaderView: View {
             ForEach(Stage.allCases, id: \.rawValue) { stage in
                 VStack {
                     Spacer()
-                    Text(Util.nameForLocation(stage.rawValue))
+                    Text(Util.shortNameForLocation(stage.rawValue))
                         .font(.subheadline)
                         .fontWeight(.heavy)
                         .foregroundColor(.white)
@@ -36,7 +36,7 @@ struct ScheduleHeaderView: View {
                     .cornerRadius(8)
                     .shadow(color: .gray, radius: colorScheme == .light ? 5 : 2.5)
                 Spacer()
-                    .frame(width: stage != .gelände ? 5 : 0)
+                    .frame(width: stage != .gelände ? 4 : 0)
                 
             }
         }

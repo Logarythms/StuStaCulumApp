@@ -54,5 +54,6 @@ enum Stage: Int, CaseIterable, Codable {
     case atrium = 2
 //    case halle = 3
     case zelt = 4
+    case kade = 22
     case gelände = 5
 }

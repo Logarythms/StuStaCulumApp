@@ -11,7 +11,7 @@ import SwiftUI
 struct DayView: View {
     
     let headerHeight: CGFloat = 25
-    let columnWidth = (UIScreen.main.bounds.size.width - 55) / 4
+    let columnWidth = (UIScreen.main.bounds.size.width - 55) / CGFloat(Stage.allCases.count)
     
     let dataManager = DataManager.shared
     
@@ -47,7 +47,7 @@ struct DaySchedule: View {
                         ForEach(Stage.allCases, id: \.rawValue) { stage in
                             StageColumn(timeslots: dayslot.timeslots[stage]!, columnWidth: columnWidth)
                             Spacer()
-                                .frame(width: stage != .gelände ? 5 : 0)
+                                .frame(width: stage != .gelände ? 4 : 0)
                         }
                     }
                 }

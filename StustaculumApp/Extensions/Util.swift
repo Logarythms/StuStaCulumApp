@@ -15,6 +15,7 @@ class Util {
     static let halleColor = UIColor(red:0.90, green:0.00, blue:0.33, alpha:1.0)
     static let zeltColor = UIColor(red:0.00, green:0.45, blue:0.64, alpha:1.0)
     static let geländeColor = UIColor(red:0.38, green:0.38, blue:0.38, alpha:1.0)
+    static let kadeColor = UIColor(red: 0.92, green: 0.02, blue: 0.02, alpha: 1.00)
     
     static let ssc2022Color = UIColor(red: 0.92, green: 0.15, blue: 0.76, alpha: 1.00)
     
@@ -31,8 +32,19 @@ class Util {
             return halleColor
         case 4:
             return zeltColor
+        case 22:
+            return kadeColor
         default:
             return dadaColor
+        }
+    }
+    
+    static func shortNameForLocation(_ id: Int) -> String {
+        switch id {
+        case 1:
+            return "Dada"
+        default:
+            return nameForLocation(id)
         }
     }
     
@@ -48,6 +60,8 @@ class Util {
             return "Festzelt"
         case 5:
             return "Gelände"
+        case 22:
+            return "Kade"
         default:
             return ""
         }
