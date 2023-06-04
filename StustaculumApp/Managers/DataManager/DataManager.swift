@@ -68,7 +68,7 @@ class DataManager: ObservableObject {
     private func downloadInitialData() {
         Task(priority: .userInitiated) {
             do {
-                try await withTimeout(seconds: 1000) {
+                try await withTimeout(seconds: 10) {
                     
                     print("start initial load")
                     
