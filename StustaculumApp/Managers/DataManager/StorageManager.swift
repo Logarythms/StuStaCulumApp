@@ -53,7 +53,7 @@ class StorageManager {
     }
     
     func localDataExists() -> Bool {
-        if !UserDefaults.standard.bool(forKey: "upgrade2023_v2") {
+        if !UserDefaults.standard.bool(forKey: "upgrade2023_v3.3.1") {
             print("upgrade detected")
             deleteIncompleteData()
             return false
