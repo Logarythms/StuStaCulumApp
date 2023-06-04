@@ -1,11 +1,11 @@
 {
     "id": 8,
-    "last_updated": "2023-05-24T09:44:05+02:00",
+    "last_updated": "2023-06-01T12:51:49+02:00",
     "end_date": "2023-06-11",
     "start_date": "2023-06-07",
     "year": 2023,
     "update_url": "https://www.stustaculum.de/StuStaCulum2023_(Edition)?darbietungxmlliste",
-    "logo": "http://app.stustaculum.de/media/logos/ssc23_app-header.jpg",
+    "logo": "http://app.stustaculum.de/media/logos/ssc_app-header.jpg",
     "published": true,
     "color": "#007aff",
     "mapoverlay": "http://app.stustaculum.de/media/mapoverlay/overlay_LaQfgsr.png"
