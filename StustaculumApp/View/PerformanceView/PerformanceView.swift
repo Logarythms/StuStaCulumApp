@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import StoreKit
 import HTMLString
 import HTML2Markdown
 import AlertToast
@@ -95,6 +96,14 @@ struct PerformanceView: View {
         }
         .onAppear {
             notify = dataManager.activeNotifications.contains(String(performance.id))
+        }
+        .task {
+            do {
+                try await Task.sleep(nanoseconds: 4_000_000_000)
+                dataManager.askForReview()
+            } catch {
+                print("cancelled")
+            }
         }
     }
     

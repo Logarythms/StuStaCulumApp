@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class DataManager: ObservableObject {
     
@@ -319,5 +320,14 @@ extension DataManager {
         if authorization != .authorized {
             try await userNC.requestAuthorization(options: [.alert, .sound])
         }
+    }
+}
+
+//MARK: Reviews
+extension DataManager {
+    
+    func askForReview() {
+        guard let scene = UIApplication.shared.foregroundActiveScene else { return }
+        SKStoreReviewController.requestReview(in: scene)
     }
 }
