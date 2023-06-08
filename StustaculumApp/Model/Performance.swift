@@ -17,7 +17,7 @@ struct Performance: Codable, Identifiable {
     var date: Date
     var duration: Int
     var imageURL: URL?
-    var lastUpdate: Date
+    var lastUpdate: Date?
     var show: Bool
     var location: Int
     var stustaculumID: Int

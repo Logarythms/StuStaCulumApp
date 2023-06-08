@@ -49,7 +49,7 @@ class DataManager: ObservableObject {
         }
     }
     
-    lazy var lastUpdated = performances.sorted{$0.lastUpdate > $1.lastUpdate}.first?.lastUpdate ?? Date()
+    lazy var lastUpdated = performances.sorted{ $0.lastUpdate ?? Date() > $1.lastUpdate ?? Date() }.first?.lastUpdate ?? Date()
     
     private init() {
         if !storageManager.localDataExists() {
@@ -208,7 +208,7 @@ extension DataManager {
     func updatePerformances() async throws {
         guard let ssc = currentSSC else { return }
         let performances = try await downloadPerformancesFor(ssc)
-        let newUpdatedDate = performances.sorted{ $0.lastUpdate > $1.lastUpdate }.first?.lastUpdate ?? Date()
+        let newUpdatedDate = performances.sorted{ $0.lastUpdate ?? Date() > $1.lastUpdate ?? Date() }.first?.lastUpdate ?? Date()
         
         print("old: \(self.lastUpdated)")
         print("new: \(newUpdatedDate)")
