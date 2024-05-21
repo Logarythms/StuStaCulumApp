@@ -1,12 +1,12 @@
 {
-    "id": 8,
-    "last_updated": "2023-06-01T12:51:49+02:00",
-    "end_date": "2023-06-11",
-    "start_date": "2023-06-07",
-    "year": 2023,
-    "update_url": "https://www.stustaculum.de/StuStaCulum2023_(Edition)?darbietungxmlliste",
-    "logo": "http://app.stustaculum.de/media/logos/ssc_app-header.jpg",
+    "id": 9,
+    "last_updated": "2024-05-20T02:10:25+02:00",
+    "end_date": "2024-06-02",
+    "start_date": "2024-05-29",
+    "year": 2024,
+    "update_url": "https://www.stustaculum.de/StuStaCulum2024_(Edition)?darbietungxmlliste",
+    "logo": "http://app.stustaculum.de/media/logos/ssc24-app-header.png",
     "published": true,
-    "color": "#007aff",
-    "mapoverlay": "http://app.stustaculum.de/media/mapoverlay/overlay_LaQfgsr.png"
+    "color": "#00b5e2",
+    "mapoverlay": null
 }

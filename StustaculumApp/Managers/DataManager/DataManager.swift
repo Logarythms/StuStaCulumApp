@@ -18,7 +18,7 @@ class DataManager: ObservableObject {
     @Published var howTos = [HowTo]()
     @Published var locations = [Location]()
     @Published var days = [SSCDay]()
-    @Published var logo = UIImage(named: "logo2023")
+    @Published var logo = UIImage(named: "logo2024")
     @Published var dayslots = [Dayslot]()
     
     @Published var notificationEnabledToast = false
@@ -26,6 +26,8 @@ class DataManager: ObservableObject {
     @Published var notificationErrorToast = false
     
     static let shared = DataManager()
+    
+    static let upgradeKey = "upgrade2024_v3.4"
 
     private let notificationCenter = NotificationCenter.default
     private let userNC = UNUserNotificationCenter.current()
@@ -84,7 +86,7 @@ class DataManager: ObservableObject {
                     try await self.storageManager.saveData(ssc, days: self.days, dayslots: self.dayslots, activeNotifications: self.activeNotifications, performances: performances, locations: locations, howTos: howTos, news: news)
                     
                     UserDefaults.standard.set(true, forKey: "initialLoadCompleted")
-                    UserDefaults.standard.set(true, forKey: "upgrade2023_v3.3.1")
+                    UserDefaults.standard.set(true, forKey: DataManager.upgradeKey)
                     self.notificationCenter.post(name: Notification.Name("fetchComplete"), object: nil)
                     
                     print("initial load complete")
