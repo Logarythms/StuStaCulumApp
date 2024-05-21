@@ -170,16 +170,6 @@
         "type": 3
     },
     {
-        "id": 24,
-        "name": "TribüHne Ausschank",
-        "short_name": "TribüHne Ausschank",
-        "navigation_string": "Zum TribüHne Ausschank navigieren",
-        "color": "#000000",
-        "latitude": "48.184026",
-        "longitude": "11.610494",
-        "type": 3
-    },
-    {
         "id": 25,
         "name": "Kinderprogramm",
         "short_name": "Kinderprogramm",
@@ -217,16 +207,6 @@
         "color": "#02f7f3",
         "latitude": "48.181989",
         "longitude": "11.611003",
-        "type": 4
-    },
-    {
-        "id": 29,
-        "name": "Altstadt Aufladestation",
-        "short_name": "Altstadt Aufladestation",
-        "navigation_string": "Zur Altstadt Aufladestation navigieren",
-        "color": "#02f7f3",
-        "latitude": "48.182949",
-        "longitude": "11.612457",
         "type": 4
     }
 ]
