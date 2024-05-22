@@ -25,8 +25,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        if #available(iOS 16.0, *) {
+            let mapConfiguration = MKStandardMapConfiguration()
+            mapConfiguration.pointOfInterestFilter = .excludingAll
+            
+            mapView.preferredConfiguration = mapConfiguration
+        } else {
+            mapView.pointOfInterestFilter = .excludingAll
+        }
         mapView.delegate = self
+        
         centerMapOnLocation(initialLocation)
         addOverlay()
     }
